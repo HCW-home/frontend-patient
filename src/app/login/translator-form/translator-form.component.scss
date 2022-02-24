@@ -1,0 +1,10 @@
+.container {
+  color: #fff;
+  .buttons-container {
+    margin-top: 40px;
+    ion-col {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

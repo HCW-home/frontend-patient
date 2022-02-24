@@ -1,0 +1,34 @@
+<ion-content padding>
+  <div class="wrap">
+    <div class="container">
+      <div
+        style="color: #ffffff; text-align: center; margin:25vh auto 40px auto;"
+      >
+        <ion-icon
+          class="attach-icon"
+          style="display: block ; margin:16px auto; width: 40px;
+        height: 40px;"
+          slot="icon-only"
+          name="attach"
+        ></ion-icon>
+        <h4>
+          ENVOYER <br />
+          <strong>UN FICHIER</strong>
+        </h4>
+      </div>
+      <button class="submit-btn" mat-button (click)="takePicture()">
+        Prendre une photo
+      </button>
+      <button class="submit-btn" mat-button (click)="chooseFile()">
+        Depuis le téléphone ou PC
+      </button>
+      <!-- <button class="submit-btn" mat-button (click)="chooseFile()" >
+          Laisser un message audio
+         </button> -->
+      <ion-button (click)="dismiss()" class="dismiss-btn" color="transparent"
+        >ANNULER</ion-button
+      >
+    </div>
+  </div>
+  <input *ngIf="this.platform.is('desktop') || !isNativeApp()" type="file" style="display: none;" id="input-file">
+</ion-content>

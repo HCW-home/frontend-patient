@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "paths": {
+      "hug-angular-lib": ["./node_modules/hug-angular-lib"]
+    },
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "module": "esnext",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "esModuleInterop": true
+
+  },
+  
+}

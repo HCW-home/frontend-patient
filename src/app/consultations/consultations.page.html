@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar style="display:flex;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title
+      style="text-align: center;
+      font-size: 0.9em;">
+        {{ 'consultations.openedConsultations' | translate }}
+      </ion-title>
+    <ion-badge
+      *ngIf="unreadCount && status !== 'closed'"
+      slot="end"
+      style=" line-height: 1.3; border-radius: 20px; width: 20px; height: 20px; text-align: center;     margin-right: 10px;"
+      color="danger"
+      >{{unreadCount}}</ion-badge
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list class="ion-margin">
+    <ion-item
+      *ngFor="let consultation of consultations"
+      lines="full"
+      [routerLink]="'/consultation/'+consultation._id"
+    >
+      <ion-grid class="ion-no-padding ion-no-margin">
+        <ion-row class="ion-no-padding ion-no-margin">
+          <ion-col size="10">
+            <ion-row class="patient">
+              {{consultation.consultation.firstName}}
+              {{consultation.consultation.lastName | uppercase}}</ion-row
+            >
+            <ion-row class="time"
+              >{{consultation.consultation.createdAt | date:'d MMMM
+              HH:mm':'fr-FR'}}
+            </ion-row>
+          </ion-col>
+          <ion-col
+            style="padding:0; display: flex; align-items:center;"
+            size="1"
+          >
+            <ion-badge
+              *ngIf="consultation.unreadCount"
+              style="line-height: 1.3; border-radius: 20px; width: 20px; height: 20px; text-align: center;"
+              color="danger"
+              >{{consultation.unreadCount}}</ion-badge
+            >
+          </ion-col>
+          <ion-col
+            style=" display: flex; align-items:center;"
+            class="arrow"
+            size="1"
+          >
+            <ion-icon name="arrow-dropright"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

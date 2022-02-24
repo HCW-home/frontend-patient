@@ -1,0 +1,80 @@
+<ion-content padding>
+  <div class="wrap">
+    <div class="container">
+      <div style="color: #ffffff; text-align: center; margin: 80px auto 40px;">
+        <h2>@Home</h2>
+      </div>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title
+            >{{ 'closingScreen.theConsultationIsNowOver' | translate
+            }}</ion-card-title
+          >
+        </ion-card-header>
+
+        <ion-card-content>
+          <p>{{ 'closingScreen.thankYouForUsing' | translate:configService.config }}</p>
+
+          <ng-container
+            *ngIf="currentUser && currentUser.role !== 'translator' && currentUser.role !== 'guest'"
+          >
+            <ng-container *ngIf="!feedbackSaved">
+              <h3>{{ 'closingScreen.areYouSatisfied' | translate:configService.config }}</h3>
+
+              <div class="ratings">
+                <ng-container *ngFor="let rating of ratings">
+                  <div
+                    class="rating"
+                    [class]="rating"
+                    [class.selected]="rating===userRating"
+                    (click)="onRatingClick(rating)"
+                  >
+                    <img
+                      [src]="'/assets/images/smileys/' + rating + '.png'"
+                      [alt]="rating"
+                    />
+                  </div>
+                </ng-container>
+              </div>
+
+              <h3>{{ 'closingScreen.doYouWantTo' | translate }}</h3>
+              <ion-item lines="full">
+                <ion-textarea
+                  [(ngModel)]="userComment"
+                  name="userComment"
+                  type="string"
+                  placeholder="Votre commentaire"
+                ></ion-textarea>
+              </ion-item>
+
+              <div class="buttons">
+                <button class="submit-btn" mat-button (click)="onFormSubmit()">
+                  {{ 'closingScreen.sendMyFeedback' | translate }}
+                </button>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="feedbackSaved">
+            <p class="feedback-saved">
+              <span>✓</span> {{ 'closingScreen.thankYouForYourFeedback' |
+              translate }}
+            </p>
+          </ng-container>
+        </ion-card-content>
+      </ion-card>
+
+      <button
+        class="btn red big"
+        mat-button
+        (click)="closeApp()"
+        type="button"
+        *ngIf="feedbackSaved && isMobileApp()"
+      >
+        {{ 'login.closeTheApplication' | translate }}
+      </button>
+
+    </div>
+  </div>
+</ion-content>

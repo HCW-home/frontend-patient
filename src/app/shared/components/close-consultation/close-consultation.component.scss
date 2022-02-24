@@ -1,0 +1,67 @@
+ion-content {
+  height: 100%;
+  width: 100%;
+
+  background: url("assets/icons/background.jpg");
+  background-size: 100%;
+  background-position: center;
+}
+
+ion-grid {
+  height: 100%;
+  width: 100%;
+}
+
+ion-button {
+  display: block;
+  margin: auto;
+}
+
+.doctor-title {
+  padding: 0;
+  display: block;
+  margin: auto;
+  text-align: center;
+  color: white;
+  font-size: 0.95em;
+  margin-top: 10px;
+}
+
+.cancel-btn {
+  margin-top: 15px;
+  --border-radius: 30px;
+  --background: white;
+  color: var(--ion-color-primary);
+  width: 220px;
+}
+
+.dismiss-btn {
+  --border-style: none;
+  --box-shadow: none;
+  --border-radius: 30px;
+  font-size: 0.8em;
+  margin-top: 10px;
+}
+
+ion-icon {
+  &[class*="fn-"] {
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    width: 1em;
+    height: 1em;
+  }
+
+  &[class*="fn-x"] {
+    color: white;
+    -webkit-mask: url(assets/icons/icon-cancel.svg);
+
+    background-color: white;
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+
+    display: block;
+    margin: auto;
+  }
+}

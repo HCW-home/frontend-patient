@@ -1,0 +1,169 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+
+@font-face {
+  font-family: 'Cooper Hewitt';
+  src: url('./assets/fonts/CooperHewitt-Bold.eot');
+  src: url('./assets/fonts/CooperHewitt-Bold.eot') format('embedded-opentype'),
+    url('./assets/fonts/CooperHewitt-Bold.svg') format('svg'),
+    url('./assets/fonts/CooperHewitt-Bold.woff') format('woff'),
+    url('./assets/fonts/CooperHewitt-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: 'Cooper Hewitt';
+  src: url('./assets/fonts/CooperHewitt-Book.eot');
+  src: url('./assets/fonts/CooperHewitt-Book.eot') format('embedded-opentype'),
+    url('./assets/fonts/CooperHewitt-Book.svg') format('svg'),
+    url('./assets/fonts/CooperHewitt-Book.woff') format('woff'),
+    url('./assets/fonts/CooperHewitt-Book.ttf') format('truetype');
+  font-weight: lighter;
+  font-style: lighter;
+}
+
+:root {
+  --ion-background-color: transparent;
+}
+
+* {
+  font-family: 'Cooper Hewitt' !important;
+}
+
+.picker-wrapper {
+  background: white !important;
+}
+
+ion-content {
+  background-color: #f0f7f7;
+}
+
+ion-toolbar {
+  // height:56px;
+  border-bottom: 2px solid #2871bd;
+  background-color: #ffffff;
+}
+
+ion-card {
+  --background: #ffffff;
+  background-color: white !important;
+}
+
+.validator-error {
+  color: #ff6060;//var(--ion-color-danger);
+  font-weight: bold;
+  padding-top: 4px;
+}
+app-login,
+app-test-call {
+  background: url('assets/icons/background.jpg') no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-attachment: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--blue-bg-color);
+}
+#test-video-container {
+  video {
+    -o-object-fit: cover;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+.btn {
+  margin: 20px auto 0;
+  display: block;
+  border-radius: 60px;
+  text-align: center;
+  width: auto;
+  background: #b5e2ff;
+  color: var(--blue-bg-color);
+  font-size: 1.1em;
+  padding: 10px 20px 7px;
+
+  img {
+    opacity: 0.8;
+    max-height: 13px;
+    display: none;
+  }
+}
+.btn.submitted {
+  background: #04b74db0;
+  img {
+    display: inline;
+  }
+}
+.btn.green {
+  background: #00b54a;
+  color: #fff;
+  &:disabled {
+    background-color: #00b54a99;
+  }
+}
+.btn.red {
+  background: #d25555;
+  color: #fff;
+}
+.btn.big {
+  padding: 20px 30px 17px;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+.cordova-camera-capture{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("assets/background@2x.jpg");
+
+  button{
+    margin: auto;
+    display: block;
+    margin-top: 14px;
+    background-color: #ffff;
+    border-radius: 60px;
+    text-align: center;
+    width: 70%;
+    height: 42px;
+    color: var(--ion-color-primary);
+
+    border: 0;
+    border-radius: 0;
+    font-family: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    line-height: 1;
+    text-transform: none;
+    cursor: pointer;
+  }
+}
+

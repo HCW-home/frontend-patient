@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" (click)="dismiss()"></ion-back-button>
+    </ion-buttons>
+    <ion-title
+      style="       text-align: center;
+      margin-right: 25%;
+      font-size: 0.9em;  "
+      >Demande consultation</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid style="width:100%; ">
+    <ion-row>
+      <ion-title class="sub" color="medium"
+        >PRE-REQUIS DE DEMANDE DE CONSULTATION</ion-title
+      >
+
+      <ion-card>
+        <ion-list class="check-list">
+          <ion-item lines="full">
+            <ion-label text-wrap slot="start">
+              L’appel ne concerne pas une urgence vitale
+            </ion-label>
+            <ion-checkbox
+              color="primary"
+              mode="ios"
+              slot="end"
+              [(ngModel)]="term1"
+              [checked]="term1"
+            ></ion-checkbox>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label text-wrap slot="start">
+              Le patient a consenti à effectuer l’appel
+            </ion-label>
+            <ion-checkbox
+              color="primary"
+              mode="ios"
+              slot="end"
+              [(ngModel)]="term2"
+              [checked]="term2"
+            ></ion-checkbox>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label text-wrap slot="start">
+              Le médecin traitant n’est pas disponible ou a donné son accord
+            </ion-label>
+            <ion-checkbox
+              color="primary"
+              mode="ios"
+              slot="end"
+              [(ngModel)]="term3"
+              [checked]="term3"
+            ></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+
+      <ion-title class="sub" color="medium"
+        >PATIENT À LA SUITE D’UNE HOSPITALISATION HUG</ion-title
+      >
+      <ion-card style=" ">
+        <ion-list class="input-list">
+          <!-- <ion-item lines="full">
+                <ion-label position="floating" text-wrap >
+                    Nom du patient
+                </ion-label>
+                <ion-input [(ngModel)]="firstName" required="true"></ion-input>
+              </ion-item>
+              <ion-item lines="full">
+                <ion-label position="floating" text-wrap  >
+                    Prénom de patient
+                </ion-label>
+                <ion-input [(ngModel)]="lastName" required="true"></ion-input>
+              </ion-item> -->
+          <ion-item lines="full">
+            <ion-label text-wrap position="floating">
+              Sexe
+            </ion-label>
+            <ion-select [(ngModel)]="gender" placeholder="Select">
+              <ion-select-option value="female">Féminin</ion-select-option>
+              <ion-select-option value="male">Masculin</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating" text-wrap>
+              Date de naissance
+            </ion-label>
+            <ion-datetime
+              [(ngModel)]="birthDate"
+              day-names="lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche"
+              placeholder="Select date"
+              month-names="Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre"
+              display-format="DD MMMM YYYY"
+              value="1960-06-15"
+              min="1895-01-01"
+            ></ion-datetime>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input
+              [(ngModel)]="IMADTeam"
+              type="number"
+              name="IMADTeam"
+              (ngModelChange)="strictIMAD($event)"
+              [attr.maxlength]="3"
+              max="999"
+              style="margin-top: 20px;"
+              placeholder="Equipe IMAD"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-button
+  class="submit-btn"
+  slot="fixed"
+  vertical="bottom"
+  (click)="createConsultation()"
+>
+  VALIDER LA DEMANDE</ion-button
+>

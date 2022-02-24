@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="    font-size: 1em;"
+      >{{ 'info.general' | translate }} <strong> {{ 'info.geninformationeral' | translate }}</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <p style="padding: 20px;
+padding-top:0;
+line-height: 1.4;">
+    {{ 'info.duringTheTransition' | translate:configService.config }}
+    <strong>{{ 'info.home' | translate:configService.config  }}</strong> {{ 'info.aimsToStrengthen' | translate:configService.config  }}
+    <strong>{{ 'info.mayToTheEnd' | translate }}</strong>. {{ 'info.itIsFundedBy' | translate }}
+    <strong>{{ 'info.theHUGPrivate' | translate:configService.config  }} </strong> {{ 'info.andTheGeneral' | translate }}
+    <strong>{{ 'info.firstAidPhysicians' | translate }} </strong>. {{ 'info.theServiceIsAccessible' | translate }}
+    <strong>{{ 'info.accessibleTime1' | translate }}</strong> {{ 'info.andFrom' | translate }}
+    <strong>{{ 'info.accessibleTime2' | translate }}</strong>
+    {{ 'info.theCaregiverImad' | translate:configService.config  }}
+  </p>
+  <ul style="font-weight: bold;     padding-right: 20px;">
+    <li>
+      {{ 'info.itIsNot' | translate }}
+    </li>
+    <li>
+      {{ 'info.patientHasConstent' | translate }}
+    </li>
+    <li>
+      {{ 'info.theAttendingPhysician' | translate }}
+    </li>
+    <li>
+      {{ 'info.thePatientWasRecently' | translate:configService.config  }}
+    </li>
+  </ul>
+
+  <div style="display: flex; height:106px; padding: 20px;">
+    <div><img src="../../assets/images/hug-square.jpg" alt="" /></div>
+    <div
+      style="display: flex; align-items: center; background-color:white; height: 100%;"
+    >
+      <img src="../../assets/images/imad.png" alt="" />
+    </div>
+    <div><img src="../../assets/images/home.png" alt="" /></div>
+    <div style="display: flex; align-items: center;">
+      <img src="../../assets/42406c8f52924105a84c4163a89506fd.png" alt="" />
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,20 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "GFX3XFP7RB.com.iabsis.coronathome",
+        "paths": [
+          "/*",
+        ]
+      },
+      {
+        "appID": "MC9GVRT8Q8.ch.hug-ge.hugathome",
+        "paths": [
+          "/*",
+        ]
+      }
+    ]
+  }
+}
+

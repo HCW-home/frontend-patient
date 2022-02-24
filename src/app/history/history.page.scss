@@ -1,0 +1,22 @@
+ion-list > ion-item {
+  background-color: white;
+  --min-height: 60px;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  padding: 10px;
+  padding-bottom: 0px;
+  color: rgb(58, 58, 58);
+}
+
+ion-row.patient {
+  font-weight: bold;
+}
+
+ion-row.time {
+  font-size: 12px;
+}
+
+ion-col.arrow {
+  font-size: 20px;
+  padding-left: 0px;
+}

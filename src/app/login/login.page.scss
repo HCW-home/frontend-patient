@@ -1,0 +1,140 @@
+.subtitle {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+.login-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 40px auto 0;
+}
+
+.login-full-width {
+  width: 100%;
+  height: 50px;
+  padding: 0px;
+}
+
+.login-full-width input {
+  height: 100%;
+}
+
+.at {
+  margin: 16px;
+  font-size: 37px;
+  text-align: center;
+  color: #ffff;
+  font-weight: 500;
+}
+
+.at > span {
+  display: block;
+  font-size: 12px;
+}
+
+ng-container {
+}
+
+.wrap {
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+p {
+  color: #fff;
+}
+
+.buttons {
+  margin-top: 50px;
+}
+
+.container {
+  display: block;
+  margin: 30px auto;
+  width: 70%;
+}
+
+ion-label {
+  color: #ffff;
+}
+
+ion-item {
+  --color: #fff;
+  --border-color: white; // default underline color
+  --highlight-color-valid: white; // valid underline color
+
+  ion-input,
+  ion-datetime {
+    --placeholder-color: #ceecff;
+  }
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+.footer {
+  text-align: center;
+  color: #7cafd0;
+  margin-top: 40px;
+  a {
+    margin: 0 5px;
+  }
+}
+
+.icons {
+  text-align: center;
+
+  img {
+    max-height: 60px;
+  }
+}
+.ics {
+  text-align: center;
+  a {
+    display: inline-block;
+  }
+}
+ion-card {
+  margin: 40px auto;
+}
+
+.title {
+  color: #ffffff;
+  text-align: center;
+  margin: 80px auto 40px;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    width: 92%;
+  }
+  .title {
+    margin: 40px auto 40px;
+  }
+}
+
+.invite-error {
+  text-align: center;
+  font-size: 21px;
+  margin-top: 26px;
+  padding: 3px;
+}
+ion-content {
+  background: transparent;
+}
+footer {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  color: white;
+  justify-content: center;
+  div {
+    display: flex;
+    align-content: center;
+    align-items: center;
+  }
+}

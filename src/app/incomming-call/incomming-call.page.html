@@ -1,0 +1,29 @@
+<ion-content>
+  <ion-grid>
+    <ion-row style="height:25%; width:100%;"></ion-row>
+    <ion-row>
+      <ion-col size="2"></ion-col>
+      <ion-col size="8">
+        <ion-row>
+          <img class="logo" src="assets/icons/Call-incoming.svg" alt="" />
+        </ion-row>
+        <ion-row>
+          <ion-title class="doctor-title">
+            {{ 'incomingCall.drDELATTRE' | translate }} <br />
+            <strong>{{ 'incomingCall.videoCall' | translate }}</strong>
+          </ion-title>
+        </ion-row>
+        <ion-row>
+          <ion-button class="accept-btn">{{ 'incomingCall.accept' | translate }}</ion-button>
+        </ion-row>
+
+        <ion-row>
+          <ion-button class="refuse-btn" color="transparent">
+            {{ 'incomingCall.refuse' | translate }}
+          </ion-button>
+        </ion-row>
+      </ion-col>
+      <ion-col size="2"></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

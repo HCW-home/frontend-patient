@@ -1,0 +1,112 @@
+<div class="container">
+  <p>
+    {{ "translatorForm.youAboutToJoinInviteWithPatientAndDOctor" | translate:configService.config }}
+  </p>
+
+  <ul>
+    <li>
+      {{ "translatorForm.caregiverName" | translate }}:
+      {{ invite.invitedBy.firstName | uppercase }}
+      {{ invite.invitedBy.lastName }}
+    </li>
+  </ul>
+
+  <p>
+    {{ "translatorForm.pleaseFillYourInfo" | translate }}
+  </p>
+
+  <form 
+  *ngIf="myForm"
+  (submit)="onSubmit()"
+  [formGroup]="myForm"
+  >
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm>
+          <ion-item>
+            <ion-label color="light" position="floating">
+              {{ "translatorForm.name" | translate }}
+            </ion-label>
+            <ion-input
+              color="light"
+              name="name"
+              type="string"
+              placeholder=""
+              required
+              formControlName="nameFormControl"
+
+            ></ion-input>
+          </ion-item>
+          
+          <div 
+        class="validator-error"  *ngIf="myForm.controls.nameFormControl.hasError('required') && (myForm.controls.nameFormControl.dirty || myForm.controls.nameFormControl.touched)"
+        > {{"translatorForm.nameIsRequired" | translate}}</div>
+        </ion-col>
+        <ion-col size="12" size-sm>
+          <ion-item>
+            <ion-label color="light" position="floating">
+              {{ "translatorForm.email" | translate }}
+            </ion-label>
+            <ion-input
+              color="light"
+              name="direct"
+              type="string"
+              placeholder=""
+              required
+              formControlName="emailFormControl"
+
+              type="email"
+            ></ion-input>
+          </ion-item>
+          <div 
+        class="validator-error"  *ngIf="myForm.controls.emailFormControl.hasError('required') && (myForm.controls.emailFormControl.dirty || myForm.controls.emailFormControl.touched)"
+        > {{"translatorForm.emailIsRequired" | translate}}</div>
+        <div 
+        class="validator-error"  *ngIf="myForm.controls.emailFormControl.hasError('email') && (myForm.controls.emailFormControl.dirty || myForm.controls.emailFormControl.touched)"
+        > {{"translatorForm.emailIsInvalid" | translate}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="12" size-md="6">
+          <ion-item>
+            <ion-label color="light" position="floating">
+              {{ "translatorForm.directNumber" | translate }}
+            </ion-label>
+            <ion-input
+              color="light"
+              name="direct"
+              type="string"
+              placeholder=""
+              required
+              formControlName="directNumberFormControl"
+
+            ></ion-input>
+          </ion-item>
+          <div 
+        class="validator-error"  *ngIf="myForm.controls.directNumberFormControl.hasError('required') && (myForm.controls.directNumberFormControl.dirty || myForm.controls.directNumberFormControl.touched)"
+        > {{"translatorForm.directNumberIsRequired" | translate}}</div>
+        <div
+      class="validator-error"  *ngIf="myForm.controls.directNumberFormControl.hasError('pattern') && (myForm.controls.directNumberFormControl.dirty || myForm.controls.directNumberFormControl.touched)"
+      > {{"translatorForm.directNumberIsInvalid" | translate}}</div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="buttons-container">
+        <ion-col
+          *ngIf="
+            invite.translationOrganization &&
+            invite.translationOrganization.canRefuse
+          "
+          ><ion-button (click)="onRefused()" color="danger">{{
+            "translatorForm.refuse" | translate
+          }}</ion-button></ion-col
+        >
+        <ion-col
+          ><ion-button color="success" type="submit">
+            {{ "translatorForm.acceptRequest" | translate }}
+          </ion-button></ion-col
+        >
+      </ion-row>
+    </ion-grid>
+  </form>
+</div>

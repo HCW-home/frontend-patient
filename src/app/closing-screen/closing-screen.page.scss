@@ -1,0 +1,92 @@
+.wrap {
+    width: 100%;
+    min-height: 100%;
+    background: url("assets/icons/background.jpg") no-repeat;
+    background-size: 100%;
+    background-position: center;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--blue-bg-color);
+}
+.container {
+    display: block;
+    margin: 30px auto;
+    width: 70%;
+    font-size: 1.1em;
+}
+h3 {
+    color: #3c3c3c;
+    margin: 40px 0 10px;
+}
+p {
+    font-size: 1.1em;
+}
+
+.ratings {
+    text-align: center;
+
+    div {
+        display: inline-block;
+        height: 100px;
+        width: 100px;
+        border-radius: 20px;
+        cursor: pointer;
+        border: 2px solid #ddd;
+        margin: 0 20px;
+        padding: 10px;
+
+        &.selected {
+            border-color: #086baf;
+        }
+    }
+}
+ion-item {
+    --color: #444;
+    --border-color: #ddd;
+    --border-width: 1px;
+    --border-style: solid;
+    --border-radius: 10px;
+    --color-focused: #086baf;
+    --highlight-color-valid: #086baf;
+}
+ion-textarea {
+    --placeholder-color: #ddd;
+}
+.feedback-saved {
+    color: #00b54a;
+    margin-top: 40px;
+
+    span {
+        display: inline-block;
+        background: #00b54a;
+        color: #fff;
+        border-radius: 5px;
+        padding: 6px 12px;
+        margin-right: 20px;
+    }
+}
+
+.submit-btn {
+  margin: auto;
+  display: block;
+  margin-top: 50px;
+  border-radius: 60px;
+  text-align: center;
+  width: auto;
+  background: #00b54a;
+  color: #fff;
+  font-size: 1.1em;
+  padding: 10px 20px 7px;
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    width: 92%;
+  }
+  .ratings div {
+    height: 80px;
+    width: 80px;
+  }
+}

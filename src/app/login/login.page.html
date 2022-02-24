@@ -1,0 +1,253 @@
+<ion-content padding>
+  <div class="wrap">
+    <div class="container" *ngIf="showTranslatorConfirmation">
+      <div class="title">
+        <h3>@{{ 'login.home' | translate }}</h3>
+        <p *ngIf="!translationRequestRefused">
+          {{'login.translationRequestAccepted' | translate }}
+        </p>
+        <p *ngIf="translationRequestRefused">
+          {{'login.translationRequestRefused' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div *ngIf="!showTranslatorConfirmation" class="container">
+      <div class="title">
+        <h3>@{{ 'login.home' | translate }}</h3>
+      </div>
+
+      <p *ngIf="!invite || invite.type === 'patient'">
+        {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config }}
+      </p>
+
+      <app-translator-form
+        *ngIf="invite && invite.type === 'TRANSLATOR_REQUEST'  && !this.noInviteError"
+        (onTranslatorSubmit)="translatorSubmit($event)"
+        (onTranslatorRefused)="translatorRefused($event)"
+        [invite]="invite"
+      ></app-translator-form>
+
+      <div *ngIf="translatorAcceptError" class="validator-error">
+        {{translatorAcceptError.userMessage}}
+      </div>
+
+      <ng-container *ngIf="noInviteError && isMobileApp()">
+        <ng-container *ngIf="noTokenProvided">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{ 'login.warning' | translate }}</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              {{ 'login.thisApplicationIsIntented' | translate }}
+            </ion-card-content>
+          </ion-card>
+
+          <button
+            class="btn red big"
+            mat-button
+            (click)="closeApp()"
+            type="button"
+            *ngIf="isMobileApp()"
+          >
+            {{ 'login.closeTheApplication' | translate }}
+          </button>
+        </ng-container>
+        <ng-container *ngIf="!noTokenProvided">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title
+                >{{ 'login.anErrorHasOccurred' | translate }}</ion-card-title
+              >
+            </ion-card-header>
+            <ion-card-content>
+              {{ 'login.theInvitationIsNotOrNoLongerValide' | translate }}
+            </ion-card-content>
+          </ion-card>
+
+          <button
+            class="btn red big"
+            mat-button
+            (click)="closeApp()"
+            type="button"
+            *ngIf="isMobileApp()"
+          >
+            {{ 'login.closeTheApplication' | translate }}
+          </button>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="noInviteError && !isMobileApp()">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title
+              >{{ 'login.anErrorHasOccurred' | translate }}</ion-card-title
+            >
+          </ion-card-header>
+
+          <ion-card-content>
+            {{ 'login.theInvitationIsNotOrNoLongerValide' | translate }}
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
+
+      <ng-container
+        *ngIf="mobileLandScreen && !noInviteError && !(invite && invite.type === 'TRANSLATOR_REQUEST')"
+      >
+        <p class="subtitle">Utilisateur ponctuel ?</p>
+
+        <button
+          class="btn green big"
+          mat-button
+          [disabled]="loading"
+          type="submit"
+          (click)="closeLandingScreen()"
+        >
+          {{ loading ? 'Chargement en cours...' : 'Rejoindre via le navigateur'
+          }}
+        </button>
+
+        <div class="icons">
+          <p class="subtitle">{{ 'login.installOurApp' | translate }}</p>
+          <a
+            [href]="this.configService.config.appleStoreUrl"
+            [title]="this.configService.config.appleStoreTitle"
+            *ngIf="platform.is('ios') && this.configService.config && this.configService.config.appleStoreUrl"
+          >
+            <img src="/assets/images/appstore.svg" alt="App Store" />
+          </a>
+          <a
+            [href]="this.configService.config.androidStoreUrl"
+            [title]="this.configService.config.androidStoreTitle"
+            *ngIf="platform.is('android') && this.configService.config && this.configService.config.androidStoreUrl"
+          >
+            <img src="/assets/images/googleplay.png" alt="Google Play" />
+          </a>
+        </div>
+        <p class="subtitle">
+          {{ 'login.donwloadHomeOnTheAppStore' | translate:configService.config }}
+        </p>
+        <button
+          class="btn green big"
+          mat-button
+          (click)="openApp()"
+          type="button"
+        >
+          {{ 'login.openTheConsultation' | translate }}
+        </button>
+        <p class="subtitle">
+          {{ 'login.youDoNotWantToInstall' | translate }}
+        </p>
+
+        <button
+          class="btn"
+          mat-button
+          [disabled]="loading"
+          type="submit"
+          (click)="closeLandingScreen()"
+        >
+          {{ loading ? ('login.loading' | translate) : ('login.joinViaBrowser' |
+          translate) }}
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!mobileLandScreen && !noInviteError">
+        <p *ngIf="!inviteToken && !isMobileUser()">
+          {{ 'login.ifYouHaveReceivedThisInvitation' | translate }}
+        </p>
+        <p *ngIf="!inviteToken && isMobileUser()">
+          {{ 'login.ifYouReceivedThisInvitation' | translate }}
+        </p>
+
+        <ion-card *ngIf="!inviteToken && isMobileUser()">
+          <ion-card-header>
+            <ion-card-title>{{ 'login.warning' | translate }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            {{ 'login.thisAppOnlyWorksByInivitation' | translate }}
+          </ion-card-content>
+        </ion-card>
+
+        <form
+          *ngIf=" !invite || invite.type === 'PATIENT' || invite.type === 'TRANSLATOR' || invite.type === 'GUEST' "
+          (submit)="onSubmit()"
+          class="login-form"
+        >
+          <ion-item lines="full" *ngIf="!inviteToken && !isMobileUser()">
+            <ion-label position="floating" text-wrap>
+              {{ 'login.invitationKey' | translate }}
+            </ion-label>
+            <ion-input
+              [(ngModel)]="inviteKey"
+              name="inviteKey"
+              type="string"
+              placeholder="ae9f049f76e6addbcc8d0858cc229fdf4af1c862"
+              pattern="[a-f0-9]{40}"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="inviteKeyError" class="validator-error">
+            {{inviteKeyError}}
+          </div>
+
+          <div
+            class="buttons"
+            *ngIf="(!inviteToken &&!isMobileUser()) || inviteToken"
+          >
+            <button
+              class="btn green"
+              mat-button
+              type="submit"
+              [class.submitted]="submitted"
+            >
+              <ng-container *ngIf="!submitted"
+                >{{ 'login.joinTheConsultation' | translate }}</ng-container
+              >
+              <img
+                src="/assets/images/three-dots-spinner.svg"
+                alt="Chargement en cours"
+              />
+            </button>
+          </div>
+          <p *ngIf="submitted">
+            {{ 'login.pleaseWaitWhileYourRequest' | translate }}
+          </p>
+        </form>
+      </ng-container>
+
+      <ng-container *ngIf="isScheduled">
+        <h2 class="title">
+          {{ 'login.yourConsultationIsPlannedFor' | translate }}
+          {{(scheduledFor) | date: "medium":null: invite.patientLanguage }}.
+        </h2>
+        <p class="ics">
+          <a
+            [href]="icsBlob"
+            class="btn green"
+            type="text/calendar"
+            download="event.ics"
+          >
+            {{ 'login.addTheEventToYourCalendar' | translate }}
+          </a>
+        </p>
+      </ng-container>
+
+      <div class="footer">
+        <a [routerLink]="['/cgu']" title="Lire les CGU" class=""
+          >{{ 'login.termsOfService' | translate }}</a
+        >
+      </div>
+
+      <app-select-language></app-select-language>
+    </div>
+  </div>
+</ion-content>
+<footer class="page-footer font-small pt-4">
+  <div class="text-center py-3">
+    {{ 'login.supportedByThePrivateFunction' | translate }}
+    <img
+      src="/assets/images/logo-fondation-prive.png"
+      style="padding-left: 3px;"
+      width="100px"
+    />
+  </div>
+</footer>
