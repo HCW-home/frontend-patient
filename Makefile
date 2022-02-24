@@ -7,7 +7,7 @@ timeStamp:=$(shell date +%Y%m%d%H%M%S)
 
 node_modules:
 	echo "building in production mode"
-	@ npx yarn install
+	@ npm install
 
 
 build: web
