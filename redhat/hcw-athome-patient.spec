@@ -31,7 +31,7 @@ make build
 
 %files
 %defattr(-,root,root, 0755)
-%{_datadir}/%{name}/
+%{_datadir}/hcw-at-home
 
 %changelog
 * Wed Apr 17 2019 Olivier Bitsch <olivier.b@iabsis.com>

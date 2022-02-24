@@ -3,7 +3,7 @@ npm_version:=$(shell npm -v)
 timeStamp:=$(shell date +%Y%m%d%H%M%S)
 
 
-.PHONY: install build archive test clean
+.PHONY: install build archive test clean web
 
 node_modules:
 	echo "building in production mode"
@@ -16,9 +16,11 @@ all: android ios
 	mkdir platforms/all
 	zip -r platforms/all/app-release-all.zip platforms/ios platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
-web: node_modules
+www:
 	sed -i 's/native/web/g' src/environments/environment.prod.ts
 	npx ionic cordova build browser --prod
+
+web: node_modules www
 
 android: node_modules
 	sed -i 's/web/native/g' src/environments/environment.prod.ts

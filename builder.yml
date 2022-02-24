@@ -7,3 +7,5 @@ builder:
 - method: docker
   options:
     image: builder-focal
+    env:
+      PLATFORM: all
