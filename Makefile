@@ -6,8 +6,9 @@ timeStamp:=$(shell date +%Y%m%d%H%M%S)
 .PHONY: install build archive test clean
 
 node_modules:
-	npm install
 	echo "building in production mode"
+	@ npx yarn install
+
 
 build: web
 

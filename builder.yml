@@ -3,4 +3,7 @@ builder:
   options:
     image: builder-centos8
     env:
-      SPEC_PATH: redhat/hug-home-patient.spec
+      SPEC_PATH: redhat/hcw-athome-patient.spec
+- method: docker
+  options:
+    image: builder-focal
