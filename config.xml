@@ -114,7 +114,7 @@
         </config-file>
     </platform>
     <platform name="browser">
-        <preference name="SplashScreenDelay" value="0"/>
+        <preference name="SplashScreenDelay" value="0" />
     </platform>
     <engine name="browser" spec="5.0.4" />
     <engine name="ios" spec="5.1.1" />

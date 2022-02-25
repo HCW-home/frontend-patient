@@ -16,11 +16,12 @@ all: android ios
 	mkdir platforms/all
 	zip -r platforms/all/app-release-all.zip platforms/ios platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
-www:
+www: node_modules
 	sed -i 's/native/web/g' src/environments/environment.prod.ts
+	npx ionic cordova platform add browser
 	npx ionic cordova build browser --prod
 
-web: node_modules www
+web: www
 
 android: node_modules
 	sed -i 's/web/native/g' src/environments/environment.prod.ts
