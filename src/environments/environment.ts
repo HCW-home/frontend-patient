@@ -6,7 +6,6 @@ export const environment = {
   production: false,
   api: '/api/v1',
   host: 'http://localhost:1337',
-  // host: 'https://dev-patient-hug-at-home.oniabsis.com',
 
   // host: 'https://' + document.location.host,
 
