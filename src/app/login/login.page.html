@@ -2,7 +2,12 @@
   <div class="wrap">
     <div class="container" *ngIf="showTranslatorConfirmation">
       <div class="title">
-        <h3>@{{ 'login.home' | translate }}</h3>
+        <img
+          class="logo"
+          *ngIf="configService.config.logo"
+          [src]="configService.config.logo"
+          [alt]="configService.config.branding"
+        />
         <p *ngIf="!translationRequestRefused">
           {{'login.translationRequestAccepted' | translate }}
         </p>
@@ -14,11 +19,17 @@
 
     <div *ngIf="!showTranslatorConfirmation" class="container">
       <div class="title">
-        <h3>@{{ 'login.home' | translate }}</h3>
+        <img
+          class="logo"
+          *ngIf="configService.config.logo"
+          [src]="configService.config.logo"
+          [alt]="configService.config.branding"
+        />
       </div>
 
       <p *ngIf="!invite || invite.type === 'patient'">
-        {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config }}
+        {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config
+        }}
       </p>
 
       <app-translator-form
@@ -125,7 +136,8 @@
           </a>
         </div>
         <p class="subtitle">
-          {{ 'login.donwloadHomeOnTheAppStore' | translate:configService.config }}
+          {{ 'login.donwloadHomeOnTheAppStore' | translate:configService.config
+          }}
         </p>
         <button
           class="btn green big"
@@ -135,9 +147,7 @@
         >
           {{ 'login.openTheConsultation' | translate }}
         </button>
-        <p class="subtitle">
-          {{ 'login.youDoNotWantToInstall' | translate }}
-        </p>
+        <p class="subtitle">{{ 'login.youDoNotWantToInstall' | translate }}</p>
 
         <button
           class="btn"
@@ -246,7 +256,7 @@
     {{ 'login.supportedByThePrivateFunction' | translate }}
     <img
       src="/assets/images/logo-fondation-prive.png"
-      style="padding-left: 3px;"
+      style="padding-left: 3px"
       width="100px"
     />
   </div>

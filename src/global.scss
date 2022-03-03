@@ -1,33 +1,33 @@
 // http://ionicframework.com/docs/theming/
-@import '~@ionic/angular/css/core.css';
-@import '~@ionic/angular/css/normalize.css';
-@import '~@ionic/angular/css/structure.css';
-@import '~@ionic/angular/css/typography.css';
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
 
-@import '~@ionic/angular/css/padding.css';
-@import '~@ionic/angular/css/float-elements.css';
-@import '~@ionic/angular/css/text-alignment.css';
-@import '~@ionic/angular/css/text-transformation.css';
-@import '~@ionic/angular/css/flex-utils.css';
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
 
 @font-face {
-  font-family: 'Cooper Hewitt';
-  src: url('./assets/fonts/CooperHewitt-Bold.eot');
-  src: url('./assets/fonts/CooperHewitt-Bold.eot') format('embedded-opentype'),
-    url('./assets/fonts/CooperHewitt-Bold.svg') format('svg'),
-    url('./assets/fonts/CooperHewitt-Bold.woff') format('woff'),
-    url('./assets/fonts/CooperHewitt-Bold.ttf') format('truetype');
+  font-family: "Cooper Hewitt";
+  src: url("./assets/fonts/CooperHewitt-Bold.eot");
+  src: url("./assets/fonts/CooperHewitt-Bold.eot") format("embedded-opentype"),
+    url("./assets/fonts/CooperHewitt-Bold.svg") format("svg"),
+    url("./assets/fonts/CooperHewitt-Bold.woff") format("woff"),
+    url("./assets/fonts/CooperHewitt-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: bold;
 }
 
 @font-face {
-  font-family: 'Cooper Hewitt';
-  src: url('./assets/fonts/CooperHewitt-Book.eot');
-  src: url('./assets/fonts/CooperHewitt-Book.eot') format('embedded-opentype'),
-    url('./assets/fonts/CooperHewitt-Book.svg') format('svg'),
-    url('./assets/fonts/CooperHewitt-Book.woff') format('woff'),
-    url('./assets/fonts/CooperHewitt-Book.ttf') format('truetype');
+  font-family: "Cooper Hewitt";
+  src: url("./assets/fonts/CooperHewitt-Book.eot");
+  src: url("./assets/fonts/CooperHewitt-Book.eot") format("embedded-opentype"),
+    url("./assets/fonts/CooperHewitt-Book.svg") format("svg"),
+    url("./assets/fonts/CooperHewitt-Book.woff") format("woff"),
+    url("./assets/fonts/CooperHewitt-Book.ttf") format("truetype");
   font-weight: lighter;
   font-style: lighter;
 }
@@ -37,7 +37,7 @@
 }
 
 * {
-  font-family: 'Cooper Hewitt' !important;
+  font-family: "Cooper Hewitt" !important;
 }
 
 .picker-wrapper {
@@ -60,13 +60,13 @@ ion-card {
 }
 
 .validator-error {
-  color: #ff6060;//var(--ion-color-danger);
+  color: #ff6060; //var(--ion-color-danger);
   font-weight: bold;
   padding-top: 4px;
 }
 app-login,
 app-test-call {
-  background: url('assets/icons/background.jpg') no-repeat;
+  background: url("assets/icons/background.jpg") no-repeat;
   background-size: 100%;
   background-position: center;
   background-attachment: fixed;
@@ -136,8 +136,7 @@ app-test-call {
   text-align: center;
 }
 
-
-.cordova-camera-capture{
+.cordova-camera-capture {
   width: 100%;
   height: 100%;
   display: flex;
@@ -145,7 +144,7 @@ app-test-call {
   align-items: center;
   background-image: url("assets/background@2x.jpg");
 
-  button{
+  button {
     margin: auto;
     display: block;
     margin-top: 14px;
@@ -166,4 +165,6 @@ app-test-call {
     cursor: pointer;
   }
 }
-
+img.logo {
+  max-width: 200px;
+}
