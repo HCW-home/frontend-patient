@@ -18,7 +18,7 @@ all: android ios
 
 www: node_modules
 	sed -i 's/native/web/g' src/environments/environment.prod.ts
-#	npx ionic cordova platform add browser
+#g	npx ionic cordova platform add browser
 	npx ionic cordova build browser --prod
 
 web: www
