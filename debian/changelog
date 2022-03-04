@@ -1,3 +1,13 @@
+hcw-athome-patient (4.3.5) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Update environment files
+
+  [ Muhammed ]
+  * Get logo from config
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 04 Mar 2022 11:56:58 +0100
+
 hcw-athome-patient (4.3.4) focal; urgency=medium
 
   * Initial Release.
