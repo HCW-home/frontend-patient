@@ -79,7 +79,6 @@
     "core-js": "2.6.5",
     "flag-icon-css": "^3.4.6",
     "hug-angular": "git+https://projects.iabsis.com/git/hug-angular/",
-    "hug-angular-lib": "http://builder/hug-angular/npm/hug-angular-lib-0.0.2.tgz",
     "i": "^0.3.6",
     "ionic": "^4.12.0",
     "ionic-plugin-deeplinks": "^1.0.20",
@@ -111,7 +110,6 @@
     "codelyzer": "^5.0.1",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-android-enumeratedevices": "git+https://github.com/OpenVidu/cordova-plugin-android-enumeratedevices.git",
-    "cordova-plugin-background-mode": "^0.7.3",
     "cordova-plugin-clear-app-data": "git+https://github.com/thorvx/cordova-plugin-clear-app-data.git",
     "cordova-plugin-cookie-manager": "git+https://github.com/surgeventures/cordova-plugin-cookie-manager.git",
     "cordova-plugin-deeplinks": "^1.1.1",
@@ -193,8 +191,7 @@
       "cordova-plugin-android-enumeratedevices": {},
       "cordova-plugin-iosrtc": {
         "MANUAL_INIT_AUDIO_DEVICE": "false"
-      },
-      "cordova-plugin-background-mode": {}
+      }
     },
     "platforms": [
       "browser",
