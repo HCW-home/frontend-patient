@@ -1,6 +1,6 @@
 Summary: Front end for @Home web application patient side
 Name: hcw-athome-patient
-Version: 4.3.4
+Version: 4.3.5
 Release: 19
 Group: Web Application
 License: HUG
@@ -21,17 +21,17 @@ SPECS version 1
 
 %install
 make build
-%{__install} -d -m0755 %{buildroot}/%{_datadir}/hcw-at-home/patient/
-%{__cp} -a www/* %{buildroot}/%{_datadir}/hcw-at-home/patient/
-%{__install} -d -m0755 %{buildroot}/%{_datadir}/hcw-at-home/patient/.well-known/
-%{__cp} -a redhat/apple-app-site-association %{buildroot}/%{_datadir}/hcw-at-home/patient/.well-known/
+%{__install} -d -m0755 %{buildroot}/%{_datadir}/hcw-athome/patient/
+%{__cp} -a www/* %{buildroot}/%{_datadir}/hcw-athome/patient/
+%{__install} -d -m0755 %{buildroot}/%{_datadir}/hcw-athome/patient/.well-known/
+%{__cp} -a redhat/apple-app-site-association %{buildroot}/%{_datadir}/hcw-athome/patient/.well-known/
 
 %clean
 %{__rm} -rf %{buildroot}
 
 %files
 %defattr(-,root,root, 0755)
-%{_datadir}/hcw-at-home
+%{_datadir}/hcw-athome
 
 %changelog
 * Wed Apr 17 2019 Olivier Bitsch <olivier.b@iabsis.com>

@@ -1,5 +1,5 @@
 <ion-content padding>
-  <div class="wrap">
+  <div *ngIf="configService.config" class="wrap">
     <div class="container" *ngIf="showTranslatorConfirmation">
       <div class="title">
         <img
