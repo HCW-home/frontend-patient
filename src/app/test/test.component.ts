@@ -259,7 +259,6 @@ export class TestComponent implements OnInit, OnDestroy {
 
   initAudioPublisher() {
     this.roomService.onVolumeChange.subscribe((change) => {
-      console.log("Volume change ", change);
       this.zone.run(() => {
         this.volumeLevel = change.volume * 1000;
       });
