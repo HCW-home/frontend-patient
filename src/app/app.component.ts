@@ -1,44 +1,44 @@
-import { Observable, Subscription } from 'rxjs'
-import { GlobalVariableService } from './global-variable.service'
-import { Component, OnInit, NgZone } from '@angular/core'
+import { Observable, Subscription } from "rxjs";
+import { GlobalVariableService } from "./global-variable.service";
+import { Component, OnInit, NgZone } from "@angular/core";
 
-import { Platform, NavController } from '@ionic/angular'
+import { Platform, NavController } from "@ionic/angular";
 
-import { SplashScreen } from '@ionic-native/splash-screen/ngx'
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 
-import { StatusBar } from '@ionic-native/status-bar/ngx'
+import { StatusBar } from "@ionic-native/status-bar/ngx";
 
-import { CallService } from './call.service'
+import { CallService } from "./call.service";
 
-import { BackgroundMode } from '@ionic-native/background-mode/ngx'
+import { BackgroundMode } from "@ionic-native/background-mode/ngx";
 
-import { SocketEventsService } from './socket-events.service'
-import { ConsultationService } from './consultation.service'
+import { SocketEventsService } from "./socket-events.service";
+import { ConsultationService } from "./consultation.service";
 
-import { AuthService } from './auth/auth.service'
-import { NativeAudio } from '@ionic-native/native-audio/ngx'
+import { AuthService } from "./auth/auth.service";
+import { NativeAudio } from "@ionic-native/native-audio/ngx";
 
-import { NavigationEnd, Router } from '@angular/router'
+import { NavigationEnd, Router } from "@angular/router";
 
-declare var cordova
-declare let window: any
-import { File } from '@ionic-native/file/ngx'
-import { Deeplinks } from '@ionic-native/deeplinks'
-import { LoginPage } from './login/login.page'
-import { TestComponent } from './test/test.component'
-import {filter} from 'rxjs/operators';
-import { environment } from '../environments/environment'
+declare var cordova;
+declare let window: any;
+import { File } from "@ionic-native/file/ngx";
+import { Deeplinks } from "@ionic-native/deeplinks";
+import { LoginPage } from "./login/login.page";
+import { TestComponent } from "./test/test.component";
+import { filter } from "rxjs/operators";
+import { environment } from "../environments/environment";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: "app-root",
+  templateUrl: "app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
-  callRunning = false
-  currentUser
-  redirected = false
-  consultation
+  callRunning = false;
+  currentUser;
+  redirected = false;
+  consultation;
   callsSub: Subscription;
   inviteToken: string;
 
@@ -56,205 +56,201 @@ export class AppComponent implements OnInit {
     private nativeAudio: NativeAudio,
     private file: File,
     private router: Router,
-    private globalVariableService: GlobalVariableService,
+    public globalVariableService: GlobalVariableService
   ) {
-
     if (!this.isNativeApp()) {
-      this.splashScreen.hide()
+      this.splashScreen.hide();
     }
-    const parsedUrl = new URL(window.location.href)
-    console.log('PARSED URL', parsedUrl)
-    this.inviteToken = parsedUrl.searchParams.get('invite')
-    this.testRoute = window.location.href.includes('test-call');
+    const parsedUrl = new URL(window.location.href);
+    console.log("PARSED URL", parsedUrl);
+    this.inviteToken = parsedUrl.searchParams.get("invite");
+    this.testRoute = window.location.href.includes("test-call");
 
-    router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-  )
-      .subscribe(event => {
-          console.log('Router event',event);
+    router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        console.log("Router event", event);
       });
-   }
+  }
 
   ngOnInit() {
-    console.log('router ', this.router, this.router.url, document.location)
+    console.log("router ", this.router, this.router.url, document.location);
 
-    
-      
-      this.authService.init().then(user => {
+    this.authService
+      .init()
+      .then((user) => {
         if (user) {
           this.currentUser = user;
-          console.log('got current user in app component ', user)
-          this.initServices(this.currentUser)
+          console.log("got current user in app component ", user);
+          this.initServices(this.currentUser);
         }
-        this.initializeApp()
-      }).catch(err => {
-        console.log('ERROR getting user ', err)
-        this.initializeApp()
+        this.initializeApp();
       })
+      .catch((err) => {
+        console.log("ERROR getting user ", err);
+        this.initializeApp();
+      });
 
-
-    
     this.authService.loggedInSub().subscribe((user) => {
-      this.currentUser = user
+      this.currentUser = user;
 
       console.log(
-        'current user in app.component loggedIn sub',
-        this.currentUser,
-      )
+        "current user in app.component loggedIn sub",
+        this.currentUser
+      );
       if (this.currentUser) {
-        this.initServices(this.currentUser)
+        this.initServices(this.currentUser);
       }
-    })
-
-
+    });
   }
 
   redirectToLogin() {
-    console.log('go to login 1')
+    console.log("go to login 1");
     if (!this.redirected) {
-      this.router.navigate(['/login'])
+      this.router.navigate(["/login"]);
     }
-    this.redirected = true
+    this.redirected = true;
   }
   redirectToTestPage() {
-    this.router.navigate(['/test-call'])
-    this.redirected = true
+    this.router.navigate(["/test-call"]);
+    this.redirected = true;
   }
   redirectToAwaitConsultation() {
-    this.router.navigate(['/await-consultation'])
-    this.redirected = true
+    this.router.navigate(["/await-consultation"]);
+    this.redirected = true;
   }
   isNativeApp() {
-    return environment.platform === 'native'
+    return environment.platform === "native";
   }
   async initializeApp() {
-    if (this.platform.is('ios') && this.platform.is('cordova')) {
-     
-
-      const script2 = document.createElement('script')
-      script2.type = 'text/javascript'
-      script2.src = 'assets/libs/adapter-4.0.1.js'
-      script2.async = false
-      document.head.appendChild(script2)
+    if (this.platform.is("ios") && this.platform.is("cordova")) {
+      const script2 = document.createElement("script");
+      script2.type = "text/javascript";
+      script2.src = "assets/libs/adapter-4.0.1.js";
+      script2.async = false;
+      document.head.appendChild(script2);
     }
 
-
     // if (!this.isNativeApp()) {
-      if (this.inviteToken) {
-        if (localStorage.getItem('inviteToken') !== this.inviteToken) {
-          console.log('New invite token .')
-          localStorage.clear()
-          await this.authService.logout()
-          localStorage.setItem('inviteToken', this.inviteToken)
-          // document.location.reload()
-        }
+    if (this.inviteToken) {
+      if (localStorage.getItem("inviteToken") !== this.inviteToken) {
+        console.log("New invite token .");
+        localStorage.clear();
+        await this.authService.logout();
+        localStorage.setItem("inviteToken", this.inviteToken);
+        // document.location.reload()
       }
+    }
     // }
 
-      
-  
     this.platform.ready().then(() => {
-      console.log('platform ready >', this.platform)
+      console.log("platform ready >", this.platform);
       window.platform = this.platform;
 
       if (this.isNativeApp()) {
-        this.splashScreen.hide()
+        this.splashScreen.hide();
       }
-      if (this.platform.is('ios') && this.platform.is('cordova') && this.isNativeApp()) {
-        console.log('Initializing iosrtc')
+      if (
+        this.platform.is("ios") &&
+        this.platform.is("cordova") &&
+        this.isNativeApp()
+      ) {
+        console.log("Initializing iosrtc");
         try {
-          cordova.plugins.iosrtc.registerGlobals()
+          cordova.plugins.iosrtc.registerGlobals();
         } catch (error) {
-          console.error(error)
+          console.error(error);
         }
-
       }
-      if (this.platform.is('cordova')) {
-        
+      if (this.platform.is("cordova")) {
         Deeplinks.route({
-          '/test-call': TestComponent,
-          '/': LoginPage,
+          "/test-call": TestComponent,
+          "/": LoginPage,
         }).subscribe(
           async (match) => {
-            console.log('MATCHED ROUTE', match)
-  
-            if (match.$link.scheme == 'hugathome') {
+            console.log("MATCHED ROUTE", match);
+
+            if (match.$link.scheme == "hugathome") {
               this.globalVariableService.updateHost(
-                match.$args.scheme + '://' + match.$link.host,
-              )
+                match.$args.scheme + "://" + match.$link.host
+              );
             } else {
               this.globalVariableService.updateHost(
-                match.$link.scheme.replace(/\:$/,'') + '://' + match.$link.host,
-              )
+                match.$link.scheme.replace(/\:$/, "") + "://" + match.$link.host
+              );
             }
-  
+
             if (match && match.$args && match.$args.invite) {
-              if (localStorage.getItem('inviteToken') !== match.$args.invite) {
-                console.log('New invite token  from param.', match, localStorage.getItem('inviteToken'))
-  
-                await this.authService.logout()
-                localStorage.setItem('inviteToken', match.$args.invite)
-               
+              if (localStorage.getItem("inviteToken") !== match.$args.invite) {
+                console.log(
+                  "New invite token  from param.",
+                  match,
+                  localStorage.getItem("inviteToken")
+                );
+
+                await this.authService.logout();
+                localStorage.setItem("inviteToken", match.$args.invite);
               }
-              this.authService.setInviteToken(match.$args.invite)
-              this.router.navigate(['/login'])
+              this.authService.setInviteToken(match.$args.invite);
+              this.router.navigate(["/login"]);
             }
-            if (match && match.$link && match.$link.fragment === '/test-call') {
-              return this.redirectToTestPage()
-            } else
-              if (match && match.$link && match.$link.fragment === '/await-consultation') {
-                return this.redirectToAwaitConsultation()
-              }
-      
-              
+            if (match && match.$link && match.$link.fragment === "/test-call") {
+              return this.redirectToTestPage();
+            } else if (
+              match &&
+              match.$link &&
+              match.$link.fragment === "/await-consultation"
+            ) {
+              return this.redirectToAwaitConsultation();
+            }
+
             // match.$route - the route we matched, which is the matched entry from the arguments to route()
             // match.$args - the args passed in the link
             // match.$link - the full link data
-            console.log('Successfully matched route', match)
+            console.log("Successfully matched route", match);
           },
           (nomatch) => {
-            console.log('No match;', nomatch)
+            console.log("No match;", nomatch);
             if (!nomatch.$link) {
-              return
+              return;
             }
-  
+
             const serverUrl = nomatch.$link.url.replace(
-              'hugathome://',
-              'https://',
-            )
-            const parsedServerUrl = new URL(serverUrl)
-  
-            if (nomatch.$link.scheme == 'hugathome') {
+              "hugathome://",
+              "https://"
+            );
+            const parsedServerUrl = new URL(serverUrl);
+
+            if (nomatch.$link.scheme == "hugathome") {
               this.globalVariableService.updateHost(
-                'https://' + parsedServerUrl.host,
-              )
+                "https://" + parsedServerUrl.host
+              );
             }
-            if (parsedServerUrl.searchParams.get('invite')) {
+            if (parsedServerUrl.searchParams.get("invite")) {
               this.authService.setInviteToken(
-                parsedServerUrl.searchParams.get('invite'),
-              )
+                parsedServerUrl.searchParams.get("invite")
+              );
             }
-            
-          },
-        )
+          }
+        );
       }
 
-      console.log('router ', this.router, this.router.url)
+      console.log("router ", this.router, this.router.url);
       if (!this.testRoute) {
-        this.redirectToLogin()
+        this.redirectToLogin();
       }
 
       // this.autostart.enable();
       this.backgroundMode.setDefaults({
-        title: '@HOME',
-        text: '@HOME',
+        title: "@HOME",
+        text: "@HOME",
         silent: true,
         hidden: true,
         // icon: 'icon', // this will look for icon.png in platforms/android/res/drawable|mipmap
         // bigText: "@HOME"
-      })
+      });
 
-      this.backgroundMode.enable()
+      this.backgroundMode.enable();
       // this.backgroundMode.overrideBackButton();
 
       // this.backgroundMode.on('activate').subscribe(() => {
@@ -266,58 +262,50 @@ export class AppComponent implements OnInit {
       //     cordova.plugins.backgroundMode.disableWebViewOptimizations();
       // });
       // this.backgroundMode.excludeFromTaskList();
-      this.statusBar.styleLightContent()
-      if (this.platform.is('ios') && this.platform.is('cordova')) {
-
-        cordova.plugins.backgroundMode.on('enable', function () {
-          cordova.plugins.backgroundMode.disableBatteryOptimizations()
-          cordova.plugins.backgroundMode.disableWebViewOptimizations()
-        })
+      this.statusBar.styleLightContent();
+      if (this.platform.is("ios") && this.platform.is("cordova")) {
+        cordova.plugins.backgroundMode.on("enable", function () {
+          cordova.plugins.backgroundMode.disableBatteryOptimizations();
+          cordova.plugins.backgroundMode.disableWebViewOptimizations();
+        });
       }
       this.nativeAudio
-        .preloadComplex('ringSound', 'assets/sounds/notification.mp3', 1, 1, 0)
+        .preloadComplex("ringSound", "assets/sounds/notification.mp3", 1, 1, 0)
         .then(
           (r) => {
-            console.log('audio loaded ', r)
+            console.log("audio loaded ", r);
           },
           (err) => {
-            console.log('error loading sample ', err)
-          },
-        )
-    })
+            console.log("error loading sample ", err);
+          }
+        );
+    });
   }
 
-
   initServices(r?) {
+    this.socketEventsService.init(r, () => {});
 
-    this.socketEventsService.init(r, () => {
-
-    })
-
-    this.consultationService.init(r)
+    this.consultationService.init(r);
 
     this.callService.getCall().subscribe((e) => {
-      console.log('get call ', e)
+      console.log("get call ", e);
 
-      this.consultation = e
-      this.consultation.id = e._id
-      this.callRunning = true
-    })
+      this.consultation = e;
+      this.consultation.id = e._id;
+      this.callRunning = true;
+    });
     // incoming call
   }
 
   androidWakeUp() {
-    if (this.platform.is('cordova')) {
-      cordova.plugins.backgroundMode.overrideBackButton()
-      cordova.plugins.backgroundMode.wakeUp()
-      cordova.plugins.backgroundMode.moveToForeground()
+    if (this.platform.is("cordova")) {
+      cordova.plugins.backgroundMode.overrideBackButton();
+      cordova.plugins.backgroundMode.wakeUp();
+      cordova.plugins.backgroundMode.moveToForeground();
 
       // must be here for it to work..
-      cordova.plugins.backgroundMode.unlock()
-      cordova.plugins.backgroundMode.disable()
+      cordova.plugins.backgroundMode.unlock();
+      cordova.plugins.backgroundMode.disable();
     }
   }
-
-
-
 }

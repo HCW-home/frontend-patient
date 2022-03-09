@@ -40,7 +40,7 @@
             {{ "test.ifThisIsTheFirst" | translate }}
           </p>
           <p class="text-white text-center" *ngIf="!inviteToken">
-            {{ "test.welcomeToTheHome" | translate:configService.config }}
+            {{ "test.welcomeToTheHome" | translate: configService.config }}
           </p>
           <button class="btn" mat-button type="button" (click)="startTest()">
             {{ testButton }}
@@ -51,7 +51,7 @@
               <div id="video-audio-container">
                 <div>
                   <div id="msg-chain">
-                    <ul style="list-style: none;">
+                    <ul style="list-style: none">
                       <li
                         *ngFor="let msg of msgChain"
                         [ngClass]="{
@@ -61,7 +61,7 @@
                       >
                         <ion-icon
                           *ngIf="msg.success"
-                          style="color: #06d362;"
+                          style="color: #06d362"
                           name="checkmark-circle-outline"
                         ></ion-icon>
 
@@ -76,18 +76,18 @@
                   </div>
                   <div
                     [hidden]="!!accessHardwareGranted !== true"
-                    style="display: flex; "
+                    style="display: flex"
                   >
                     <div *ngIf="session" id="volume-container">
                       <div
                         id="volume-slider"
-                        [style.height.%]="100 + volumeLevel"
+                        [style.height.%]="100 - volumeLevel"
                       ></div>
                     </div>
                     <div id="mirrored-video">
                       <app-peer-video
-                      #streamComponentLocal
-                      *ngIf="myCamStream"
+                        #streamComponentLocal
+                        *ngIf="myCamStream"
                         [stream]="myCamStream"
                       ></app-peer-video>
                       <div *ngIf="showSpinner" id="loader">
@@ -115,7 +115,7 @@
                           x="0px"
                           y="0px"
                           viewBox="-1 -1 39 39"
-                          style="enable-background: new 0 0 37 37;"
+                          style="enable-background: new 0 0 37 37"
                           xml:space="preserve"
                         >
                           <path
@@ -148,10 +148,7 @@
                   </div>
                 </div>
               </div>
-            
             </div>
-            
-
           </div>
         </div>
       </div>

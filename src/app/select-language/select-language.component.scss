@@ -1,0 +1,25 @@
+#hhpMultiLang {
+  margin-top: 10px;
+  cursor: pointer;
+  left: calc(50% - 21px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .sl-container {
+    display: flex;
+    align-items: center;
+  }
+  .caret-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+  }
+}
+.flag-icon {
+  width: 22px;
+  height: 22px;
+}
+.flag-options .flag-icon {
+  margin-right: 20px;
+}
