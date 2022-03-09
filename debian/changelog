@@ -1,3 +1,9 @@
+hcw-athome-patient (4.3.8) focal; urgency=medium
+
+  * Updating language
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 09 Mar 2022 10:48:54 +0100
+
 hcw-athome-patient (4.3.7) focal; urgency=medium
 
   * Using yarn to build project
