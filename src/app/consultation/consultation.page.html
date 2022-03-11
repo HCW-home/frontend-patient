@@ -17,30 +17,18 @@
 ></app-video-room>
 <ion-header id="chatHeader">
   <ion-toolbar>
-    <ion-title style="text-align: center; font-size: 0.9em;">
-      {{ 'consultation.inProgress' | translate }}
-    </ion-title>
+    <ion-title> {{ 'consultation.inProgress' | translate }} </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content
-  style="height: calc(100% - 81px);"
+  style="height: calc(100% - 81px)"
   [scrollEvents]="true"
   (ionScroll)="handleScroll($event)"
   *ngIf="consultation && consultation.consultation"
   #scrollMe
   id="chatContainer"
 >
-  <p
-    style="
-      color: white;
-      text-align: center;
-      background: #ee5555;
-      padding: 10px;
-      margin: 0;
-      font-weight: bold;
-    "
-    *ngIf="consultation.consultation.status !== 'active'"
-  >
+  <p class="keep-open" *ngIf="consultation.consultation.status !== 'active'">
     {{ 'consultation.plsKeepThisOpenPage' | translate }}
   </p>
   <ion-card
@@ -53,7 +41,7 @@
         <strong>{{ 'consultation.capInProgress' | translate }}</strong>
       </ion-card-title>
     </ion-card-header>
-    <ion-card-content *ngIf="consultation.doctor">
+    <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
       <p class="subtitle">
         {{ 'consultation.youAreNowInConsultation' | translate }}
       </p>
@@ -78,9 +66,7 @@
       >{{ 'consultation.requestForConsultation' | translate }} <br />
       <strong>{{ 'consultation.capInProgress' | translate }}</strong>
     </ion-title>
-    <p class="subtitle">
-      {{ 'consultation.youAreInWaiting' | translate }}
-    </p>
+    <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
 
     <!--
     <ion-button class="video-btn">
@@ -119,71 +105,76 @@
         {{ 'consultation.yourBrowserDoesNotSupport' | translate }}
       </audio>
 
-      <img
-        *ngIf="msg.isImage"
+      <ion-row
         [ngClass]="{
-          'right-img': msg.direction === 'outgoing',
-          'left-img': msg.direction === 'incoming'
-        }"
-        style="max-width: 60%; display: block;"
-        [src]="msg.attachmentsURL"
-        alt="Couldn't load image"
-      />
+        'right-img': msg.direction === 'outgoing',
+        'left-img': msg.direction === 'incoming'
+      }"
+      >
+        <img
+          *ngIf="msg.isImage"
+          style="max-width: 60%; display: block"
+          [src]="msg.attachmentsURL"
+          alt="Couldn't load image"
+        />
+      </ion-row>
 
       <ion-row *ngIf="msg.text" class="ion-no-padding ion-no-margin">
-        <ion-col class="bubble ion-padding" size="10">
-          <p
-            style="overflow-wrap: normal;"
-            class="ion-no-padding ion-no-margin"
-          >
-            {{ msg.text }}
-          </p>
+        <ion-col class="chat-text-container">
+          <ion-row class="bubble ion-padding">
+            <p
+              style="overflow-wrap: normal"
+              class="ion-no-padding ion-no-margin"
+            >
+              {{ msg.text }}
+            </p>
+          </ion-row>
         </ion-col>
       </ion-row>
 
-      <ion-row *ngIf="msg.type === 'videoCall'" style="text-align: center;">
-        <p style="text-align: center; width: 100%;">
+      <ion-row *ngIf="msg.type === 'videoCall'" style="text-align: center">
+        <p style="text-align: center; width: 100%">
           {{ msg.closedAt? (msg.acceptedAt? ('consultation.videoCallStarted' |
           translate) : ('consultation.videoCallStarted' | translate)):
           ('consultation.videoCallRequested' | translate) }}
         </p>
         <span
           class="msg-time"
-          style="display: block; width: 100%; margin-top: 0 !important;"
+          style="display: block; width: 100%; margin-top: 0 !important"
           >{{ msg.createdAt | date: "d MMMM, HH:mm":"fr" }}
         </span>
 
         <ng-container *ngIf="msg.acceptedAt && msg.closedAt">
-          <p style="text-align: center; width: 100%;">
+          <p style="text-align: center; width: 100%">
             {{ 'consultation.videoCallEnded' | translate }}
           </p>
           <span
             class="msg-time"
-            style="display: block; width: 100%; margin-top: 0 !important;"
+            style="display: block; width: 100%; margin-top: 0 !important"
             >{{ msg.closedAt | date: "d MMMM, HH:mm":"fr" }}
           </span>
         </ng-container>
       </ion-row>
 
-      <ion-row *ngIf="msg.type === 'audioCall'" style="text-align: center;">
-        <p style="text-align: center; width: 100%;">
+      <ion-row *ngIf="msg.type === 'audioCall'" style="text-align: center">
+        <p style="text-align: center; width: 100%">
           {{ msg.closedAt? (msg.acceptedAt? ('consultation.audioCallStarted' |
           translate) : ('consultation.audioCallRefused' | translate)):
           ('consultation.audioCallRequested' | translate) }}
         </p>
         <span
           class="msg-time"
-          style="display: block; width: 100%; margin-top: 0 !important;"
+          style="display: block; width: 100%; margin-top: 0 !important"
           >{{ msg.createdAt | date: "d MMMM, HH:mm":"fr" }}
         </span>
 
         <ng-container *ngIf="msg.acceptedAt && msg.closedAt">
-          <p style="text-align: center; width: 100%;">
+          <p style="text-align: center; width: 100%">
             {{ 'consultation.audioCallEnded' | translate }}
           </p>
           <span
             class="msg-time"
-            style="display: block; width: 100%; margin-top: 0 !important;"
+            style="display: block; width: 100%; margin-top: 0 !important"
             >{{ msg.closedAt | date: "d MMMM, HH:mm":"fr" }}
           </span>
         </ng-container>
@@ -229,7 +220,7 @@
             <ion-icon slot="icon-only" name="attach"></ion-icon>
           </ion-button>
         </ion-col>
-        <ion-col 
+        <ion-col
           ><ion-textarea
             #txtArea
             (keypress)="sendMsg($event)"

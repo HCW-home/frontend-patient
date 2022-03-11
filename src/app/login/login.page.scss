@@ -138,3 +138,29 @@ footer {
     align-items: center;
   }
 }
+::ng-deep {
+  html[data-theme="accessibility"] {
+    p {
+      text-align: left;
+    }
+    .container {
+      margin-left: 20px !important;
+    }
+    form {
+      margin-left: 20px !important;
+    }
+    .footer {
+      text-align: left;
+      display: flex;
+    }
+    #hhpMultiLang {
+      align-items: start !important;
+    }
+    .token-error-title {
+      font-size: 1em;
+    }
+    .token-error-content {
+      font-size: 0.81em;
+    }
+  }
+}

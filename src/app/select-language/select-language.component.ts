@@ -9,16 +9,18 @@ import { TranslateService } from "@ngx-translate/core";
 export class SelectLanguageComponent {
   opened = false;
 
-  constructor(public translate: TranslateService) {
-    console.log(translate.currentLang);
-  }
+  constructor(public translate: TranslateService) {}
 
-  openDropdown() {
+  openDropdown(event?) {
+    if (event) {
+      event.stopPropagation();
+    }
     this.opened = !this.opened;
   }
 
-  changeLang(lang) {
-    this.openDropdown();
+  changeLang(event, lang) {
+    event.stopPropagation();
+    this.opened = false;
     window.localStorage.setItem("hhp-lang", lang);
     this.translate.use(lang);
   }

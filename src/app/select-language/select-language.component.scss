@@ -8,6 +8,8 @@
   .sl-container {
     display: flex;
     align-items: center;
+    height: 42px;
+    position: relative;
   }
   .caret-container {
     display: flex;
@@ -17,9 +19,14 @@
   }
 }
 .flag-icon {
-  width: 22px;
-  height: 22px;
+  height: 35px;
+  padding: 5px;
+  margin: 10px;
 }
-.flag-options .flag-icon {
-  margin-right: 20px;
+.flag-options {
+  position: absolute;
+  bottom: 52px;
+  display: flex;
+  flex-direction: column;
+  background-color: #0072bb;
 }

@@ -27,7 +27,7 @@
         />
       </div>
 
-      <p *ngIf="!invite || invite.type === 'patient'">
+      <p>
         {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config
         }}
       </p>
@@ -65,14 +65,14 @@
             {{ 'login.closeTheApplication' | translate }}
           </button>
         </ng-container>
-        <ng-container *ngIf="!noTokenProvided">
+        <ng-container *ngIf="!noTokenProvided" class="token-error">
           <ion-card>
             <ion-card-header>
-              <ion-card-title
+              <ion-card-title class="token-error-title"
                 >{{ 'login.anErrorHasOccurred' | translate }}</ion-card-title
               >
             </ion-card-header>
-            <ion-card-content>
+            <ion-card-content class="token-error-content">
               {{ 'login.theInvitationIsNotOrNoLongerValide' | translate }}
             </ion-card-content>
           </ion-card>
@@ -91,12 +91,12 @@
       <ng-container *ngIf="noInviteError && !isMobileApp()">
         <ion-card>
           <ion-card-header>
-            <ion-card-title
+            <ion-card-title class="token-error-title"
               >{{ 'login.anErrorHasOccurred' | translate }}</ion-card-title
             >
           </ion-card-header>
 
-          <ion-card-content>
+          <ion-card-content class="token-error-content">
             {{ 'login.theInvitationIsNotOrNoLongerValide' | translate }}
           </ion-card-content>
         </ion-card>

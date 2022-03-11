@@ -127,7 +127,8 @@
     "ts-node": "7.0.1",
     "tslib": "^1.10.0",
     "tslint": "5.11.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "cordova-plugin-background-mode": "^0.7.3"
   },
   "optionalDependencies": {
     "ios-deploy": "^1.9.4"
@@ -191,7 +192,8 @@
       "cordova-plugin-android-enumeratedevices": {},
       "cordova-plugin-iosrtc": {
         "MANUAL_INIT_AUDIO_DEVICE": "false"
-      }
+      },
+      "cordova-plugin-background-mode": {}
     },
     "platforms": [
       "browser",

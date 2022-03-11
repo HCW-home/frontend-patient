@@ -2,15 +2,9 @@
   <div class="wrap">
     <div class="container">
       <div
-        style="color: #ffffff; text-align: center; margin:25vh auto 40px auto;"
+        style="color: #ffffff; text-align: center; margin: 25vh auto 40px auto"
       >
-        <ion-icon
-          class="attach-icon"
-          style="display: block ; margin:16px auto; width: 40px;
-        height: 40px;"
-          slot="icon-only"
-          name="attach"
-        ></ion-icon>
+        <ion-icon class="attach-icon" slot="icon-only" name="attach"></ion-icon>
         <h4>
           ENVOYER <br />
           <strong>UN FICHIER</strong>
@@ -30,5 +24,10 @@
       >
     </div>
   </div>
-  <input *ngIf="this.platform.is('desktop') || !isNativeApp()" type="file" style="display: none;" id="input-file">
+  <input
+    *ngIf="this.platform.is('desktop') || !isNativeApp()"
+    type="file"
+    style="display: none"
+    id="input-file"
+  />
 </ion-content>

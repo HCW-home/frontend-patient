@@ -65,3 +65,31 @@ ion-icon {
     margin: auto;
   }
 }
+.your-about-to {
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.93em;
+}
+::ng-deep {
+  html[data-theme="accessibility"] {
+    ion-icon[class*="fn-x"] {
+      margin: unset !important;
+    }
+    .doctor-title {
+      text-align: left;
+    }
+    p {
+      text-align: left !important;
+      margin-left: 0px;
+    }
+    .cancel-btn {
+      text-align: left;
+      width: unset;
+      margin: unset;
+    }
+    .dismiss-btn {
+      margin: unset;
+    }
+  }
+}

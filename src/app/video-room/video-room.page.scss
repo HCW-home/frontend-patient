@@ -957,7 +957,6 @@ img.logo {
   --border-radius: 30px;
   --background: white;
   color: var(--ion-color-primary);
-  width: 150px;
 }
 
 .refuse-btn {
@@ -981,46 +980,69 @@ img.logo {
   }
 }
 
-#localUser{
+#localUser {
   position: absolute;
   top: 0;
   right: 0;
   min-height: 180px;
   height: 15vh;
   min-width: 150px;
-  
+
   z-index: 1002;
   width: auto;
 
-  &.localUserHalfScreen{
+  &.localUserHalfScreen {
     min-height: 100px;
     height: 7.5vh;
   }
 }
-.video--main{
+.video--main {
   background: url("assets/icons/background.jpg");
 }
 
-.ios--main-video{
-  display: relative; z-index: 1000; background-color: transparent;
+.ios--main-video {
+  display: relative;
+  z-index: 1000;
+  background-color: transparent;
 }
 
-.none-ios--main-video{
-  background-image: url('../../assets/background@2x.jpg'); display: relative; z-index: 1000; background-color: #fff;
+.none-ios--main-video {
+  background-image: url("../../assets/background@2x.jpg");
+  display: relative;
+  z-index: 1000;
+  background-color: #fff;
 }
 
-#remoteUsers{
-
-  video{
-    -webkit-transform-style: preserve-3d
+#remoteUsers {
+  video {
+    -webkit-transform-style: preserve-3d;
   }
 }
 
-.ios-bounds{
+.ios-bounds {
   height: 87%;
 }
 
-.none-ios-bounds{
+.none-ios-bounds {
   height: 100%;
+}
 
+::ng-deep {
+  html[data-theme="accessibility"] {
+    ion-fab-button {
+      font-size: 0.8em;
+    }
+    .accept-btn {
+      margin-left: unset !important;
+      margin-right: unset !important;
+    }
+    .refuse-btn {
+      margin-left: unset !important;
+      margin-right: unset !important;
+    }
+    .logo {
+      margin-left: unset !important;
+      margin-right: unset !important;
+    }
+  }
 }

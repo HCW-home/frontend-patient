@@ -1,9 +1,8 @@
 <div *ngIf="!accepted" class="bounds incoming">
   <ion-grid>
-    <ion-row style="height: 25%; width: 100%;"></ion-row>
+    <ion-row style="height: 25%; width: 100%"></ion-row>
     <ion-row>
-      <ion-col size="2"></ion-col>
-      <ion-col size="8">
+      <ion-col>
         <ion-row>
           <img class="logo" src="assets/icons/Call-incoming.svg" alt="" />
         </ion-row>
@@ -32,7 +31,6 @@
           >
         </ion-row>
       </ion-col>
-      <ion-col size="2"></ion-col>
     </ion-row>
   </ion-grid>
 </div>
@@ -42,30 +40,28 @@
   [lockAxis]="'x'"
   [inBounds]="true"
   [ngClass]="{'fullScreen': isFullScreen , 'halfScreen':!isFullScreen, 'audioOnly': audioOnly, 'ios--main-video':this.platform.is('ios'), 'none-ios--main-video':!this.platform.is('ios')}"
-
 >
   <!-- Main video -->
   <div
-  *ngIf="accepted && !audioOnly"
-  #mainStream
-  [ngDraggable]="true"
-  id="localUser"
-  [ngClass]="{'localUserHalfScreen': !isFullScreen }"
->
-
-<app-peer-video
-#streamComponentLocal
-*ngIf="myCamStream"
-  [stream]="myCamStream"
-  [id]="myCamStream.mediaStream.id"
-></app-peer-video>
-</div>
+    *ngIf="accepted && !audioOnly"
+    #mainStream
+    [ngDraggable]="true"
+    id="localUser"
+    [ngClass]="{'localUserHalfScreen': !isFullScreen }"
+  >
+    <app-peer-video
+      #streamComponentLocal
+      *ngIf="myCamStream"
+      [stream]="myCamStream"
+      [id]="myCamStream.mediaStream.id"
+    ></app-peer-video>
+  </div>
 
   <div
     [ngClass]="{'ringing': !this.remoteUsers.length, 'ios-bounds':this.platform.is('ios'), 'none-ios-bounds':!this.platform.is('ios')}"
-    id="layout" 
+    id="layout"
     class="bounds"
-    style=" display: flex;"
+    style="display: flex"
     (click)="toggleButtons()"
   >
     <ng-container *ngIf="accepted">
@@ -77,31 +73,21 @@
         </ion-row>
       </div>
 
- 
-
-
       <!-- Remotes -->
       <div
         *ngFor="let user of this.remoteUsers"
-     
         class="OT_root OT_publisher OT_remote custom-class OV_big"
         id="remoteUsers"
       >
-      <ng-container *ngFor="let stream of user.streams" >
+        <ng-container *ngFor="let stream of user.streams">
+          <app-peer-video
+            *ngIf="stream.kind  === 'video'"
+            [stream]="stream"
+          ></app-peer-video>
 
-        <app-peer-video
-        *ngIf="stream.kind  === 'video'"
-          [stream]="stream"
-        ></app-peer-video>
-
-        <app-peer-audio
-        *ngIf="stream.kind  === 'audio'"
-        [stream]="stream"
-
-        >
-
-        </app-peer-audio>
-      </ng-container>
+          <app-peer-audio *ngIf="stream.kind  === 'audio'" [stream]="stream">
+          </app-peer-audio>
+        </ng-container>
       </div>
     </ng-container>
   </div>
@@ -133,12 +119,12 @@
     >
       <img
         *ngIf="camStatus === 'on'"
-        style="float: left; width: 1.2em; height: 1.2em;"
+        style="float: left; width: 1.2em; height: 1.2em"
         src="assets/icons/icon-cameraOn.svg"
       />
       <img
         *ngIf="camStatus === 'off'"
-        style="float: left; width: 1.2em; height: 1.2em;"
+        style="float: left; width: 1.2em; height: 1.2em"
         src="assets/icons/icon-cameraOff.svg"
       />
     </ion-fab-button>
@@ -148,20 +134,20 @@
       (click)="toggleCamera()"
     >
       <img
-        style="float: left; width: 1.2em; height: 1.2em;"
+        style="float: left; width: 1.2em; height: 1.2em"
         src="assets/icons/icon-toogle-camera.svg"
       />
     </ion-fab-button>
     <ion-fab-button class="controller" color="danger" (click)="exitSession()">
       <img
-        style="float: left; width: 1.2em; height: 1.2em;"
+        style="float: left; width: 1.2em; height: 1.2em"
         src="assets/icons/icon-hangup.svg"
       />
     </ion-fab-button>
-    <div style="position: relative;">
+    <div style="position: relative">
       <ion-fab-button class="controller white-bg" (click)="toggleFullScreen()">
         <img
-          style="float: left; width: 1.2em; height: 1.2em;"
+          style="float: left; width: 1.2em; height: 1.2em"
           src="assets/icons/icon-enlarge.svg"
         />
       </ion-fab-button>

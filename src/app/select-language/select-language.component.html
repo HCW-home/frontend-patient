@@ -1,5 +1,5 @@
 <div id="hhpMultiLang">
-  <div (click)="openDropdown()" class="sl-container">
+  <div (click)="openDropdown($event)" class="sl-container">
     <span
       [className]="
         'flag-icon flag-icon-' +
@@ -12,35 +12,37 @@
       <ion-icon *ngIf="opened" name="caret-up-outline"></ion-icon>
       <ion-icon *ngIf="!opened" name="caret-down-outline"></ion-icon>
     </span>
-  </div>
-  <div *ngIf="opened" class="flag-options">
-    <div
-      *ngIf="translate.currentLang !== 'en'"
-      (click)="changeLang('en')"
-      class="hhpmlOption"
-    >
-      <span class="flag-icon flag-icon-us"></span>
-    </div>
-    <div
-      *ngIf="translate.currentLang !== 'fr'"
-      (click)="changeLang('fr')"
-      class="hhpmlOption"
-    >
-      <span class="flag-icon flag-icon-fr"></span>
-    </div>
-    <div
-      *ngIf="translate.currentLang !== 'ar'"
-      (click)="changeLang('ar')"
-      class="hhpmlOption"
-    >
-      <span class="flag-icon flag-icon-sa"></span>
-    </div>
-    <div
-      *ngIf="translate.currentLang !== 'es'"
-      (click)="changeLang('es')"
-      class="hhpmlOption"
-    >
-      <span class="flag-icon flag-icon-es"></span>
-    </div>
+    <ng-container *ngIf="opened">
+      <div class="flag-options">
+        <div
+          *ngIf="translate.currentLang !== 'en'"
+          (click)="changeLang($event, 'en')"
+          class="hhpmlOption"
+        >
+          <span class="flag-icon flag-icon-us"></span>
+        </div>
+        <div
+          *ngIf="translate.currentLang !== 'fr'"
+          (click)="changeLang($event, 'fr')"
+          class="hhpmlOption"
+        >
+          <span class="flag-icon flag-icon-fr"></span>
+        </div>
+        <div
+          *ngIf="translate.currentLang !== 'ar'"
+          (click)="changeLang($event, 'ar')"
+          class="hhpmlOption"
+        >
+          <span class="flag-icon flag-icon-sa"></span>
+        </div>
+        <div
+          *ngIf="translate.currentLang !== 'es'"
+          (click)="changeLang($event, 'es')"
+          class="hhpmlOption"
+        >
+          <span class="flag-icon flag-icon-es"></span>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>

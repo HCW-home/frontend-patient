@@ -1,7 +1,7 @@
 <ion-content padding>
   <div class="wrap">
     <div class="container">
-      <div style="color: #ffffff; text-align: center; margin: 80px auto 40px;">
+      <div style="color: #ffffff; text-align: center; margin: 80px auto 40px">
         <h2>@Home</h2>
       </div>
 
@@ -14,13 +14,19 @@
         </ion-card-header>
 
         <ion-card-content>
-          <p>{{ 'closingScreen.thankYouForUsing' | translate:configService.config }}</p>
+          <p>
+            {{ 'closingScreen.thankYouForUsing' | translate:configService.config
+            }}
+          </p>
 
           <ng-container
             *ngIf="currentUser && currentUser.role !== 'translator' && currentUser.role !== 'guest'"
           >
             <ng-container *ngIf="!feedbackSaved">
-              <h3>{{ 'closingScreen.areYouSatisfied' | translate:configService.config }}</h3>
+              <h3>
+                {{ 'closingScreen.areYouSatisfied' |
+                translate:configService.config }}
+              </h3>
 
               <div class="ratings">
                 <ng-container *ngFor="let rating of ratings">
@@ -74,7 +80,6 @@
       >
         {{ 'login.closeTheApplication' | translate }}
       </button>
-
     </div>
   </div>
 </ion-content>

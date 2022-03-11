@@ -137,7 +137,7 @@
     "home": "Home",
     "translationRequestAccepted": "Merci pour la confirmation, vous allez recevoir très prochainement les informations par mail.",
     "translationRequestRefused": "Merci pour votre retour, nous allons informer le soignant de cette indisponibilité.",
-    "homeIsAHUGTeleconsultation": "@Home est un système de téléconsultation. Vous êtes sur le point de rejoindre la consultation avec un médecin. Veuillez ne pas quitter cette page une fois la demande de consultation en cours.",
+    "homeIsAHUGTeleconsultation": "@Home est un système de téléconsultation. Vous êtes sur le point de rejoindre la consultation avec un médecin. Veuillez ne pas quitter cette page une fois la demande de consultation en cours. En acceptant la consultation vous acceptez les CGU.",
     "warning": "Attention",
     "thisApplicationIsIntented": "Cette application est prévue pour fonctionner via un lien d'invitation reçu par SMS ou par email. Cliquez sur ce lien au préalable afin d'ouvrir une consultation.",
     "closeTheApplication": "Fermer l'application",

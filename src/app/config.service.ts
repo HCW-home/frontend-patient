@@ -29,6 +29,12 @@ export class ConfigService {
           this.config = config;
           this.configSub.next(config);
           this.globalVariableService.serverError = false;
+          if (config.accessibilityMode) {
+            document.documentElement.setAttribute(
+              "data-theme",
+              "accessibility"
+            );
+          }
         })
         .catch((err) => {
           this.globalVariableService.serverError = true;
