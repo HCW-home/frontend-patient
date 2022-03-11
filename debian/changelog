@@ -1,3 +1,13 @@
+hcw-athome-patient (4.3.10) focal; urgency=medium
+
+  [ Muhammed ]
+  * STYLE use SourceSansPro for accessibility theme
+  * use color from variable
+  * use background image based on theme
+  * FIX: use background image based on theme
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 11 Mar 2022 11:24:47 +0100
+
 hcw-athome-patient (4.3.9) focal; urgency=medium
 
   [ Muhammed ]
