@@ -22,7 +22,7 @@
 
         <div fxFlex="33%" fxFlex.xs="auto" fxFlexOrder="2" fxFlexOrder.xs="1">
           <button
-            class="btn green big"
+            class="btn green big proceed-btn"
             mat-button
             type="button"
             [disabled]="loading"
@@ -42,7 +42,12 @@
           <p class="text-white text-center" *ngIf="!inviteToken">
             {{ "test.welcomeToTheHome" | translate: configService.config }}
           </p>
-          <button class="btn" mat-button type="button" (click)="startTest()">
+          <button
+            class="btn test-btn"
+            mat-button
+            type="button"
+            (click)="startTest()"
+          >
             {{ testButton }}
           </button>
 

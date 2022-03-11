@@ -9,7 +9,7 @@
 
 #log-content {
   height: 90%;
-  font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -186,7 +186,7 @@ video {
 }
 
 .loader-1 span::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -295,7 +295,6 @@ video {
     max-width: 100% !important;
     display: block !important;
     justify-content: center;
-
   }
   #video-audio-container {
     display: flex;
@@ -306,7 +305,6 @@ video {
     position: relative;
     z-index: 100;
     width: 100%;
-
   }
   #msg-chain {
     flex: 1;
@@ -326,4 +324,15 @@ ion-content {
 }
 .error {
   color: red;
+}
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .proceed-btn,
+    .test-btn {
+      margin-left: 10px !important;
+    }
+    p {
+      text-align: left;
+    }
+  }
 }
