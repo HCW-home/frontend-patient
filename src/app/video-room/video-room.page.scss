@@ -916,6 +916,17 @@ ion-fab-button.controller {
   @include backgroundMixin($background-image-path);
   background-color: --ion-color-primary;
 }
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .ringing,
+    .incoming,
+    .audioOnly,
+    .video--main,
+    .none-ios--main-video {
+      background-image: unset !important;
+    }
+  }
+}
 .fixed {
   transform: translateY(0px) !important;
 }

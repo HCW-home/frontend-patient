@@ -12,6 +12,13 @@
   left: 0;
   background-color: var(--blue-bg-color);
 }
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .wrap {
+      background-image: unset !important;
+    }
+  }
+}
 .container {
   display: block;
   margin: 30px auto;

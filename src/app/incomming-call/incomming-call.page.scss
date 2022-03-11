@@ -9,7 +9,13 @@ ion-content {
   background-size: 100%;
   background-position: center;
 }
-
+::ng-deep {
+  html[data-theme="accessibility"] {
+    ion-content {
+      background-image: unset !important;
+    }
+  }
+}
 ion-grid {
   height: 100%;
   width: 100%;

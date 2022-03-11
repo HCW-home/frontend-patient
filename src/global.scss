@@ -150,7 +150,7 @@ app-test-call {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url($background-image-2x-path);
+  @include backgroundMixin($background-image-path);
 
   button {
     margin: auto;
@@ -171,6 +171,11 @@ app-test-call {
     line-height: 1;
     text-transform: none;
     cursor: pointer;
+  }
+}
+html[data-theme="accessibility"] {
+  .cordova-camera-capture {
+    background-image: unset !important;
   }
 }
 img.logo {

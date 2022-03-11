@@ -97,16 +97,3 @@ $background-image-2x-path: "assets/background@2x.jpg";
     background-image: unset !important;
   }
 }
-
-html[data-theme="accessibility"] {
-  :root {
-    --ion-color-primary: #2d6294;
-  }
-  $background-image-path: null !global;
-  $background-image-2x-path: null !global;
-}
-
-html:not([data-theme="accessibility"]) {
-  $background-image-path: "assets/icons/background.jpg" !global;
-  $background-image-2x-path: "assets/background@2x.jpg" !global;
-}

@@ -8,7 +8,13 @@
   background-position: center;
   border-radius: 0px;
 }
-
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .jumbotron {
+      background-image: unset !important;
+    }
+  }
+}
 .jumbotron.await {
   height: 283px;
 }

@@ -11,7 +11,13 @@
   top: 0;
   left: 0;
 }
-
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .wrap {
+      background-image: unset !important;
+    }
+  }
+}
 .submit-btn {
   margin: auto;
   display: block;
