@@ -74,7 +74,8 @@ ion-card {
 }
 app-login,
 app-test-call {
-  @include backgroundMixin($background-image-path);
+  background-image: url($background-image-path);
+
   background-size: 100%;
   background-position: center;
   background-attachment: fixed;
@@ -150,7 +151,7 @@ app-test-call {
   display: flex;
   flex-direction: column;
   align-items: center;
-  @include backgroundMixin($background-image-path);
+  background-image: url($background-image-path);
 
   button {
     margin: auto;
@@ -173,13 +174,20 @@ app-test-call {
     cursor: pointer;
   }
 }
-::ng-deep {
-  html[data-theme="accessibility"] {
-    .cordova-camera-capture {
-      background-image: unset !important;
-    }
+
+html[data-theme="accessibility"] {
+  .cordova-camera-capture {
+    background-image: unset !important;
+  }
+  app-login {
+    background-image: unset !important;
+  }
+
+  app-test-call {
+    background-image: unset !important;
   }
 }
+
 img.logo {
   max-width: 200px;
 }

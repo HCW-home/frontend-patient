@@ -914,7 +914,7 @@ ion-fab-button.controller {
 
 .ringing {
   @include backgroundMixin($background-image-path);
-  background-color: --ion-color-primary;
+  background-color: var(--ion-color-primary) !important;
 }
 ::ng-deep {
   html[data-theme="accessibility"] {
@@ -936,7 +936,7 @@ ion-fab-button.controller {
   width: 100%;
   z-index: 10000;
   @include backgroundMixin($background-image-path);
-  background-color: --ion-color-primary;
+  background-color: var(--ion-color-primary) !important;
   background-size: 100%;
   background-position: center;
 }
@@ -982,7 +982,7 @@ img.logo {
 
 .audioOnly {
   @include backgroundMixin($background-image-path);
-  background-color: --ion-color-primary;
+  background-color: var(--ion-color-primary) !important;
   .audio-overlay {
     width: 100%;
     height: 100%;
@@ -1014,7 +1014,7 @@ img.logo {
 }
 .video--main {
   @include backgroundMixin($background-image-path);
-  background-color: --ion-color-primary;
+  background-color: var(--ion-color-primary) !important;
 }
 
 .ios--main-video {
@@ -1025,7 +1025,7 @@ img.logo {
 
 .none-ios--main-video {
   @include backgroundMixin($background-image-path);
-  background-color: --ion-color-primary;
+  background-color: var(--ion-color-primary) !important;
   display: relative;
   z-index: 1000;
   background-color: #fff;
