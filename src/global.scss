@@ -173,9 +173,11 @@ app-test-call {
     cursor: pointer;
   }
 }
-html[data-theme="accessibility"] {
-  .cordova-camera-capture {
-    background-image: unset !important;
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .cordova-camera-capture {
+      background-image: unset !important;
+    }
   }
 }
 img.logo {
