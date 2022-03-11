@@ -32,12 +32,18 @@
   font-style: lighter;
 }
 
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("./assets/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf")
+    format("truetype");
+}
+
 :root {
   --ion-background-color: transparent;
 }
 
 * {
-  font-family: "Cooper Hewitt" !important;
+  font-family: "Cooper Hewitt";
   font-size: 1.05em;
 }
 
@@ -168,4 +174,9 @@ app-test-call {
 }
 img.logo {
   max-width: 200px;
+}
+html[data-theme="accessibility"] {
+  * {
+    font-family: "Source Sans Pro" !important;
+  }
 }
