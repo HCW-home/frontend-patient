@@ -124,7 +124,7 @@
         "home": "Inicio",
         "addTheEventToYourCalendar": "Añadir el evento a su agenda",
         "translationRequestAccepted": "Gracias por la confirmación, muy pronto recibirá la información por correo electrónico.",
-        "homeIsAHUGTeleconsultation": "@Home es un sistema de teleconsulta. Está a punto de unirse a la consulta con un médico. No abandone esta página una vez que la solicitud de consulta esté en curso.",
+        "homeIsAHUGTeleconsultation": "{{branding}} es un sistema de teleconsulta. Está a punto de unirse a la consulta con un médico. No abandone esta página una vez que la solicitud de consulta esté en curso.",
         "thisAppOnlyWorksByInivitation": "Esta aplicación solo funciona mediante una invitación. Utilice el enlace de teleconsulta que su profesional sanitario le habrá enviado por SMS o por correo electrónico.",
         "ifYouReceivedThisInvitation": "Si ha recibido esta invitación, copie y pegue el enlace recibido en su navegador o copie aquí la clave de la invitación:",
         "installOurApp": "Instalar nuestra aplicación",
