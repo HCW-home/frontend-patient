@@ -1,3 +1,11 @@
+hcw-athome-patient (4.3.9) focal; urgency=medium
+
+  [ Muhammed ]
+  * Show server error message & enhance audio vue volume indicator
+  * Remove unneeded console.log
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 11 Mar 2022 08:54:37 +0100
+
 hcw-athome-patient (4.3.8) focal; urgency=medium
 
   * Updating language
