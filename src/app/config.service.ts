@@ -29,7 +29,10 @@ export class ConfigService {
           this.config = config;
           this.configSub.next(config);
           this.globalVariableService.serverError = false;
-          if (config.accessibilityMode) {
+          if (
+            config.accessibilityMode &&
+            config.accessibilityMode !== "false"
+          ) {
             document.documentElement.setAttribute(
               "data-theme",
               "accessibility"

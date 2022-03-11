@@ -1,8 +1,11 @@
+@import "src/theme/variables.scss";
+
 ion-content {
   height: 100%;
   width: 100%;
 
-  background: url("assets/icons/background.jpg");
+  @include backgroundMixin($background-image-path);
+  background-color: --ion-color-primary;
   background-size: 100%;
   background-position: center;
 }

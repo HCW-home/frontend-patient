@@ -1,42 +1,10 @@
-// .speech-bubble:after {
-// 	content: '';
-// 	position: absolute;
-// 	right: 0;
-// 	top: 13px;
-// 	width: 0;
-// 	height: 0;
-// 	border: 27px solid transparent;
-// 	border-left-color: white;
-// 	border-right: 0;
-// 	border-top: 0;
-// 	margin-top: -13px;
-//     margin-right: -27px;
-
-// }
-
-// .speech-bubble {
-// 	position: relative;
-// 	background: white;
-//     border-radius: .4em;
-//     border-top-right-radius: 0px;
-// }
-
-// .dot {
-//     height: 60px;
-//     width: 60px;
-//     background-color: #999999;
-//     border-radius: 50%;
-//     margin: auto;
-//     display: block;
-//     text-align: center;
-//     vertical-align: middle;
-//     line-height: 60px;
-//   }
+@import "src/theme/variables.scss";
 
 .jumbotron {
   color: #ffffff;
   height: 240px;
-  background-image: url("assets/background@2x.jpg");
+  @include backgroundMixin($background-image-path);
+  background-color: --ion-color-primary;
   background-position: center;
   border-radius: 0px;
 }

@@ -1,3 +1,5 @@
+@import "src/theme/variables.scss";
+
 .demo-logo {
   max-width: 33%;
   padding-left: 5px;
@@ -911,7 +913,8 @@ ion-fab-button.controller {
 }
 
 .ringing {
-  background-image: url("assets/background@2x.jpg");
+  @include backgroundMixin($background-image-path);
+  background-color: --ion-color-primary;
 }
 .fixed {
   transform: translateY(0px) !important;
@@ -921,7 +924,8 @@ ion-fab-button.controller {
   height: 100%;
   width: 100%;
   z-index: 10000;
-  background: url("assets/icons/background.jpg");
+  @include backgroundMixin($background-image-path);
+  background-color: --ion-color-primary;
   background-size: 100%;
   background-position: center;
 }
@@ -966,7 +970,8 @@ img.logo {
 }
 
 .audioOnly {
-  background: url("assets/icons/background.jpg");
+  @include backgroundMixin($background-image-path);
+  background-color: --ion-color-primary;
   .audio-overlay {
     width: 100%;
     height: 100%;
@@ -997,7 +1002,8 @@ img.logo {
   }
 }
 .video--main {
-  background: url("assets/icons/background.jpg");
+  @include backgroundMixin($background-image-path);
+  background-color: --ion-color-primary;
 }
 
 .ios--main-video {
@@ -1007,7 +1013,8 @@ img.logo {
 }
 
 .none-ios--main-video {
-  background-image: url("../../assets/background@2x.jpg");
+  @include backgroundMixin($background-image-path);
+  background-color: --ion-color-primary;
   display: relative;
   z-index: 1000;
   background-color: #fff;

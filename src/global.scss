@@ -9,6 +9,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "src/theme/variables.scss";
 
 @font-face {
   font-family: "Cooper Hewitt";
@@ -73,7 +74,7 @@ ion-card {
 }
 app-login,
 app-test-call {
-  background: url("assets/icons/background.jpg") no-repeat;
+  @include backgroundMixin($background-image-path);
   background-size: 100%;
   background-position: center;
   background-attachment: fixed;
@@ -149,7 +150,7 @@ app-test-call {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("assets/background@2x.jpg");
+  background-image: url($background-image-2x-path);
 
   button {
     margin: auto;

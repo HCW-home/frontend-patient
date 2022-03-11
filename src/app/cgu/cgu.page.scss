@@ -1,14 +1,16 @@
+@import "src/theme/variables.scss";
+
 .wrap {
   width: 100%;
   min-height: 100%;
-  background: url("assets/icons/background.jpg") no-repeat;
+  @include backgroundMixin($background-image-path);
+  background-color: --ion-color-primary;
   background-size: 100%;
   background-position: center;
   background-attachment: fixed;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: var(--blue-bg-color);
 }
 .container {
   display: block;
