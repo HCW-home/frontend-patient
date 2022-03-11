@@ -1045,11 +1045,11 @@ img.logo {
   height: 100%;
 }
 
+ion-fab-button {
+  font-size: 0.8em;
+}
 ::ng-deep {
   html[data-theme="accessibility"] {
-    ion-fab-button {
-      font-size: 0.8em;
-    }
     .accept-btn {
       margin-left: unset !important;
       margin-right: unset !important;
