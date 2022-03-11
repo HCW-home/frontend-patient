@@ -45,7 +45,6 @@
 
 * {
   font-family: "Cooper Hewitt";
-  font-size: 1.05em;
 }
 
 .picker-wrapper {
@@ -189,10 +188,19 @@ html[data-theme="accessibility"] {
 }
 
 img.logo {
-  max-width: 200px;
+  max-width: 334px;
 }
 html[data-theme="accessibility"] {
   * {
     font-family: "Source Sans Pro" !important;
+    font-size: 1.05em;
+  }
+}
+::ng-deep {
+  html[data-theme="accessibility"] {
+    * {
+      font-family: "Source Sans Pro" !important;
+      font-size: 1.05em;
+    }
   }
 }
