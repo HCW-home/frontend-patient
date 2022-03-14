@@ -1,3 +1,10 @@
+hcw-athome-patient (4.3.13) focal; urgency=medium
+
+  * Fix branding on the page
+  * Few adjustments into layout
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 14 Mar 2022 14:36:32 +0100
+
 hcw-athome-patient (4.3.12) focal; urgency=medium
 
   * Change global font from 1.05 to 1.02em
