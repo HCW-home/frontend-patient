@@ -276,14 +276,17 @@ ion-icon[name="attach"] {
       text-align: left;
       font-size: 1em;
     }
-    .span.msg-time {
-      font-size: 0.53em !important;
+    .msg-time {
+      font-size: 0.8em !important;
     }
     .subtitle {
-      font-size: 1.5em;
+      font-size: 1.1em;
     }
     .doctor-info-card {
       padding-left: 0;
+    }
+    .keep-open {
+      padding-left: 20px;
     }
   }
 }
