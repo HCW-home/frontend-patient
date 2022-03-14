@@ -87,10 +87,11 @@ ion-icon {
     }
     .doctor-title {
       text-align: left;
+      margin-left: 20px;
     }
     p {
       text-align: left !important;
-      margin-left: 0px;
+      margin-left: 20px;
     }
     .cancel-btn {
       text-align: left;
@@ -99,6 +100,10 @@ ion-icon {
     }
     .dismiss-btn {
       margin: unset;
+    }
+
+    .close-btn {
+      margin-left: 20px;
     }
   }
 }
