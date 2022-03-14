@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ConsultationService } from '../consultation.service';
 import { ConfigService } from '../config.service';
 import { Platform } from '@ionic/angular';
+import { environment } from '../../environments/environment';
 
 declare let cordova: any;
 
@@ -77,6 +78,10 @@ export class ClosingScreenPage implements OnInit {
    */
   isMobileApp() {
     return this.isMobileUser() && this.platform.is('hybrid');
+  }
+
+  isNativeApp() {
+    return environment.platform === 'native'
   }
 
   /**
