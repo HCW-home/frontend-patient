@@ -1,3 +1,9 @@
+hcw-athome-patient (4.3.15) focal; urgency=medium
+
+  * Fix few alignement in accessibility mode
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 14 Mar 2022 16:20:35 +0100
+
 hcw-athome-patient (4.3.14) focal; urgency=medium
 
   * Small adjustement with accessibility mode
