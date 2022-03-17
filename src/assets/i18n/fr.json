@@ -4,7 +4,7 @@
   },
   "cgu": {
     "termsAndConditions": "Conditions Générales d'Utilisation (CGU)",
-    "backToHome": "J’ai compris",
+    "backToHome": "J'ai compris",
     "theHomeApplicationIsIntented": "L'application {{branding}} est destinée aux patients nécessitant une téléconsultation. Le patient télécharge et installe l'application sur son téléphone personnel. Ensuite, la téléconsultation est initiée par le professionnel de la santé, et non par le patient.",
     "thePurposeOfTheTermsAndConditions": "Les Conditions Générales d'Utilisation (CGU) ont pour objet de définir les conditions d'utilisation de l'application.",
     "the": "Les",
@@ -182,7 +182,7 @@
     "cancel": "ANNULER",
     "theConsultationRequest": "LA DEMANDE DE CONSULTATION",
     "youAreAboutTo": "  Vous êtes sur le point d'annuler la demande de consultation. Si vous annulez à ce niveau, vous perdrez votre position dans la file d'attente et vous devrez refaire une demande de consultation. Souhaitez-vous vraiment annuler ?",
-    "cancelTheRequest": "Annuler la demande",
+    "cancelTheRequest": "Annuler la demande de consultation",
     "stayInTheQueue": "Rester dans la file d'attente",
     "refuse": "Aucune disponibilité",
     "direcNumber": "Numéro direct",

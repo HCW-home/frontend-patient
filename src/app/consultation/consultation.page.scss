@@ -201,14 +201,13 @@ div.input > ion-grid > ion-row > ion-col > ion-icon {
 }
 
 .cancel-btn {
-  border: none;
-  box-shadow: none;
-  display: block;
-  margin: auto;
-  --border-style: none;
-  --border-color: none;
-  --box-shadow: none;
-  --ripple-color: transparent;
+  margin-top: 15px;
+  --border-radius: 30px;
+  --background: white;
+  color: var(--ion-color-primary);
+  margin-left: 30%;
+  display: inline-block;
+  
 }
 
 @media screen and (max-width: 640px) {
@@ -267,10 +266,7 @@ ion-icon[name="attach"] {
       margin-left: 20px;
       margin-right: 20px;
     }
-    .cancel-btn {
-      text-align: left;
-      display: inline-block !important;
-    }
+
     #chatHeader {
       text-align: left;
       font-size: 1em;

@@ -3,9 +3,11 @@
     <div class="container">
       <div class="title">
         <h2>{{ 'cgu.termsAndConditions' | translate }}</h2>
+        
       </div>
-
-      <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
+      <div class="back">
+        <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
+      </div>
 
       <p><strong>
         {{ 'cgu.theHomeApplicationIsIntented' | translate:configService.config }}
@@ -106,7 +108,9 @@
       </p>
       <p style="text-align: right;font-size: 1.1em">{{ 'cgu.genevaMarch' | translate }}</p>
 
-      <a [routerLink]="['/']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
+      <div class="back">
+        <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
+      </div>
     </div>
   </div>
 </ion-content>

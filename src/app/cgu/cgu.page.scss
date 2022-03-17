@@ -25,24 +25,27 @@
   width: 70%;
   color: #ffffff;
 }
+
 .title {
   text-align: center;
   margin: 80px auto 40px;
+  font-size: 1.2em;
+}
+
+.back {
+  text-align: center;
+  display: block;
 }
 
 .back-link {
-  margin-top: 20px;
-  display: block;
-  margin: 30px 3% 40px;
-  border-radius: 60px;
-  text-align: center;
-  height: 34px;
   background: #fff;
   color: #006eb5;
-  font-size: 1.1em;
   text-decoration: none;
-  padding: 10px 0 6px;
+  border-radius: 60px;
+  padding: 5px 15px 5px 15px;
+  margin-top: 30px;
 }
+
 a {
   color: #fff;
 }
