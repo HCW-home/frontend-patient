@@ -32,7 +32,7 @@ export class ClosingScreenPage implements OnInit {
   public userComment: string = '';
 
   // The list of rating values
-  public ratings: string[] = ['bad', 'ok', 'good'];
+  public ratings: string[] = ['good', 'ok', 'bad'];
 
   currentUser
   constructor(
