@@ -43,10 +43,7 @@
     </ion-card-header>
     <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
       <p class="subtitle">
-        {{ 'consultation.youAreNowInConsultation' | translate }}
-      </p>
-      <p class="subtitle doctor">
-        {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
+        {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
       </p>
       <p class="subtitle doctor" *ngIf="consultation.doctor.phoneNumber">
         {{ 'consultation.phone' | translate }}
@@ -77,7 +74,6 @@
       *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'"
       (click)="showCancelModal()"
       class="cancel-btn"
-      color="transparent"
     >
       {{ 'consultation.cancel' | translate }}
     </ion-button>

@@ -331,7 +331,7 @@ export class TestComponent implements OnInit, OnDestroy {
     console.log("OV session", this.session);
     console.log("Session token", token);
     this.testStatus = "CONNECTING";
-    this.testButton = this.translate.instant("test.testInProgress");
+    this.testButton = this.translate.instant("test.stopTheTest");
     this.accessHardwareGranted = null;
 
     if (this.platform.is("android") && this.platform.is("hybrid")) {

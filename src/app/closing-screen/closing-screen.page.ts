@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ConsultationService } from '../consultation.service';
 import { ConfigService } from '../config.service';
 import { Platform } from '@ionic/angular';
+import { environment } from '../../environments/environment';
 
 declare let cordova: any;
 
@@ -31,7 +32,7 @@ export class ClosingScreenPage implements OnInit {
   public userComment: string = '';
 
   // The list of rating values
-  public ratings: string[] = ['bad', 'ok', 'good'];
+  public ratings: string[] = ['good', 'ok', 'bad'];
 
   currentUser
   constructor(
@@ -77,6 +78,10 @@ export class ClosingScreenPage implements OnInit {
    */
   isMobileApp() {
     return this.isMobileUser() && this.platform.is('hybrid');
+  }
+
+  isNativeApp() {
+    return environment.platform === 'native'
   }
 
   /**

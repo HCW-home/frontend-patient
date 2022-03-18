@@ -244,9 +244,9 @@
       </ng-container>
 
       <div class="footer">
-        <a [routerLink]="['/cgu']" title="Lire les CGU" class=""
-          >{{ 'login.termsOfService' | translate }}</a
-        >
+        <button type="button" [routerLink]="['/cgu']" title="Lire les CGU" class="btn terms-btn">
+          {{ 'login.termsOfService' | translate }}
+        </button>
       </div>
 
       <app-select-language></app-select-language>

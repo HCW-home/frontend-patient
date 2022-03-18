@@ -39,9 +39,10 @@ ion-button {
 .cancel-btn {
   margin-top: 15px;
   --border-radius: 30px;
-  --background: white;
-  color: var(--ion-color-primary);
-  width: 220px;
+  --background: #00b54a;
+  color: white;
+  width: auto;
+  display: inline-block;
 }
 
 .dismiss-btn {
@@ -50,6 +51,9 @@ ion-button {
   --border-radius: 30px;
   font-size: 0.8em;
   margin-top: 10px;
+  background: white;
+  color: var(--ion-color-primary);
+  border-radius: 30px;
 }
 
 ion-icon {
@@ -87,18 +91,12 @@ ion-icon {
     }
     .doctor-title {
       text-align: left;
+      margin-left: 20px;
     }
     p {
       text-align: left !important;
-      margin-left: 0px;
+      margin-left: 20px;
     }
-    .cancel-btn {
-      text-align: left;
-      width: unset;
-      margin: unset;
-    }
-    .dismiss-btn {
-      margin: unset;
-    }
+
   }
 }

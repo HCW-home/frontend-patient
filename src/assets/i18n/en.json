@@ -137,7 +137,7 @@
     "home": "Home",
     "translationRequestAccepted": "Thank you for the confirmation, you will receive the information via email very soon.",
     "translationRequestRefused": "Thank you for your feedback, we will inform the caregiver of the unavailability.",
-    "homeIsAHUGTeleconsultation": "@Home is a teleconsultation system. You are about to join a consultation with a doctor. Please do not leave this page once the consultation request is in progress. By accepting the consultation you accept the T&Cs.",
+    "homeIsAHUGTeleconsultation": "{{branding}} is a teleconsultation system. You are about to join a consultation with a doctor. Please do not leave this page once the consultation request is in progress. By accepting the consultation you accept the T&Cs.",
     "warning": "Warning",
     "thisApplicationIsIntented": "This application is intended to work via an invitation link received via SMS or email. Click on this link beforehand to open a consultation.",
     "closeTheApplication": "Close the application",

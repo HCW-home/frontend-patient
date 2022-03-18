@@ -187,20 +187,23 @@ html[data-theme="accessibility"] {
   }
 }
 
+
 img.logo {
+  width: 100%;
   max-width: 334px;
 }
 html[data-theme="accessibility"] {
   * {
     font-family: "Source Sans Pro" !important;
-    font-size: 1.05em;
+    font-size: 1.02em;
   }
 }
 ::ng-deep {
   html[data-theme="accessibility"] {
     * {
       font-family: "Source Sans Pro" !important;
-      font-size: 1.05em;
+      font-size: 1.02em;
     }
   }
 }
+

@@ -4,7 +4,7 @@
   },
   "cgu": {
     "termsAndConditions": "Conditions Générales d'Utilisation (CGU)",
-    "backToHome": "Retour à l'accueil",
+    "backToHome": "J'ai compris",
     "theHomeApplicationIsIntented": "L'application {{branding}} est destinée aux patients nécessitant une téléconsultation. Le patient télécharge et installe l'application sur son téléphone personnel. Ensuite, la téléconsultation est initiée par le professionnel de la santé, et non par le patient.",
     "thePurposeOfTheTermsAndConditions": "Les Conditions Générales d'Utilisation (CGU) ont pour objet de définir les conditions d'utilisation de l'application.",
     "the": "Les",
@@ -53,16 +53,16 @@
     "genevaMarch": "Genève, le 25 mars 2020"
   },
   "closingScreen": {
-    "theConsultationIsNowOver": "La téléconsultation est désormais terminée",
-    "thankYouForUsing": "Merci d'avoir utilisé l'application de téléconsultation {{branding}}.",
-    "areYouSatisfied": "Êtes-vous satisfaits de l'application {{branding}} ?",
+    "theConsultationIsNowOver": "La téléconsultation est terminée",
+    "thankYouForUsing": "Merci d'avoir utilisé l'application {{branding}}.",
+    "areYouSatisfied": "Donnez-nous votre avis sur l’application {{branding}} ?",
     "doYouWantTo": "Voulez-vous nous laisser un commentaire ?",
     "sendMyFeedback": "Terminer",
     "thankYouForYourFeedback": "Merci de votre feedback."
   },
   "consultation": {
     "inProgress": "En cours",
-    "plsKeepThisOpenPage": "Veuillez garder cette page ouverte, la téléconsultation va débuter d'ici quelques minutes.",
+    "plsKeepThisOpenPage": "Veuillez garder cette page ouvert, la téléconsultation va débuter dans quelque instant.",
     "consultation": "CONSULTATION",
     "capInProgress": "EN COURS",
     "youAreNowInConsultation": "Vous êtes désormais en téléconsultation avec",
@@ -119,7 +119,7 @@
     "aimsToStrengthen": "vise à renforcer cette continuité des soins entre les {{branding}} et le domicile notamment durant la période de soins aigus de transition (SAT) en apportant une réponse médicale éclairée par des médecins HUG aux questions des soignants de l’Imad. Ce projet pilote auquel vous participez est un projet coordonné par les HUG en collaboration avec l’imad. Il concerne pour le moment uniquement les patients sortis d’une récente hospitalisation aux HUG (< 1 mois) et suivis à domicile par un soignant du Centre de Maintien à Domicile (CMD) des Eaux-Vives ou pris en charge dans le cadre du projet Cogeria déployé en partenariat avec le CMD la Servette. Ce pilote est déployé de ",
     "mayToTheEnd": "Mai à fin Octobre 2019",
     "itIsFundedBy": "Il est financé par",
-    "theHUGPrivate": "la Fondation Privée des {{branding}}",
+    "theHUGPrivate": "la Fondation Privée des HUG",
     "andTheGeneral": "et la Direction Générale de la Santé de l’état de Genève que nous remercions. Les médecins assurant ce service sont des chefs de clinique expérimentés du",
     "firstAidPhysicians": "Service de Médecins de Premiers Recours",
     "theServiceIsAccessible": "Le service est accessible de",
@@ -137,7 +137,7 @@
     "home": "Home",
     "translationRequestAccepted": "Merci pour la confirmation, vous allez recevoir très prochainement les informations par mail.",
     "translationRequestRefused": "Merci pour votre retour, nous allons informer le soignant de cette indisponibilité.",
-    "homeIsAHUGTeleconsultation": "@Home est un système de téléconsultation. Vous êtes sur le point de rejoindre la consultation avec un médecin. Veuillez ne pas quitter cette page une fois la demande de consultation en cours. En acceptant la consultation vous acceptez les CGU.",
+    "homeIsAHUGTeleconsultation": "{{branding}} est un système de téléconsultation. Vous êtes sur le point de rejoindre votre consultation, veuillez ne pas quitter cette page. En rejoignant la consultation, vous acceptez les Conditions Générales d’Utilisation (CGU)",
     "warning": "Attention",
     "thisApplicationIsIntented": "Cette application est prévue pour fonctionner via un lien d'invitation reçu par SMS ou par email. Cliquez sur ce lien au préalable afin d'ouvrir une consultation.",
     "closeTheApplication": "Fermer l'application",
@@ -181,8 +181,8 @@
   "closeConsultation": {
     "cancel": "ANNULER",
     "theConsultationRequest": "LA DEMANDE DE CONSULTATION",
-    "youAreAboutTo": "  Vous êtes sur le point d'annuler la demande de consultation. Si vous annulez à ce niveau, vous perdrez votre position dans la file d'attente et vous devrez refaire une demande de consultation. <br /> <br /> <br /> Souhaitez-vous vraiment annuler ?",
-    "cancelTheRequest": "Annuler la demande",
+    "youAreAboutTo": "  Vous êtes sur le point d'annuler la demande de consultation. Si vous annulez à ce niveau, vous perdrez votre position dans la file d'attente et vous devrez refaire une demande de consultation. Souhaitez-vous vraiment annuler ?",
+    "cancelTheRequest": "Annuler la demande de consultation",
     "stayInTheQueue": "Rester dans la file d'attente",
     "refuse": "Aucune disponibilité",
     "direcNumber": "Numéro direct",
@@ -193,7 +193,7 @@
   "test": {
     "loading": "Chargement en cours...",
     "joinTheConsultation": "Rejoindre la consultation",
-    "ifThisIsTheFirst": "Si c'est la première fois que vous rejoignez une téléconsultation, nous vous conseillons de tester votre configuration à l'aide du bouton qui suit.",
+    "ifThisIsTheFirst": "Si c'est la première fois que vous rejoignez une téléconsultation, nous vous conseillons de tester votre configuration.",
     "welcomeToTheHome": "Bienvenue sur la plateforme de téléconsultation {{branding}}. Cette page permet d'assurer que votre appareil fonctionnera comme il faut le jour de la consultation. Appuyez sur le bouton ci-dessous afin de vérifier la compatibilité. Vous devrez accepter les demandes d'accès à votre caméra ainsi qu'à votre microphone.",
     "testMyEquipment": "Tester mon matériel",
     "testInProgress": "Test en cours",

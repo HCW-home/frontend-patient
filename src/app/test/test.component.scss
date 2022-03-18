@@ -18,8 +18,8 @@ ul {
   margin: 0;
 }
 
-#test-btn {
-  text-transform: uppercase;
+.test-btn {
+  background: white;
 }
 
 mat-card-title button.blue {
@@ -328,9 +328,6 @@ ion-content {
 ::ng-deep {
   html[data-theme="accessibility"] {
     .proceed-btn,
-    .test-btn {
-      margin-left: 10px !important;
-    }
     p {
       text-align: left;
     }
