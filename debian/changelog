@@ -1,3 +1,14 @@
+hcw-athome-patient (4.3.17) focal; urgency=medium
+
+  [ Muhammed ]
+  * STYLE Fix alignment
+
+  [ Olivier Bitsch ]
+  * Fix sentense and wording (fr)
+  * Fix accessibility layout with centered button
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 18 Mar 2022 14:34:24 +0100
+
 hcw-athome-patient (4.3.16) focal; urgency=medium
 
   * Fix closing button
