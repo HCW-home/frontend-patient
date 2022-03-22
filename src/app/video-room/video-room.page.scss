@@ -1050,17 +1050,6 @@ ion-fab-button {
 }
 ::ng-deep {
   html[data-theme="accessibility"] {
-    .accept-btn {
-      margin-left: unset !important;
-      margin-right: unset !important;
-    }
-    .refuse-btn {
-      margin-left: unset !important;
-      margin-right: unset !important;
-    }
-    .logo {
-      margin-left: unset !important;
-      margin-right: unset !important;
-    }
+    // add accessibility adjustments here
   }
 }
