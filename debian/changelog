@@ -1,3 +1,16 @@
+hcw-athome-patient (4.3.18) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Fix undeclared value
+
+  [ Muhammed ]
+  * FIX: incoming call buttons recentered
+
+  [ Olivier Bitsch ]
+  * Fix text alignement on closure screen
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 22 Mar 2022 11:34:16 +0100
+
 hcw-athome-patient (4.3.17) focal; urgency=medium
 
   [ Muhammed ]
