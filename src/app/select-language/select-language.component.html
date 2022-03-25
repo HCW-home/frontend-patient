@@ -1,11 +1,12 @@
 <div id="hhpMultiLang">
   <div (click)="openDropdown($event)" class="sl-container">
+    <ion-icon name="globe"></ion-icon>
     <select class="lang" #langSelect (change)="translate.use(langSelect.value)">
       <option
         *ngFor="let lang of translate.getLangs()"
         [value]="lang"
         [attr.selected]="lang === translate.currentLang ? '' : null"
-      >[ {{lang | translate}} ]</option>
+      >{{lang | translate}}</option>
     </select>
   </div>
 </div>
