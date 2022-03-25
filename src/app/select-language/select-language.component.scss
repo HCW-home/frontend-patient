@@ -18,15 +18,10 @@
     font-size: 0.7em;
   }
 }
-.flag-icon {
-  height: 35px;
-  padding: 5px;
-  margin: 10px;
-}
-.flag-options {
-  position: absolute;
-  bottom: 52px;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--ion-color-primary) !important;
+
+.lang {
+  color: white;
+  background-color: #0072bb;
+  border: 1px;
+
 }

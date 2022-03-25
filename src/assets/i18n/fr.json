@@ -239,5 +239,13 @@
   },
   "appComponent": {
     "serverError": "Something went wrong"
-  }
+  },
+  "fr": "Français",
+  "en": "English",
+  "es": "Español",
+  "de": "Deutsch",
+  "ar": "عربي",
+  "ta": "தமிழ்",
+  "fa": "فارسی",
+  "ti": "ትግርኛ"
 }
