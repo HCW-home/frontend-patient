@@ -1,3 +1,13 @@
+hcw-athome-patient (4.3.22) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Fix text alignment
+
+  [ Muhammed ]
+  * FIX issues with video toggle during call refs #4199
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 04 Apr 2022 15:00:55 +0200
+
 hcw-athome-patient (4.3.21) focal; urgency=medium
 
   * Fix langage icon selector + adding germany
