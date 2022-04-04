@@ -112,11 +112,7 @@
     [ngClass]="{'fixed': !isFullScreen}"
     [@slideTopBottom]="buttonsVisibility"
   >
-    <ion-fab-button
-      *ngIf="!audioOnly && !noWebCam"
-      class="controller white-bg"
-      (click)="camStatusChanged()"
-    >
+    <ion-fab-button class="controller white-bg" (click)="camStatusChanged()">
       <img
         *ngIf="camStatus === 'on'"
         style="float: left; width: 1.2em; height: 1.2em"
