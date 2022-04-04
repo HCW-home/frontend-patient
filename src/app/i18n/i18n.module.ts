@@ -24,7 +24,12 @@ export class I18nModule {
     'en',
     'fr',
     'es',
-    'ar'
+    'ar',
+    'de',
+    'ar',
+    'ta',
+    'ti',
+    'fa'
   ]
   constructor(translate: TranslateService) {
     translate.addLangs(this.supportedLanguages);

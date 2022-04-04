@@ -512,6 +512,11 @@ export class LoginPage implements OnInit {
     return this.isMobileUser() && this.platform.is('hybrid');
   }
 
+  isNativeApp() {
+    return environment.platform === 'native'
+  }
+
+
   generateIcsBlob(date) {
     const url = this.getCurrentUrl();
 
