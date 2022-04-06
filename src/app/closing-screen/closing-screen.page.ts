@@ -1,21 +1,20 @@
-import { AuthService } from './../auth/auth.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AuthService } from "./../auth/auth.service";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { ConsultationService } from '../consultation.service';
-import { ConfigService } from '../config.service';
-import { Platform } from '@ionic/angular';
-import { environment } from '../../environments/environment';
+import { ConsultationService } from "../consultation.service";
+import { ConfigService } from "../config.service";
+import { Platform } from "@ionic/angular";
+import { environment } from "../../environments/environment";
 
 declare let cordova: any;
 
 @Component({
-  selector: 'app-closing-screen',
-  templateUrl: './closing-screen.page.html',
-  styleUrls: ['./closing-screen.page.scss'],
+  selector: "app-closing-screen",
+  templateUrl: "./closing-screen.page.html",
+  styleUrls: ["./closing-screen.page.scss"],
 })
 export class ClosingScreenPage implements OnInit {
-
   // The ID of the consultation that just has been closed
   private consultationId;
 
@@ -29,19 +28,19 @@ export class ClosingScreenPage implements OnInit {
   public userRating: string = null;
 
   // The feedback comment written by the user
-  public userComment: string = '';
+  public userComment: string = "";
 
   // The list of rating values
-  public ratings: string[] = ['good', 'ok', 'bad'];
+  public ratings: string[] = ["good", "ok", "bad"];
 
-  currentUser
+  currentUser;
   constructor(
     private activeRoute: ActivatedRoute,
     private consultationService: ConsultationService,
-    private authService: AuthService ,
+    private authService: AuthService,
     public configService: ConfigService,
-    public platform: Platform,
-  ) { }
+    public platform: Platform
+  ) {}
 
   ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
@@ -70,36 +69,41 @@ export class ClosingScreenPage implements OnInit {
    * Check if the user is running on mobile (either web or native app).
    */
   isMobileUser() {
-    return this.platform.is('ios') || this.platform.is('android');
+    return this.platform.is("ios") || this.platform.is("android");
   }
 
   /**
    * Check if the user is running an installed app.
    */
   isMobileApp() {
-    return this.isMobileUser() && this.platform.is('hybrid');
+    return this.isMobileUser() && this.platform.is("hybrid");
   }
 
   isNativeApp() {
-    return environment.platform === 'native'
+    return environment.platform === "native";
   }
 
   /**
    * Event fired when the user submits the feedback form
    */
   onFormSubmit() {
-    if (this.feedbackSubmitted) {
+    if (this.feedbackSubmitted || (!this.userRating && !this.userComment)) {
       return;
     }
     this.feedbackSubmitted = true;
-    this.consultationService.saveConsultationFeedback(this.consultationId, this.userRating, this.userComment).subscribe(
-      (res) => {
-        this.feedbackSaved = true;
-
-      },
-      (err) => {
-        this.feedbackSubmitted = false;
-      }
-    );
+    this.consultationService
+      .saveConsultationFeedback(
+        this.consultationId,
+        this.userRating,
+        this.userComment
+      )
+      .subscribe(
+        (res) => {
+          this.feedbackSaved = true;
+        },
+        (err) => {
+          this.feedbackSubmitted = false;
+        }
+      );
   }
 }
