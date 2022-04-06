@@ -197,6 +197,10 @@ html[data-theme="accessibility"] {
     font-family: "Source Sans Pro" !important;
     font-size: 1.02em;
   }
+
+  .btn {
+    padding: 10px 20px 10px;
+  }
 }
 ::ng-deep {
   html[data-theme="accessibility"] {
