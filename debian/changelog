@@ -1,3 +1,15 @@
+hcw-athome-patient (4.3.23) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Adding missing dot
+  * Fix btn alignment
+  * Update licence
+
+  [ Muhammed ]
+  * check if feedback is not empty before submitting  refs #4196
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 06 Apr 2022 11:17:23 +0200
+
 hcw-athome-patient (4.3.22) focal; urgency=medium
 
   [ Olivier Bitsch ]
