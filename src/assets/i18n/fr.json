@@ -3,7 +3,7 @@
     "awaitingConsultation": "Veuillez patienter pendant que la téléconsultation démarre. Merci de garder cette fenêtre ouverte."
   },
   "cgu": {
-    "termsAndConditions": "Conditions Générales d'Utilisation (CGU)",
+    "termsAndConditions": "Conditions Générales d'Utilisation et politique de confidentialité (CGU)",
     "backToHome": "J'ai compris",
     "theHomeApplicationIsIntented": "L'application {{branding}} est destinée aux patients nécessitant une téléconsultation. Le patient télécharge et installe l'application sur son téléphone personnel. Ensuite, la téléconsultation est initiée par le professionnel de la santé, et non par le patient.",
     "thePurposeOfTheTermsAndConditions": "Les Conditions Générales d'Utilisation (CGU) ont pour objet de définir les conditions d'utilisation de l'application.",
