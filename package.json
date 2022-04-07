@@ -83,6 +83,7 @@
     "ionic": "^4.12.0",
     "ionic-plugin-deeplinks": "^1.0.20",
     "jquery": "^3.6.0",
+    "ngx-markdown": "^9.1.1",
     "normal": "^0.1.1",
     "npm": "^6.14.11",
     "patch-package": "^6.2.2",

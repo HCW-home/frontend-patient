@@ -9,6 +9,7 @@
         <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
       </div>
 
+      <markdown src="assets/terms.md">
       <p><strong>
         {{ 'cgu.theHomeApplicationIsIntented' | translate:configService.config }}
       </strong></p>
@@ -107,6 +108,8 @@
         {{ 'cgu.nonAnonymizedData' | translate }}
       </p>
       <p style="text-align: right;font-size: 1.1em">{{ 'cgu.genevaMarch' | translate }}</p>
+
+    </markdown>
 
       <div class="back">
         <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
