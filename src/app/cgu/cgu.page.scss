@@ -26,6 +26,31 @@
   color: #ffffff;
 }
 
+li {
+  margin-top: 21.5339;
+  margin-bottom: 21.5339;
+}
+
+markdown ::ng-deep { 
+  ol {
+    counter-reset: item;
+    list-style: none;
+  }
+  li:before { 
+    content: counters(item, ".") ". ";
+    counter-increment: item;
+  }
+  li > p {
+    display: inline;
+  }
+  p {
+    margin-top: 21.5339;
+    margin-bottom: 21.5339;
+    color: red;
+  }
+}
+
+
 .title {
   text-align: center;
   margin: 80px auto 40px;
