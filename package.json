@@ -78,7 +78,7 @@
     "cordova.plugins.diagnostic": "^6.0.3",
     "core-js": "2.6.5",
     "flag-icon-css": "^3.4.6",
-    "hug-angular-lib": "https://projects.iabsis.com/repository/hug-angular/npm/hug-angular-lib-0.0.2.tgz",
+    "hug-angular-lib": "http://builder/hug-angular/npm/hug-angular-lib-0.0.3.tgz",
     "i": "^0.3.6",
     "ionic": "^4.12.0",
     "ionic-plugin-deeplinks": "^1.0.20",
