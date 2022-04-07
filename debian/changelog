@@ -1,3 +1,11 @@
+hcw-athome-patient (4.3.24) focal; urgency=medium
+
+  * Adding the possibility to customize terms and policies with Markdown file
+  * Improve sub numbering for markdown list
+  * Small numbering fix
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 07 Apr 2022 15:47:47 +0200
+
 hcw-athome-patient (4.3.23) focal; urgency=medium
 
   [ Olivier Bitsch ]
