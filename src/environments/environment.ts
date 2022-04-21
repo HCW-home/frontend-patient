@@ -4,15 +4,15 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 export const environment = {
   production: false,
-  api: '/api/v1',
-  host: 'https://dev-patient-hug-at-home.oniabsis.com',
+  api: "/api/v1",
+  host: "http://localhost:1337/", // "https://dev-patient-hug-at-home.oniabsis.com",
 
   // host: 'https://' + document.location.host,
 
   showNativeAppSuggestionAndroid: true,
   showNativeAppSuggestionIOS: true,
-  platform:'web'
-}
+  platform: "web",
+};
 
 /*
  * In development mode, to ignore zone related error stack frames such as

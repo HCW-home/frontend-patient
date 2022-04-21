@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
   inviteToken: string;
 
   testRoute = false;
-  navigator = window.navigator;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
