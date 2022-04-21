@@ -51,6 +51,9 @@ export class PeerVideoComponent implements AfterViewInit, OnDestroy, OnChanges {
   }
 
   updateVideoSrc() {
+    if (this.elementRef && this.stream) {
+      this.elementRef.nativeElement.srcObject = this.stream.mediaStream;
+    }
     setTimeout(() => {
       // console.log("elemref", this.elementRef, this.stream);
       if (this.elementRef) {
