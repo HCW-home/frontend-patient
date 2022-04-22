@@ -196,7 +196,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
 
   videoAspectRatio = 1.777;
 
-  _device: any;
+  _device: any = {};
   constructor(
     public platform: Platform,
     private nativeAudio: NativeAudio,
@@ -234,6 +234,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
       this.joinToSession();
     }
     this._device = this.roomService.deviceInfo();
+    console.log("device ", this._device);
   }
 
   ngOnDestroy() {

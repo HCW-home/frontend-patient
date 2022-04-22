@@ -1,3 +1,4 @@
+<div *ngIf="_device">{{JSON.stringify(_device)}}</div>
 <div *ngIf="!accepted" class="bounds incoming">
   <ion-grid>
     <ion-row style="height: 25%; width: 100%"></ion-row>
@@ -7,7 +8,6 @@
           <img class="logo" src="assets/icons/Call-incoming.svg" alt="" />
         </ion-row>
         <ion-row>
-          <div *ngIf="_device">{{JSON.stringify(_device)}}</div>
           <ion-title *ngIf="user" class="doctor-title">
             {{user.firstName }} {{user.lastName | uppercase }} <br />
             <strong
