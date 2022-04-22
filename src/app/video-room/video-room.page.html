@@ -1,4 +1,3 @@
-<div *ngIf="_device">{{ _device}}</div>
 <div *ngIf="!accepted" class="bounds incoming">
   <ion-grid>
     <ion-row style="height: 25%; width: 100%"></ion-row>
@@ -18,6 +17,7 @@
           </ion-title>
         </ion-row>
         <ion-row>
+          <ion-title *ngIf="_device">{{ _device}}</ion-title>
           <ion-button (click)="joinToSession()" class="accept-btn"
             >{{ 'videoRoom.accept' | translate }}</ion-button
           >
