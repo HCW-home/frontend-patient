@@ -161,7 +161,8 @@
     "supportedByThePrivateFunction": "Supported by the private foundation",
     "theRemoteServerIsNotReachable": "The remote server cannot be reached, please check your connectivity",
     "pleaseEnterYourInvitationKey": "Please enter your invitation key",
-    "youAlreadyOwnTheApplication": "Already have the application?"
+    "youAlreadyOwnTheApplication": "Already have the application?",
+    "unsupportedBrowser": "Unsupported browser"
   },
   "translatorForm": {
     "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} is a teleconsultation system. You are about to accept an online appointment with a patient and caregiver.",

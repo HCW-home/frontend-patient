@@ -161,7 +161,8 @@
     "supportedByThePrivateFunction": "Soutenu par la fondation privée",
     "theRemoteServerIsNotReachable": "Le serveur distant n'est pas joignable, veuillez vérifier votre connectivité",
     "pleaseEnterYourInvitationKey": "Merci d'entrer votre clé d'invitation",
-    "youAlreadyOwnTheApplication": "Vous avez déjà l'application ?"
+    "youAlreadyOwnTheApplication": "Vous avez déjà l'application ?",
+    "unsupportedBrowser": "Votre navigateur n'est pas supporté"
   },
   "translatorForm": {
     "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} est un système de téléconsultation. Vous êtes sur le point d'accepter un rendez-vous en ligne avec un patient et le soignant.",

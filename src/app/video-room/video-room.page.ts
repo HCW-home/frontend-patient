@@ -233,8 +233,6 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     if (this.accepted) {
       this.joinToSession();
     }
-    this._device = JSON.stringify(this.roomService.deviceInfo());
-    console.log("device ", this._device);
   }
 
   ngOnDestroy() {

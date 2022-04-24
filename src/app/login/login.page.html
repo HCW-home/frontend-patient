@@ -1,5 +1,8 @@
 <ion-content padding>
-  <div *ngIf="configService.config" class="wrap">
+  <div
+    *ngIf="configService.config && roomService.deviceInfo().flag !== 'unknown'"
+    class="wrap"
+  >
     <div class="container" *ngIf="showTranslatorConfirmation">
       <div class="title">
         <img
@@ -244,12 +247,34 @@
       </ng-container>
 
       <div class="footer">
-        <button type="button" [routerLink]="['/cgu']" title="Lire les CGU" class="btn terms-btn">
+        <button
+          type="button"
+          [routerLink]="['/cgu']"
+          title="Lire les CGU"
+          class="btn terms-btn"
+        >
           {{ 'login.termsOfService' | translate }}
         </button>
       </div>
 
       <app-select-language></app-select-language>
+    </div>
+  </div>
+  <div
+    *ngIf="configService.config && roomService.deviceInfo().flag === 'unknown'"
+    class="wrap"
+  >
+    <div class="container" *ngIf="showTranslatorConfirmation">
+      <div class="title">
+        <img
+          class="logo"
+          *ngIf="configService.config.logo"
+          [src]="configService.config.logo"
+          [alt]="configService.config.branding"
+          onerror="this.style.opacity='0'"
+        />
+        <p>{{'login.unsupportedBrowser' | translate }}</p>
+      </div>
     </div>
   </div>
 </ion-content>
