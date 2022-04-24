@@ -261,11 +261,8 @@
     </div>
   </div>
   <div>{{roomService.deviceInfo().flag}}</div>
-  <div
-    *ngIf="configService.config && roomService.deviceInfo().flag === 'unknown'"
-    class="wrap"
-  >
-    <div class="container" *ngIf="showTranslatorConfirmation">
+  <div *ngIf="roomService.deviceInfo().flag === 'unknown'" class="wrap">
+    <div class="container">
       <div class="title">
         <img
           class="logo"
