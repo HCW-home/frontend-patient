@@ -64,6 +64,10 @@ export class AppComponent implements OnInit {
     const parsedUrl = new URL(window.location.href);
     console.log("PARSED URL", parsedUrl);
     this.inviteToken = parsedUrl.searchParams.get("invite");
+    if (this.inviteToken) {
+      // parse invite from url using regex
+      this.inviteToken = window.location.href.match(/invite=([^&]*)/)[1];
+    }
     this.testRoute = window.location.href.includes("test-call");
 
     router.events
