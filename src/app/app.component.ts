@@ -107,7 +107,13 @@ export class AppComponent implements OnInit {
   redirectToLogin() {
     console.log("go to login 1");
     if (!this.redirected) {
-      this.router.navigate(["/login"]);
+      if (this.inviteToken) {
+        this.router.navigate(["/login"], {
+          queryParams: { invite: this.inviteToken },
+        });
+      } else {
+        this.router.navigate(["/login"]);
+      }
     }
     this.redirected = true;
   }
@@ -192,7 +198,9 @@ export class AppComponent implements OnInit {
                 localStorage.setItem("inviteToken", match.$args.invite);
               }
               this.authService.setInviteToken(match.$args.invite);
-              this.router.navigate(["/login"]);
+              this.router.navigate(["/login"], {
+                queryParams: { invite: match.$args.invite },
+              });
             }
             if (match && match.$link && match.$link.fragment === "/test-call") {
               return this.redirectToTestPage();
