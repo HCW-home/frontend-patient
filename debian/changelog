@@ -1,3 +1,12 @@
+hcw-athome-patient (4.3.25) focal; urgency=medium
+
+  [ Muhammed ]
+  * UPDATE: show message for unsupported browsers
+  * keep invite token in url for login page
+  * FIX: manually parse invite token from url
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 29 Apr 2022 09:15:45 +0200
+
 hcw-athome-patient (4.3.24) focal; urgency=medium
 
   * Adding the possibility to customize terms and policies with Markdown file
