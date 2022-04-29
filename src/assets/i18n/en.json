@@ -86,7 +86,7 @@
   },
   "consultations": {
     "openedConsultations": "Open consultations",
-    "browserNotSupported": "Browser not supported",
+    "browserNotSupported": "Your browser is not supported for a teleconsultation. Try to open the link in Safari (IOS) or Chrome. If you are opening this link from Outlook (IOS), you should have an option to open this page in another browser from the (...) menu at the bottom of this page.",
     "yourBrowserIsNotCompatible": "Your browser is not compatible with our application, please update it or use a newer device. For this telecommunication, you need:",
     "aCamera": "a camera;",
     "aMicrophone": "a microphone;",
