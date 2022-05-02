@@ -1,193 +1,212 @@
-hcw-athome-patient (4.3.27) focal; urgency=medium
+hcw-athome-patient (4.3.28) focal; urgency=medium
 
-  * Updating message
+- Updating message
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 02 May 2022 10:32:19 +0200
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 02 May 2022 10:32:19 +0200
 
 hcw-athome-patient (4.3.26) focal; urgency=medium
 
-  [ Muhammed ]
-  * FIX: typeError with regex match
+[ Muhammed ]
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 02 May 2022 09:20:52 +0200
+- FIX: typeError with regex match
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 02 May 2022 09:20:52 +0200
 
 hcw-athome-patient (4.3.25) focal; urgency=medium
 
-  [ Muhammed ]
-  * UPDATE: show message for unsupported browsers
-  * keep invite token in url for login page
-  * FIX: manually parse invite token from url
+[ Muhammed ]
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 29 Apr 2022 09:15:45 +0200
+- UPDATE: show message for unsupported browsers
+- keep invite token in url for login page
+- FIX: manually parse invite token from url
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 29 Apr 2022 09:15:45 +0200
 
 hcw-athome-patient (4.3.24) focal; urgency=medium
 
-  * Adding the possibility to customize terms and policies with Markdown file
-  * Improve sub numbering for markdown list
-  * Small numbering fix
+- Adding the possibility to customize terms and policies with Markdown file
+- Improve sub numbering for markdown list
+- Small numbering fix
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 07 Apr 2022 15:47:47 +0200
+-- Olivier Bitsch <olivier.b@iabsis.com> Thu, 07 Apr 2022 15:47:47 +0200
 
 hcw-athome-patient (4.3.23) focal; urgency=medium
 
-  [ Olivier Bitsch ]
-  * Adding missing dot
-  * Fix btn alignment
-  * Update licence
+[ Olivier Bitsch ]
 
-  [ Muhammed ]
-  * check if feedback is not empty before submitting  refs #4196
+- Adding missing dot
+- Fix btn alignment
+- Update licence
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 06 Apr 2022 11:17:23 +0200
+[ Muhammed ]
+
+- check if feedback is not empty before submitting refs #4196
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Wed, 06 Apr 2022 11:17:23 +0200
 
 hcw-athome-patient (4.3.22) focal; urgency=medium
 
-  [ Olivier Bitsch ]
-  * Fix text alignment
+[ Olivier Bitsch ]
 
-  [ Muhammed ]
-  * FIX issues with video toggle during call refs #4199
+- Fix text alignment
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 04 Apr 2022 15:00:55 +0200
+[ Muhammed ]
+
+- FIX issues with video toggle during call refs #4199
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 04 Apr 2022 15:00:55 +0200
 
 hcw-athome-patient (4.3.21) focal; urgency=medium
 
-  * Fix langage icon selector + adding germany
+- Fix langage icon selector + adding germany
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 25 Mar 2022 22:56:02 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 25 Mar 2022 22:56:02 +0100
 
 hcw-athome-patient (4.3.20) focal; urgency=medium
 
-  * Remove flag
+- Remove flag
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 25 Mar 2022 18:10:08 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 25 Mar 2022 18:10:08 +0100
 
 hcw-athome-patient (4.3.19) focal; urgency=medium
 
-  [ Muhammed ]
-  * FIX: disable video for audio only calls refs #4188
+[ Muhammed ]
 
-  [ Olivier Bitsch ]
-  * refs #4192 - fix missing close button displayed
+- FIX: disable video for audio only calls refs #4188
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 24 Mar 2022 17:22:08 +0100
+[ Olivier Bitsch ]
+
+- refs #4192 - fix missing close button displayed
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Thu, 24 Mar 2022 17:22:08 +0100
 
 hcw-athome-patient (4.3.18) focal; urgency=medium
 
-  [ Olivier Bitsch ]
-  * Fix undeclared value
+[ Olivier Bitsch ]
 
-  [ Muhammed ]
-  * FIX: incoming call buttons recentered
+- Fix undeclared value
 
-  [ Olivier Bitsch ]
-  * Fix text alignement on closure screen
+[ Muhammed ]
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 22 Mar 2022 11:34:16 +0100
+- FIX: incoming call buttons recentered
+
+[ Olivier Bitsch ]
+
+- Fix text alignement on closure screen
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Tue, 22 Mar 2022 11:34:16 +0100
 
 hcw-athome-patient (4.3.17) focal; urgency=medium
 
-  [ Muhammed ]
-  * STYLE Fix alignment
+[ Muhammed ]
 
-  [ Olivier Bitsch ]
-  * Fix sentense and wording (fr)
-  * Fix accessibility layout with centered button
+- STYLE Fix alignment
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 18 Mar 2022 14:34:24 +0100
+[ Olivier Bitsch ]
+
+- Fix sentense and wording (fr)
+- Fix accessibility layout with centered button
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 18 Mar 2022 14:34:24 +0100
 
 hcw-athome-patient (4.3.16) focal; urgency=medium
 
-  * Fix closing button
+- Fix closing button
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 14 Mar 2022 16:30:58 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 14 Mar 2022 16:30:58 +0100
 
 hcw-athome-patient (4.3.15) focal; urgency=medium
 
-  * Fix few alignement in accessibility mode
+- Fix few alignement in accessibility mode
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 14 Mar 2022 16:20:35 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 14 Mar 2022 16:20:35 +0100
 
 hcw-athome-patient (4.3.14) focal; urgency=medium
 
-  * Small adjustement with accessibility mode
+- Small adjustement with accessibility mode
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 14 Mar 2022 15:05:00 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 14 Mar 2022 15:05:00 +0100
 
 hcw-athome-patient (4.3.13) focal; urgency=medium
 
-  * Fix branding on the page
-  * Few adjustments into layout
+- Fix branding on the page
+- Few adjustments into layout
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 14 Mar 2022 14:36:32 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 14 Mar 2022 14:36:32 +0100
 
 hcw-athome-patient (4.3.12) focal; urgency=medium
 
-  * Change global font from 1.05 to 1.02em
+- Change global font from 1.05 to 1.02em
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 11 Mar 2022 13:20:29 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 11 Mar 2022 13:20:29 +0100
 
 hcw-athome-patient (4.3.11) focal; urgency=medium
 
-  [ Muhammed ]
-  * left alignment in test componennt
-  * fix font-size for fab buttons
-  * STYLE Fixes bigger logo hide error logo image and align to the left
+[ Muhammed ]
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 11 Mar 2022 12:39:17 +0100
+- left alignment in test componennt
+- fix font-size for fab buttons
+- STYLE Fixes bigger logo hide error logo image and align to the left
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 11 Mar 2022 12:39:17 +0100
 
 hcw-athome-patient (4.3.10) focal; urgency=medium
 
-  [ Muhammed ]
-  * STYLE use SourceSansPro for accessibility theme
-  * use color from variable
-  * use background image based on theme
-  * FIX: use background image based on theme
+[ Muhammed ]
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 11 Mar 2022 11:24:47 +0100
+- STYLE use SourceSansPro for accessibility theme
+- use color from variable
+- use background image based on theme
+- FIX: use background image based on theme
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 11 Mar 2022 11:24:47 +0100
 
 hcw-athome-patient (4.3.9) focal; urgency=medium
 
-  [ Muhammed ]
-  * Show server error message & enhance audio vue volume indicator
-  * Remove unneeded console.log
+[ Muhammed ]
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 11 Mar 2022 08:54:37 +0100
+- Show server error message & enhance audio vue volume indicator
+- Remove unneeded console.log
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 11 Mar 2022 08:54:37 +0100
 
 hcw-athome-patient (4.3.8) focal; urgency=medium
 
-  * Updating language
+- Updating language
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 09 Mar 2022 10:48:54 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Wed, 09 Mar 2022 10:48:54 +0100
 
 hcw-athome-patient (4.3.7) focal; urgency=medium
 
-  * Using yarn to build project
-  * Attempt to rebuild
-  * Move back to build with npm
+- Using yarn to build project
+- Attempt to rebuild
+- Move back to build with npm
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 07 Mar 2022 15:50:44 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 07 Mar 2022 15:50:44 +0100
 
 hcw-athome-patient (4.3.6) focal; urgency=medium
 
-  [ Olivier Bitsch ]
-  * Remove reference to staging env
-  * Fix bug with config.
+[ Olivier Bitsch ]
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 07 Mar 2022 13:46:42 +0100
+- Remove reference to staging env
+- Fix bug with config.
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Mon, 07 Mar 2022 13:46:42 +0100
 
 hcw-athome-patient (4.3.5) focal; urgency=medium
 
-  [ Olivier Bitsch ]
-  * Update environment files
+[ Olivier Bitsch ]
 
-  [ Muhammed ]
-  * Get logo from config
+- Update environment files
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 04 Mar 2022 11:56:58 +0100
+[ Muhammed ]
+
+- Get logo from config
+
+-- Olivier Bitsch <olivier.b@iabsis.com> Fri, 04 Mar 2022 11:56:58 +0100
 
 hcw-athome-patient (4.3.4) focal; urgency=medium
 
-  * Initial Release.
+- Initial Release.
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 24 Feb 2022 15:09:34 +0100
+-- Olivier Bitsch <olivier.b@iabsis.com> Thu, 24 Feb 2022 15:09:34 +0100
