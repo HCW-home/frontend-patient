@@ -162,7 +162,7 @@
     "theRemoteServerIsNotReachable": "Le serveur distant n'est pas joignable, veuillez vérifier votre connectivité",
     "pleaseEnterYourInvitationKey": "Merci d'entrer votre clé d'invitation",
     "youAlreadyOwnTheApplication": "Vous avez déjà l'application ?",
-    "unsupportedBrowser": "Votre navigateur n'est pas supporté"
+    "unsupportedBrowser": "Votre navigateur n'est pas supporté pour une téléconsultation. Essayez d'ouvrir le lien dans Safari (IOS) ou Chrome. Si vous ouvrez ce lien depuis Outlook (IOS), vous devriez avoir une option pour ouvrir cette page dans un autre navigateur depuis le menu (...) en bas de cette page."
   },
   "translatorForm": {
     "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} est un système de téléconsultation. Vous êtes sur le point d'accepter un rendez-vous en ligne avec un patient et le soignant.",
