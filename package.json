@@ -47,7 +47,6 @@
     "angular2-draggable": "^2.2.2",
     "clovelced-plugin-audiomanagement": "1.0.2",
     "cordova": "^10.0.0",
-    "cordova-android": "9.1.0",
     "cordova-browser": "5.0.4",
     "cordova-client-cert-authentication": "^1.0.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
@@ -75,10 +74,9 @@
     "cordova-plugin-whitelist": "^1.3.4",
     "cordova-plugin-zip": "^3.1.0",
     "cordova-support-google-services": "1.1.0",
-    "cordova.plugins.diagnostic": "^6.0.3",
     "core-js": "2.6.5",
     "flag-icon-css": "^3.4.6",
-    "hug-angular-lib": "http://builder/hug-angular/npm/hug-angular-lib-0.0.3.tgz",
+    "hug-angular-lib": "https://projects.iabsis.com/repository/hug-angular/npm/hug-angular-lib-0.0.3.tgz",
     "i": "^0.3.6",
     "ionic": "^4.12.0",
     "ionic-plugin-deeplinks": "^1.0.20",
@@ -111,11 +109,13 @@
     "codelyzer": "^5.0.1",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-android-enumeratedevices": "git+https://github.com/OpenVidu/cordova-plugin-android-enumeratedevices.git",
+    "cordova-plugin-background-mode": "^0.7.3",
     "cordova-plugin-clear-app-data": "git+https://github.com/thorvx/cordova-plugin-clear-app-data.git",
     "cordova-plugin-cookie-manager": "git+https://github.com/surgeventures/cordova-plugin-cookie-manager.git",
     "cordova-plugin-deeplinks": "^1.1.1",
     "cordova-plugin-iosrtc": "git+https://github.com/cordova-rtc/cordova-plugin-iosrtc.git",
     "cordova-plugin-wkwebviewxhrfix": "git+https://github.com/TheMattRay/cordova-plugin-wkwebviewxhrfix.git",
+    "cordova.plugins.diagnostic": "^6.1.1",
     "install": "^0.13.0",
     "jasmine-core": "3.3.0",
     "jasmine-spec-reporter": "4.2.1",
@@ -128,8 +128,7 @@
     "ts-node": "7.0.1",
     "tslib": "^1.10.0",
     "tslint": "5.11.0",
-    "typescript": "^3.8.3",
-    "cordova-plugin-background-mode": "^0.7.3"
+    "typescript": "^3.8.3"
   },
   "optionalDependencies": {
     "ios-deploy": "^1.9.4"
@@ -160,9 +159,6 @@
       "cordova-plugin-wkwebviewxhrfix": {},
       "cordova-plugin-deeplinks": {},
       "cordova-plugin-android-permissions": {},
-      "cordova.plugins.diagnostic": {
-        "ANDROIDX_VERSION": "1.+"
-      },
       "cordova-plugin-androidx": {},
       "cordova-plugin-androidx-adapter": {},
       "cordova-plugin-app-version": {},
@@ -194,7 +190,10 @@
       "cordova-plugin-iosrtc": {
         "MANUAL_INIT_AUDIO_DEVICE": "false"
       },
-      "cordova-plugin-background-mode": {}
+      "cordova-plugin-background-mode": {},
+      "cordova.plugins.diagnostic": {
+        "ANDROIDX_VERSION": "1.0.0"
+      }
     },
     "platforms": [
       "browser",
