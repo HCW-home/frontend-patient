@@ -24,7 +24,6 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 import { VideoRoomPageModule } from './video-room/video-room.module';
 import { BackgroundMode } from '@ionic-native/background-mode/ngx';
-import { Autostart } from '@ionic-native/autostart/ngx';
 
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 
@@ -98,7 +97,6 @@ import { HugAngularLibModule } from 'hug-angular-lib';
         Downloader,
         BackgroundMode,
         NativeAudio,
-        Autostart,
         LocalNotifications,
         Network,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
