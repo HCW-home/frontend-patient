@@ -28,6 +28,7 @@ android: node_modules
 	npx ionic cordova platform add android --prod --release
 	npx ionic cordova build android --release --prod
 	npx ionic cordova build android --debug
+	cd platform/android && ./gradlew bundleRelease
 
 ios: node_modules
 	sed -i 's/web/native/g' src/environments/environment.prod.ts
@@ -52,6 +53,11 @@ test:
 clean:
 	@ rm -rf dist node_modules www platform plugins
 	@ rm -rf dist.tar.gz
+
+sign:
+	jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks app/build/outputs/bundle/release/app-release.aab alias-hug-at-home
+	apksigner sign --ks ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+
 
 INFO := @bash -c '\
   printf $(YELLOW); \
