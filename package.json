@@ -47,6 +47,7 @@
     "angular2-draggable": "^2.2.2",
     "clovelced-plugin-audiomanagement": "1.0.2",
     "cordova": "^10.0.0",
+    "cordova-android": "9.1.0",
     "cordova-browser": "5.0.4",
     "cordova-client-cert-authentication": "^1.0.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
