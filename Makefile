@@ -29,6 +29,7 @@ android: node_modules
 	npx ionic cordova build android --release --prod
 	npx ionic cordova build android --debug
 	cd platform/android && ./gradlew bundleRelease
+	cd platform/android && ./gradlew assembleRelease
 
 ios: node_modules
 	sed -i 's/web/native/g' src/environments/environment.prod.ts
