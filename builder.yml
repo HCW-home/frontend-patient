@@ -8,4 +8,4 @@ builder:
   options:
     image: builder-focal
     env:
-      PLATFORM: all
+      PLATFORM: web
