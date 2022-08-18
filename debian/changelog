@@ -1,3 +1,24 @@
+hcw-athome-patient (4.3.29) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Fix hug-angular dependancy
+  * Fix package lock as well
+  * Fix build with newer Gradle
+
+  [ muhammed ]
+  * Adjust Android build for sdk version 31
+  * fixing build issues
+
+  [ Olivier Bitsch ]
+  * Adding platform to avoid future build issues
+  * Removed autostart package
+  * Add sign section into Makefil
+  * Clean up languages
+  * Small update of makefile
+  * Fix typo on French red banner
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 17 Aug 2022 17:35:12 +0200
+
 hcw-athome-patient (4.3.28) focal; urgency=medium
 
 - Updating message
