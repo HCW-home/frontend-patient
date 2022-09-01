@@ -1,3 +1,11 @@
+hcw-athome-patient (4.3.31) focal; urgency=medium
+
+  * Attempt to fix build with package refresh
+  * Remove android folder which is causing issues
+  * Updating missing translation name
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 01 Sep 2022 17:13:49 +0200
+
 hcw-athome-patient (4.3.30) focal; urgency=medium
 
   * Force package update on hooks install
