@@ -1,3 +1,11 @@
+hcw-athome-patient (4.3.30) focal; urgency=medium
+
+  * Force package update on hooks install
+  * Build only web
+  * New Russian and Italian language
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 01 Sep 2022 16:40:41 +0200
+
 hcw-athome-patient (4.3.29) focal; urgency=medium
 
   [ Olivier Bitsch ]
