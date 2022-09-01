@@ -156,5 +156,15 @@
     "requestConsultation.feminine": "பெண்பால்",
     "requestConsultation.male": "ஆண்பால்",
     "requestConsultation.dateOfBirth": "பிறந்த தேதி",
-    "requestConsultation.validateRequest": "கோரிக்கையை சரிபார்க்கவும்"
+    "requestConsultation.validateRequest": "கோரிக்கையை சரிபார்க்கவும்",
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano"
 }

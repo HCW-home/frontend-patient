@@ -155,5 +155,15 @@
     "requestConsultation.feminine": "ጓል ኣንስተይቲ",
     "requestConsultation.male": "ተባዕታይ",
     "requestConsultation.dateOfBirth": "ዕለት ትውልዲ",
-    "requestConsultation.validateRequest": "ጠላብ ኣረጋግጽ"
+    "requestConsultation.validateRequest": "ጠላብ ኣረጋግጽ",
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano"
 }

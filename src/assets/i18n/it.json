@@ -157,5 +157,15 @@
     "requestConsultation.male": "Maschio",
     "requestConsultation.dateOfBirth": "Data di nascita",
     "requestConsultation.validateRequest": "CONVALIDA LA RICHIESTA",
-    "appComponent.serverError": "Qualcosa non ha funzionato"
+    "appComponent.serverError": "Qualcosa non ha funzionato",
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano"
 }

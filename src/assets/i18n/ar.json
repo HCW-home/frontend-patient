@@ -184,5 +184,15 @@
         "leaveAudioMessage": "ترك رسالة صوتية",
         "takeAPhoto": "أخذ صورة",
         "cancel": "إلغاء"
-    }
+    },
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano"
 }

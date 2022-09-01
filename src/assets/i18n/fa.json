@@ -155,5 +155,15 @@
     "requestConsultation.feminine": "زن",
     "requestConsultation.male": "مرد",
     "requestConsultation.dateOfBirth": "تاریخ تولد",
-    "requestConsultation.validateRequest": "درخواست را تایید کنید"
+    "requestConsultation.validateRequest": "درخواست را تایید کنید",
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano"
 }
