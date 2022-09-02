@@ -1,3 +1,9 @@
+hcw-athome-patient (4.3.32) focal; urgency=medium
+
+  * Fix branding var name for italian
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 02 Sep 2022 09:12:10 +0200
+
 hcw-athome-patient (4.3.31) focal; urgency=medium
 
   * Attempt to fix build with package refresh
