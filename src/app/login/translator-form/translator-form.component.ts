@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, Directive  } from '@angular/core';
 import { ConfigService } from '../../config.service';
 import {
-  FormControl, FormGroupDirective, NgForm, Validators, ValidatorFn,
-  FormBuilder, FormGroup, AbstractControl
+  UntypedFormControl, FormGroupDirective, NgForm, Validators, ValidatorFn,
+  UntypedFormBuilder, FormGroup, AbstractControl
 } from '@angular/forms';
 
 const phoneNumberRegex = new RegExp(/^(\+|00)[0-9 ]+$/)
@@ -27,16 +27,16 @@ export class TranslatorFormComponent implements OnInit {
   direct: string;
   myForm;
   constructor(public configService: ConfigService,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
     ) {
 
   }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      emailFormControl: new FormControl('', [Validators.email]),
-      directNumberFormControl: new FormControl('', [Validators.pattern(phoneNumberRegex)] ),
-      nameFormControl: new FormControl('', [Validators.required])
+      emailFormControl: new UntypedFormControl('', [Validators.email]),
+      directNumberFormControl: new UntypedFormControl('', [Validators.pattern(phoneNumberRegex)] ),
+      nameFormControl: new UntypedFormControl('', [Validators.required])
     })
   }
 
