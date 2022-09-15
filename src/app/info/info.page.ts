@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive  } from '@angular/core';
 import { ConfigService } from '../config.service';
 
+
+@Directive()
 @Component({
   selector: 'app-info',
   templateUrl: './info.page.html',

@@ -1,14 +1,5 @@
 import { NativeAudio } from "@ionic-native/native-audio/ngx";
-import {
-  Component,
-  AfterViewChecked,
-  ViewChild,
-  OnInit,
-  NgZone,
-  OnDestroy,
-  AfterViewInit,
-  HostListener,
-} from "@angular/core";
+import { Component, AfterViewChecked, ViewChild, OnInit, NgZone, OnDestroy, AfterViewInit, HostListener, Directive  } from "@angular/core";
 import { IonContent, Platform } from "@ionic/angular";
 import { AlertController } from "@ionic/angular";
 
@@ -33,6 +24,8 @@ import { Media, MediaObject } from "@ionic-native/media/ngx";
 import { Downloader } from "@ionic-native/downloader/ngx";
 import { GlobalVariableService } from "../global-variable.service";
 
+
+@Directive()
 @Component({
   selector: "app-consultation",
   templateUrl: "./consultation.page.html",

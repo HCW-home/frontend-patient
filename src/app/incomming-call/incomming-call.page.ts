@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Directive  } from '@angular/core';
 
+
+@Directive()
 @Component({
   selector: 'app-incomming-call',
   templateUrl: './incomming-call.page.html',

@@ -1,10 +1,12 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Directive  } from '@angular/core';
 import { ConsultationService } from '../consultation.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { zip } from 'rxjs';
 
 
+
+@Directive()
 @Component({
   selector: 'app-consultations',
   templateUrl: './consultations.page.html',

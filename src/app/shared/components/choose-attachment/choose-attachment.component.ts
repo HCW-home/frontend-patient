@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Directive  } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 
@@ -7,6 +7,8 @@ import { AuthService } from '../../../auth/auth.service';
 
 import { environment } from '../../../../environments/environment';
 
+
+@Directive()
 @Component({
   selector: 'app-choose-attachment',
   templateUrl: './choose-attachment.component.html',

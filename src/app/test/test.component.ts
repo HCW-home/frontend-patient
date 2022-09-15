@@ -5,15 +5,7 @@ import { AndroidPermissions } from "@ionic-native/android-permissions/ngx";
 import { Platform } from "@ionic/angular";
 import { Router } from "@angular/router";
 import { OpenViduService } from "./../shared/services/openvidu.service";
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  HostListener,
-  OnDestroy,
-  NgZone,
-} from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, HostListener, OnDestroy, NgZone, Directive } from "@angular/core";
 
 import { Subscription } from "rxjs";
 // translate
@@ -24,6 +16,7 @@ import { InfoService } from "../info.service";
 import { AuthService } from "../auth/auth.service";
 import { ConfigService } from "../config.service";
 
+@Directive()
 @Component({
   selector: "app-test-call",
   templateUrl: "./test.component.html",

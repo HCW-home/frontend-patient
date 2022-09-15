@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Directive  } from '@angular/core';
 import { ConfigService } from '../../config.service';
 import {
   FormControl, FormGroupDirective, NgForm, Validators, ValidatorFn,
@@ -7,6 +7,8 @@ import {
 
 const phoneNumberRegex = new RegExp(/^(\+|00)[0-9 ]+$/)
 
+
+@Directive()
 @Component({
   selector: 'app-translator-form',
   templateUrl: './translator-form.component.html',

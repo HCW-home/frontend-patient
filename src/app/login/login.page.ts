@@ -3,7 +3,7 @@ import { environment } from "./../../environments/environment";
 import { InviteService } from "./../invite.service";
 import { Subscription } from "rxjs";
 
-import { Component, OnInit, NgZone } from "@angular/core";
+import { Component, OnInit, NgZone, Directive } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { DatePipe } from "@angular/common";
@@ -26,6 +26,8 @@ const coeff = 1000 * 60 * 5;
 // if invite is shcedueled and it's for patient show time
 // login invite
 // handle user
+
+@Directive()
 @Component({
   providers: [DatePipe],
   selector: "app-login",

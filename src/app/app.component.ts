@@ -1,6 +1,6 @@
 import { Observable, Subscription } from "rxjs";
 import { GlobalVariableService } from "./global-variable.service";
-import { Component, OnInit, NgZone } from "@angular/core";
+import { Component, OnInit, NgZone, Directive } from "@angular/core";
 
 import { Platform, NavController } from "@ionic/angular";
 
@@ -29,6 +29,7 @@ import { TestComponent } from "./test/test.component";
 import { filter } from "rxjs/operators";
 import { environment } from "../environments/environment";
 
+@Directive()
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",

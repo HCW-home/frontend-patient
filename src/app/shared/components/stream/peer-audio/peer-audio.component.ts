@@ -1,6 +1,8 @@
 import { Stream } from 'hug-angular-lib';
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef, Directive  } from '@angular/core';
 
+
+@Directive()
 @Component({
   selector: 'app-peer-audio',
   templateUrl: './peer-audio.component.html',

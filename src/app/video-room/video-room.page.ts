@@ -12,20 +12,7 @@ import { Subscription } from "rxjs";
 import { ConsultationService } from "./../consultation.service";
 
 import { environment } from "./../../environments/environment";
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  HostListener,
-  ViewChild,
-  ElementRef,
-  QueryList,
-  ViewChildren,
-  EventEmitter,
-  Output,
-  Input,
-  NgZone,
-} from "@angular/core";
+import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, QueryList, ViewChildren, EventEmitter, Output, Input, NgZone, Directive } from "@angular/core";
 
 import { Platform, ModalController, AlertController } from "@ionic/angular";
 import { NativeAudio } from "@ionic-native/native-audio/ngx";
@@ -59,6 +46,8 @@ export interface Device {
    */
   label: string;
 }
+
+@Directive()
 @Component({
   selector: "app-video-room",
   templateUrl: "./video-room.page.html",

@@ -1,5 +1,5 @@
 import { AuthService } from "./../auth/auth.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Directive  } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { ConsultationService } from "../consultation.service";
@@ -9,6 +9,8 @@ import { environment } from "../../environments/environment";
 
 declare let cordova: any;
 
+
+@Directive()
 @Component({
   selector: "app-closing-screen",
   templateUrl: "./closing-screen.page.html",

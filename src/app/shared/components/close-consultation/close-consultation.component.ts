@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Directive  } from "@angular/core";
 import { ConsultationService } from "../../../consultation.service";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 
+
+@Directive()
 @Component({
   selector: "app-close-consultation",
   templateUrl: "./close-consultation.component.html",

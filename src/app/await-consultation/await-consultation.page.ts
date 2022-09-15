@@ -2,8 +2,10 @@ import { Subscription } from 'rxjs';
 import { SocketEventsService } from './../socket-events.service';
 import { Router } from '@angular/router';
 import { ConsultationService } from './../consultation.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Directive  } from '@angular/core';
 
+
+@Directive()
 @Component({
   selector: 'app-await-consultation',
   templateUrl: './await-consultation.page.html',
