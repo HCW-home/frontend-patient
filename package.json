@@ -42,6 +42,7 @@
     "@ionic/angular": "^6.2.7",
     "@ionic/angular-toolkit": "^7.0.0",
     "@ionic/cli": "^6.2.1",
+    "@ionic/cordova-builders": "^7.0.0",
     "@ionic/core": "^6.2.7",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^4.0.0",
