@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync  } from '@angular/core/testing';
 
 import { ClosingScreenPage } from './closing-screen.page';
 
@@ -7,7 +7,7 @@ describe('ClosingScreenPage', () => {
   let component: ClosingScreenPage;
   let fixture: ComponentFixture<ClosingScreenPage>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ClosingScreenPage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
