@@ -64,11 +64,6 @@ import { HugAngularLibModule } from 'hug-angular-lib';
 
 
 @NgModule({
-    entryComponents: [
-        RequestConsultationComponent,
-        CloseConsultationComponent,
-        ChooseAttachmentComponent
-    ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -102,13 +97,12 @@ import { HugAngularLibModule } from 'hug-angular-lib';
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         { provide: LOCALE_ID, useValue: 'fr-FR' },
-
         ConfigService,
         {
-          provide: APP_INITIALIZER,
-          useFactory: (cs:ConfigService)=> () =>cs.getConfig(),
-          deps: [ConfigService],
-          multi: true
+            provide: APP_INITIALIZER,
+            useFactory: (cs: ConfigService) => () => cs.getConfig(),
+            deps: [ConfigService],
+            multi: true
         }
     ],
     declarations: [
@@ -117,7 +111,6 @@ import { HugAngularLibModule } from 'hug-angular-lib';
         CloseConsultationComponent,
         ChooseAttachmentComponent,
     ],
-
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

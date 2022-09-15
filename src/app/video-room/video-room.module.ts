@@ -24,17 +24,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    AngularDraggableModule,
-    I18nModule,
-    SharedModule
-    // RouterModule.forChild(routes),
-  ],
-  declarations: [VideoRoomPage,  ChatComponent,       ],
-  exports: [VideoRoomPage,  ChatComponent, ],
-  entryComponents: []
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        AngularDraggableModule,
+        I18nModule,
+        SharedModule
+        // RouterModule.forChild(routes),
+    ],
+    declarations: [VideoRoomPage, ChatComponent,],
+    exports: [VideoRoomPage, ChatComponent,]
 })
 export class VideoRoomPageModule { }
