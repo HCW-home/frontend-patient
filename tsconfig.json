@@ -4,7 +4,7 @@
     "paths": {
       "hug-angular-lib": ["./node_modules/hug-angular-lib"]
     },
-    "baseUrl": "./",
+    "baseUrl": "src",
     "downlevelIteration": true,
     "module": "esnext",
     "outDir": "./dist/out-tsc",
@@ -19,7 +19,6 @@
       "dom"
     ],
     "esModuleInterop": true
-
   },
   
 }
