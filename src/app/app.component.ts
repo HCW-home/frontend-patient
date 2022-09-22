@@ -23,7 +23,8 @@ import { NavigationEnd, Router } from "@angular/router";
 declare var cordova;
 declare let window: any;
 import { File } from "@ionic-native/file/ngx";
-import { Deeplinks } from "@ionic-native/deeplinks";
+//import { Deeplinks } from "@ionic-native/deeplinks";
+import { App, URLOpenListenerEvent } from '@capacitor/app';
 import { LoginPage } from "./login/login.page";
 import { TestComponent } from "./test/test.component";
 import { filter } from "rxjs/operators";
@@ -35,7 +36,7 @@ import { environment } from "../environments/environment";
   templateUrl: "app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   callRunning = false;
   currentUser;
   redirected = false;
@@ -59,9 +60,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     public globalVariableService: GlobalVariableService
   ) {
-    if (!this.isNativeApp()) {
-      this.splashScreen.hide();
-    }
+    
     const parsedUrl = new URL(window.location.href);
     console.log("PARSED URL", parsedUrl);
     this.inviteToken = parsedUrl.searchParams.get("invite");
@@ -77,6 +76,7 @@ export class AppComponent implements OnInit {
         console.log("Router event", event);
       });
   }
+
 
   ngOnInit() {
     console.log("router ", this.router, this.router.url, document.location);
@@ -134,6 +134,11 @@ export class AppComponent implements OnInit {
     return environment.platform === "native";
   }
   async initializeApp() {
+
+    App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
+			console.log(event.url)
+		});
+
     if (this.platform.is("ios") && this.platform.is("cordova")) {
       const script2 = document.createElement("script");
       script2.type = "text/javascript";
@@ -173,6 +178,7 @@ export class AppComponent implements OnInit {
           console.error(error);
         }
       }
+      /**
       if (this.platform.is("cordova")) {
         Deeplinks.route({
           "/test-call": TestComponent,
@@ -247,6 +253,7 @@ export class AppComponent implements OnInit {
           }
         );
       }
+      */
 
       console.log("router ", this.router, this.router.url);
       if (!this.testRoute) {

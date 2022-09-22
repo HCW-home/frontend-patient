@@ -1,4 +1,4 @@
-package com.hug_at_home;
+package com.iabsis.hcwathome;
 
 import com.getcapacitor.BridgeActivity;
 
