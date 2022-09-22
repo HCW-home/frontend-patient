@@ -21,6 +21,7 @@
         <host name="preprod-app-hug-at-home.oniabsis.com" scheme="https" />
     </universal-links>
     <platform name="android">
+        <preference name="AndroidXEnabled" value="true" />
         <preference name="AndroidLaunchMode" value="singleTask" />
         <preference name="keepRunning" value="true" />
         <preference name="cordova.plugins.diagnostic.modules" value="" />
