@@ -1,4 +1,4 @@
-import { NativeAudio } from "@ionic-native/native-audio/ngx";
+import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
 import { Component, AfterViewChecked, ViewChild, OnInit, NgZone, OnDestroy, AfterViewInit, HostListener, Directive  } from "@angular/core";
 import { IonContent, Platform } from "@ionic/angular";
 import { AlertController } from "@ionic/angular";
@@ -16,11 +16,11 @@ import { ChooseAttachmentComponent } from "../shared/components/choose-attachmen
 import { Subscription, Subject } from "rxjs";
 import { first } from "rxjs/operators";
 
-import { File, FileEntry } from "@ionic-native/file/ngx";
+import { File, FileEntry } from "@awesome-cordova-plugins/file/ngx";
 
 import { environment } from "../../environments/environment";
 
-import { Media, MediaObject } from "@ionic-native/media/ngx";
+import { Media, MediaObject } from "@awesome-cordova-plugins/media/ngx";
 import { Downloader } from "@ionic-native/downloader/ngx";
 import { GlobalVariableService } from "../global-variable.service";
 

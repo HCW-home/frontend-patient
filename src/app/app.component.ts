@@ -4,26 +4,26 @@ import { Component, OnInit, NgZone, Directive } from "@angular/core";
 
 import { Platform, NavController } from "@ionic/angular";
 
-import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
 
-import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { StatusBar } from "@awesome-cordova-plugins/status-bar/ngx";
 
 import { CallService } from "./call.service";
 
-import { BackgroundMode } from "@ionic-native/background-mode/ngx";
+import { BackgroundMode } from "@awesome-cordova-plugins/background-mode/ngx";
 
 import { SocketEventsService } from "./socket-events.service";
 import { ConsultationService } from "./consultation.service";
 
 import { AuthService } from "./auth/auth.service";
-import { NativeAudio } from "@ionic-native/native-audio/ngx";
+import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
 
 import { NavigationEnd, Router } from "@angular/router";
 
 declare var cordova;
 declare let window: any;
-import { File } from "@ionic-native/file/ngx";
-//import { Deeplinks } from "@ionic-native/deeplinks";
+import { File } from "@awesome-cordova-plugins/file/ngx";
+import { Deeplinks } from "@awesome-cordova-plugins/deeplinks";
 import { App, URLOpenListenerEvent } from '@capacitor/app';
 import { LoginPage } from "./login/login.page";
 import { TestComponent } from "./test/test.component";
@@ -178,7 +178,7 @@ export class AppComponent {
           console.error(error);
         }
       }
-      /**
+      
       if (this.platform.is("cordova")) {
         Deeplinks.route({
           "/test-call": TestComponent,
@@ -253,7 +253,6 @@ export class AppComponent {
           }
         );
       }
-      */
 
       console.log("router ", this.router, this.router.url);
       if (!this.testRoute) {
@@ -269,8 +268,8 @@ export class AppComponent {
         // icon: 'icon', // this will look for icon.png in platforms/android/res/drawable|mipmap
         // bigText: "@HOME"
       });
-
       this.backgroundMode.enable();
+
       // this.backgroundMode.overrideBackButton();
 
       // this.backgroundMode.on('activate').subscribe(() => {
@@ -283,14 +282,16 @@ export class AppComponent {
       // });
       // this.backgroundMode.excludeFromTaskList();
       this.statusBar.styleLightContent();
+      /**
       if (this.platform.is("ios") && this.platform.is("cordova")) {
         cordova.plugins.backgroundMode.on("enable", function () {
           cordova.plugins.backgroundMode.disableBatteryOptimizations();
           cordova.plugins.backgroundMode.disableWebViewOptimizations();
         });
       }
+       */
       this.nativeAudio
-        .preloadComplex("ringSound", "assets/sounds/notification.mp3", 1, 1, 0)
+        .preloadComplex("ringSound", "/assets/sounds/notification.mp3", 1, 1, 0)
         .then(
           (r) => {
             console.log("audio loaded ", r);

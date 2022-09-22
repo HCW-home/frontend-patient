@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable, Subject } from 'rxjs'
 import { environment } from '../environments/environment'
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx'
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx'
 import { GlobalVariableService } from './global-variable.service'
 
 // declare var io: any

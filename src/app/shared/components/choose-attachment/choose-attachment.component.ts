@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Directive  } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { AuthService } from '../../../auth/auth.service';
 
 import { environment } from '../../../../environments/environment';

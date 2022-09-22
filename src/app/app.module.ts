@@ -8,8 +8,8 @@ import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
+import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,21 +20,21 @@ import { AngularDraggableModule } from 'angular2-draggable';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 
 import { VideoRoomPageModule } from './video-room/video-room.module';
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 
-import { File } from '@ionic-native/file/ngx';
-import { Camera } from '@ionic-native/camera/ngx';
-import { Media } from '@ionic-native/media/ngx';
+import { File } from '@awesome-cordova-plugins/file/ngx';
+import { Camera } from '@awesome-cordova-plugins/camera/ngx';
+import { Media } from '@awesome-cordova-plugins/media/ngx';
 import { Downloader } from '@ionic-native/downloader/ngx';
 
-import { NativeAudio } from '@ionic-native/native-audio/ngx';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-import { Network } from '@ionic-native/network/ngx';
+import { NativeAudio } from '@awesome-cordova-plugins/native-audio/ngx';
+import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
+import { Network } from '@awesome-cordova-plugins/network/ngx';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt.interceptor';

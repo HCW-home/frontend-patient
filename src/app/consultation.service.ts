@@ -12,7 +12,7 @@ import {
 import { SocketEventsService } from './socket-events.service';
 import { Router } from '@angular/router';
 
-import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 declare let cordova: any;
 
 @Injectable({

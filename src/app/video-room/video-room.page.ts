@@ -15,7 +15,7 @@ import { environment } from "./../../environments/environment";
 import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, QueryList, ViewChildren, EventEmitter, Output, Input, NgZone, Directive } from "@angular/core";
 
 import { Platform, ModalController, AlertController } from "@ionic/angular";
-import { NativeAudio } from "@ionic-native/native-audio/ngx";
+import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
 
 import {
   trigger,
@@ -27,7 +27,7 @@ import {
 } from "@angular/animations";
 
 import { SocketEventsService } from "../socket-events.service";
-import { AndroidPermissions } from "@ionic-native/android-permissions/ngx";
+import { AndroidPermissions } from "@awesome-cordova-plugins/android-permissions/ngx";
 declare let window: any;
 
 export interface Device {

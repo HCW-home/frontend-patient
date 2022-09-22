@@ -1,7 +1,7 @@
 import { RoomService, LogService, Stream } from "hug-angular-lib";
 import { SocketEventsService } from "./../socket-events.service";
 import { ConsultationService } from "./../consultation.service";
-import { AndroidPermissions } from "@ionic-native/android-permissions/ngx";
+import { AndroidPermissions } from "@awesome-cordova-plugins/android-permissions/ngx";
 import { Platform } from "@ionic/angular";
 import { Router } from "@angular/router";
 import { OpenViduService } from "./../shared/services/openvidu.service";
