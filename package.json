@@ -96,7 +96,7 @@
     "@angular/language-service": "14.2.2",
     "@biesbjerg/ngx-translate-extract": "^7.0.2",
     "@capacitor/cli": "4.3.0",
-    "@ionic/lab": "1.0.24",
+    "@ionic/lab": "^3.2.13",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "11.9.4",
