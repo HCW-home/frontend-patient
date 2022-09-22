@@ -101,8 +101,6 @@
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "11.9.4",
     "codelyzer": "^6.0.0",
-    "cordova-android": "^11.0.0",
-    "cordova-ios": "6.2.0",
     "cordova-plugin-deeplinks": "^1.1.1",
     "cordova.plugins.diagnostic": "^6.1.1",
     "install": "^0.13.0",
@@ -122,71 +120,5 @@
   "optionalDependencies": {
     "ios-deploy": "^1.9.4"
   },
-  "description": "@HOME",
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-file": {},
-      "cordova-plugin-appminimize": {},
-      "cordova-client-cert-authentication": {},
-      "cordova-plugin-filechooser": {},
-      "cordova-plugin-media": {
-        "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
-      },
-      "cordova-plugin-dialogs": {},
-      "cordova-plugin-nativeaudio": {},
-      "cordova-plugin-clear-app-data": {},
-      "cordova-plugin-zip": {},
-      "cordova-plugin-network-information": {},
-      "clovelced-plugin-audiomanagement": {},
-      "cordova-plugin-exit": {},
-      "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-add-swift-support": {},
-      "cordova-plugin-wkwebviewxhrfix": {},
-      "cordova-plugin-deeplinks": {},
-      "cordova-plugin-android-permissions": {},
-      "cordova-plugin-app-version": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-local-notification": {},
-      "ionic-plugin-deeplinks": {
-        "URL_SCHEME": "hugathome",
-        "DEEPLINK_SCHEME": "https",
-        "DEEPLINK_HOST": "app.hug-at-home.ch",
-        "ANDROID_PATH_PREFIX": "/",
-        "DEEPLINK_2_SCHEME": "https",
-        "DEEPLINK_2_HOST": "cert-app.hug-at-home.ch",
-        "ANDROID_2_PATH_PREFIX": "/",
-        "DEEPLINK_3_SCHEME": "https",
-        "DEEPLINK_3_HOST": "dev-app.hug-at-home.ch",
-        "ANDROID_3_PATH_PREFIX": "/",
-        "ANDROID_4_PATH_PREFIX": "/",
-        "DEEPLINK_4_SCHEME": "https",
-        "DEEPLINK_4_HOST": "dev-patient-hug-at-home.oniabsis.com",
-        "ANDROID_5_PATH_PREFIX": "/",
-        "DEEPLINK_5_SCHEME": " ",
-        "DEEPLINK_5_HOST": " "
-      },
-      "cordova-plugin-cookie-manager": {},
-      "cordova-plugin-camera": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+"
-      },
-      "cordova-plugin-android-enumeratedevices": {},
-      "cordova-plugin-iosrtc": {
-        "MANUAL_INIT_AUDIO_DEVICE": "false"
-      },
-      "cordova-plugin-background-mode": {},
-      "cordova.plugins.diagnostic": {
-        "ANDROIDX_VERSION": "1.0.0",
-        "ANDROIDX_APPCOMPAT_VERSION": "1.3.1"
-      },
-      "cordova-plugin-autostart": {}
-    },
-    "platforms": [
-      "browser",
-      "ios",
-      "android"
-    ]
-  }
+  "description": "@HOME"
 }
