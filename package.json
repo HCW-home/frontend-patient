@@ -102,7 +102,7 @@
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "11.9.4",
     "codelyzer": "^6.0.0",
-    "cordova-ios": "^5.1.1",
+    "cordova-ios": "6.2.0",
     "cordova-plugin-android-enumeratedevices": "git+https://github.com/OpenVidu/cordova-plugin-android-enumeratedevices.git",
     "cordova-plugin-background-mode": "^0.7.3",
     "cordova-plugin-clear-app-data": "git+https://github.com/thorvx/cordova-plugin-clear-app-data.git",
