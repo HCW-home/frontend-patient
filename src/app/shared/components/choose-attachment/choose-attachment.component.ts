@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Directive  } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 
-import { FilePicker, FilePickerResult } from 'capacitor-file-picker';
-
+import { FilePicker } from '@capawesome/capacitor-file-picker';
 
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { AuthService } from '../../../auth/auth.service';
@@ -31,6 +30,12 @@ export class ChooseAttachmentComponent implements OnInit {
     this.currentUser = this.authService.currentUserValue;
   }
 
+  async pickFiles () {
+    const result = await FilePicker.pickFiles({
+      types: ['image/png'],
+      multiple: true,
+    });
+  };
 
   chooseFile() {
     if (this.platform.is('desktop') || environment.platform !== 'native') {
@@ -39,10 +44,8 @@ export class ChooseAttachmentComponent implements OnInit {
       })
     } else {
     
-      this.FilePicker.showFilePicker({
-        fileTypes: ['pdf', 'image'],
-      })
-        .then((uri: FilePickerResult) => {
+      this.pickFiles()
+        .then((uri) => {
           console.log(uri);
           this.dismiss(uri, 'file');
         })
