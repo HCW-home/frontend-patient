@@ -79,14 +79,12 @@ export class AppComponent {
 
 
   ngOnInit() {
-    console.log("router ", this.router, this.router.url, document.location);
 
     this.authService
       .init()
       .then((user) => {
         if (user) {
           this.currentUser = user;
-          console.log("got current user in app component ", user);
           this.initServices(this.currentUser);
         }
         this.initializeApp();
@@ -99,10 +97,6 @@ export class AppComponent {
     this.authService.loggedInSub().subscribe((user) => {
       this.currentUser = user;
 
-      console.log(
-        "current user in app.component loggedIn sub",
-        this.currentUser
-      );
       if (this.currentUser) {
         this.initServices(this.currentUser);
       }
@@ -110,7 +104,6 @@ export class AppComponent {
   }
 
   redirectToLogin() {
-    console.log("go to login 1");
     if (!this.redirected) {
       if (this.inviteToken) {
         this.router.navigate(["/login"], {
@@ -135,9 +128,20 @@ export class AppComponent {
   }
   async initializeApp() {
 
-    App.addListener('appUrlOpen', (event: URLOpenListenerEvent) => {
-			console.log(event.url)
-		});
+    App.addListener('appUrlOpen', data => {
+      const url = new URL(data.url);
+      const token = url.searchParams.get('invite')
+
+      //if (localStorage.getItem("inviteToken") !== token) {
+      //  this.authService.logout();
+      //}
+
+      localStorage.setItem("inviteToken", token);
+      this.authService.setInviteToken(token);
+      this.router.navigate(["/login"], {
+        queryParams: { invite: token },
+      });
+    });
 
     if (this.platform.is("ios") && this.platform.is("cordova")) {
       const script2 = document.createElement("script");
@@ -160,7 +164,6 @@ export class AppComponent {
     // }
 
     this.platform.ready().then(() => {
-      console.log("platform ready >", this.platform);
       window.platform = this.platform;
 
       if (this.isNativeApp()) {
@@ -178,6 +181,8 @@ export class AppComponent {
           console.error(error);
         }
       }
+
+      console.log("COORDOOVAAAA", this.platform.is("cordova"))
       
       if (this.platform.is("cordova")) {
         Deeplinks.route({
