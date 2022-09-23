@@ -5,6 +5,11 @@ const config: CapacitorConfig = {
   appName: 'hug_at_home',
   webDir: 'www',
   bundledWebRuntime: false,
+  plugins: {
+    CapacitorCookies: {
+      enabled: true,
+    },
+  },
   cordova: {
     preferences: {
       ScrollEnabled: 'false',

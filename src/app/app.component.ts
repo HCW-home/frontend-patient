@@ -132,9 +132,9 @@ export class AppComponent {
       const url = new URL(data.url);
       const token = url.searchParams.get('invite')
 
-      //if (localStorage.getItem("inviteToken") !== token) {
-      //  this.authService.logout();
-      //}
+      if (localStorage.getItem("inviteToken") !== token) {
+        this.authService.logout();
+      }
 
       localStorage.setItem("inviteToken", token);
       this.authService.setInviteToken(token);

@@ -10,6 +10,7 @@ import { ConsultationService } from '../consultation.service';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { GlobalVariableService } from '../global-variable.service';
+import { CapacitorCookies } from '@capacitor/core';
 
 
 @Injectable({ providedIn: 'root' })
@@ -76,7 +77,7 @@ export class AuthService {
 
       if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
         console.log('Flush cookies ');
-        (<any>window).cordova.plugins.CookieManagementPlugin.flush();
+        //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
       }
       return res.user;
     }));
@@ -108,8 +109,11 @@ export class AuthService {
 
     this.currentUserSubject.next(null);
     this._socketEventsService.disconnect()
+
+    console.log("COOOKIIIES", document.cookie)
+
     if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
-      (<any>window).cordova.plugins.CookieManagementPlugin.flush();
+      //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
     }
     return this.http.get(`${this.globalVariableService.getApiPath()}/logout`).toPromise()
   }
