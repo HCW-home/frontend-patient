@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Directive  } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
-import { FileChooser } from '@ionic-native/file-chooser/ngx';
+
+import { FilePicker, FilePickerResult } from 'capacitor-file-picker';
+
 
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { AuthService } from '../../../auth/auth.service';
@@ -18,7 +20,7 @@ export class ChooseAttachmentComponent implements OnInit {
   @Input() consultationId;
   currentUser;
   constructor(
-    private fileChooser: FileChooser,
+    private FilePicker,
     public modalController: ModalController,
     private authService: AuthService,
     private camera: Camera,
@@ -37,8 +39,10 @@ export class ChooseAttachmentComponent implements OnInit {
       })
     } else {
     
-      this.fileChooser.open()
-        .then(uri => {
+      this.FilePicker.showFilePicker({
+        fileTypes: ['pdf', 'image'],
+      })
+        .then((uri: FilePickerResult) => {
           console.log(uri);
           this.dismiss(uri, 'file');
         })

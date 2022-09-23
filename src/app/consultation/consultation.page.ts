@@ -21,7 +21,6 @@ import { File, FileEntry } from "@awesome-cordova-plugins/file/ngx";
 import { environment } from "../../environments/environment";
 
 import { Media, MediaObject } from "@awesome-cordova-plugins/media/ngx";
-import { Downloader } from "@ionic-native/downloader/ngx";
 import { GlobalVariableService } from "../global-variable.service";
 
 
@@ -68,7 +67,6 @@ export class ConsultationPage
     public modalController: ModalController,
     private file: File,
     private media: Media,
-    private downloader: Downloader,
     public alertController: AlertController,
     private globalVariableService: GlobalVariableService,
     public platform: Platform,

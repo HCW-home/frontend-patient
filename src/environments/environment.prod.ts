@@ -5,5 +5,5 @@ export const environment = {
   DN: '',
   showNativeAppSuggestionAndroid: false,
   showNativeAppSuggestionIOS: false,
-  platform:'web'
+  platform:'native'
 };

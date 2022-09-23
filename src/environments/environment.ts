@@ -11,7 +11,7 @@ export const environment = {
 
   showNativeAppSuggestionAndroid: true,
   showNativeAppSuggestionIOS: true,
-  platform: "web",
+  platform: "native",
 };
 
 /*

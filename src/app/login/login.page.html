@@ -188,7 +188,7 @@
           (submit)="onSubmit()"
           class="login-form"
         >
-          <ion-item lines="full" *ngIf="!inviteToken && !isMobileUser()">
+          <ion-item lines="full">
             <ion-label position="floating" text-wrap>
               {{ 'login.invitationKey' | translate }}
             </ion-label>
@@ -200,13 +200,12 @@
               pattern="[a-f0-9]{40}"
             ></ion-input>
           </ion-item>
-          <div *ngIf="inviteKeyError" class="validator-error">
+          <div class="validator-error">
             {{inviteKeyError}}
           </div>
 
           <div
             class="buttons"
-            *ngIf="(!inviteToken &&!isMobileUser()) || inviteToken"
           >
             <button
               class="btn green"

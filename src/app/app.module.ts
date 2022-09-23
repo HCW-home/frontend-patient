@@ -25,12 +25,9 @@ import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions
 import { VideoRoomPageModule } from './video-room/video-room.module';
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 
-import { FileChooser } from '@ionic-native/file-chooser/ngx';
-
 import { File } from '@awesome-cordova-plugins/file/ngx';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
 import { Media } from '@awesome-cordova-plugins/media/ngx';
-import { Downloader } from '@ionic-native/downloader/ngx';
 
 import { NativeAudio } from '@awesome-cordova-plugins/native-audio/ngx';
 import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
@@ -85,11 +82,9 @@ import { HugAngularLibModule } from 'hug-angular-lib';
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         AndroidPermissions,
-        FileChooser,
         File,
         Camera,
         Media,
-        Downloader,
         BackgroundMode,
         NativeAudio,
         LocalNotifications,
