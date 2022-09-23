@@ -18,6 +18,7 @@ import { ConsultationService } from "../consultation.service";
 import { access } from "fs";
 import { ConfigService } from "../config.service";
 import { SocketEventsService } from "../socket-events.service";
+import { App } from '@capacitor/app';
 
 const coeff = 1000 * 60 * 5;
 
@@ -529,7 +530,7 @@ export class LoginPage implements OnInit {
 
   closeApp() {
     localStorage.clear();
-    cordova.plugins.exit();
+    App.exitApp();
   }
 
   /**

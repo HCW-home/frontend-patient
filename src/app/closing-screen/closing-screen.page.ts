@@ -6,6 +6,8 @@ import { ConsultationService } from "../consultation.service";
 import { ConfigService } from "../config.service";
 import { Platform } from "@ionic/angular";
 import { environment } from "../../environments/environment";
+import { App } from '@capacitor/app';
+
 
 declare let cordova: any;
 
@@ -64,7 +66,7 @@ export class ClosingScreenPage implements OnInit {
 
   closeApp() {
     localStorage.clear();
-    cordova.plugins.exit();
+    App.exitApp();
   }
 
   /**
