@@ -19,7 +19,6 @@ export class ChooseAttachmentComponent implements OnInit {
   @Input() consultationId;
   currentUser;
   constructor(
-    private FilePicker,
     public modalController: ModalController,
     private authService: AuthService,
     private camera: Camera,
