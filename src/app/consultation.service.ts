@@ -12,7 +12,6 @@ import {
 import { SocketEventsService } from './socket-events.service';
 import { Router } from '@angular/router';
 
-import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 declare let cordova: any;
 
 @Injectable({
@@ -32,7 +31,6 @@ export class ConsultationService {
   constructor(
     private http: HttpClient,
     private socketEventsService: SocketEventsService,
-    private backgroundMode: BackgroundMode,
     private router: Router,
     private globalVariableService: GlobalVariableService,
     private platform:Platform
@@ -97,13 +95,6 @@ export class ConsultationService {
 
     })
 
-
-    this.backgroundMode.on('deactivate').subscribe(() => {
-      console.log('background mode deactivated ');
-      this.backgroundConsultationSubscription.unsubscribe();
-      clearTimeout(this.backgroundNoConstellationsTimerId);
-      // this.backgroundNoConstellationsTimerId = null;
-    });
   }
 
   fetchConsultations() {

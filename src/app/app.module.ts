@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
-import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +22,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 
 import { VideoRoomPageModule } from './video-room/video-room.module';
-import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 
 import { File } from '@awesome-cordova-plugins/file/ngx';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
@@ -88,14 +86,12 @@ import { HugAngularLibModule } from 'hug-angular-lib';
         SharedModule
     ],
     providers: [
-        StatusBar,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         AndroidPermissions,
         File,
         Camera,
         Media,
-        BackgroundMode,
         NativeAudio,
         LocalNotifications,
         Network,

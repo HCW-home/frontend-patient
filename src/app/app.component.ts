@@ -6,11 +6,7 @@ import { Platform, NavController } from "@ionic/angular";
 
 import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
 
-import { StatusBar } from "@awesome-cordova-plugins/status-bar/ngx";
-
 import { CallService } from "./call.service";
-
-import { BackgroundMode } from "@awesome-cordova-plugins/background-mode/ngx";
 
 import { SocketEventsService } from "./socket-events.service";
 import { ConsultationService } from "./consultation.service";
@@ -23,7 +19,6 @@ import { NavigationEnd, Router } from "@angular/router";
 declare var cordova;
 declare let window: any;
 import { File } from "@awesome-cordova-plugins/file/ngx";
-import { Deeplinks } from "@awesome-cordova-plugins/deeplinks";
 import { App, URLOpenListenerEvent } from '@capacitor/app';
 import { LoginPage } from "./login/login.page";
 import { TestComponent } from "./test/test.component";
@@ -48,9 +43,7 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
     private callService: CallService,
-    private backgroundMode: BackgroundMode,
     private authService: AuthService,
     private socketEventsService: SocketEventsService,
     private consultationService: ConsultationService,
@@ -182,119 +175,11 @@ export class AppComponent {
         }
       }
 
-      console.log("COORDOOVAAAA", this.platform.is("cordova"))
-      
-      if (this.platform.is("cordova")) {
-        Deeplinks.route({
-          "/test-call": TestComponent,
-          "/": LoginPage,
-        }).subscribe(
-          async (match) => {
-            console.log("MATCHED ROUTE", match);
-
-            if (match.$link.scheme == "hugathome") {
-              this.globalVariableService.updateHost(
-                match.$args.scheme + "://" + match.$link.host
-              );
-            } else {
-              this.globalVariableService.updateHost(
-                match.$link.scheme.replace(/\:$/, "") + "://" + match.$link.host
-              );
-            }
-
-            if (match && match.$args && match.$args.invite) {
-              if (localStorage.getItem("inviteToken") !== match.$args.invite) {
-                console.log(
-                  "New invite token  from param.",
-                  match,
-                  localStorage.getItem("inviteToken")
-                );
-
-                await this.authService.logout();
-                localStorage.setItem("inviteToken", match.$args.invite);
-              }
-              this.authService.setInviteToken(match.$args.invite);
-              this.router.navigate(["/login"], {
-                queryParams: { invite: match.$args.invite },
-              });
-            }
-            if (match && match.$link && match.$link.fragment === "/test-call") {
-              return this.redirectToTestPage();
-            } else if (
-              match &&
-              match.$link &&
-              match.$link.fragment === "/await-consultation"
-            ) {
-              return this.redirectToAwaitConsultation();
-            }
-
-            // match.$route - the route we matched, which is the matched entry from the arguments to route()
-            // match.$args - the args passed in the link
-            // match.$link - the full link data
-            console.log("Successfully matched route", match);
-          },
-          (nomatch) => {
-            console.log("No match;", nomatch);
-            if (!nomatch.$link) {
-              return;
-            }
-
-            const serverUrl = nomatch.$link.url.replace(
-              "hugathome://",
-              "https://"
-            );
-            const parsedServerUrl = new URL(serverUrl);
-
-            if (nomatch.$link.scheme == "hugathome") {
-              this.globalVariableService.updateHost(
-                "https://" + parsedServerUrl.host
-              );
-            }
-            if (parsedServerUrl.searchParams.get("invite")) {
-              this.authService.setInviteToken(
-                parsedServerUrl.searchParams.get("invite")
-              );
-            }
-          }
-        );
-      }
-
       console.log("router ", this.router, this.router.url);
       if (!this.testRoute) {
         this.redirectToLogin();
       }
 
-      // this.autostart.enable();
-      this.backgroundMode.setDefaults({
-        title: "@HOME",
-        text: "@HOME",
-        silent: true,
-        hidden: true,
-        // icon: 'icon', // this will look for icon.png in platforms/android/res/drawable|mipmap
-        // bigText: "@HOME"
-      });
-      this.backgroundMode.enable();
-
-      // this.backgroundMode.overrideBackButton();
-
-      // this.backgroundMode.on('activate').subscribe(() => {
-      //   this.backgroundMode.disableWebViewOptimizations();
-      //   cordova.plugins.backgroundMode.disableWebViewOptimizations();
-      // });
-
-      //   cordova.plugins.backgroundMode.on('activate', function() {
-      //     cordova.plugins.backgroundMode.disableWebViewOptimizations();
-      // });
-      // this.backgroundMode.excludeFromTaskList();
-      this.statusBar.styleLightContent();
-      /**
-      if (this.platform.is("ios") && this.platform.is("cordova")) {
-        cordova.plugins.backgroundMode.on("enable", function () {
-          cordova.plugins.backgroundMode.disableBatteryOptimizations();
-          cordova.plugins.backgroundMode.disableWebViewOptimizations();
-        });
-      }
-       */
       this.nativeAudio
         .preloadComplex("ringSound", "/assets/sounds/notification.mp3", 1, 1, 0)
         .then(
