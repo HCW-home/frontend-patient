@@ -10,7 +10,7 @@
           <strong>UN FICHIER</strong>
         </h4>
       </div>
-      <button class="submit-btn" mat-button (click)="takePicture()">
+      <button class="submit-btn" mat-button (click)="takePicture()" *ngIf="isMobile">
         Prendre une photo
       </button>
       <button class="submit-btn" mat-button (click)="chooseFile()">

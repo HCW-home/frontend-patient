@@ -63,6 +63,7 @@
     "clovelced-plugin-audiomanagement": "1.0.2",
     "cordova": "^11.0.0",
     "cordova-browser": "^6.0.0",
+    "cordova-plugin-camera": "^6.0.0",
     "hug-angular-lib": "https://projects.iabsis.com/repository/hug-angular/npm/hug-angular-lib-0.0.3.tgz",
     "i": "^0.3.6",
     "jquery": "^3.6.0",
