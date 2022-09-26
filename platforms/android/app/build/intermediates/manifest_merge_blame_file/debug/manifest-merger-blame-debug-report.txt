@@ -1,0 +1,361 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.iabsis.coronathome"
+4    android:hardwareAccelerated="true"
+5    android:versionCode="40001"
+6    android:versionName="4.0.1" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="22"
+9-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml
+10        android:targetSdkVersion="31" />
+10-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml
+11
+12    <supports-screens
+12-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:3:3-188
+13        android:anyDensity="true"
+13-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:3:21-46
+14        android:largeScreens="true"
+14-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:3:47-74
+15        android:normalScreens="true"
+15-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:3:75-103
+16        android:resizeable="true"
+16-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:3:104-129
+17        android:smallScreens="true"
+17-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:3:130-157
+18        android:xlargeScreens="true" />
+18-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:3:158-186
+19
+20    <uses-permission android:name="android.permission.INTERNET" />
+20-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:4:3-64
+20-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:4:20-62
+21    <uses-permission android:name="android.permission.CAMERA" />
+21-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:5:3-62
+21-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:5:20-60
+22    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+22-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:6:3-68
+22-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:6:20-66
+23    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+23-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:7:3-77
+23-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:7:20-75
+24    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+24-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:8:3-74
+24-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:8:20-72
+25    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+25-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:9:3-76
+25-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:9:20-74
+26    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+26-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:10:3-77
+26-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:10:20-75
+27    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+27-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:11:3-78
+27-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:11:20-76
+28    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+28-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:12:3-78
+28-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:12:20-76
+29    <uses-permission android:name="android.permission.WAKE_LOCK" />
+29-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:13:3-65
+29-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:13:20-63
+30    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+30-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:14:3-72
+30-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:14:20-70
+31    <uses-permission android:name="android.permission.BLUETOOTH" />
+31-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:15:3-65
+31-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:15:20-63
+32    <!-- for android -->
+33    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+34    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+35    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+36    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+37    <!-- for Samsung -->
+38    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+38-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:5-86
+38-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:22-83
+39    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+39-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:5-87
+39-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:22-84
+40    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+40-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:5-81
+40-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:22-78
+41    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+41-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:5-83
+41-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:22-80
+42    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+42-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:5-88
+42-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:22-85
+43    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+43-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+43-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:22-89
+44    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+44-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+44-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:22-81
+45    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+45-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+45-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:22-80
+46    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+46-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+46-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:22-88
+47    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+47-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+47-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:22-89
+48    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+48-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+48-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:22-90
+49    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+49-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+49-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:22-70
+50    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+50-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+50-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:22-79
+51    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+51-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+51-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:22-80
+52    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+52-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+52-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:22-85
+53    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+53-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+53-->[me.leolin:ShortcutBadger:1.1.22] /home/yassineef/.gradle/caches/transforms-2/files-2.1/082ad5759b40f8bf3a0f7b5ffef2c36e/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
+54
+55    <application
+55-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:16:3-70:17
+56        android:allowBackup="false"
+56-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:16:16-43
+57        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+57-->[androidx.core:core:1.5.0] /home/yassineef/.gradle/caches/transforms-2/files-2.1/15ff4823f232ac34bfe919eb34d7084f/core-1.5.0/AndroidManifest.xml:24:18-86
+58        android:debuggable="true"
+59        android:fullBackupContent="false"
+59-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:16:44-77
+60        android:hardwareAccelerated="true"
+60-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:16:78-112
+61        android:icon="@mipmap/ic_launcher"
+61-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:16:113-147
+62        android:label="@string/app_name"
+62-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:16:148-180
+63        android:supportsRtl="true"
+63-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:16:181-207
+64        android:usesCleartextTraffic="false" >
+64-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:16:208-244
+65        <activity
+65-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:17:5-44:16
+66            android:name="com.iabsis.coronathome.MainActivity"
+66-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:17:226-253
+67            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+67-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:17:15-131
+68            android:exported="true"
+68-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:17:132-155
+69            android:label="@string/activity_name"
+69-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:17:156-193
+70            android:launchMode="singleTask"
+70-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:17:194-225
+71            android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
+71-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:17:254-316
+72            android:windowSoftInputMode="adjustResize" >
+72-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:17:317-359
+73            <intent-filter android:label="@string/launcher_name" >
+73-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:18:7-21:23
+73-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:18:22-59
+74                <action android:name="android.intent.action.MAIN" />
+74-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:19:9-60
+74-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:19:17-58
+75
+76                <category android:name="android.intent.category.LAUNCHER" />
+76-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:20:9-68
+76-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:20:19-66
+77            </intent-filter>
+78            <intent-filter>
+78-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:22:7-27:23
+79                <action android:name="android.intent.action.VIEW" />
+79-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:23:9-60
+79-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:23:17-58
+80
+81                <category android:name="android.intent.category.DEFAULT" />
+81-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:24:9-67
+81-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:24:19-65
+82                <category android:name="android.intent.category.BROWSABLE" />
+82-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:25:9-69
+82-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:25:19-67
+83
+84                <data android:scheme="hugathome" />
+84-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:9-43
+84-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:15-41
+85            </intent-filter>
+86            <intent-filter android:autoVerify="true" >
+86-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:28:7-37:23
+86-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:28:22-47
+87                <action android:name="android.intent.action.VIEW" />
+87-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:23:9-60
+87-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:23:17-58
+88
+89                <category android:name="android.intent.category.DEFAULT" />
+89-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:24:9-67
+89-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:24:19-65
+90                <category android:name="android.intent.category.BROWSABLE" />
+90-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:25:9-69
+90-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:25:19-67
+91
+92                <data
+92-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:9-43
+93                    android:host="app.hug-at-home.ch"
+93-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:15-48
+94                    android:pathPrefix="/"
+94-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:49-71
+95                    android:scheme="https" />
+95-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:15-41
+96                <data
+96-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:9-43
+97                    android:host="cert-app.hug-at-home.ch"
+97-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:15-48
+98                    android:pathPrefix="/"
+98-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:49-71
+99                    android:scheme="https" />
+99-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:15-41
+100                <data
+100-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:9-43
+101                    android:host="dev-app.hug-at-home.ch"
+101-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:15-48
+102                    android:pathPrefix="/"
+102-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:49-71
+103                    android:scheme="https" />
+103-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:15-41
+104                <data
+104-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:9-43
+105                    android:host="dev-patient-hug-at-home.oniabsis.com"
+105-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:15-48
+106                    android:pathPrefix="/"
+106-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:49-71
+107                    android:scheme="https" />
+107-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:15-41
+108                <data
+108-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:9-43
+109                    android:host=" "
+109-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:15-48
+110                    android:pathPrefix="/"
+110-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:49-71
+111                    android:scheme=" " />
+111-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:15-41
+112            </intent-filter>
+113            <intent-filter android:autoVerify="true" >
+113-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:38:7-43:23
+113-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:38:22-47
+114                <action android:name="android.intent.action.VIEW" />
+114-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:23:9-60
+114-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:23:17-58
+115
+116                <category android:name="android.intent.category.DEFAULT" />
+116-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:24:9-67
+116-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:24:19-65
+117                <category android:name="android.intent.category.BROWSABLE" />
+117-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:25:9-69
+117-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:25:19-67
+118
+119                <data
+119-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:9-43
+120                    android:host="patient_hcw-athome.dev.oniabsis.com"
+120-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:32:15-48
+121                    android:scheme="https" />
+121-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:26:15-41
+122            </intent-filter>
+123        </activity>
+124        <activity
+124-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:45:5-200
+125            android:name="de.appplant.cordova.plugin.localnotification.ClickReceiver"
+125-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:45:76-149
+126            android:exported="false"
+126-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:45:15-39
+127            android:launchMode="singleInstance"
+127-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:45:40-75
+128            android:theme="@android:style/Theme.Translucent" />
+128-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:45:150-198
+129
+130        <receiver
+130-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:46:5-50:16
+131            android:name="com.tonikorin.cordova.plugin.autostart.BootCompletedReceiver"
+131-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:46:39-114
+132            android:enabled="false" >
+132-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:46:15-38
+133            <intent-filter>
+133-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:47:7-49:23
+134                <action android:name="android.intent.action.BOOT_COMPLETED" />
+134-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:48:9-70
+134-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:48:17-68
+135            </intent-filter>
+136        </receiver>
+137        <receiver
+137-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:51:5-55:16
+138            android:name="com.tonikorin.cordova.plugin.autostart.UserPresentReceiver"
+138-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:51:39-112
+139            android:enabled="false" >
+139-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:51:15-38
+140            <intent-filter>
+140-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:52:7-54:23
+141                <action android:name="android.intent.action.USER_PRESENT" />
+141-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:53:9-68
+141-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:53:17-66
+142            </intent-filter>
+143        </receiver>
+144        <receiver
+144-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:56:5-60:16
+145            android:name="com.tonikorin.cordova.plugin.autostart.PackageReplacedReceiver"
+145-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:56:38-115
+146            android:enabled="true" >
+146-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:56:15-37
+147            <intent-filter>
+147-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:57:7-59:23
+148                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+148-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:58:9-75
+148-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:58:17-73
+149            </intent-filter>
+150        </receiver>
+151        <receiver
+151-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:61:5-117
+152            android:name="de.appplant.cordova.plugin.localnotification.TriggerReceiver"
+152-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:61:40-115
+153            android:exported="false" />
+153-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:61:15-39
+154        <receiver
+154-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:62:5-115
+155            android:name="de.appplant.cordova.plugin.localnotification.ClearReceiver"
+155-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:62:40-113
+156            android:exported="false" />
+156-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:62:15-39
+157
+158        <provider
+159            android:name="org.apache.cordova.camera.FileProvider"
+159-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:63:145-198
+160            android:authorities="com.iabsis.coronathome.cordova.plugin.camera.provider"
+160-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:63:15-84
+161            android:exported="false"
+161-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:63:85-109
+162            android:grantUriPermissions="true" >
+162-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:63:110-144
+163            <meta-data
+163-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:64:7-116
+164                android:name="android.support.FILE_PROVIDER_PATHS"
+164-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:64:18-68
+165                android:resource="@xml/camera_provider_paths" />
+165-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:64:69-114
+166        </provider>
+167        <provider
+168            android:name="de.appplant.cordova.plugin.notification.util.AssetProvider"
+168-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:66:123-196
+169            android:authorities="com.iabsis.coronathome.provider"
+169-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:66:15-62
+170            android:exported="false"
+170-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:66:63-87
+171            android:grantUriPermissions="true" >
+171-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:66:88-122
+172            <meta-data
+172-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:64:7-116
+173                android:name="android.support.FILE_PROVIDER_PATHS"
+173-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:64:18-68
+174                android:resource="@xml/localnotification_provider_paths" />
+174-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:64:69-114
+175        </provider>
+176
+177        <service android:name="de.appplant.cordova.plugin.background.ForegroundService" />
+177-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:69:5-86
+177-->/home/yassineef/Dev/hcw-patient/platforms/android/app/src/main/AndroidManifest.xml:69:14-84
+178    </application>
+179
+180</manifest>

@@ -57,6 +57,7 @@
     "@ionic/angular-toolkit": "^7.0.0",
     "@ionic/cli": "^6.20.1",
     "@ionic/core": "^6.2.8",
+    "@ionic/pwa-elements": "^3.1.1",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^4.0.0",
     "angular2-draggable": "^2.2.2",

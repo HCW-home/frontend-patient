@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.iabsis.coronathome",
+  "variantName": "debug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 40001,
+      "versionName": "40001",
+      "enabled": true,
+      "outputFile": "app-debug.apk"
+    }
+  ]
+}

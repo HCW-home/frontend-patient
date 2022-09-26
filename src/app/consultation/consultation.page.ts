@@ -70,7 +70,7 @@ export class ConsultationPage
     public alertController: AlertController,
     private globalVariableService: GlobalVariableService,
     public platform: Platform,
-    private nativeAudio: NativeAudio
+    private nativeAudio: NativeAudio,
   ) {}
 
   ngOnInit() {
@@ -356,7 +356,8 @@ export class ConsultationPage
     const { data } = await modal.onDidDismiss();
 
     console.log("modal dismissed ", data);
-
+  
+    
     if (data.filePath) {
       if (typeof data.filePath === "object") {
         this.uploadBlob(data.filePath, data.filePath.name);
@@ -407,7 +408,7 @@ export class ConsultationPage
   }
 
   uploadBlob(blob, name) {
-    this.isUploading = true;
+    this.isUploading = true;    
     this.consultationService
       .postFile(blob, name, this.consultation.id || this.consultation.id)
       .subscribe((data) => {
@@ -431,7 +432,7 @@ export class ConsultationPage
   //   });
 
   // }
-
+ 
   startRecording() {
     this.isRecording = true;
     const filePath = this.file.externalDataDirectory + Date.now() + ".mp3";
@@ -440,6 +441,7 @@ export class ConsultationPage
     this.subscriptions.push(
       this.audioFile.onSuccess.subscribe((amp) => {
         this.upload(filePath);
+        
       })
     );
     this.subscriptions.push(
@@ -644,6 +646,7 @@ export class ConsultationPage
     }
 
     var blob = new Blob(byteArrays, { type: contentType });
+    
     return blob;
   }
 }

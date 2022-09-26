@@ -227,13 +227,26 @@ export class ConsultationService {
   let file
     if (!blob.lastModified) {
       file = this.blobToFile(blob, fileName);
+      console.log('file name:', file);
+      
     } else {
       file = blob
+      
     }
-    console.log('file ', file.size);
     const endpoint = this.globalVariableService.getApiPath() + `/consultation/${consultationId}/upload-file`;
     const formData: FormData = new FormData();
-    formData.append('attachment', file, file.name);
+    if(file.changingThisBreaksApplicationSecurity !== undefined){
+      formData.append('attachment', this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity), file.name);
+    return this.http
+      .post(endpoint, formData, {
+        headers: {
+          'mime-type': this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity).type,
+          'x-access-token': `${this.currentUser.token}`,
+          fileName: 'image.jpg'
+        }
+      });
+    }else{
+      formData.append('attachment', file, file.name);
     return this.http
       .post(endpoint, formData, {
         headers: {
@@ -241,9 +254,50 @@ export class ConsultationService {
           'x-access-token': `${this.currentUser.token}`,
           fileName: file.name
         }
-      });
+      }); 
+    }
+    
+
+
+   
   }
 
+  //! Convert our file from base64 to blob
+  private convertBase64ToBlob(base64: string) {    
+    const info = this.getInfoFromBase64(base64);
+    const sliceSize = 512;
+    const byteCharacters = window.atob(info.rawBase64);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      byteArrays.push(new Uint8Array(byteNumbers));
+    }
+
+    
+    return new Blob(byteArrays, { type: info.mime });
+  }
+
+  private getInfoFromBase64(base64: string) {    
+    const meta = base64.split(',')[0];
+    const rawBase64 = base64.split(',')[1].replace(/\s/g, '');
+    const mime = /:([^;]+);/.exec(meta)[1];
+    const extension = /\/([^;]+);/.exec(meta)[1];
+    
+    return {
+      mime,
+      extension,
+      meta,
+      rawBase64
+    };
+  }
+  //! to here
   public blobToFile = (theBlob: Blob, fileName: string): File => {
     const b: any = theBlob;
     b.lastModifiedDate = new Date();

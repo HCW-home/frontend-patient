@@ -1,9 +1,11 @@
 import { Component, OnInit, Input, Directive  } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { FilePicker } from '@capawesome/capacitor-file-picker';
 
-import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+//import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AuthService } from '../../../auth/auth.service';
 
 import { environment } from '../../../../environments/environment';
@@ -17,12 +19,13 @@ import { environment } from '../../../../environments/environment';
 })
 export class ChooseAttachmentComponent implements OnInit {
   @Input() consultationId;
+  photo: SafeResourceUrl;
   currentUser;
   constructor(
     public modalController: ModalController,
     private authService: AuthService,
-    private camera: Camera,
-    public platform: Platform
+    public platform: Platform,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -60,28 +63,36 @@ export class ChooseAttachmentComponent implements OnInit {
   }
 
 
-  takePicture() {
+  async takePicture() {
 
-    const options: CameraOptions = {
-      quality: 40,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      //targetWidth: 720
-    };
+    // const options: CameraOptions = {
+    //   quality: 40,
+    //   destinationType: this.camera.DestinationType.FILE_URI,
+    //   encodingType: this.camera.EncodingType.JPEG,
+    //   mediaType: this.camera.MediaType.PICTURE,
+    //   //targetWidth: 720
+    // };
 
-    this.camera.getPicture(options).then((imageData) => {
+    // this.camera.getPicture(options).then((imageData) => {
 
-      console.log('image data ', imageData);
-
-      this.dismiss(imageData, 'image');
-    }, (err) => {
-      console.log('error choosing image', err);
-      // if (err && .includes('No Image Selected')) {
-      //   return
-      // }
-      alert('Error choosing image ' + err);
+    //   this.dismiss(imageData, 'image');
+    // }, (err) => {
+    //   console.log('error choosing image', err);
+    //   // if (err && .includes('No Image Selected')) {
+    //   //   return
+    //   // }
+    //   alert('Error choosing image ' + err);
+    // });
+    const image =  await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Prompt
     });
+    this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+
+    this.dismiss(this.photo, 'image');
+  
   }
   chooseFileBrowser() {
     return new Promise((resolve, reject) => {
