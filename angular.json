@@ -42,7 +42,6 @@
               }
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/marked/marked.min.js"
             ],
             "aot": false,
