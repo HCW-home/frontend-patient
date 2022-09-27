@@ -20,7 +20,8 @@ export class AuthService {
   private inviteToken: Subject<string> = new Subject();
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private _socketEventsService: SocketEventsService,
     private consultationService: ConsultationService,
     private router: Router,

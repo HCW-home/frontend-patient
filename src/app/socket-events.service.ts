@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core'
 import { Observable, Subject } from 'rxjs'
 import { environment } from '../environments/environment'
-import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx'
+// import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx'
+import { LocalNotifications } from '@capacitor/local-notifications'
+
+
 import { GlobalVariableService } from './global-variable.service'
 
 // declare var io: any
@@ -27,7 +30,7 @@ export class SocketEventsService {
 
 
   constructor(
-    private localNotifications: LocalNotifications,
+    // private localNotifications: LocalNotifications,
     private globalVariableService: GlobalVariableService,
   ) { }
 
@@ -87,9 +90,9 @@ export class SocketEventsService {
       })
     })
 
-    this.localNotifications.on('click').subscribe((e) => {
-      console.log('notification event,  ', e)
-    })
+    // this.localNotifications.on('click').subscribe((e) => {
+    //   console.log('notification event,  ', e)
+    // })
   }
 
   reconnect(cb) {
@@ -120,15 +123,30 @@ export class SocketEventsService {
   }
 
   listenToEvents() {
+    // this.socket.on('newMessage', (e) => {
+    //   if (e.data.type !== 'videoCall' && e.data.type !== 'audioCall') {
+    //     console.log('The message', e.data)
+    //     this.localNotifications.schedule({
+    //       id: 1,
+    //       title: e.data.text ? e.data.text : 'New message',
+    //       sound:  'file://sound.mp3',
+    //       text: '',
+    //       foreground: true
+    //     })
+    //   }
+
+    //   this.messageSubj.next(e)
+    // })
     this.socket.on('newMessage', (e) => {
       if (e.data.type !== 'videoCall' && e.data.type !== 'audioCall') {
         console.log('The message', e.data)
-        this.localNotifications.schedule({
-          id: 1,
-          title: e.data.text ? e.data.text : 'New message',
-          text: '',
-          priority: 1,
-        })
+        LocalNotifications.schedule({
+          notifications:[{
+            title: e.data.text ? e.data.text : 'New message',
+            body:'',
+            id: 1,
+          }]
+          })
       }
 
       this.messageSubj.next(e)
