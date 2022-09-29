@@ -27,7 +27,7 @@ import {
 } from "@angular/animations";
 
 import { SocketEventsService } from "../socket-events.service";
-import { AndroidPermissions } from "@awesome-cordova-plugins/android-permissions/ngx";
+// import { AndroidPermissions } from "@awesome-cordova-plugins/android-permissions/ngx";
 declare let window: any;
 
 export interface Device {
@@ -139,11 +139,11 @@ export interface Device {
 export class VideoRoomPage implements OnInit, OnDestroy {
   BIG_ELEMENT_CLASS = "OV_big";
 
-  ANDROID_PERMISSIONS = [
-    "android.permission.CAMERA",
-    "android.permission.RECORD_AUDIO",
-    "android.permission.MODIFY_AUDIO_SETTINGS",
-  ];
+  // ANDROID_PERMISSIONS = [
+  //   "android.permission.CAMERA",
+  //   "android.permission.RECORD_AUDIO",
+  //   "android.permission.MODIFY_AUDIO_SETTINGS",
+  // ];
   localUser;
   remoteUsers = [];
   resizeTimeout;
@@ -195,7 +195,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     private remotePeersService: RemotePeersService,
     private openViduSrv: OpenViduService,
     private authService: AuthService,
-    private androidPermissions: AndroidPermissions,
+    // private androidPermissions: AndroidPermissions,
     private zone: NgZone
   ) {
     window.platform = platform;
@@ -414,9 +414,9 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   askForPerm() {
     this.logger.debug("Ask for video permissions ");
 
-    if (this.platform.is("cordova") && this.platform.is("android")) {
-      return this.checkAndroidPermissions();
-    }
+    // if (this.platform.is("cordova") && this.platform.is("android")) {
+    //   return this.checkAndroidPermissions();
+    // }
     const {
       sampleRate = 96000,
       channelCount = 1,
@@ -454,81 +454,81 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     return navigator.mediaDevices.getUserMedia({ audio: true, video: true });
   }
 
-  private checkAndroidPermissions(): Promise<any> {
-    console.log("Requesting Android Permissions");
-    return new Promise((resolve, reject) => {
-      this.platform.ready().then(() => {
-        this.androidPermissions
-          .requestPermissions(this.ANDROID_PERMISSIONS)
-          .then(() => {
-            this.androidPermissions
-              .checkPermission(this.androidPermissions.PERMISSION.CAMERA)
-              .then((camera) => {
-                this.androidPermissions
-                  .checkPermission(
-                    this.androidPermissions.PERMISSION.RECORD_AUDIO
-                  )
-                  .then((audio) => {
-                    this.androidPermissions
-                      .checkPermission(
-                        this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS
-                      )
-                      .then((modifyAudio) => {
-                        if (
-                          camera.hasPermission &&
-                          audio.hasPermission &&
-                          modifyAudio.hasPermission
-                        ) {
-                          resolve(null);
-                        } else {
-                          reject(
-                            new Error(
-                              "Permissions denied: " +
-                                "\n" +
-                                " CAMERA = " +
-                                camera.hasPermission +
-                                "\n" +
-                                " AUDIO = " +
-                                audio.hasPermission +
-                                "\n" +
-                                " AUDIO_SETTINGS = " +
-                                modifyAudio.hasPermission
-                            )
-                          );
-                        }
-                      })
-                      .catch((err) => {
-                        console.error(
-                          "Checking permission " +
-                            this.androidPermissions.PERMISSION
-                              .MODIFY_AUDIO_SETTINGS +
-                            " failed"
-                        );
-                        reject(err);
-                      });
-                  })
-                  .catch((err) => {
-                    console.error(
-                      "Checking permission " +
-                        this.androidPermissions.PERMISSION.RECORD_AUDIO +
-                        " failed"
-                    );
-                    reject(err);
-                  });
-              })
-              .catch((err) => {
-                console.error(
-                  "Checking permission " +
-                    this.androidPermissions.PERMISSION.CAMERA +
-                    " failed"
-                );
-                reject(err);
-              });
-          })
-          .catch((err) => console.error("Error requesting permissions: ", err));
-      });
-    });
-  }
+  // private checkAndroidPermissions(): Promise<any> {
+  //   console.log("Requesting Android Permissions");
+  //   return new Promise((resolve, reject) => {
+  //     this.platform.ready().then(() => {
+  //       this.androidPermissions
+  //         .requestPermissions(this.ANDROID_PERMISSIONS)
+  //         .then(() => {
+  //           this.androidPermissions
+  //             .checkPermission(this.androidPermissions.PERMISSION.CAMERA)
+  //             .then((camera) => {
+  //               this.androidPermissions
+  //                 .checkPermission(
+  //                   this.androidPermissions.PERMISSION.RECORD_AUDIO
+  //                 )
+  //                 .then((audio) => {
+  //                   this.androidPermissions
+  //                     .checkPermission(
+  //                       this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS
+  //                     )
+  //                     .then((modifyAudio) => {
+  //                       if (
+  //                         camera.hasPermission &&
+  //                         audio.hasPermission &&
+  //                         modifyAudio.hasPermission
+  //                       ) {
+  //                         resolve(null);
+  //                       } else {
+  //                         reject(
+  //                           new Error(
+  //                             "Permissions denied: " +
+  //                               "\n" +
+  //                               " CAMERA = " +
+  //                               camera.hasPermission +
+  //                               "\n" +
+  //                               " AUDIO = " +
+  //                               audio.hasPermission +
+  //                               "\n" +
+  //                               " AUDIO_SETTINGS = " +
+  //                               modifyAudio.hasPermission
+  //                           )
+  //                         );
+  //                       }
+  //                     })
+  //                     .catch((err) => {
+  //                       console.error(
+  //                         "Checking permission " +
+  //                           this.androidPermissions.PERMISSION
+  //                             .MODIFY_AUDIO_SETTINGS +
+  //                           " failed"
+  //                       );
+  //                       reject(err);
+  //                     });
+  //                 })
+  //                 .catch((err) => {
+  //                   console.error(
+  //                     "Checking permission " +
+  //                       this.androidPermissions.PERMISSION.RECORD_AUDIO +
+  //                       " failed"
+  //                   );
+  //                   reject(err);
+  //                 });
+  //             })
+  //             .catch((err) => {
+  //               console.error(
+  //                 "Checking permission " +
+  //                   this.androidPermissions.PERMISSION.CAMERA +
+  //                   " failed"
+  //               );
+  //               reject(err);
+  //             });
+  //         })
+  //         .catch((err) => console.error("Error requesting permissions: ", err));
+  //     });
+  //   });
+  // }
 
   toggleFullScreen() {
     this.isFullScreen = !this.isFullScreen;

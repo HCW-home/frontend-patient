@@ -4,7 +4,8 @@ import { Component, OnInit, NgZone, Directive } from "@angular/core";
 
 import { Platform, NavController } from "@ionic/angular";
 
-import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
+// import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
+import { SplashScreen } from '@capacitor/splash-screen';
 
 import { CallService } from "./call.service";
 
@@ -12,7 +13,9 @@ import { SocketEventsService } from "./socket-events.service";
 import { ConsultationService } from "./consultation.service";
 
 import { AuthService } from "./auth/auth.service";
-import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
+// import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
+import { NativeAudio } from '@capacitor-community/native-audio'
+
 
 import { NavigationEnd, Router } from "@angular/router";
 
@@ -42,13 +45,13 @@ export class AppComponent {
   testRoute = false;
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
+    // private splashScreen: SplashScreen,
     private callService: CallService,
     private authService: AuthService,
     private socketEventsService: SocketEventsService,
     private consultationService: ConsultationService,
     private zone: NgZone,
-    private nativeAudio: NativeAudio,
+    // private nativeAudio: NativeAudio,
     private file: File,
     private router: Router,
     public globalVariableService: GlobalVariableService
@@ -160,7 +163,7 @@ export class AppComponent {
       window.platform = this.platform;
 
       if (this.isNativeApp()) {
-        this.splashScreen.hide();
+        SplashScreen.hide();
       }
       if (
         this.platform.is("ios") &&
@@ -180,8 +183,24 @@ export class AppComponent {
         this.redirectToLogin();
       }
 
-      this.nativeAudio
-        .preloadComplex("ringSound", "/assets/sounds/notification.mp3", 1, 1, 0)
+      // this.nativeAudio
+      //   .preloadComplex("ringSound", "/assets/sounds/notification.mp3", 1, 1, 0)
+      //   .then(
+      //     (r) => {
+      //       console.log("audio loaded ", r);
+      //     },
+      //     (err) => {
+      //       console.log("error loading sample ", err);
+      //     }
+      //   );
+      NativeAudio
+        .preload({
+          assetId:"ringSound", 
+          assetPath: "public/assets/sounds/notification.mp3", 
+          volume: 1,
+          audioChannelNum: 1,
+          isUrl: false
+        })
         .then(
           (r) => {
             console.log("audio loaded ", r);
@@ -190,6 +209,8 @@ export class AppComponent {
             console.log("error loading sample ", err);
           }
         );
+
+        
     });
   }
 

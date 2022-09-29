@@ -1,4 +1,5 @@
-import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
+// import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
+import { NativeAudio } from '@capacitor-community/native-audio'
 import { Component, AfterViewChecked, ViewChild, OnInit, NgZone, OnDestroy, AfterViewInit, HostListener, Directive  } from "@angular/core";
 import { IonContent, Platform } from "@ionic/angular";
 import { AlertController } from "@ionic/angular";
@@ -70,7 +71,7 @@ export class ConsultationPage
     public alertController: AlertController,
     private globalVariableService: GlobalVariableService,
     public platform: Platform,
-    private nativeAudio: NativeAudio,
+    // private nativeAudio: NativeAudio,
   ) {}
 
   ngOnInit() {
@@ -81,6 +82,7 @@ export class ConsultationPage
     this.listenToCallEvents();
     this.listenToNewMessages();
   }
+  
 
   // ionViewDidEnter() {
   //   document.addEventListener("backbutton", function (e) {
@@ -537,7 +539,7 @@ export class ConsultationPage
 
   adjustScroll(event) {
     console.log(this.contentArea, this.contentScrollTop);
-    console.log("scroll to botto");
+    console.log("scroll to bottom");
     this.scrollToBottom(300);
   }
 
@@ -546,8 +548,11 @@ export class ConsultationPage
       console.log("leave call", this.platform.is("cordova"));
 
       if (this.platform.is("cordova")) {
-        this.nativeAudio.stop("ringSound");
+        NativeAudio.stop({assetId: 'ringSound'});
       }
+      // if (this.platform.is("capacitor")) {
+      //   this.nativeAudio.stop("ringSound");
+      // }
       this.callRunning = false;
       this.shouldJoinCall = false;
     });
@@ -568,14 +573,17 @@ export class ConsultationPage
   }
   ringing() {
     console.log("CURRENT PLATFORM", this.platform);
-
     this.platform
       .ready()
       .then(() => {
         if (this.platform.is("cordova")) {
-          console.log("RINGING NOW", this.nativeAudio.loop);
-          return this.nativeAudio.loop("ringSound");
+          console.log("RINGING NOW", NativeAudio.loop);
+          return NativeAudio.loop({assetId:"ringSound"});
         }
+        // if (this.platform.is("capacitor")) {
+        //   console.log("RINGING NOW", this.nativeAudio.loop);
+        //   return this.nativeAudio.loop("ringSound");
+        // }
       })
       .then(
         (res) => {},
