@@ -40,17 +40,17 @@ export class OpenViduLayout {
 
     this.fixAspectRatio(elem, width);
 
-    if (animate && $) {
-      $(elem).stop();
-      $(elem).animate(targetPosition, animate.duration || 200, animate.easing || 'swing', () => {
-        this.fixAspectRatio(elem, width);
-        if (animate.complete) {
-          animate.complete.call(this);
-        }
-      });
-    } else {
-      $(elem).css(targetPosition);
-    }
+    // if (animate && $) {
+    //   $(elem).stop();
+    //   $(elem).animate(targetPosition, animate.duration || 200, animate.easing || 'swing', () => {
+    //     this.fixAspectRatio(elem, width);
+    //     if (animate.complete) {
+    //       animate.complete.call(this);
+    //     }
+    //   });
+    // } else {
+    //   $(elem).css(targetPosition);
+    // }
     this.fixAspectRatio(elem, width);
   }
 
@@ -68,7 +68,8 @@ export class OpenViduLayout {
   }
 
   private getCSSNumber(elem: HTMLElement, prop: string) {
-    const cssStr = $(elem).css(prop);
+    // const cssStr = $(elem).css(prop);
+    const cssStr = elem.style[prop];
     return cssStr ? parseInt(cssStr, 10) : 0;
   }
 
@@ -77,13 +78,15 @@ export class OpenViduLayout {
     return (Math.random() * 100000000).toFixed(0);
   }
 
-  private getHeight(elem: HTMLElement) {
-    const heightStr = $(elem).css('height');
+  private getHeight(elem: HTMLElement) {    
+    // const heightStr = $(elem).css('height');
+    const heightStr = elem.style.height;
     return heightStr ? parseInt(heightStr, 10) : 0;
   }
 
   private getWidth(elem: HTMLElement) {
-    const widthStr = $(elem).css('width');
+    // const widthStr = $(elem).css('width');
+    const widthStr = elem.style.width;
     return widthStr ? parseInt(widthStr, 10) : 0;
   }
 
@@ -273,6 +276,7 @@ export class OpenViduLayout {
       return;
     }
     let id = this.layoutContainer.id;
+    
     if (!id) {
       id = 'OT_' + this.cheapUUID();
       this.layoutContainer.id = id;
@@ -287,8 +291,9 @@ export class OpenViduLayout {
       this.getCSSNumber(this.layoutContainer, 'borderLeft') -
       this.getCSSNumber(this.layoutContainer, 'borderRight');
 
+      
     const availableRatio = HEIGHT / WIDTH;
-
+    
     let offsetLeft = 0;
     let offsetTop = 0;
     let bigOffsetTop = 0;
@@ -411,7 +416,8 @@ export class OpenViduLayout {
       bigMinRatio: opts.bigMinRatio != null ? opts.bigMinRatio : 9 / 16,
       bigFirst: opts.bigFirst != null ? opts.bigFirst : true,
     };
-    this.layoutContainer = typeof container === 'string' ? $(container) : container;
+    // this.layoutContainer = typeof container === 'string' ? $(container) : container;    
+    this.layoutContainer = container;    
   }
 
   setLayoutOptions(options: OpenViduLayoutOptions) {

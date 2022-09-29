@@ -15,7 +15,9 @@ import { environment } from "./../../environments/environment";
 import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, QueryList, ViewChildren, EventEmitter, Output, Input, NgZone, Directive } from "@angular/core";
 
 import { Platform, ModalController, AlertController } from "@ionic/angular";
-import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
+// import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
+import { NativeAudio } from '@capacitor-community/native-audio'
+
 
 import {
   trigger,
@@ -188,7 +190,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   _device: any = "";
   constructor(
     public platform: Platform,
-    private nativeAudio: NativeAudio,
+    // private nativeAudio: NativeAudio,
     private socketSer: SocketEventsService,
     private roomService: RoomService,
     private logger: LogService,
@@ -239,7 +241,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
 
     this.remoteUsers = [];
     if (this.platform.is("cordova")) {
-      this.nativeAudio.stop("ringSound").then();
+      NativeAudio.stop({assetId: 'ringSound'}).then();
     }
     this.askForPerm()
       .then(() => {
@@ -388,7 +390,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
 
       this.hangup.emit(true);
     }
-
+    
     this.openViduSrv
       .rejectCall(this.sessionId || this.consultation._id, this.message.id)
       .then((r) => {

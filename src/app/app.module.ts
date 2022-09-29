@@ -80,7 +80,7 @@ import { HugAngularLibModule } from 'hug-angular-lib';
         VideoRoomPageModule,
         AngularDraggableModule,
         FormsModule,
-        // VideoRoomPageModule, cordova plugin add cordova-plugin-background-mode
+       // VideoRoomPageModule, //cordova plugin add cordova-plugin-background-mode
         // translate
         I18nModule,
         HugAngularLibModule,
@@ -112,6 +112,6 @@ import { HugAngularLibModule } from 'hug-angular-lib';
         CloseConsultationComponent,
         ChooseAttachmentComponent,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
-<app-video-room
-  *ngIf="ongoingCall && shouldJoinCall"
+<!-- <app-video-room
+  ngIf="ongoingCall && shouldJoinCall"
   [consultation]="consultation"
   [sessionId]="consultation.id"
   (hangup)="hangup()"
@@ -8,8 +8,23 @@
   [token]="ongoingCall.token"
 ></app-video-room>
 <app-video-room
-  *ngIf="callRunning"
+  ngIf="callRunning"
   [consultation]="consultation"
+  [sessionId]="consultation.id"
+  [message]="ongoingCall"
+  [token]="ongoingCall.token"
+  (hangup)="hangup()"
+></app-video-room> -->
+<app-video-room
+  *ngIf="ongoingCall && shouldJoinCall"
+  [sessionId]="consultation.id"
+  (hangup)="hangup()"
+  [accepted]="true"
+  [message]="ongoingCall"
+  [token]="ongoingCall.token"
+></app-video-room>
+<app-video-room
+  *ngIf="callRunning"
   [sessionId]="consultation.id"
   [message]="ongoingCall"
   [token]="ongoingCall.token"

@@ -156,11 +156,11 @@ export class ConsultationPage
         this.ringing();
 
         this.zone.run(() => {
-          console.log("get call ", e);
+          console.log("get call 1", e);
           this.callRunning = true;
           this.ongoingCall = e.data.msg;
           this.shouldJoinCall = false;
-        });
+        });        
       })
     );
     this.subscriptions.push(
@@ -168,7 +168,7 @@ export class ConsultationPage
         console.log("End Calll ", e);
 
         this.zone.run(() => {
-          console.log("get call ", e);
+          console.log("get call 2", e);
           this.callRunning = false;
           this.ongoingCall = null;
           this.shouldJoinCall = false;
