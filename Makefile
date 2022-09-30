@@ -6,7 +6,6 @@ timeStamp:=$(shell date +%Y%m%d%H%M%S)
 .PHONY: install build archive test clean web
 
 node_modules:
-	echo "building in production mode"
 #	@ npx yarn install
 	@ npm install
 
@@ -18,23 +17,19 @@ all: android ios
 
 www: node_modules
 	sed -i 's/native/web/g' src/environments/environment.prod.ts
-#	npx ionic cordova platform add browser
-	npx ionic cordova build browser --prod
+	npx ionic cap build browser --prod --no-open
 
 web: www
 
 android: node_modules
 	sed -i 's/web/native/g' src/environments/environment.prod.ts
-	npx ionic cordova platform add android --prod --release
-	npx ionic cordova build android --release --prod
-	npx ionic cordova build android --debug
-	cd platform/android && ./gradlew bundleRelease
-	cd platform/android && ./gradlew assembleRelease
+	npx ionic cap build android --prod --no-open
+	cd android && ./gradlew bundleRelease
+	cd android && ./gradlew assembleRelease
 
 ios: node_modules
 	sed -i 's/web/native/g' src/environments/environment.prod.ts
-	npx ionic cordova platform add ios --prod --release
-	npx ionic cordova prepare ios --release --prod
+	npx ionic cap build ios --prod --no-open
 
 show:
 	@ echo Timestamp: "$(timeStamp)"
@@ -52,7 +47,7 @@ test:
 	echo "test the app"
 
 clean:
-	@ rm -rf dist node_modules www platform plugins
+	@ rm -rf node_modules
 	@ rm -rf dist.tar.gz
 
 sign:

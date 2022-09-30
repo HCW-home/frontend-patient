@@ -1,3 +1,11 @@
+hcw-athome-patient (0.4.4.0) focal; urgency=medium
+
+  [ YassineEF ]
+  * Major update of Ionic and Angular.
+  * Migration to Capacitor build.
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 30 Sep 2022 15:59:51 +0200
+
 hcw-athome-patient (4.3.32) focal; urgency=medium
 
   * Fix branding var name for italian
