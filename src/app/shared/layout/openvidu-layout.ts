@@ -1,4 +1,4 @@
-declare var $: any;
+// declare var $: any;
 
 export interface OpenViduLayoutOptions {
   maxRatio: number;
@@ -31,17 +31,17 @@ export class OpenViduLayout {
   }
 
   private positionElement(elem: HTMLVideoElement, x: number, y: number, width: number, height: number, animate: any) {
-    const targetPosition = {
-      left: x + 'px',
-      top: y + 'px',
-      width: width + 'px',
-      height: height + 'px',
-    };
+    // const targetPosition = {
+    //   left: x + 'px',
+    //   top: y + 'px',
+    //   width: width + 'px',
+    //   height: height + 'px',
+    // };
 
     this.fixAspectRatio(elem, width);
 
     // if (animate && $) {
-    //   $(elem).stop();
+      // $(elem).stop();
     //   $(elem).animate(targetPosition, animate.duration || 200, animate.easing || 'swing', () => {
     //     this.fixAspectRatio(elem, width);
     //     if (animate.complete) {
@@ -51,6 +51,12 @@ export class OpenViduLayout {
     // } else {
     //   $(elem).css(targetPosition);
     // }
+    elem.style.left = x + 'px';
+    elem.style.top = y + 'px';
+    elem.style.width = width + 'px';
+    elem.style.height = height + 'px';
+
+    
     this.fixAspectRatio(elem, width);
   }
 
@@ -70,7 +76,9 @@ export class OpenViduLayout {
   private getCSSNumber(elem: HTMLElement, prop: string) {
     // const cssStr = $(elem).css(prop);
     const cssStr = elem.style[prop];
-    return cssStr ? parseInt(cssStr, 10) : 0;
+    // return cssStr ? parseInt(cssStr, 10) : 0;
+
+    return cssStr ? cssStr : 0;
   }
 
   // Really cheap UUID function
@@ -80,14 +88,18 @@ export class OpenViduLayout {
 
   private getHeight(elem: HTMLElement) {    
     // const heightStr = $(elem).css('height');
-    const heightStr = elem.style.height;
-    return heightStr ? parseInt(heightStr, 10) : 0;
+    // const heightStr = elem.style.height;
+    const heightStr = elem.offsetHeight;    
+    // return heightStr ? parseInt(heightStr, 10) : 0;
+    return heightStr ? heightStr : 0;
+
   }
 
   private getWidth(elem: HTMLElement) {
     // const widthStr = $(elem).css('width');
-    const widthStr = elem.style.width;
-    return widthStr ? parseInt(widthStr, 10) : 0;
+    // const widthStr = elem.style.width;
+    const widthStr = elem.offsetWidth;
+    return widthStr ? widthStr : 0;
   }
 
   private getBestDimensions(minR: number, maxR: number, count: number, WIDTH: number, HEIGHT: number, targetHeight: number) {
