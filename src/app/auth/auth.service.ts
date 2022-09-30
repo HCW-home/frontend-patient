@@ -12,6 +12,7 @@ import { User } from '../user';
 import { GlobalVariableService } from '../global-variable.service';
 import { CapacitorCookies } from '@capacitor/core';
 
+declare let window: any;
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

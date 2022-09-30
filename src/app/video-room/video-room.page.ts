@@ -554,11 +554,11 @@ export class VideoRoomPage implements OnInit, OnDestroy {
           // Ionic Android  devices
           if (
             this.platform.is("android") &&
-            cordova.plugins &&
-            (cordova.plugins as any).EnumerateDevicesPlugin
+            window.cordova.plugins &&
+            (window.cordova.plugins as any).EnumerateDevicesPlugin
           ) {
             (
-              cordova.plugins as any
+              window.cordova.plugins as any
             ).EnumerateDevicesPlugin.getEnumerateDevices().then(
               (pluginDevices: Device[]) => {
                 let pluginAudioDevices: Device[] = [];
