@@ -578,6 +578,7 @@ export class ConsultationPage
       .then(() => {
         if (this.platform.is("cordova")) {
           console.log("RINGING NOW", NativeAudio.loop);
+           NativeAudio.play({assetId:'ringSound', time: 0});
           return NativeAudio.loop({assetId:"ringSound"});
         }
         // if (this.platform.is("capacitor")) {

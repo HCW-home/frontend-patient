@@ -193,11 +193,10 @@ export class AppComponent {
       //       console.log("error loading sample ", err);
       //     }
       //   );
-      NativeAudio
-        .preload({
-          assetId:"ringSound", 
-          assetPath: "public/assets/sounds/notification.mp3", 
-          volume: 1,
+        NativeAudio.preload({
+          assetId:'ringSound', 
+          assetPath: 'public/assets/sounds/notification.mp3', 
+          // volume: 1,
           audioChannelNum: 1,
           isUrl: false
         })
@@ -206,11 +205,9 @@ export class AppComponent {
             console.log("audio loaded ", r);
           },
           (err) => {
-            console.log("error loading sample ", err);
+            console.log("error loading sample here", err);            
           }
-        );
-
-        
+          );
     });
   }
 

@@ -65,6 +65,8 @@ export class ClosingScreenPage implements OnInit {
   }
 
   closeApp() {
+    console.log('hello');
+    
     localStorage.clear();
     App.exitApp();
   }
@@ -91,7 +93,9 @@ export class ClosingScreenPage implements OnInit {
    * Event fired when the user submits the feedback form
    */
   onFormSubmit() {
-    if (this.feedbackSubmitted || (!this.userRating && !this.userComment)) {
+
+
+    if (this.feedbackSubmitted || !this.userRating == null) {
       return;
     }
     this.feedbackSubmitted = true;
