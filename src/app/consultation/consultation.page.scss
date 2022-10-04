@@ -7,6 +7,7 @@
   background-color: var(--ion-color-primary) !important;
   background-position: center;
   border-radius: 0px;
+  text-align: center;
 }
 ::ng-deep {
   html[data-theme="accessibility"] {
@@ -205,7 +206,7 @@ div.input > ion-grid > ion-row > ion-col > ion-icon {
   --border-radius: 30px;
   --background: white;
   color: var(--ion-color-primary);
-  margin-left: 30%;
+  // margin-left: 30%;
   display: inline-block;
   
 }
