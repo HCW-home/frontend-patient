@@ -120,7 +120,7 @@ export class AppComponent {
     this.redirected = true;
   }
   isNativeApp() {
-    return environment.platform === "native";
+    return this.platform.is('ios') || this.platform.is('android');
   }
   async initializeApp() {
 
@@ -147,7 +147,6 @@ export class AppComponent {
       document.head.appendChild(script2);
     }
 
-    // if (!this.isNativeApp()) {
     if (this.inviteToken) {
       if (localStorage.getItem("inviteToken") !== this.inviteToken) {
         console.log("New invite token .");

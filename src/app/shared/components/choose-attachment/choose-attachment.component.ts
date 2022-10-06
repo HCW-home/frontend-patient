@@ -101,6 +101,6 @@ export class ChooseAttachmentComponent implements OnInit {
     })
   }
   isNativeApp() {
-    return environment.platform === 'native'
+    return this.platform.is("ios") || this.platform.is("android");
   }
 }

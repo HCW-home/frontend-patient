@@ -86,7 +86,7 @@ export class ClosingScreenPage implements OnInit {
   }
 
   isNativeApp() {
-    return environment.platform === "native";
+    return this.platform.is("ios") || this.platform.is("android");
   }
 
   /**

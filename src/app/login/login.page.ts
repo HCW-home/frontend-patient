@@ -110,7 +110,7 @@ export class LoginPage implements OnInit {
 
     this.mobileLandScreen =
       this.platform.is("mobile") &&
-      environment.platform !== "native" &&
+      (this.platform.is("ios") || this.platform.is("android")) &&
       showNativeAppSuggestion;
 
     this.init();
@@ -548,7 +548,7 @@ export class LoginPage implements OnInit {
   }
 
   isNativeApp() {
-    return environment.platform === "native";
+    return this.platform.is("ios") || this.platform.is("android");
   }
 
   generateIcsBlob(date) {
