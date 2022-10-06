@@ -240,14 +240,14 @@ export class ConsultationService {
       console.log(file);
       
       const rawFile = new File([file], file.name, {
-        type: file.type,
+        type: file.mimeType,
       });
   
       formData.append('attachment', rawFile, file.name);
     return this.http
       .post(endpoint, formData, {
         headers: {
-          'mime-type': file.type,
+          'mime-type': file.mimeType,
           'x-access-token': `${this.currentUser.token}`,
           fileName: file.name
         }

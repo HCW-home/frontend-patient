@@ -41,18 +41,11 @@ export class ChooseAttachmentComponent implements OnInit {
   };
 
   async chooseFile() {
-    if (this.platform.is('desktop') || environment.platform !== 'native') {
-      this.chooseFileBrowser().then((file) => {
-        this.dismiss(file, 'file')
-      })
-    } else {
-    
-       FilePicker.pickFiles()
-        .then((uri) => {
-          this.dismiss(uri.files[0], 'file');
-        })
-        .catch(e => console.log(e));
-    }
+    FilePicker.pickFiles()
+    .then((uri) => {
+      this.dismiss(uri.files[0], 'file');
+    })
+    .catch(e => console.log(e));
   }
 
   dismiss(filePath?, type?) {   
