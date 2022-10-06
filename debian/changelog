@@ -1,3 +1,13 @@
+hcw-athome-patient (0.4.4.2) focal; urgency=medium
+
+  [ YassineEF ]
+  * Fixing typo
+
+  [ Olivier Bitsch ]
+  * Attempt to remove native in env file
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 06 Oct 2022 17:19:01 +0200
+
 hcw-athome-patient (0.4.4.1) focal; urgency=medium
 
   [ YassineEF ]
