@@ -34,28 +34,28 @@ export class ChooseAttachmentComponent implements OnInit {
 
   async pickFiles () {
     const result = await FilePicker.pickFiles({
-      types: ['image/png'],
-      multiple: true,
+      // types: ['image/png'],
+      types: ['image/png', 'application/pdf', 'image/jpg', 'image/jpeg'],
+      multiple: false,
     });
   };
 
-  chooseFile() {
+  async chooseFile() {
     if (this.platform.is('desktop') || environment.platform !== 'native') {
       this.chooseFileBrowser().then((file) => {
         this.dismiss(file, 'file')
       })
     } else {
     
-      this.pickFiles()
+       FilePicker.pickFiles()
         .then((uri) => {
-          console.log(uri);
-          this.dismiss(uri, 'file');
+          this.dismiss(uri.files[0], 'file');
         })
         .catch(e => console.log(e));
     }
   }
 
-  dismiss(filePath?, type?) {
+  dismiss(filePath?, type?) {   
     this.modalController.dismiss({
       filePath,
       type:type
@@ -87,11 +87,14 @@ export class ChooseAttachmentComponent implements OnInit {
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Prompt
+      source: CameraSource.Prompt,
+      promptLabelPhoto: 'Depuis la gallerie',
+      promptLabelPicture: 'Depuis la camera'
     });
+    
     this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
-
-    this.dismiss(this.photo, 'image');
+    
+    this.dismiss(this.photo, 'file');
   
   }
   chooseFileBrowser() {

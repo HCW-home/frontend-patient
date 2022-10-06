@@ -361,18 +361,22 @@ export class ConsultationPage
   
     
     if (data.filePath) {
-      if (typeof data.filePath === "object") {
+      if (typeof data.filePath === "object") {        
         this.uploadBlob(data.filePath, data.filePath.name);
+        
+        // this.uploadBlob(data.filePath, data.filePath.name);
       } else if (data.filePath.length > 100000) {
         const blob = this.b64toBlob(data.filePath, "image/jpeg");
         this.uploadBlob(blob, "image.jpg");
-      } else {
+      } 
+      else {        
         this.upload(data.filePath);
       }
     }
   }
 
   upload(filePath) {
+    
     this.isUploading = true;
     this.file
       .resolveLocalFilesystemUrl(filePath)
@@ -410,12 +414,13 @@ export class ConsultationPage
   }
 
   uploadBlob(blob, name) {
+    
     this.isUploading = true;    
     this.consultationService
       .postFile(blob, name, this.consultation.id || this.consultation.id)
       .subscribe((data) => {
         const msg = data.message;
-
+        
         this.zone.run(() => {
           this.chatMessages.push(this.adjustMsg(msg));
           this.scrollToBottom();

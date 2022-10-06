@@ -226,7 +226,7 @@ export class ConsultationService {
     }
     const endpoint = this.globalVariableService.getApiPath() + `/consultation/${consultationId}/upload-file`;
     const formData: FormData = new FormData();
-    if(file.changingThisBreaksApplicationSecurity !== undefined){
+    if(file.changingThisBreaksApplicationSecurity !== undefined){      
       formData.append('attachment', this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity), file.name);
     return this.http
       .post(endpoint, formData, {
@@ -237,16 +237,24 @@ export class ConsultationService {
         }
       });
     }else{
-      formData.append('attachment', file, file.name);
+      console.log(file);
+      
+      const rawFile = new File([file], file.name, {
+        type: file.mimeType,
+      });
+  
+      formData.append('attachment', rawFile, file.name);
     return this.http
       .post(endpoint, formData, {
         headers: {
-          'mime-type': file.type,
+          'mime-type': file.mimeType,
           'x-access-token': `${this.currentUser.token}`,
           fileName: file.name
         }
       }); 
     }
+
+    
     
 
 
