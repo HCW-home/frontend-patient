@@ -214,11 +214,30 @@ export class ConsultationService {
     }));
   }
 
-  postFile(file, fileName, consultationId): Observable<any> {
+  postFile(blob: File, fileName, consultationId): Observable<any> {
+  let file
+    if (!blob.lastModified) {
+      file = this.blobToFile(blob, fileName);
+      console.log('file name:', file);
+      
+    } else {
+      file = blob
+      
+    }
     const endpoint = this.globalVariableService.getApiPath() + `/consultation/${consultationId}/upload-file`;
     const formData: FormData = new FormData();
-   
-    console.log("BLAAA", file);
+    if(file.changingThisBreaksApplicationSecurity !== undefined){      
+      formData.append('attachment', this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity), file.name);
+    return this.http
+      .post(endpoint, formData, {
+        headers: {
+          'mime-type': this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity).type,
+          'x-access-token': `${this.currentUser.token}`,
+          fileName: 'image.jpg'
+        }
+      });
+    }else{
+      console.log(file);
       
       const rawFile = new File([file], file.name, {
         type: file.mimeType,
@@ -230,13 +249,15 @@ export class ConsultationService {
         headers: {
           'mime-type': file.mimeType,
           'x-access-token': `${this.currentUser.token}`,
-          fileName: fileName
+          fileName: file.name
         }
       }); 
-
+    }
 
     
-  
+    
+
+
    
   }
 

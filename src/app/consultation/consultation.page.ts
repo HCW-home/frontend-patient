@@ -416,7 +416,7 @@ export class ConsultationPage
   uploadBlob(blob, name) {
     this.isUploading = true;    
     this.consultationService
-      .postFile(blob, name, this.consultation.id)
+      .postFile(blob, name, this.consultation.id || this.consultation.id)
       .subscribe((data) => {
         const msg = data.message;
         
