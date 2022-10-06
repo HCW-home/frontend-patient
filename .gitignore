@@ -33,3 +33,6 @@ UserInterfaceState.xcuserstate
 *.jks
 *.apk
 .gradle/
+
+resources/ios/**/*
+resources/android/**/*
