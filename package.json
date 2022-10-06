@@ -10,6 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "assets": "npx capacitor-assets generate --iconBackgroundColor '#0072bb'",
     "ionic:build": "npm run build",
     "ionic:serve": "npm run start"
   },
