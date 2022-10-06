@@ -6,26 +6,26 @@
       >
         <ion-icon class="attach-icon" slot="icon-only" name="attach"></ion-icon>
         <h4>
-          ENVOYER <br />
-          <strong>UN FICHIER</strong>
+          {{ 'chooseAttachement.send' | translate }} <br />
+          <strong>{{ 'chooseAttachement.aFile' | translate }}</strong>
         </h4>
       </div>
-      <button class="submit-btn" mat-button (click)="takePicture()" *ngIf="isNativeApp()">
-        Prendre une photo
+      <button class="submit-btn" mat-button (click)="takePicture()">
+        {{ 'chooseAttachement.takeAPhoto' | translate }}
       </button>
       <button class="submit-btn" mat-button (click)="chooseFile()">
-        Depuis le téléphone ou PC
+        {{ 'chooseAttachement.fromThePhoneOrPC' | translate }}
       </button>
       <!-- <button class="submit-btn" mat-button (click)="chooseFile()" >
           Laisser un message audio
          </button> -->
       <ion-button (click)="dismiss()" class="dismiss-btn" color="transparent"
-        >ANNULER</ion-button
+        >{{ 'chooseAttachement.cancel' | translate }}</ion-button
       >
     </div>
   </div>
   <input
-    *ngIf="this.platform.is('desktop') || !isNativeApp()"
+    *ngIf="!isNativeApp()"
     type="file"
     style="display: none"
     id="input-file"

@@ -168,7 +168,7 @@
     "send": "ENVOYER",
     "aFile": "UN FICHIER",
     "takeAPhoto": "Prendre une photo",
-    "fromThePhone": "Depuis le téléphone",
+    "fromThePhoneOrPC": "Depuis le téléphone ou PC",
     "leaveAudioMessage": "Laisser un message audio",
     "cancel": "ANNULER"
   },

@@ -76,7 +76,7 @@
         mat-button
         (click)="closeApp()"
         type="button"
-        *ngIf="feedbackSaved || isMobile"
+        *ngIf="feedbackSaved && isNativeApp()"
       >
         {{ 'login.closeTheApplication' | translate }}
       </button>
