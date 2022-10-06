@@ -34,5 +34,3 @@ UserInterfaceState.xcuserstate
 *.apk
 .gradle/
 
-resources/ios/**/*
-resources/android/**/*
