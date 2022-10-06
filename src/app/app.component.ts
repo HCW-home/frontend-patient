@@ -182,19 +182,9 @@ export class AppComponent {
         this.redirectToLogin();
       }
 
-      // this.nativeAudio
-      //   .preloadComplex("ringSound", "/assets/sounds/notification.mp3", 1, 1, 0)
-      //   .then(
-      //     (r) => {
-      //       console.log("audio loaded ", r);
-      //     },
-      //     (err) => {
-      //       console.log("error loading sample ", err);
-      //     }
-      //   );
         NativeAudio.preload({
           assetId:'ringSound', 
-          assetPath: 'public/assets/sounds/notification.mp3', 
+          assetPath: 'notification.mp3', 
           // volume: 1,
           audioChannelNum: 1,
           isUrl: false

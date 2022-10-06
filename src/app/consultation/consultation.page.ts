@@ -550,13 +550,7 @@ export class ConsultationPage
   hangup() {
     this.zone.run(() => {
       console.log("leave call", this.platform.is("cordova"));
-
-      if (this.platform.is("cordova")) {
-        NativeAudio.stop({assetId: 'ringSound'});
-      }
-      // if (this.platform.is("capacitor")) {
-      //   this.nativeAudio.stop("ringSound");
-      // }
+      NativeAudio.stop({assetId: 'ringSound'});
       this.callRunning = false;
       this.shouldJoinCall = false;
     });
@@ -580,11 +574,9 @@ export class ConsultationPage
     this.platform
       .ready()
       .then(() => {
-        if (this.platform.is("cordova")) {
-          console.log("RINGING NOW", NativeAudio.loop);
-           NativeAudio.play({assetId:'ringSound', time: 0});
-          return NativeAudio.loop({assetId:"ringSound"});
-        }
+        console.log("RINGING NOW", NativeAudio.loop);
+        NativeAudio.play({assetId:'ringSound', time: 0});
+        return NativeAudio.loop({assetId:"ringSound"});
         // if (this.platform.is("capacitor")) {
         //   console.log("RINGING NOW", this.nativeAudio.loop);
         //   return this.nativeAudio.loop("ringSound");

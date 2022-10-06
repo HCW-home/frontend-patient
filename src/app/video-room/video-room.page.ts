@@ -240,9 +240,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     this.accepted = true;
 
     this.remoteUsers = [];
-    if (this.platform.is("cordova")) {
-      NativeAudio.stop({assetId: 'ringSound'}).then();
-    }
+    NativeAudio.stop({assetId: 'ringSound'}).then();
     this.askForPerm()
       .then(() => {
         this.getDevices().then((devices) => {
