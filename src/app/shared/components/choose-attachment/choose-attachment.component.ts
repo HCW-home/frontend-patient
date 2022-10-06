@@ -35,7 +35,7 @@ export class ChooseAttachmentComponent implements OnInit {
   async pickFiles () {
     const result = await FilePicker.pickFiles({
       // types: ['image/png'],
-      types: ['image/png', 'application/pdf', 'image/jpg', 'image/jpeg'],
+      types: ['image/*', 'application/pdf'],
       multiple: false,
     });
   };
@@ -81,8 +81,8 @@ export class ChooseAttachmentComponent implements OnInit {
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Prompt,
-      promptLabelPhoto: 'Depuis la gallerie',
-      promptLabelPicture: 'Depuis la camera'
+      promptLabelPhoto: 'Depuis la galerie',
+      promptLabelPicture: 'Depuis la caméra'
     });
     
     this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
