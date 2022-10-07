@@ -181,7 +181,7 @@ export class AppComponent {
         this.redirectToLogin();
       }
 
-        if ( this.platform.is('ios') || this.platform.is('android') ) {
+        if ( !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'))) {
           var notificationFile = 'public/assets/sounds/notification.mp3'
         } else {
           var notificationFile = 'notification.mp3'
