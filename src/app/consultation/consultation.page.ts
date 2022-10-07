@@ -24,6 +24,7 @@ import { environment } from "../../environments/environment";
 import { Media, MediaObject } from "@awesome-cordova-plugins/media/ngx";
 import { GlobalVariableService } from "../global-variable.service";
 
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-consultation",
@@ -70,6 +71,7 @@ export class ConsultationPage
     public alertController: AlertController,
     private globalVariableService: GlobalVariableService,
     public platform: Platform,
+    private translate: TranslateService,
     // private nativeAudio: NativeAudio,
   ) {}
 
@@ -235,10 +237,12 @@ export class ConsultationPage
   }
 
   getConsultation() {
+    const lang = window.localStorage.getItem("hhp-lang");
+    this.translate.use(lang);
     this.consultationSubscription = this.conServ
       .getConsultation(this.consultationId)
       .subscribe(async (consultation) => {
-        console.log("CURRENT CONSULTATION >>>>>>>>>>>>>>>>>", consultation);
+        console.log("CURRENT CONSULTATION >>>>>>>>>>>>>>>>", consultation);
         if (!consultation || !consultation.consultation) {
           if (this.consultationSubscription) {
             this.consultationSubscription.unsubscribe();
