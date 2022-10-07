@@ -49,7 +49,6 @@ export interface Device {
   label: string;
 }
 
-@Directive()
 @Component({
   selector: "app-video-room",
   templateUrl: "./video-room.page.html",

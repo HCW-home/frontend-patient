@@ -20,7 +20,7 @@ import { AngularDraggableModule } from 'angular2-draggable';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
- import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
+import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 
 import { VideoRoomPageModule } from './video-room/video-room.module';
 

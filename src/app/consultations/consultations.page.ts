@@ -6,7 +6,6 @@ import { zip } from 'rxjs';
 
 
 
-@Directive()
 @Component({
   selector: 'app-consultations',
   templateUrl: './consultations.page.html',

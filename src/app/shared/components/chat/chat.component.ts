@@ -3,7 +3,6 @@ import { Component, OnInit, Input, Output, EventEmitter, Directive  } from '@ang
 import { ModalController } from '@ionic/angular';
 
 
-@Directive()
 @Component({
     selector: 'chat-component',
     templateUrl: './chat.component.html',

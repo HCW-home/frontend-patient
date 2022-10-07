@@ -63,6 +63,10 @@ ion-card-content {
   // min-width: 0;
 }
 
+.incoming > ion-row > ion-col > .bubble a{
+  color: #e2e2e2;
+}
+
 .incoming > ion-row > ion-col > .bubble {
   background-color: var(--ion-color-primary);
   color: #ffffff;

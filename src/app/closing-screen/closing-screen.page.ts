@@ -12,7 +12,6 @@ import { App } from '@capacitor/app';
 declare let cordova: any;
 
 
-@Directive()
 @Component({
   selector: "app-closing-screen",
   templateUrl: "./closing-screen.page.html",

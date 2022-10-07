@@ -6,7 +6,6 @@ import { ChangeDetectorRef } from '@angular/core';
 
 import { ModalController } from '@ionic/angular';
 
-@Directive()
 @Component({
   selector: 'app-request-consultation',
   templateUrl: './request-consultation.component.html',

@@ -5,7 +5,6 @@ import { ConsultationService } from './../consultation.service';
 import { Component, OnInit, OnDestroy, Directive  } from '@angular/core';
 
 
-@Directive()
 @Component({
   selector: 'app-await-consultation',
   templateUrl: './await-consultation.page.html',

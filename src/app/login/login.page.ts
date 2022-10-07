@@ -28,7 +28,6 @@ const coeff = 1000 * 60 * 5;
 // login invite
 // handle user
 
-@Directive()
 @Component({
   providers: [DatePipe],
   selector: "app-login",

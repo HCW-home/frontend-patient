@@ -25,7 +25,6 @@ import { Media, MediaObject } from "@awesome-cordova-plugins/media/ngx";
 import { GlobalVariableService } from "../global-variable.service";
 
 
-@Directive()
 @Component({
   selector: "app-consultation",
   templateUrl: "./consultation.page.html",

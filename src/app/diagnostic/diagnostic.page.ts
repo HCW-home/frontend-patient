@@ -1,6 +1,5 @@
 import { Component, OnInit, Directive  } from '@angular/core';
 
-@Directive()
 @Component({
   selector: 'app-diagnostic',
   templateUrl: './diagnostic.page.html',

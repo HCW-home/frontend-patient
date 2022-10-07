@@ -1,20 +1,3 @@
-<!-- <app-video-room
-  ngIf="ongoingCall && shouldJoinCall"
-  [consultation]="consultation"
-  [sessionId]="consultation.id"
-  (hangup)="hangup()"
-  [accepted]="true"
-  [message]="ongoingCall"
-  [token]="ongoingCall.token"
-></app-video-room>
-<app-video-room
-  ngIf="callRunning"
-  [consultation]="consultation"
-  [sessionId]="consultation.id"
-  [message]="ongoingCall"
-  [token]="ongoingCall.token"
-  (hangup)="hangup()"
-></app-video-room> -->
 <app-video-room
   *ngIf="ongoingCall && shouldJoinCall"
   [sessionId]="consultation.id"
@@ -48,11 +31,11 @@
   </p>
   <ion-card
     *ngIf="consultation.consultation.status === 'active'"
-    class="jumbotron ion-no-padding ion-no-margin"
-  >
+    class="jumbotron ion-no-padding ion-no-margin">
     <ion-card-header>
-      <ion-card-title class="title"
-        >{{ 'consultation.consultation' | translate }} <br />
+      <ion-card-title class="title">
+        {{ 'consultation.consultation' | translate }}
+        <br />
         <strong>{{ 'consultation.capInProgress' | translate }}</strong>
       </ion-card-title>
     </ion-card-header>
@@ -67,15 +50,15 @@
         >
       </p>
     </ion-card-content>
-    <!-- <ion-button (click)="requestCall()" class="cancel-btn"  color="danger">call</ion-button> -->
   </ion-card>
 
   <ion-card
     *ngIf="consultation.consultation.status === 'pending'"
     class="jumbotron await ion-no-padding ion-no-margin"
   >
-    <ion-title class="title"
-      >{{ 'consultation.requestForConsultation' | translate }} <br />
+    <ion-title class="title">
+      {{ 'consultation.requestForConsultation' | translate }}
+      <br />
       <strong>{{ 'consultation.capInProgress' | translate }}</strong>
     </ion-title>
     <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
@@ -89,8 +72,8 @@
       *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'"
       (click)="showCancelModal()"
       class="cancel-btn"
-    >
-      {{ 'consultation.cancel' | translate }}
+    i18n>
+    {{ 'consultation.cancel' | translate }}
     </ion-button>
   </ion-card>
 
@@ -103,16 +86,30 @@
       }"
       class="ion-margin"
     >
-      <a
-        *ngIf="msg.isFile"
-        [href]="msg.attachmentsURL"
-        [type]="msg.mimeType"
-        [download]="msg.fileName"
-        >{{ 'consultation.download' | translate }}</a
-      >
+
+      <ion-row *ngIf="msg.isFile" class="ion-no-padding ion-no-margin">
+        <ion-col class="chat-text-container">
+          <ion-row class="bubble ion-padding">
+            <p
+              style="overflow-wrap: normal"
+              class="ion-no-padding ion-no-margin"
+            >
+            <ion-container>{{'consultation.download' | translate}}: </ion-container>
+              <a
+              *ngIf="msg.isFile"
+              [href]="msg.attachmentsURL"
+              [type]="msg.mimeType"
+              [download]="msg.fileName"
+              >
+              {{msg.fileName}}
+            </a>
+            </p>
+          </ion-row>
+        </ion-col>
+      </ion-row>
 
       <audio *ngIf="msg.isAudio" controls>
-        <source [src]="msg.attachmentsURL" type="audio/mpeg" />
+        <source [src]="msg.attachmentsURL" type="audio/mpeg">
         {{ 'consultation.yourBrowserDoesNotSupport' | translate }}
       </audio>
 
@@ -145,58 +142,55 @@
 
       <ion-row *ngIf="msg.type === 'videoCall'" style="text-align: center">
         <p style="text-align: center; width: 100%">
-          {{ msg.closedAt? (msg.acceptedAt? ('consultation.videoCallStarted' |
-          translate) : ('consultation.videoCallStarted' | translate)):
-          ('consultation.videoCallRequested' | translate) }}
+          <ng-container *ngIf="msg.acceptedAt ; else elseBlock">
+            {{'consultation.videoCallStarted' | translate}}
+          </ng-container>
+          <ng-template #elseBlock >{{'consultation.videoCallRequested' | translate}}</ng-template>
         </p>
         <span
           class="msg-time"
-          style="display: block; width: 100%; margin-top: 0 !important"
-          >{{ msg.createdAt | date: "d MMMM, HH:mm":"fr" }}
+          style="display: block; width: 100%; margin-top: 0 !important">
+          {{ msg.createdAt | date:'medium' }}
         </span>
 
         <ng-container *ngIf="msg.acceptedAt && msg.closedAt">
           <p style="text-align: center; width: 100%">
-            {{ 'consultation.videoCallEnded' | translate }}
+            {{'consultation.videoCallEnded' | translate}}
           </p>
           <span
             class="msg-time"
             style="display: block; width: 100%; margin-top: 0 !important"
-            >{{ msg.closedAt | date: "d MMMM, HH:mm":"fr" }}
+            >{{ msg.closedAt | date:'medium' }}
           </span>
         </ng-container>
       </ion-row>
 
       <ion-row *ngIf="msg.type === 'audioCall'" style="text-align: center">
         <p style="text-align: center; width: 100%">
-          {{ msg.closedAt? (msg.acceptedAt? ('consultation.audioCallStarted' |
-          translate) : ('consultation.audioCallRefused' | translate)):
-          ('consultation.audioCallRequested' | translate) }}
+          <ng-container *ngIf="msg.acceptedAt ; else elseBlock">
+            {{'consultation.audioCallStarted' | translate}}
+          </ng-container>
+          <ng-template #elseBlock>{{'consultation.audioCallRequested' | translate}}</ng-template>
         </p>
         <span
           class="msg-time"
           style="display: block; width: 100%; margin-top: 0 !important"
-          >{{ msg.createdAt | date: "d MMMM, HH:mm":"fr" }}
+          >{{ msg.createdAt | date:'medium' }}
         </span>
 
         <ng-container *ngIf="msg.acceptedAt && msg.closedAt">
           <p style="text-align: center; width: 100%">
-            {{ 'consultation.audioCallEnded' | translate }}
+            {{'consultation.audioCallEnded' | translate}}
           </p>
           <span
             class="msg-time"
             style="display: block; width: 100%; margin-top: 0 !important"
-            >{{ msg.closedAt | date: "d MMMM, HH:mm":"fr" }}
+            >{{ msg.closedAt | date:'medium' }}
           </span>
         </ng-container>
       </ion-row>
-      <ion-row
-        *ngIf="msg.type !== 'videoCall' && msg.type !== 'audioCall'"
-        class="msg-time ion-no-padding ion-no-margin"
-        ><span class="msg-time"
-          >{{ msg.createdAt | date: "d MMMM, HH:mm":"fr" }}
-        </span></ion-row
-      >
+
+
     </ion-grid>
     <ion-grid class="ion-margin outgoing">
       <ion-spinner *ngIf="isUploading" name="dots"></ion-spinner>
@@ -206,9 +200,8 @@
         *ngIf="ongoingCall && !shouldJoinCall && !callRunning"
         class="controller"
         color="success"
-        (click)="joinCall()"
-      >
-        {{"consultation.joinCall"|translate}}
+        (click)="joinCall()">
+      {{'consultation.joinCall'|translate}}
       </ion-button>
     </div>
   </ion-grid>
@@ -237,7 +230,7 @@
             (keypress)="sendMsg($event)"
             (click)="readMessages()"
             [(ngModel)]="chatText"
-            placeholder="{{ 'consultation.enterYourMessage' | translate }}"
+            placeholder="{{'consultation.enterYourMessage'|translate}}"
             (ionFocus)="adjustScroll()"
           ></ion-textarea
         ></ion-col>

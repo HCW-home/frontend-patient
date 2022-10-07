@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 
 
-@Directive()
 @Component({
   selector: "app-close-consultation",
   templateUrl: "./close-consultation.component.html",

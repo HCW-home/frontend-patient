@@ -11,7 +11,6 @@ import { AuthService } from '../../../auth/auth.service';
 import { environment } from '../../../../environments/environment';
 
 
-@Directive()
 @Component({
   selector: 'app-choose-attachment',
   templateUrl: './choose-attachment.component.html',

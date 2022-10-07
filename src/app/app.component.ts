@@ -28,7 +28,6 @@ import { TestComponent } from "./test/test.component";
 import { filter } from "rxjs/operators";
 import { environment } from "../environments/environment";
 
-@Directive()
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",

@@ -16,7 +16,6 @@ import { InfoService } from "../info.service";
 import { AuthService } from "../auth/auth.service";
 import { ConfigService } from "../config.service";
 
-@Directive()
 @Component({
   selector: "app-test-call",
   templateUrl: "./test.component.html",

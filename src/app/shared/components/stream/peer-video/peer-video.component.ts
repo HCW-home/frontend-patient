@@ -3,7 +3,6 @@ import { Stream, LogService } from "hug-angular-lib";
 import { Component, Input, ViewChild, ElementRef, OnDestroy, AfterViewInit, OnChanges, Directive  } from "@angular/core";
 
 
-@Directive()
 @Component({
   selector: "app-peer-video",
   templateUrl: "./peer-video.component.html",

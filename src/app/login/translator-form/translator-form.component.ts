@@ -8,7 +8,6 @@ import {
 const phoneNumberRegex = new RegExp(/^(\+|00)[0-9 ]+$/)
 
 
-@Directive()
 @Component({
   selector: 'app-translator-form',
   templateUrl: './translator-form.component.html',
