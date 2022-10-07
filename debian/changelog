@@ -1,3 +1,9 @@
+hcw-athome-patient (0.4.4.5) focal; urgency=medium
+
+  * Attempt to fix notificaton sound in Android mobileweb
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 07 Oct 2022 16:53:32 +0200
+
 hcw-athome-patient (0.4.4.4) focal; urgency=medium
 
   * attempt to fix detect mobile
