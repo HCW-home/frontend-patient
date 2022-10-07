@@ -181,9 +181,15 @@ export class AppComponent {
         this.redirectToLogin();
       }
 
+        if ( this.platform.is('ios') || this.platform.is('android') ) {
+          var notificationFile = 'public/assets/sounds/notification.mp3'
+        } else {
+          var notificationFile = 'notification.mp3'
+        }
+
         NativeAudio.preload({
           assetId:'ringSound', 
-          assetPath: 'notification.mp3', 
+          assetPath: notificationFile, 
           // volume: 1,
           audioChannelNum: 1,
           isUrl: false
