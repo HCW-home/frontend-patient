@@ -11,16 +11,8 @@ export class SelectLanguageComponent {
 
   constructor(public translate: TranslateService) {}
 
-  openDropdown(event?) {
-    if (event) {
-      event.stopPropagation();
-    }
-    this.opened = !this.opened;
-  }
-
   changeLang(event, lang) {
-    event.stopPropagation();
-    this.opened = false;
+    console.log("LANGGAGGE", lang)
     window.localStorage.setItem("hhp-lang", lang);
     this.translate.use(lang);
   }

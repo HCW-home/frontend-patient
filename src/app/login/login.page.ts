@@ -231,6 +231,9 @@ export class LoginPage implements OnInit {
     console.log("handle invite.................", invite, invite.status);
     console.log("current user ", this.currentUser);
     this.invite = invite;
+    const lang = window.localStorage.getItem("hhp-lang");
+    this.translate.use(lang);
+    /**
     if (invite.patientLanguage) {
       if (this.translate.getLangs().includes(invite.patientLanguage)) {
         this.translate.use(invite.patientLanguage);
@@ -240,6 +243,7 @@ export class LoginPage implements OnInit {
         window.localStorage.setItem("hhp-lang", "fr");
       }
     }
+     */
 
     if (this.currentUser) {
       if (this.currentUser.inviteToken === this.invite.id) {

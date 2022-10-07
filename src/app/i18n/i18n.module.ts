@@ -19,7 +19,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export class I18nModule {
 
-  public defaultLanguage = 'fr';
+  public defaultLanguage = 'en';
   public supportedLanguages = [
     'en',
     'fr',
