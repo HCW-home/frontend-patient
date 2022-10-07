@@ -1,3 +1,46 @@
+hcw-athome-patient (0.4.4.4) focal; urgency=medium
+
+  * attempt to fix detect mobile
+  * Revert file upload
+  * Remove useless platform
+  * Fix sound in browser
+  * Fix structure and text alignment
+  * Fix updated language
+  * Updating CGU page if not defined
+  * Fix partially language selector issue
+  * Adding comment of what need to be fixed
+  * Override language on get consultation
+  * Fix loading notification sound depending of the platform
+  * attempt to fix detect mobile
+  * Revert file upload
+  * Remove useless platform
+  * Fix sound in browser
+  * Fix structure and text alignment
+  * Fix updated language
+  * Updating CGU page if not defined
+  * Fix partially language selector issue
+  * Adding comment of what need to be fixed
+  * Override language on get consultation
+  * Fix loading notification sound depending of the platform
+  * Fix environment file
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 07 Oct 2022 16:34:13 +0200
+
+hcw-athome-patient (0.4.4.3) focal; urgency=medium
+
+  * attempt to fix detect mobile
+  * Revert file upload
+  * Remove useless platform
+  * Fix sound in browser
+  * Fix structure and text alignment
+  * Fix updated language
+  * Updating CGU page if not defined
+  * Fix partially language selector issue
+  * Adding comment of what need to be fixed
+  * Override language on get consultation
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 07 Oct 2022 14:15:53 +0200
+
 hcw-athome-patient (0.4.4.2) focal; urgency=medium
 
   [ YassineEF ]
