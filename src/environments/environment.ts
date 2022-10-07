@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   api: "/api/v1",
-  host:  "https://patient_hcw-athome.dev.oniabsis.com",
+  //host:  "https://patient_hcw-athome.dev.oniabsis.com",
+  //host: "http://localhost:1337",
 
-  // host: 'https://' + document.location.host,
+  host: 'https://' + document.location.host,
 
   showNativeAppSuggestionAndroid: true,
   showNativeAppSuggestionIOS: true,
