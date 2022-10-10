@@ -80,9 +80,6 @@ export class ClosingScreenPage implements OnInit {
   /**
    * Check if the user is running an installed app.
    */
-  isMobileApp() {
-    return this.isMobileUser() && this.platform.is("hybrid");
-  }
 
   isNativeApp() {
     return this.platform.is("ios") || this.platform.is("android");

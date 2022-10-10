@@ -13,7 +13,7 @@ export class GlobalVariableService {
   public host: Observable<string>;
   public serverError = false;
   constructor(public platform: Platform) {
-    if(!(platform.is('android') || platform.is('ios'))){
+    if(!this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'))){
       this.resetHost()
       console.log("reset host url");
     }

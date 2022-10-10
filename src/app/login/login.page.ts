@@ -540,18 +540,15 @@ export class LoginPage implements OnInit {
    * Check if the user is running on mobile (either web or native app).
    */
   isMobileUser() {
-    return this.platform.is("ios") || this.platform.is("android");
+    return this.platform.is('ios') || this.platform.is('android');
   }
 
   /**
    * Check if the user is running an installed app.
    */
-  isMobileApp() {
-    return this.isMobileUser() && this.platform.is("hybrid");
-  }
 
   isNativeApp() {
-    return this.platform.is("ios") || this.platform.is("android");
+    return !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'));
   }
 
   generateIcsBlob(date) {

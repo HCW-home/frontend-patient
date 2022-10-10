@@ -48,7 +48,7 @@
         {{translatorAcceptError.userMessage}}
       </div>
 
-      <ng-container *ngIf="noInviteError && isMobileApp()">
+      <ng-container *ngIf="noInviteError">
         <ng-container *ngIf="noTokenProvided">
           <ion-card>
             <ion-card-header>
@@ -67,7 +67,7 @@
             type="button"
             *ngIf="isNativeApp()"
           >
-            {{ 'login.closeTheApplication' | translate }}
+            BLA {{ 'login.closeTheApplication' | translate }}
           </button>
         </ng-container>
         <ng-container *ngIf="!noTokenProvided" class="token-error">
@@ -93,87 +93,19 @@
           </button>
         </ng-container>
       </ng-container>
-      <ng-container *ngIf="noInviteError && !isMobileApp()">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title class="token-error-title"
-              >{{ 'login.anErrorHasOccurred' | translate }}</ion-card-title
-            >
-          </ion-card-header>
-
-          <ion-card-content class="token-error-content">
-            {{ 'login.theInvitationIsNotOrNoLongerValide' | translate }}
-          </ion-card-content>
-        </ion-card>
-      </ng-container>
 
       <ng-container
-        *ngIf="mobileLandScreen && !noInviteError && !(invite && invite.type === 'TRANSLATOR_REQUEST')"
+        *ngIf="!noInviteError && !(invite && invite.type === 'TRANSLATOR_REQUEST')"
       >
-        <p class="subtitle">Utilisateur ponctuel ?</p>
 
-        <button
-          class="btn green big"
-          mat-button
-          [disabled]="loading"
-          type="submit"
-          (click)="closeLandingScreen()"
-        >
-          {{ loading ? 'Chargement en cours...' : 'Rejoindre via le navigateur'
-          }}
-        </button>
-
-        <div class="icons">
-          <p class="subtitle">{{ 'login.installOurApp' | translate }}</p>
-          <a
-            [href]="this.configService.config.appleStoreUrl"
-            [title]="this.configService.config.appleStoreTitle"
-            *ngIf="platform.is('ios') && this.configService.config && this.configService.config.appleStoreUrl"
-          >
-            <img src="/assets/images/appstore.svg" alt="App Store" />
-          </a>
-          <a
-            [href]="this.configService.config.androidStoreUrl"
-            [title]="this.configService.config.androidStoreTitle"
-            *ngIf="platform.is('android') && this.configService.config && this.configService.config.androidStoreUrl"
-          >
-            <img src="/assets/images/googleplay.png" alt="Google Play" />
-          </a>
-        </div>
-        <p class="subtitle">
-          {{ 'login.donwloadHomeOnTheAppStore' | translate:configService.config
-          }}
-        </p>
-        <button
-          class="btn green big"
-          mat-button
-          (click)="openApp()"
-          type="button"
-        >
-          {{ 'login.openTheConsultation' | translate }}
-        </button>
-        <p class="subtitle">{{ 'login.youDoNotWantToInstall' | translate }}</p>
-
-        <button
-          class="btn"
-          mat-button
-          [disabled]="loading"
-          type="submit"
-          (click)="closeLandingScreen()"
-        >
-          {{ loading ? ('login.loading' | translate) : ('login.joinViaBrowser' |
-          translate) }}
-        </button>
+ 
       </ng-container>
-      <ng-container *ngIf="!mobileLandScreen && !noInviteError">
-        <p *ngIf="!inviteToken && !isMobileUser()">
-          {{ 'login.ifYouHaveReceivedThisInvitation' | translate }}
-        </p>
-        <p *ngIf="!inviteToken && isMobileUser()">
+      <ng-container *ngIf="!noInviteError">
+        <p *ngIf="!inviteToken">
           {{ 'login.ifYouReceivedThisInvitation' | translate }}
         </p>
 
-        <ion-card *ngIf="!inviteToken && isMobileUser()">
+        <ion-card *ngIf="!inviteToken">
           <ion-card-header>
             <ion-card-title>{{ 'login.warning' | translate }}</ion-card-title>
           </ion-card-header>

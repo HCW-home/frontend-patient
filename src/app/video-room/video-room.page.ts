@@ -449,7 +449,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
         aspectRatio: this.videoAspectRatio,
         frameRate,
       },
-    };
+    }; 
     return navigator.mediaDevices.getUserMedia({ audio: true, video: true });
   }
 
@@ -550,7 +550,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
 
           // Ionic Android  devices
           if (
-            this.platform.is("android") &&
+            this.platform.is("android") && !this.platform.is("mobileweb") &&
             window.cordova.plugins &&
             (window.cordova.plugins as any).EnumerateDevicesPlugin
           ) {

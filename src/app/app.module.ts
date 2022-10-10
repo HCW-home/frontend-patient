@@ -35,7 +35,7 @@ import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
-//import { registerLocaleData } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
 
 // translate
 import { I18nModule } from './i18n/i18n.module';
@@ -44,9 +44,9 @@ import localeFr from '@angular/common/locales/fr';
 import localeDe from '@angular/common/locales/de';
 import localeEn from '@angular/common/locales/en';
 
-//registerLocaleData(localeFr);
-//registerLocaleData(localeDe);
-//registerLocaleData(localeEn);
+registerLocaleData(localeFr);
+registerLocaleData(localeDe);
+registerLocaleData(localeEn);
 
 
 import { RequestConsultationComponent } from './shared/components/request-consultation/request-consultation.component';

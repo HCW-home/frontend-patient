@@ -119,7 +119,7 @@ export class AppComponent {
     this.redirected = true;
   }
   isNativeApp() {
-    return this.platform.is('ios') || this.platform.is('android');
+    return !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'));
   }
   async initializeApp() {
 
@@ -141,7 +141,7 @@ export class AppComponent {
     if (this.platform.is("ios") && this.platform.is("cordova")) {
       const script2 = document.createElement("script");
       script2.type = "text/javascript";
-      script2.src = "assets/libs/adapter-4.0.1.js";
+      // CHECK IF REQUIRED script2.src = "assets/libs/adapter-4.0.1.js";
       script2.async = false;
       document.head.appendChild(script2);
     }
