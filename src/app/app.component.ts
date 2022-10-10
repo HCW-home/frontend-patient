@@ -27,6 +27,7 @@ import { LoginPage } from "./login/login.page";
 import { TestComponent } from "./test/test.component";
 import { filter } from "rxjs/operators";
 import { environment } from "../environments/environment";
+import { Browser } from '@capacitor/browser';
 
 @Component({
   selector: "app-root",
@@ -127,6 +128,11 @@ export class AppComponent {
       const url = new URL(data.url);
       const token = url.searchParams.get('invite')
 
+      if (/attachment/.test(data.url)) {
+        console.log("This is going to open link")
+        return;
+      }
+
       if (localStorage.getItem("inviteToken") !== token) {
         this.authService.logout();
       }
@@ -155,7 +161,6 @@ export class AppComponent {
         // document.location.reload()
       }
     }
-    // }
 
     this.platform.ready().then(() => {
       window.platform = this.platform;

@@ -87,6 +87,8 @@
       class="ion-margin"
     >
 
+
+
       <ion-row *ngIf="msg.isFile" class="ion-no-padding ion-no-margin">
         <ion-col class="chat-text-container">
           <ion-row class="bubble ion-padding">
@@ -97,9 +99,7 @@
             <ion-container>{{'consultation.download' | translate}}: </ion-container>
               <a
               *ngIf="msg.isFile"
-              [href]="msg.attachmentsURL"
-              [type]="msg.mimeType"
-              [download]="msg.fileName"
+              (click)="openlink(msg.attachmentsURL)"
               >
               {{msg.fileName}}
             </a>

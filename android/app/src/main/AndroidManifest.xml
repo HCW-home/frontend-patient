@@ -25,6 +25,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" />
                 <data android:host="patient_hcw-athome.dev.oniabsis.com" />
+                <data android:pathPrefix="/invite" />
             </intent-filter>
         </activity>
 

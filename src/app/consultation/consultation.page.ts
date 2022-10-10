@@ -26,6 +26,8 @@ import { GlobalVariableService } from "../global-variable.service";
 
 import { TranslateService } from "@ngx-translate/core";
 
+import { Browser } from '@capacitor/browser';
+
 @Component({
   selector: "app-consultation",
   templateUrl: "./consultation.page.html",
@@ -591,6 +593,11 @@ export class ConsultationPage
           console.log("error ", err);
         }
       );
+  }
+
+  openlink(url) {
+    console.log("opening", url)
+    Browser.open({ url: url});
   }
 
   hideKeyboard() {
