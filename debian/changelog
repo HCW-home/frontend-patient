@@ -1,3 +1,11 @@
+hcw-athome-patient (0.4.4.8) focal; urgency=medium
+
+  * Adding back button in case of invalid invite
+  * Fix back button
+  * Fix URL and Hide invite key if production
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 10 Oct 2022 15:46:57 +0200
+
 hcw-athome-patient (0.4.4.7) focal; urgency=medium
 
   * Attempt to fix plugins if not cordova
