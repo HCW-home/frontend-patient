@@ -1,3 +1,9 @@
+hcw-athome-patient (0.4.4.6) focal; urgency=medium
+
+  * Fix various check in app
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 10 Oct 2022 11:01:52 +0200
+
 hcw-athome-patient (0.4.4.5) focal; urgency=medium
 
   * Attempt to fix notificaton sound in Android mobileweb
