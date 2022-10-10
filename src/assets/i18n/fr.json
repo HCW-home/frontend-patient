@@ -83,6 +83,7 @@
     "information": "INFORMATIONS"
   },
   "login": {
+    "back": "Retour",
     "home": "Home",
     "translationRequestAccepted": "Merci pour la confirmation, vous allez recevoir très prochainement les informations par mail.",
     "translationRequestRefused": "Merci pour votre retour, nous allons informer le soignant de cette indisponibilité.",

@@ -66,6 +66,7 @@
   "info.theAttendingPhysician": "Der behandelnde Arzt ist nicht erreichbar oder hat sein Einverständnis zu diesem Anruf gegeben",
   "info.thePatientWasRecently": "Der Patient wurde kürzlich bei {{branding}} (&lt; 1 Monat) ins Krankenhaus eingeliefert.",
   "info.information": "INFORMATION",
+  "login.back": "Back",
   "login.home": "Zuhause",
   "login.translationRequestAccepted": "Vielen Dank für die Bestätigung, Sie erhalten die Informationen in Kürze per E-Mail.",
   "login.translationRequestRefused": "Vielen Dank für Ihr Feedback, wir werden den Betreuer über die Nichtverfügbarkeit informieren.",

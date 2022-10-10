@@ -66,6 +66,7 @@
     "info.theAttendingPhysician": "Лечащий врач недоступен или дал свое согласие на этот вызов",
     "info.thePatientWasRecently": "Пациент был недавно госпитализирован в {{branding}} (< 1 месяца)",
     "info.information": "ИНФОРМАЦИЯ",
+    "login.back": "Back",
     "login.home": "Главная",
     "login.translationRequestAccepted": "Спасибо за подтверждение, скоро вы получите информацию по электронной почте.",
     "login.translationRequestRefused": "Спасибо за отзыв, мы сообщим лицу, осуществляющему уход о недоступности.",

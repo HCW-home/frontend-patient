@@ -66,6 +66,7 @@
     "info.theAttendingPhysician": "Il medico curante non è disponibile o ha dato il consenso a questa chiamata",
     "info.thePatientWasRecently": "Il paziente è stato recentemente ricoverato presso la struttura {{branding}} (&lt; 1 mese)",
     "info.information": "INFORMAZIONI",
+    "login.back": "Back",
     "login.home": "Home",
     "login.translationRequestAccepted": "Grazie per la conferma, a breve riceverai le informazioni via e-mail.",
     "login.translationRequestRefused": "Grazie per il riscontro, informeremo l'operatore sanitario dell'indisponibilità.",

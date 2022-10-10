@@ -62,6 +62,7 @@
         "theCallIsNotFor": "La llamada no se trata de una emergencia vital"
     },
     "login": {
+        "back": "Back",
         "theRemoteServerIsNotReachable": "No se puede acceder al servidor remoto, compruebe su conectividad",
         "warning": "Atención",
         "termsOfService": "Condiciones generales de uso",

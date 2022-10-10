@@ -66,6 +66,7 @@
     "info.theAttendingPhysician": "እዚ ሓካሚ ተረካቢ ኣይክነን ወይ ፍቃድ ኣይሃበን።",
     "info.thePatientWasRecently": "ኣብ ዝ ሓለፈ ቀረባ እዋን ፡ እዚ ተሓካሚ ኣብ ሆስፒታል ተዓቚቡ ነይሩ {{branding}} (< 1 ወርሒ)",
     "info.information": "ሓበሬታታት",
+    "login.back": "Back",
     "login.home": "ገጽ",
     "login.translationRequestAccepted": "ንምርግጋጽካ ነመስግን፣ ኣብዚ ቀረባ እቶም ሓበሬታት ብኢመይል ክትቅበሎም ኢኻ።",
     "login.translationRequestRefused": "ንመልሰኻ ነመስግን፣ ተረኻቢ ከምዘይኮንካ ንሓኪም ክንሕብር ኢና።",

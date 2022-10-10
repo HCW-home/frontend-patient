@@ -83,6 +83,7 @@
     "information": "INFORMATION"
   },
   "login": {
+    "back": "Back",
     "home": "Home",
     "translationRequestAccepted": "Thank you for the confirmation, you will receive the information via email very soon.",
     "translationRequestRefused": "Thank you for your feedback, we will inform the caregiver of the unavailability.",

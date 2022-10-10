@@ -66,6 +66,7 @@
     "info.theAttendingPhysician": "پزشک معالج در دسترس نیست یا رضایت خود را داده است",
     "info.thePatientWasRecently": "بیمار اخیرا در {{branding}} (< 1 ماه)بستری شده است",
     "info.information": "اطلاعات",
+    "login.back": "Back",
     "login.home": "صفحه اصلی",
     "login.translationRequestAccepted": "با تشکر از تأیید شما، شما  بزودی اطلاعات را از طریق ایمیل دریافت خواهید کرد.",
     "login.translationRequestRefused": "از پاسخ شما سپاسگزاریم،  ما معالج را از دسترس نبودن شما مطلع می کنیم.",

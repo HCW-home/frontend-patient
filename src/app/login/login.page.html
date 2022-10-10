@@ -67,7 +67,7 @@
             type="button"
             *ngIf="isNativeApp()"
           >
-            BLA {{ 'login.closeTheApplication' | translate }}
+            {{ 'login.closeTheApplication' | translate }}
           </button>
         </ng-container>
         <ng-container *ngIf="!noTokenProvided" class="token-error">
@@ -81,6 +81,15 @@
               {{ 'login.theInvitationIsNotOrNoLongerValide' | translate }}
             </ion-card-content>
           </ion-card>
+
+          <button
+            class="btn big"
+            mat-button
+            (click)="clearError()"
+            type="button"
+          >
+            {{ 'login.back' | translate }}
+          </button>
 
           <button
             class="btn red big"

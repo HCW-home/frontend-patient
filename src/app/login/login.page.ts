@@ -346,15 +346,19 @@ export class LoginPage implements OnInit {
     console.log(inviteToken);
     localStorage.setItem("inviteToken", inviteToken);
 
-    console.log("SET LOADING FALSE AVEC");
+    this.loading = false;
+    this.submitted = false;
+
+    //console.log("SET LOADING FALSE AVEC");
     // Prevent loading issue not reverted when coming back to this page
-    setTimeout(() => {
+    /*setTimeout(() => {
       this.zone.run(() => {
         console.log("SET LOADING FALSE AVEC 5s");
         this.loading = false;
         this.submitted = false;
       });
     }, 3000);
+    */
 
     this.handleToken(inviteToken, true);
   }
@@ -518,6 +522,10 @@ export class LoginPage implements OnInit {
       window.location.host +
       (inviteToken ? "?invite=" + inviteToken : "")
     );
+  }
+
+  clearError() {
+    this.noInviteError = false;
   }
 
   closeLandingScreen() {

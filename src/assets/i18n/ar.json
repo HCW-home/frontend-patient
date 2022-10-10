@@ -62,6 +62,7 @@
         "theCallIsNotFor": "الاتصال لا يتعلق بضرورة قصوى"
     },
     "login": {
+        "back": "Back",
         "theRemoteServerIsNotReachable": "الخادم البعيد غير متاح، يُرجى التحقق من اتصالك بشبكة الإنترنت",
         "warning": "تنبيه",
         "termsOfService": "الشروط العامة للاستخدام",
