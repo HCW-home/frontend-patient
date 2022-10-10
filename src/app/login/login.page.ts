@@ -562,6 +562,10 @@ export class LoginPage implements OnInit {
     return !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'));
   }
 
+  isProduction() {
+    return environment.production;
+  }
+
   generateIcsBlob(date) {
     const url = this.getCurrentUrl();
 

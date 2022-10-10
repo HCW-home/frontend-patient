@@ -129,7 +129,7 @@
           (submit)="onSubmit()"
           class="login-form"
         >
-          <ion-item lines="full">
+          <ion-item lines="full" *ngIf="!isProduction()">
             <ion-label position="floating" text-wrap>
               {{ 'login.invitationKey' | translate }}
             </ion-label>
