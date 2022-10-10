@@ -526,6 +526,9 @@ export class LoginPage implements OnInit {
 
   clearError() {
     this.noInviteError = false;
+    localStorage.clear();
+    this.inviteToken = null
+    this.inviteKey = null
   }
 
   closeLandingScreen() {
