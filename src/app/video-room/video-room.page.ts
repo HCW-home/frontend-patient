@@ -550,10 +550,13 @@ export class VideoRoomPage implements OnInit, OnDestroy {
 
           // Ionic Android  devices
           if (
-            this.platform.is("android") && !this.platform.is("mobileweb") &&
+            this.platform.is("cordova") && 
+            this.platform.is("android") &&
+            window.cordova &&
             window.cordova.plugins &&
             (window.cordova.plugins as any).EnumerateDevicesPlugin
           ) {
+            console.log("Running this code because we are on Android native");
             (
               window.cordova.plugins as any
             ).EnumerateDevicesPlugin.getEnumerateDevices().then(
