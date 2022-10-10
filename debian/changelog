@@ -1,3 +1,9 @@
+hcw-athome-patient (0.4.4.7) focal; urgency=medium
+
+  * Attempt to fix plugins if not cordova
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 10 Oct 2022 13:15:45 +0200
+
 hcw-athome-patient (0.4.4.6) focal; urgency=medium
 
   * Fix various check in app
