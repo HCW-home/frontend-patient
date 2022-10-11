@@ -144,6 +144,8 @@
     "chooseAttachement.fromThePhone": "از طریق تلفن",
     "chooseAttachement.leaveAudioMessage": "یک پیام صوتی بگذارید",
     "chooseAttachement.cancel": "کنسل کردن",
+    "chooseAttachement.promptLabelPhoto": "From photo gallerie",
+    "chooseAttachement.promptLabelPicture": "From camera",
     "requestConsultation.demandeConsultation": "درخواست ویزیت آنلاین",
     "requestConsultation.requireentsToMakeConsultation": "پیش نیاز درخواست ویزیت آنلاین",
     "requestConsultation.theCallIsNotFor": "این تماس مربوط به یک اورژانس حیاتی نمی باشد",

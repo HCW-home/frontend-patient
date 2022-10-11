@@ -9,6 +9,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AuthService } from '../../../auth/auth.service';
 
 import { environment } from '../../../../environments/environment';
+import { TranslateService } from "@ngx-translate/core";
 
 
 @Component({
@@ -24,7 +25,8 @@ export class ChooseAttachmentComponent implements OnInit {
     public modalController: ModalController,
     private authService: AuthService,
     public platform: Platform,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private translate: TranslateService,
   ) { }
 
   ngOnInit() {
@@ -80,8 +82,8 @@ export class ChooseAttachmentComponent implements OnInit {
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Prompt,
-      promptLabelPhoto: 'Depuis la galerie',
-      promptLabelPicture: 'Depuis la caméra'
+      promptLabelPhoto: this.translate.instant('chooseAttachement.promptLabelPhoto'),
+      promptLabelPicture: this.translate.instant('chooseAttachement.promptLabelPicture')
     });
     
     this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));

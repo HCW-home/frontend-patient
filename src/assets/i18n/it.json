@@ -145,6 +145,8 @@
     "chooseAttachement.fromThePhone": "Da un telefono",
     "chooseAttachement.leaveAudioMessage": "Lascia un messaggio audio",
     "chooseAttachement.cancel": "ANNULLA",
+    "chooseAttachement.promptLabelPhoto": "From photo gallerie",
+    "chooseAttachement.promptLabelPicture": "From camera",
     "requestConsultation.demandeConsultation": "Richiesta di teleconsulto",
     "requestConsultation.requireentsToMakeConsultation": "PREREQUISITI PER LA RICHIESTA DI TELECONSULTO",
     "requestConsultation.theCallIsNotFor": "La chiamata non riguarda un'emergenza con pericolo di vita",

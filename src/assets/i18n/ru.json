@@ -145,6 +145,8 @@
     "chooseAttachement.fromThePhone": "С телефона",
     "chooseAttachement.leaveAudioMessage": "Оставить голосовое сообщение",
     "chooseAttachement.cancel": "ОТМЕНА",
+    "chooseAttachement.promptLabelPhoto": "From photo gallerie",
+    "chooseAttachement.promptLabelPicture": "From camera",
     "requestConsultation.demandeConsultation": "Запись на онлайн-консультацию",
     "requestConsultation.requireentsToMakeConsultation": "ПРЕДВАРИТЕЛЬНЫЕ ТРЕБОВАНИЯ ДЛЯ ЗАПИСИ НА ОНЛАЙН-КОНСУЛЬТАЦИЮ",
     "requestConsultation.theCallIsNotFor": "Звонок не связан с опасной для жизни чрезвычайной ситуацией",

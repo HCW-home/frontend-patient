@@ -253,6 +253,10 @@ ion-icon[name="attach"] {
 
 .chat-text-container {
   display: inline-flex;
+
+  a {
+    text-decoration: underline;
+  }
 }
 
 .outgoing {

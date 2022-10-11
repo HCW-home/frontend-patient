@@ -36,7 +36,6 @@ export class I18nModule {
   constructor(translate: TranslateService) {
     translate.addLangs(this.supportedLanguages);
     const userLang = window.localStorage.getItem('hhp-lang') || translate.getBrowserLang();
-    // TODO LANGUAGE NEVER GOES HERE IF TOGGLED FROM LIST
     translate.use(this.supportedLanguages.includes(userLang) ? userLang : this.defaultLanguage);
   }
 

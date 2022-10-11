@@ -171,7 +171,9 @@
     "takeAPhoto": "Take a photo",
     "fromThePhone": "From a phone",
     "leaveAudioMessage": "Leave an audio message",
-    "cancel": "CANCEL"
+    "cancel": "CANCEL",
+    "promptLabelPhoto": "From photo gallerie",
+    "promptLabelPicture": "From camera"
   },
   "requestConsultation": {
     "demandeConsultation": "Teleconsultation request",

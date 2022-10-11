@@ -184,7 +184,9 @@
         "send": "ENVIAR",
         "leaveAudioMessage": "Dejar un mensaje de audio",
         "takeAPhoto": "Tomar una foto",
-        "cancel": "ANULAR"
+        "cancel": "ANULAR",
+        "promptLabelPhoto": "From photo gallerie",
+        "promptLabelPicture": "From camera"
     },
     "fr": "Français",
     "en": "English",

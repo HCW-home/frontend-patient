@@ -184,7 +184,9 @@
         "send": "إرسال",
         "leaveAudioMessage": "ترك رسالة صوتية",
         "takeAPhoto": "أخذ صورة",
-        "cancel": "إلغاء"
+        "cancel": "إلغاء",
+        "promptLabelPhoto": "From photo gallerie",
+        "promptLabelPicture": "From camera"
     },
     "fr": "Français",
     "en": "English",

@@ -96,13 +96,13 @@
               style="overflow-wrap: normal"
               class="ion-no-padding ion-no-margin"
             >
-            <ion-container>{{'consultation.download' | translate}}: </ion-container>
+            {{'consultation.download' | translate}}:
               <a
               *ngIf="msg.isFile"
               (click)="openlink(msg.attachmentsURL)"
               >
               {{msg.fileName}}
-            </a>
+          </a>
             </p>
           </ion-row>
         </ion-col>

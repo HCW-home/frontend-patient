@@ -144,6 +144,8 @@
   "chooseAttachement.fromThePhone": "Von einem Telefon",
   "chooseAttachement.leaveAudioMessage": "Hinterlassen Sie eine Audionachricht",
   "chooseAttachement.cancel": "ABBRECHEN",
+  "chooseAttachement.promptLabelPhoto": "From photo gallerie",
+  "chooseAttachement.promptLabelPicture": "From camera",
   "requestConsultation.demandeConsultation": "Antrag auf Telekonsultation",
   "requestConsultation.requireentsToMakeConsultation": "VORAUSSETZUNGEN FÜR TELEKONSULTATIONSANFRAGE",
   "requestConsultation.theCallIsNotFor": "Dies ist kein lebensbedrohlicher Notfall",

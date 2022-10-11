@@ -169,9 +169,11 @@
     "send": "ENVOYER",
     "aFile": "UN FICHIER",
     "takeAPhoto": "Prendre une photo",
-    "fromThePhoneOrPC": "Depuis le téléphone ou PC",
+    "fromThePhone": "Depuis le téléphone ou PC",
     "leaveAudioMessage": "Laisser un message audio",
-    "cancel": "ANNULER"
+    "cancel": "ANNULER",
+    "promptLabelPhoto": "Depuis la galerie",
+    "promptLabelPicture": "Depuis la caméra"
   },
   "requestConsultation": {
     "demandeConsultation": "Demande téléconsultation",
