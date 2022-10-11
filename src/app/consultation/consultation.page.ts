@@ -28,6 +28,9 @@ import { TranslateService } from "@ngx-translate/core";
 
 import { Browser } from '@capacitor/browser';
 
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
+
 @Component({
   selector: "app-consultation",
   templateUrl: "./consultation.page.html",
@@ -38,6 +41,7 @@ export class ConsultationPage
 {
   @ViewChild(IonContent) contentArea: IonContent;
   @ViewChild("txtArea") textArea;
+  @ViewChild(IonModal) modal: IonModal;
 
   currentUser;
   consultationId;
@@ -54,6 +58,14 @@ export class ConsultationPage
   shouldJoinCall = false;
   ongoingCall = null;
   callRunning = false;
+
+  // New for display image in modal
+  isImgModalOpen = false;
+  imgModalSrc = null
+  imgModalAlt = null
+  imgModalName = null
+
+
   private subscriptions: Array<Subscription> = [];
   private consultationSubscription: Subscription;
 
@@ -599,6 +611,18 @@ export class ConsultationPage
     console.log("opening", url)
     Browser.open({ url: url});
   }
+
+  openImgModal(img) {
+    
+    this.imgModalSrc = img.target.currentSrc
+    this.imgModalAlt = img.target.alt
+    this.imgModalName = "Image"
+    this.isImgModalOpen = true;
+  }
+  closeImgModal(isOpen: boolean) {
+    this.isImgModalOpen = isOpen
+  }
+
 
   hideKeyboard() {
     // this set timeout needed for case when hideKeyborad

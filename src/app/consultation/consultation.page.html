@@ -124,6 +124,7 @@
           style="width: 60%; height: 60%; display: block"
           [src]="msg.attachmentsURL"
           alt="Couldn't load image"
+          (click)="openImgModal($event)"
         />
       </ion-row>
 
@@ -200,12 +201,34 @@
         *ngIf="ongoingCall && !shouldJoinCall && !callRunning"
         class="controller"
         color="success"
-        (click)="joinCall()">
+        (click)="joinCall()"
+        >
       {{'consultation.joinCall'|translate}}
       </ion-button>
     </div>
   </ion-grid>
 </ion-content>
+
+<ion-modal [isOpen]="isImgModalOpen" (willDismiss)="closeImgModal(false)">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ imgModalName }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="closeImgModal(false)">{{ "login.back" | translate }}</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <img
+      *ngIf="imgModalSrc"
+      [src]="imgModalSrc"
+      alt="imgModalAlt"
+    />
+    <ion-button (click)="closeImgModal(false)">{{ "login.back" | translate }}</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
 
 <ng-container
   *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'"
