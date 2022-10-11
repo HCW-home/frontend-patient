@@ -22,10 +22,12 @@ www: node_modules
 web: www
 
 android: node_modules
-	sed -i 's/web/native/g' src/environments/environment.prod.ts
 	npx ionic cap build android --prod --no-open
 	cd android && ./gradlew bundleRelease
 	cd android && ./gradlew assembleRelease
+
+android-debug: node_modules
+	cd android && ./gradlew assembleDebug
 
 ios: node_modules
 	sed -i 's/web/native/g' src/environments/environment.prod.ts
