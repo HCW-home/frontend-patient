@@ -36,7 +36,7 @@ export class ChooseAttachmentComponent implements OnInit {
   async pickFiles () {
     const result = await FilePicker.pickFiles({
       // types: ['image/png'],
-      types: ['image/*', 'application/pdf'],
+      types: ['application/pdf'],
       multiple: false,
     });
   };
