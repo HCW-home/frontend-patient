@@ -11,9 +11,8 @@ node_modules:
 
 build: web
 
-all: android ios
-	mkdir platforms/all
-	zip -r platforms/all/app-release-all.zip platforms/ios platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk platforms/android/app/build/outputs/apk/debug/app-debug.apk
+mobile: android ios android-debug
+	zip -r app-release-all.zip ios android/app/build/outputs/apk/release/app-release-unsigned.apk android/app/build/outputs/apk/debug/app-debug.apk android/app/build/outputs/bundle/release/app-release.aab
 
 www: node_modules
 	sed -i 's/native/web/g' src/environments/environment.prod.ts
@@ -30,7 +29,6 @@ android-debug: node_modules
 	cd android && ./gradlew assembleDebug
 
 ios: node_modules
-	sed -i 's/web/native/g' src/environments/environment.prod.ts
 	npx ionic cap build ios --prod --no-open
 
 show:
@@ -38,19 +36,9 @@ show:
 	@ echo Node Version: $(node_version)
 	@ echo npm_version: $(npm_version)
 
-install:
-	@ install -d -m0755 /usr/local/share/hug-home-web
-	@ cp -a www/* /usr/local/share/hug-home-patient
-
-archive:
-	@ tar -czvf "dosetup-$(timeStamp).tar.gz" dist
-
-test:
-	echo "test the app"
-
-clean:
-	@ rm -rf node_modules
-	@ rm -rf dist.tar.gz
+install: web
+	@ install -d -m0755 /usr/local/share/hcw/patient
+	@ cp -a www/* /usr/local/share/hcw/patient
 
 sign:
 	cd android && jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks app/build/outputs/bundle/release/app-release.aab alias-hug-at-home
