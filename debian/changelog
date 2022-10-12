@@ -1,3 +1,19 @@
+hcw-athome-patient (0.4.4.9) focal; urgency=medium
+
+  * Fix bad link handlink
+  * Update from invite to inv in order to have shorten address
+  * Fix missing translations
+  * Fix image stretched with max-width
+  * Add modal if image is clicked
+  * Restrict from sending image from file attachment modal
+  * Fix splash screen
+  * Adding built www into git
+  * Adding debug build in Makefile
+  * Fix signature command
+  * Fix language
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 12 Oct 2022 12:25:13 +0200
+
 hcw-athome-patient (0.4.4.8) focal; urgency=medium
 
   * Adding back button in case of invalid invite
