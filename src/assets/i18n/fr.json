@@ -168,8 +168,8 @@
   "chooseAttachement": {
     "send": "ENVOYER",
     "aFile": "UN FICHIER",
-    "takeAPhoto": "Prendre une photo",
-    "fromThePhone": "Depuis le téléphone ou PC",
+    "takeAPhoto": "Envoyer ou prendre une photo",
+    "fromThePhone": "Envoyer un fichier PDF",
     "leaveAudioMessage": "Laisser un message audio",
     "cancel": "ANNULER",
     "promptLabelPhoto": "Depuis la galerie",

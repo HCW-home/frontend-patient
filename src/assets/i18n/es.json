@@ -180,13 +180,13 @@
     },
     "chooseAttachement": {
         "aFile": "UN ARCHIVO",
-        "fromThePhone": "Desde el teléfono",
+        "fromThePhone": "Enviar un archivo PDF",
         "send": "ENVIAR",
         "leaveAudioMessage": "Dejar un mensaje de audio",
-        "takeAPhoto": "Tomar una foto",
+        "takeAPhoto": "Enviar o tomar una foto",
         "cancel": "ANULAR",
-        "promptLabelPhoto": "From photo gallerie",
-        "promptLabelPicture": "From camera"
+        "promptLabelPhoto": "De la galería de fotos",
+        "promptLabelPicture": "De la cámara"
     },
     "fr": "Français",
     "en": "English",

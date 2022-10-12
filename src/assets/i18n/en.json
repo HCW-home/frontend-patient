@@ -168,11 +168,11 @@
   "chooseAttachement": {
     "send": "SEND",
     "aFile": "A FILE",
-    "takeAPhoto": "Take a photo",
-    "fromThePhone": "From a phone",
+    "takeAPhoto": "Send or take a photo",
+    "fromThePhone": "Send a PDF file",
     "leaveAudioMessage": "Leave an audio message",
     "cancel": "CANCEL",
-    "promptLabelPhoto": "From photo gallerie",
+    "promptLabelPhoto": "From photo gallery",
     "promptLabelPicture": "From camera"
   },
   "requestConsultation": {

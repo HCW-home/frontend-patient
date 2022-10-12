@@ -180,13 +180,13 @@
     },
     "chooseAttachement": {
         "aFile": "ملف",
-        "fromThePhone": "من خلال الهاتف",
+        "fromThePhone": "أرسل ملف PDF",
         "send": "إرسال",
         "leaveAudioMessage": "ترك رسالة صوتية",
-        "takeAPhoto": "أخذ صورة",
+        "takeAPhoto": "أرسل أو التقط صورة",
         "cancel": "إلغاء",
-        "promptLabelPhoto": "From photo gallerie",
-        "promptLabelPicture": "From camera"
+        "promptLabelPhoto": "من معرض الصور",
+        "promptLabelPicture": "من الكاميرا"
     },
     "fr": "Français",
     "en": "English",
