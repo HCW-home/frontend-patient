@@ -53,8 +53,8 @@ clean:
 	@ rm -rf dist.tar.gz
 
 sign:
-	jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks app/build/outputs/bundle/release/app-release.aab alias-hug-at-home
-	apksigner sign --ks ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+	cd android && jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks app/build/outputs/bundle/release/app-release.aab alias-hug-at-home
+	cd android && apksigner sign --ks ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks app/build/outputs/apk/release/app-release-unsigned.apk
 
 
 INFO := @bash -c '\
