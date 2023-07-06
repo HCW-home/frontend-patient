@@ -11,6 +11,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  padding: 20px;
 }
 ::ng-deep {
   html[data-theme="accessibility"] {
@@ -62,6 +63,7 @@ markdown ::ng-deep {
 .back {
   text-align: center;
   display: block;
+  margin-top: 10px;
 }
 
 .back-link {

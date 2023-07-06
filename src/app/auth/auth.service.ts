@@ -102,22 +102,28 @@ export class AuthService {
   //   }));
   // }
 
-  logout() {
-    // remove user from local storage to log user out
-    console.log('LOGOUT')
-    localStorage.removeItem('inviteToken');
-    localStorage.removeItem('currentConsultation');
-    localStorage.removeItem('birthDate');
+  async logout() {
+    try {
+      // remove user from local storage to log user out
+      console.log('LOGOUT')
+      localStorage.removeItem('inviteToken');
+      localStorage.removeItem('currentConsultation');
+      localStorage.removeItem('birthDate');
 
-    this.currentUserSubject.next(null);
-    this._socketEventsService.disconnect()
+      this.currentUserSubject.next(null);
+      this._socketEventsService.disconnect()
 
-    console.log("COOOKIIIES", document.cookie)
+      console.log("COOOKIIIES", document.cookie)
 
-    if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
-      //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
+      if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
+        //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
+      }
+      const data = await this.http.get(`${this.globalVariableService.getApiPath()}/logout`).toPromise()
+      // alert(JSON.stringify(data, null, 2))
+      return data;
+    }catch (e) {
+      // alert(`error ${e.message}`)
     }
-    return this.http.get(`${this.globalVariableService.getApiPath()}/logout`).toPromise()
   }
   getToken() {
     return this.currentUserSubject.value.token;

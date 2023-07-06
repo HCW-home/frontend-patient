@@ -1,6 +1,6 @@
-<ion-content padding>
+<ion-content class="ion-padding">
   <div
-    *ngIf="configService.config && roomService.deviceInfo().flag !== 'unknown'"
+    *ngIf="configService.config && roomService.deviceInfo().flag === 'unknown'"
     class="wrap"
   >
     <div class="container" *ngIf="showTranslatorConfirmation">
@@ -60,15 +60,15 @@
             </ion-card-content>
           </ion-card>
 
-          <button
-            class="btn red big"
-            mat-button
-            (click)="closeApp()"
-            type="button"
-            *ngIf="isNativeApp()"
-          >
-            {{ 'login.closeTheApplication' | translate }}
-          </button>
+<!--          <button-->
+<!--            class="btn red big"-->
+<!--            mat-button-->
+<!--            (click)="closeApp()"-->
+<!--            type="button"-->
+<!--            *ngIf="isNativeApp()"-->
+<!--          >-->
+<!--            {{ 'login.closeTheApplication' | translate }}-->
+<!--          </button>-->
         </ng-container>
         <ng-container *ngIf="!noTokenProvided" class="token-error">
           <ion-card>
@@ -91,15 +91,15 @@
             {{ 'login.back' | translate }}
           </button>
 
-          <button
-            class="btn red big"
-            mat-button
-            (click)="closeApp()"
-            type="button"
-            *ngIf="isNativeApp()"
-          >
-            {{ 'login.closeTheApplication' | translate }}
-          </button>
+<!--          <button-->
+<!--            class="btn red big"-->
+<!--            mat-button-->
+<!--            (click)="closeApp()"-->
+<!--            type="button"-->
+<!--            *ngIf="isNativeApp()"-->
+<!--          >-->
+<!--            {{ 'login.closeTheApplication' | translate }}-->
+<!--          </button>-->
         </ng-container>
       </ng-container>
 
@@ -125,7 +125,6 @@
         </ion-card>
 
         <form
-          *ngIf=" !invite || invite.type === 'PATIENT' || invite.type === 'TRANSLATOR' || invite.type === 'GUEST' "
           (submit)="onSubmit()"
           class="login-form"
         >
@@ -200,7 +199,7 @@
       <app-select-language></app-select-language>
     </div>
   </div>
-  <div *ngIf="roomService.deviceInfo().flag === 'unknown'" class="wrap">
+  <div *ngIf="roomService.deviceInfo().flag !== 'unknown'" class="wrap">
     <div class="container">
       <div class="title">
         <img
@@ -215,7 +214,7 @@
     </div>
   </div>
 </ion-content>
-<footer class="page-footer font-small pt-4">
+<footer class="page-footer font-small ion-padding">
   <div class="text-center py-3">
     {{ 'login.supportedByThePrivateFunction' | translate }}
     <img

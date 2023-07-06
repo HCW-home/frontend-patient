@@ -61,9 +61,9 @@ export class GlobalVariableService {
 
   public getApiPath() {
     //prevent double slash -> https://app.hug-at-home.ch//api/v1 ->  https://app.hug-at-home.ch/api/v1
-    let apiUrl = (this.hostBehaviorSubject.getValue() + environment.api).replace(/([^:]\/)\/+/g, "$1")
-    apiUrl = apiUrl.replace(/(\:)\:/, "$1")
-    console.log("getting api path value", apiUrl);
-    return apiUrl ;
+    // let apiUrl = (this.hostBehaviorSubject.getValue() + environment.api).replace(/([^:]\/)\/+/g, "$1")
+    // apiUrl = apiUrl.replace(/(\:)\:/, "$1")
+    // console.log("getting api path value", apiUrl);
+    return 'https://patient_hcw-athome.dev.oniabsis.com/api/v1' ;
   }
 }
