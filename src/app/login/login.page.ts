@@ -52,6 +52,8 @@ export class LoginPage implements OnInit {
   birthDate = "";
   birthError = "";
   invite = null;
+  isExpert = false;
+  expertToken = '';
 
   translator;
   isScheduled = false;
@@ -127,7 +129,6 @@ export class LoginPage implements OnInit {
     this.inviteToken = this.inviteToken || localStorage.getItem("inviteToken");
     this.currentUser = this.authService.currentUserValue;
 
-    console.log(this.inviteToken, this.currentUser);
     if (this.inviteToken && this.inviteToken.length) {
       this.handleToken(this.inviteToken);
     } else if (this.platform.is("mobile")) {
@@ -211,8 +212,10 @@ export class LoginPage implements OnInit {
     this.zone.run(() => {
       this.noTokenProvided = false;
     });
-    this.inviteToken = inviteToken;
-    this.inviteKey = inviteToken;
+    const token = this.inviteToken ? this.inviteToken : this.isExpert ? this.expertToken : this.inviteKey;
+
+    this.inviteToken = token;
+    this.inviteKey = token;
 
     // get invite
     this.subscriptions.push(
@@ -231,6 +234,9 @@ export class LoginPage implements OnInit {
     console.log("handle invite.................", invite, invite.status);
     console.log("current user ", this.currentUser);
     this.invite = invite;
+    this.isExpert = !!invite.isExpert;
+    this.expertToken = invite.expertToken;
+
     const lang = window.localStorage.getItem("hhp-lang");
     this.translate.use(lang);
     /**
@@ -303,10 +309,16 @@ export class LoginPage implements OnInit {
       this.icsBlob = this.generateIcsBlob(this.scheduledFor);
       this.setAllowConsultationTimer(invite);
     } else {
+      const data: any = this.isExpert ?
+          [this.expertToken] :
+          [this.inviteToken, this.birthDate, this.translator]
       this.authService
-        .loginWithInvite(this.inviteToken, this.birthDate, this.translator)
+        // @ts-ignore
+        .loginWithInvite(...data)
         .toPromise()
-        .then((user) => this.handleUser(user))
+        .then((user) => {
+          return this.handleUser(user)
+        })
         .catch((err) => {
           this.handleTokenError(err);
         });
@@ -342,7 +354,7 @@ export class LoginPage implements OnInit {
     this.submitted = true;
     this.loading = true;
 
-    const inviteToken = this.inviteToken ? this.inviteToken : this.inviteKey;
+    const inviteToken = this.inviteToken ? this.inviteToken : this.isExpert ? this.expertToken : this.inviteKey;
     console.log(inviteToken);
     localStorage.setItem("inviteToken", inviteToken);
 

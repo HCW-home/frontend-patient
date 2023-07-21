@@ -231,7 +231,7 @@
 </ion-modal>
 
 <ng-container
-  *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'"
+  *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'expert'"
 >
   <div
     slot="fixed"
