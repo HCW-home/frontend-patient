@@ -138,8 +138,13 @@
               {{ msg.text }}
             </p>
           </ion-row>
+
         </ion-col>
       </ion-row>
+      <span class="expert-name" *ngIf="msg.from?.role === 'expert'">{{msg.from.firstName}} {{msg.from.lastName}} - </span>
+      <span class="msg-time">
+          {{msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
+        }}</span>
 
       <ion-row *ngIf="msg.type === 'videoCall'" style="text-align: center">
         <p style="text-align: center; width: 100%">

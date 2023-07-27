@@ -141,9 +141,28 @@
               pattern="[a-f0-9]{40}"
             ></ion-input>
           </ion-item>
-          <div class="validator-error">
-            {{inviteKeyError}}
-          </div>
+          <ion-item  *ngIf="isExpert">
+            <ion-label  text-wrap>
+              {{ 'First Name' | translate }}
+            </ion-label>
+            <ion-input
+              [(ngModel)]="firstName"
+              name="firstName"
+              type="string"
+              placeholder="First Name"
+            ></ion-input>
+          </ion-item>
+          <ion-item  *ngIf="isExpert">
+            <ion-label  text-wrap>
+              {{ 'Last Name' | translate }}
+            </ion-label>
+            <ion-input
+              [(ngModel)]="lastName"
+              name="lastName"
+              type="string"
+              placeholder="First Name"
+            ></ion-input>
+          </ion-item>
 
           <div
             class="buttons"
@@ -151,6 +170,7 @@
             <button
               class="btn green"
               mat-button
+              [disabled]="isExpert && (!firstName || !lastName)"
               type="submit"
               [class.submitted]="submitted"
             >

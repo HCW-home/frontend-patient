@@ -16,7 +16,7 @@ export class MessageService {
 
 
   getConsultationMessages(id, skip): Observable<any> {
-    return this.http.get<any>(this.globalVariableService.getApiPath() + `/message?where={"consultation":"${id}"}&sort=createdAt DESC&limit=20&skip=${skip}`)
+    return this.http.get<any>(this.globalVariableService.getApiPath() + `/message?where={"consultation":"${id}"}&sort=createdAt DESC&limit=20&skip=${skip}&populate=from`)
       .pipe(map((msgs) => {
         return msgs.reverse();
       }));

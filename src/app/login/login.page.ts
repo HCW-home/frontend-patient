@@ -47,6 +47,8 @@ export class LoginPage implements OnInit {
     "Le serveur distant n'est pas joinable, veuillez vérifier votre connectivité";
   inviteToken = "";
   inviteKey = "";
+  firstName = "";
+  lastName = "";
   invalidInvite = false;
   inviteKeyError = "";
   birthDate = "";
@@ -267,7 +269,7 @@ export class LoginPage implements OnInit {
         this.noInviteError = null;
       }
     } else if (
-      invite.status === "ACCEPTED" ||
+      // invite.status === "ACCEPTED" ||
       invite.status === "REFUSED" ||
       invite.status === "CANCELED"
     ) {
@@ -310,7 +312,7 @@ export class LoginPage implements OnInit {
       this.setAllowConsultationTimer(invite);
     } else {
       const data: any = this.isExpert ?
-          [this.expertToken] :
+          [this.expertToken, undefined, undefined, {firstName: this.firstName, lastName: this.lastName}] :
           [this.inviteToken, this.birthDate, this.translator]
       this.authService
         // @ts-ignore

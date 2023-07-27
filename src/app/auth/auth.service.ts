@@ -62,10 +62,10 @@ export class AuthService {
 
 
   //
-  loginWithInvite(inviteToken, phoneNumber?, translator?) {
+  loginWithInvite(inviteToken, phoneNumber?, translator?, options?: any) {
     const opts = { withCredentials: true };
-    
-    return this.http.post<any>(`${this.globalVariableService.getApiPath()}/login-invite`, { inviteToken, phoneNumber, translator }, opts).pipe(map(res => {
+
+    return this.http.post<any>(`${this.globalVariableService.getApiPath()}/login-invite`, { inviteToken, phoneNumber, translator, ...options }, opts).pipe(map(res => {
       console.log('logged in and got user data ', res);
       // login successful if there's a jwt token in the response
       if (res.user && res.user.token) {
