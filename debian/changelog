@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.11) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs #6016, add expert firstName and lastName
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 27 Jul 2023 13:26:44 +0200
+
 hcw-athome-patient (0.4.4.10) focal; urgency=medium
 
   [ Olivier Bitsch ]
