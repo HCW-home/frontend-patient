@@ -5,7 +5,6 @@ RUN npm i
 COPY . .
 RUN sed -i 's/native/web/g' src/environments/environment.prod.ts
 RUN npx ionic cap build browser --prod --no-open
-RUN ls -l www/
 
 FROM nginx:latest
 COPY --from=builder /usr/src/app/www/ /usr/share/nginx/html/
