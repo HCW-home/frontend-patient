@@ -265,6 +265,9 @@ ion-icon[name="attach"] {
   .chat-text-container {
     flex-direction: row-reverse !important;
   }
+  .msg-time {
+    text-align: end;
+  }
 }
 
 ::ng-deep {

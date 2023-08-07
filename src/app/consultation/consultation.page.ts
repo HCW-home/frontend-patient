@@ -495,7 +495,7 @@ export class ConsultationPage
       }
     }
 
-    if (msg.from === this.currentUser.id) {
+    if (msg.from.id === this.currentUser.id) {
       msg.direction = "outgoing";
     } else {
       msg.direction = "incoming";
