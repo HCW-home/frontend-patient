@@ -3,7 +3,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm i
 COPY . .
-RUN sed -i 's/native/web/g' src/environments/environment.prod.ts
 RUN npx ionic cap build browser --prod --no-open
 
 FROM nginx:latest
