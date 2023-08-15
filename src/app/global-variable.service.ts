@@ -32,16 +32,25 @@ export class GlobalVariableService {
     localStorage.removeItem("host");
   }
   public getHost() {
+
     let host = localStorage.getItem("host");
 
-    if (!host) {
-      host = environment.host;
-    }
-    console.log("HOST IN INIT" + host)
+    if ( this.platform.is('ios') || this.platform.is('android')) {
 
-    localStorage.setItem('host', host);
+        if (!host) {
+          host = environment.host;
+        }
 
-    return host;
+        localStorage.setItem('host', host);
+    
+      } else {
+        host = environment.host
+      }
+
+      console.log("HOST IN INIT" + host)
+      return host;
+
+    
 
   }
   public getHostObservable() {
