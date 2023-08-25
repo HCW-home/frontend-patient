@@ -1,7 +1,7 @@
 export const environment = {
-  production: false,
-  api: "/api/v1",
-  host: 'https://' + document.location.host,
-  showNativeAppSuggestionAndroid: true,
-  showNativeAppSuggestionIOS: true,
+  production: true,
+  api: '/api/v1',
+  host: document.location.protocol + '//' + document.location.host,
+  showNativeAppSuggestionAndroid: false,
+  showNativeAppSuggestionIOS: false,
 };
