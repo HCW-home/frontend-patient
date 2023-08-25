@@ -15,8 +15,7 @@ mobile: android ios android-debug
 	zip -r app-release-all.zip ios android/app/build/outputs/apk/release/app-release-unsigned.apk android/app/build/outputs/apk/debug/app-debug.apk android/app/build/outputs/bundle/release/app-release.aab
 
 www: node_modules
-	sed -i 's/native/web/g' src/environments/environment.prod.ts
-	npx ionic cap build browser --prod --no-open
+	npx ionic cap build browser  --no-open
 
 web: www
 
