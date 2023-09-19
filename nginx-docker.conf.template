@@ -9,6 +9,12 @@ server {
 
     root   /usr/share/nginx/html;
 
+    location /healthcheck {
+          access_log    off;
+          log_not_found off;
+          return 200 '{"message": "Health OK"}';
+    }
+
     location ~/(api|socket\.io|__getcookie) {
         proxy_set_header Host $host;
         proxy_http_version 1.1;
