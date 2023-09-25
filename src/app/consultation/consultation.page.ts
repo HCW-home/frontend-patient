@@ -207,6 +207,10 @@ export class ConsultationPage
       direction: "outgoing",
       text: this.chatText,
       createdAt: Date.now(),
+      from: {
+        firstName:  this.currentUser.role === 'patient' ?  this.consultation?.consultation?.firstName : this.currentUser?.firstName,
+        lastName:   this.currentUser.role === 'patient' ?  this.consultation?.consultation?.lastName : this.currentUser?.lastName
+      }
     });
     this.scrollToBottom();
 

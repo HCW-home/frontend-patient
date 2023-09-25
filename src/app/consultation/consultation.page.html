@@ -141,10 +141,20 @@
 
         </ion-col>
       </ion-row>
-      <div class="msg-time">
+
+
+
+      <div class="msg-time" *ngIf="msg.from?.role === 'patient'; else oters ">
+        {{consultation.consultation?.firstName}} {{consultation.consultation?.lastName}} -
+        {{msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
+        }}</div>
+
+      <ng-template #oters>
+      <div class="msg-time" *ngIf="msg.from?.firstName || msg.from?.lastName">
         {{msg.from?.firstName}} {{msg.from?.lastName}} -
         {{msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
         }}</div>
+      </ng-template>
 
       <ion-row *ngIf="msg.type === 'videoCall'" style="text-align: center">
         <p style="text-align: center; width: 100%">
