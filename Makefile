@@ -35,6 +35,12 @@ show:
 	@ echo Node Version: $(node_version)
 	@ echo npm_version: $(npm_version)
 
+docker:
+	@ docker build -t docker.io/iabsis/hcw-patient .
+
+podman:
+	@ podman build -t docker.io/iabsis/hcw-patient .
+
 install: web
 	@ install -d -m0755 /usr/local/share/hcw/patient
 	@ cp -a www/* /usr/local/share/hcw/patient
