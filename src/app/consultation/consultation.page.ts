@@ -1,6 +1,5 @@
-// import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
 import { NativeAudio } from '@capacitor-community/native-audio'
-import { Component, AfterViewChecked, ViewChild, OnInit, NgZone, OnDestroy, AfterViewInit, HostListener, Directive  } from "@angular/core";
+import { Component, AfterViewChecked, ViewChild, OnInit, NgZone, AfterViewInit, HostListener  } from "@angular/core";
 import { IonContent, Platform } from "@ionic/angular";
 import { AlertController } from "@ionic/angular";
 
@@ -14,22 +13,17 @@ import { CallService } from "../call.service";
 import { ModalController } from "@ionic/angular";
 import { CloseConsultationComponent } from "../shared/components/close-consultation/close-consultation.component";
 import { ChooseAttachmentComponent } from "../shared/components/choose-attachment/choose-attachment.component";
-import { Subscription, Subject } from "rxjs";
+import { Subscription } from "rxjs";
 import { first } from "rxjs/operators";
 
 import { File, FileEntry } from "@awesome-cordova-plugins/file/ngx";
 
-import { environment } from "../../environments/environment";
 
 import { Media, MediaObject } from "@awesome-cordova-plugins/media/ngx";
 import { GlobalVariableService } from "../global-variable.service";
-
 import { TranslateService } from "@ngx-translate/core";
-
 import { Browser } from '@capacitor/browser';
-
 import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: "app-consultation",
@@ -48,7 +42,6 @@ export class ConsultationPage
   consultation;
   chatMessages = [];
   chatText: string;
-  videCall = false;
   audioFile: MediaObject;
   loadingMsgs = true;
   isRecording = false;
@@ -141,6 +134,7 @@ export class ConsultationPage
       })
     );
   }
+
   listenToCallEvents() {
     this.subscriptions.push(
       this._socketEventsService.onRejectCall().subscribe((event) => {
@@ -195,7 +189,7 @@ export class ConsultationPage
     this.callService.requestCall(this.consultation);
   }
 
-  send(e) {
+  send() {
     this.textArea.setFocus();
 
     if (!this.chatText) {
@@ -348,7 +342,7 @@ export class ConsultationPage
 
   sendMsg(event) {
     if (event.charCode === 13) {
-      this.send(event);
+      this.send();
       return false;
     }
   }
@@ -482,6 +476,7 @@ export class ConsultationPage
 
     this.audioFile.startRecord();
   }
+
   adjustMsg(msg) {
     if (msg.type === "attachment") {
       msg.attachmentsURL =
@@ -546,6 +541,7 @@ export class ConsultationPage
       this.getMessages(true);
     }
   }
+
   async stopRecording() {
     this.isRecording = false;
     await this.audioFile.stopRecord();
@@ -562,9 +558,7 @@ export class ConsultationPage
     return <any>theBlob;
   };
 
-  adjustScroll(event) {
-    console.log(this.contentArea, this.contentScrollTop);
-    console.log("scroll to bottom");
+  adjustScroll() {
     this.scrollToBottom(300);
   }
 
@@ -576,6 +570,7 @@ export class ConsultationPage
       this.shouldJoinCall = false;
     });
   }
+
   joinCall() {
     this.subscriptions.push(
       this.callService.getCurrentCall(this.consultationId).subscribe(
