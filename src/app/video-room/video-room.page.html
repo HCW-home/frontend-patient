@@ -134,6 +134,18 @@
         src="assets/icons/icon-toogle-camera.svg"
       />
     </ion-fab-button>
+    <ion-fab-button class="controller white-bg" (click)="muteStatusChanged()">
+      <img
+              *ngIf="muteStatus === 'on'"
+              style="float: left; width: 1.2em; height: 1.2em"
+              src="assets/icons/mic-on.svg"
+      />
+      <img
+              *ngIf="muteStatus === 'off'"
+              style="float: left; width: 1.2em; height: 1.2em"
+              src="assets/icons/mic-off.svg"
+      />
+    </ion-fab-button>
     <ion-fab-button class="controller" color="danger" (click)="exitSession()">
       <img
         style="float: left; width: 1.2em; height: 1.2em"

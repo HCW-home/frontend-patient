@@ -183,6 +183,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   currentVideoDevice;
 
   camStatus = "on";
+  muteStatus: "on" | "off" = "on";
 
   videoAspectRatio = 1.777;
 
@@ -409,6 +410,17 @@ export class VideoRoomPage implements OnInit, OnDestroy {
       this.camStatus = "on";
     }
   }
+
+  muteStatusChanged() {
+    if (this.muteStatus === "on") {
+      this.roomService.muteMic();
+      this.muteStatus = "off";
+    } else {
+      this.roomService.unmuteMic();
+      this.muteStatus = "on";
+    }
+  }
+
 
   askForPerm() {
     this.logger.debug("Ask for video permissions ");
