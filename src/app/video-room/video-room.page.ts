@@ -5,7 +5,7 @@ import {
   LogService,
   RemotePeersService,
   Stream,
-} from "hug-angular-lib";
+} from "hcw-stream-lib";
 import { CallService } from "./../call.service";
 import { OpenViduLayout } from "../shared/layout/openvidu-layout";
 import { Subscription } from "rxjs";

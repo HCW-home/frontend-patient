@@ -56,7 +56,7 @@ import { ConfigService } from './config.service';
 import { TranslatorFormComponent } from './login/translator-form/translator-form.component';
 import { LoginPageModule } from './login/login.module';
 
-import { HugAngularLibModule } from 'hug-angular-lib';
+import { HugAngularLibModule } from 'hcw-stream-lib';
 
 
 @NgModule({

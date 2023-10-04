@@ -1,4 +1,4 @@
-import { RoomService, LogService, Stream } from "hug-angular-lib";
+import { RoomService, LogService, Stream } from "hcw-stream-lib";
 import { SocketEventsService } from "./../socket-events.service";
 import { ConsultationService } from "./../consultation.service";
 import { AndroidPermissions } from "@awesome-cordova-plugins/android-permissions/ngx";

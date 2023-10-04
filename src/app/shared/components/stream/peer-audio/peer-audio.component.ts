@@ -1,4 +1,4 @@
-import { Stream } from 'hug-angular-lib';
+import { Stream } from 'hcw-stream-lib';
 import { Component, Input, OnInit, ViewChild, ElementRef, Directive  } from '@angular/core';
 
 

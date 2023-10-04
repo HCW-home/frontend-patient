@@ -9,7 +9,7 @@ import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { DatePipe } from "@angular/common";
 
 import { TranslateService } from "@ngx-translate/core";
-import { RoomService } from "hug-angular-lib";
+import { RoomService } from "hcw-stream-lib";
 import { Router, ActivatedRoute } from "@angular/router";
 declare let cordova: any;
 declare let window: any;

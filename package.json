@@ -65,7 +65,7 @@
     "cordova": "^11.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-nativeaudio": "^3.0.9",
-    "hug-angular-lib": "https://projects.iabsis.com/repository/hug-angular/npm/hug-angular-lib-0.0.3.tgz",
+    "hcw-stream-lib": "0.0.6",
     "i": "^0.3.6",
     "ngx-markdown": "^14.0.1",
     "normal": "^0.1.1",

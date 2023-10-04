@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "hug-angular-lib": ["./node_modules/hug-angular-lib"]
+      "hcw-stream-lib": ["./node_modules/hcw-stream-lib"]
     },
     "baseUrl": "src",
     "downlevelIteration": true,
