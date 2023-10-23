@@ -183,7 +183,7 @@ export class AppComponent {
 
       console.log("router ", this.router, this.router.url);
       if (!this.testRoute) {
-        this.redirectToLogin();
+        // this.redirectToLogin();
       }
 
         if ( !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'))) {

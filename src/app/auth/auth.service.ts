@@ -134,4 +134,19 @@ export class AuthService {
       return res.user
     }))
   }
+
+  login(token) {
+    const headers = {};
+    if (token) {
+      headers['x-access-token'] = token;
+    }
+    return this.http.get<any>(`${this.globalVariableService.getApiPath()}/current-user`, { headers })
+        .pipe(map(res => {
+          if (res.user && res.user.token) {
+            sessionStorage.setItem('currentUser', JSON.stringify(res.user));
+            this.currentUserSubject.next(res.user);
+            return res.user;
+          }
+        }));
+  }
 }

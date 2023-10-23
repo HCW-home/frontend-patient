@@ -57,6 +57,7 @@ import { TranslatorFormComponent } from './login/translator-form/translator-form
 import { LoginPageModule } from './login/login.module';
 
 import { HugAngularLibModule } from 'hcw-stream-lib';
+import {CountrySelectPageModule} from "./register/country-select/country-select.module";
 
 
 @NgModule({
@@ -84,7 +85,9 @@ import { HugAngularLibModule } from 'hcw-stream-lib';
         // translate
         I18nModule,
         HugAngularLibModule,
-        SharedModule
+        SharedModule,
+        CountrySelectPageModule,
+
     ],
     providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

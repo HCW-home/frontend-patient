@@ -1,0 +1,64 @@
+ion-content {
+  font-family: Arial, Helvetica, sans-serif;
+
+  background-color: var(--blue-bg-color);
+
+  .card {
+    max-width: 700px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 5rem;
+    flex-wrap: nowrap;
+    background: #FFFFFF;
+    .register {
+      color: rgba(0, 0, 0, 1);
+      font-style: normal;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+  }
+
+  ion-text {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  ion-input {
+    width: 340px;
+  }
+
+  .mb-3 {
+    margin-bottom: 1rem;
+  }
+
+  ion-label {
+    color: black;
+  }
+
+
+}
+
+.attachment-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.attachment {
+
+  border: 1px solid gray;
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  text-align: center;
+
+
+}
+
+

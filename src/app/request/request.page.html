@@ -1,0 +1,24 @@
+<ion-content>
+    <div class="auth-wrapper">
+
+        <div class="card">
+            <ion-text>
+                <h1 class="authenticate">Authenticate</h1>
+            </ion-text>
+
+            <p class="btn green" *ngIf="showOpenIdLogin">
+                <a [href]="openIdLoginUrl" class="login-btn">
+                    Login with your IRCR credential
+                </a>
+            </p>
+
+            <div class="label-wrapper">
+                 <span class="label" (click)="register()">
+                    No account ? Request account here
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+</ion-content>

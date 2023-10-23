@@ -1,0 +1,197 @@
+<ion-content>
+
+    <div class="board-wrapper">
+        <div class="card">
+            <ion-text>
+                <div class="position-relative">
+                    <h1 class="authenticate">Consultations
+                        <ion-badge class="badge">2</ion-badge>
+                    </h1>
+                </div>
+            </ion-text>
+
+            <div class="board">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="avatar-container">JD</div>
+                        </td>
+                        <td class="border">
+                            <div class="name-container">
+                                <span class='name'>John Dupont</span>
+                                <span class='message'>You: Can you give me some advises, on picture...</span>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="date-container">
+                                <span class='date'>Yesterday</span>
+                                <ion-badge class="rounded-badge">2</ion-badge>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="table-items">
+                                <div class="flex-item ion-align-items-end">
+                                    <span class="title">Handled by:</span>
+                                    <span class="title">Requested at:</span>
+                                    <span class="title">Area:</span>
+                                </div>
+
+                                <div class="flex-item ion-align-items-start">
+                                    <span class="value">Super Doctor</span>
+                                    <span class="value">Yesterday</span>
+                                    <span class="value">Dramatology</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="table-items">
+                                <div class="flex-item ion-align-items-end">
+                                    <span class="title">Birthday:</span>
+                                    <span class="title">Sex:</span>
+                                    <span class="title">Hospital/facility:</span>
+                                </div>
+
+                                <div class="flex-item ion-align-items-start">
+                                    <span class="value">10/12/1980</span>
+                                    <span class="value">male</span>
+                                    <span class="value">HUG</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <ion-button class="resume-button">Resume</ion-button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="avatar-container">AB</div>
+                        </td>
+                        <td class="border">
+                            <div class="name-container">
+                                <span class='name'>Arthur Bon</span>
+                                <span class='message'>You: Can you give me some advises, on picture...</span>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="date-container">
+                                <span class='date'>10:20</span>
+                                <ion-badge class="rounded-badge">1</ion-badge>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="table-items">
+                                <div class="flex-item ion-align-items-end">
+                                    <span class="title">Handled by:</span>
+                                    <span class="title">Requested at:</span>
+                                    <span class="title">Area:</span>
+                                </div>
+
+                                <div class="flex-item ion-align-items-start">
+                                    <span class="value">requesting</span>
+                                    <span class="value">10:20</span>
+                                    <span class="value">Dermatology</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="table-items">
+                                <div class="flex-item ion-align-items-end">
+                                    <span class="title">Birthday:</span>
+                                    <span class="title">Sex:</span>
+                                    <span class="title">Hospital/facility:</span>
+                                </div>
+
+                                <div class="flex-item ion-align-items-start">
+                                    <span class="value">08/10/1990</span>
+                                    <span class="value">female</span>
+                                    <span class="value">HUG</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <ion-button class="resume-button">Resume</ion-button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="btn green" (click)="requestConsultation()">
+                Request new consultation
+            </button>
+        </div>
+    </div>
+
+
+    <div class="board-wrapper">
+        <div class="card">
+            <ion-text>
+                <div class="position-relative">
+                    <h1 class="authenticate">History
+                        <ion-badge class="badge">1</ion-badge>
+                    </h1>
+                </div>
+            </ion-text>
+
+            <div class="board">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="avatar-container">PD</div>
+                        </td>
+                        <td class="border">
+                            <div class="name-container">
+                                <span class='name'>Paul Dupont</span>
+                                <span class='message'>You: Can you give me some advises, on picture...</span>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="date-container">
+                                <span class='closed'>Closed at</span>
+                                <span class='date'>12/10/2023 17:58</span>
+
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="table-items">
+                                <div class="flex-item ion-align-items-end">
+                                    <span class="title">Handled by:</span>
+                                    <span class="title">Requested at:</span>
+                                    <span class="title">Area:</span>
+                                </div>
+
+                                <div class="flex-item ion-align-items-start">
+                                    <span class="value">Super Doctor</span>
+                                    <span class="value">Yesterday</span>
+                                    <span class="value">Dramatology</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="border">
+                            <div class="table-items">
+                                <div class="flex-item ion-align-items-end">
+                                    <span class="title">Birthday:</span>
+                                    <span class="title">Sex:</span>
+                                    <span class="title">Hospital/facility:</span>
+                                </div>
+
+                                <div class="flex-item ion-align-items-start">
+                                    <span class="value">10/12/1980</span>
+                                    <span class="value">male</span>
+                                    <span class="value">HUG</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+</ion-content>

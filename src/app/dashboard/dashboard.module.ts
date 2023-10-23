@@ -22,7 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    I18nModule
+    I18nModule,
+
   ],
   declarations: [DashboardPage]
 })

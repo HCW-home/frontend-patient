@@ -1,0 +1,29 @@
+<ion-content padding>
+
+    <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+
+        <div class="card">
+    <ion-card-header style="text-align: center">
+      <ion-card-title class="register">Fail!</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content class="card-content">
+
+        <ion-img src="assets/icons/fail.svg" class="success-image"></ion-img>
+        <ion-label class="label">
+            Failure text
+        </ion-label>
+        <button
+                (click)="backToLogin()"
+                class="btn green"
+        >
+            <ng-container
+            >{{ 'Back to login'}}</ng-container
+            >
+        </button>
+    </ion-card-content>
+        </div>
+    </div>
+
+
+</ion-content>

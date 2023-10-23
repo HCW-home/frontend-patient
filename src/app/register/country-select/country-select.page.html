@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Select Country</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <ng-container>
+            <ion-searchbar
+                    (ionInput)="updateCountries($event)"
+            ></ion-searchbar>
+            <ion-item *ngFor="let country of filteredCountries" (click)="selectCountry(country)">
+                <ion-avatar slot="start">
+                    <ion-img src="assets/icons/flags/{{country.code.toLowerCase()}}.png"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                    <h2>{{country.name}}</h2>
+                    <p>{{country.alpha_3_code}}</p>
+                </ion-label>
+            </ion-item>
+        </ng-container>
+
+
+    </ion-list>
+</ion-content>

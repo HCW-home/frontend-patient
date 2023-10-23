@@ -1,0 +1,44 @@
+ion-content {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--blue-bg-color);
+  .card {
+    max-width: 780px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 23px;
+    padding: 5rem;
+    flex-wrap: nowrap;
+  }
+
+  .register {
+    color: rgba(0, 0, 0, 1);
+    font-style: normal;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+
+  .label {
+    color: black;
+  }
+
+  .success-image {
+    display: flex;
+    width: 100px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction:  column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+}
