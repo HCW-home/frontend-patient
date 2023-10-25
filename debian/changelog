@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.22) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add consultations dashboard
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 25 Oct 2023 13:28:28 +0200
+
 hcw-athome-patient (0.4.4.21) focal; urgency=medium
 
   [ Gor Grigoryan ]
