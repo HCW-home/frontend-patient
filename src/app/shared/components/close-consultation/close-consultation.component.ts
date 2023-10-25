@@ -1,37 +1,52 @@
-import { Component, OnInit, Input, Directive  } from "@angular/core";
-import { ConsultationService } from "../../../consultation.service";
-import { Router } from "@angular/router";
-import { ModalController } from "@ionic/angular";
+import {Component, OnInit, Input} from "@angular/core";
+import {ConsultationService} from "../../../consultation.service";
+import {Router} from "@angular/router";
+import {ModalController} from "@ionic/angular";
+import {TranslateService} from "@ngx-translate/core";
+import {AuthService} from "../../../auth/auth.service";
 
 
 @Component({
-  selector: "app-close-consultation",
-  templateUrl: "./close-consultation.component.html",
-  styleUrls: ["./close-consultation.component.scss"],
+    selector: "app-close-consultation",
+    templateUrl: "./close-consultation.component.html",
+    styleUrls: ["./close-consultation.component.scss"],
 })
 export class CloseConsultationComponent implements OnInit {
-  @Input() consultationId;
-  constructor(
-    private consultationService: ConsultationService,
-    private router: Router,
-    public modalController: ModalController
-  ) {}
+    @Input() consultationId;
 
-  ngOnInit() {}
+    htmlString: string;
 
-  closeConsultation() {
-    console.log("Close consultation now");
-    this.consultationService
-      .deleteConsultation(this.consultationId)
-      .subscribe((res) => {
-        localStorage.removeItem("currentConsultation");
-        localStorage.removeItem("currentUser");
+    constructor(
+        private consultationService: ConsultationService,
+        private router: Router,
+        private translate: TranslateService,
+        public modalController: ModalController,
+        private authService: AuthService
+    ) {
+    }
+
+    ngOnInit() {
+        this.htmlString = this.translate.instant("closeConsultation.youAreAboutTo");
+    }
+
+    closeConsultation() {
+        const currentUser = this.authService.currentUserValue;
+        this.consultationService
+            .deleteConsultation(this.consultationId)
+            .subscribe((res) => {
+                localStorage.removeItem("currentConsultation");
+                if (currentUser.role === "nurse") {
+                    this.router.navigate(["/dashboard"]);
+
+                } else {
+                    localStorage.removeItem("currentUser");
+                    this.router.navigate(["/login"]);
+                }
+                this.modalController.dismiss(true);
+            });
+    }
+
+    dismiss() {
         this.modalController.dismiss();
-        this.router.navigate(["/login"]);
-        console.log("Cancellation done");
-      });
-  }
-  dismiss() {
-    this.modalController.dismiss();
-  }
+    }
 }

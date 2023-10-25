@@ -18,7 +18,7 @@ export class SuccessPage implements OnInit {
   }
 
   backToLogin() {
-    this.router.navigate(["/request"])
+    this.router.navigate(["/requester"])
   }
 
 }

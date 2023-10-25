@@ -622,6 +622,11 @@ export class ConsultationPage
     this.isImgModalOpen = isOpen
   }
 
+  backToDashboard() {
+    localStorage.removeItem('currentConsultation');
+    this.router.navigate([`/dashboard`]);
+  }
+
 
   hideKeyboard() {
     // this set timeout needed for case when hideKeyborad

@@ -19,9 +19,7 @@ export class QueueService {
 
 
   find(): Observable<Queue[]> {
-    return this.http.get<Queue[]>(this.globalVariableService.getApiPath() + `/queue`, {headers: {
-        'x-access-token': `${JSON.parse(sessionStorage.getItem('currentUser')).token}`,
-      }});
+    return this.http.get<Queue[]>(this.globalVariableService.getApiPath() + `/queue`);
   }
 
 

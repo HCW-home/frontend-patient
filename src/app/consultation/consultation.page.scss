@@ -34,6 +34,15 @@ ion-card-content {
   text-align: center;
   font-size: 1em;
 }
+.backToDashboard {
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+  margin-top: 3rem;
+  text-decoration: underline;
+  font-weight: 600;
+  text-decoration-color: #FFFFFF;
+}
 
 .subtitle.doctor {
   margin-top: 6px !important;

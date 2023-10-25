@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './_guards/auth.guard';
 import { DiagnosticGuard } from './_guards/diagnostic.guard';
 import {RequestPageModule} from "./request/request.module";
+import {NurseGuard} from "./_guards/nurse.guard";
 
 /**
  * Routes
@@ -26,12 +27,12 @@ const routes: Routes = [
   { path: 'cgu', loadChildren: () => import('./cgu/cgu.module').then(m => m.CguPageModule) },
   { path: 'await-consultation', loadChildren: () => import('./await-consultation/await-consultation.module').then(m => m.AwaitConsultationPageModule) },
   { path: 'translation/:id', loadChildren: () => import('./translation/translation.module').then(m => m.TranslationPageModule) },
-  { path: 'request', loadChildren: () => import('./request/request.module').then(m => m.RequestPageModule) },
+  { path: 'requester', loadChildren: () => import('./request/request.module').then(m => m.RequestPageModule) },
   { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   { path: 'register-success', loadChildren: () => import('./success/success.module').then(m => m.SuccessModule) },
   { path: 'fail', loadChildren: () => import('./failure/failure.module').then(m => m.FailureModule) },
-  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule) },
-  { path: 'request-consultation', loadChildren: () => import('./request-consultation/request-consultation.module').then(m => m.RequestConsultationModule) },
+  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule), canActivate: [NurseGuard] },
+  { path: 'request-consultation', loadChildren: () => import('./request-consultation/request-consultation.module').then(m => m.RequestConsultationModule), canActivate: [NurseGuard] },
 ];
 
 @NgModule({

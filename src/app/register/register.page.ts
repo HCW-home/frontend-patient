@@ -42,12 +42,8 @@ export class RegisterPage implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(["/request"])
+    this.router.navigate(["/requester"])
 
-  }
-
-  onSetGender(val) {
-    this.form.get('sex').patchValue(val);
   }
 
   async openCountrySelect() {
@@ -70,7 +66,16 @@ export class RegisterPage implements OnInit {
   onSubmit() {
     const {value} = this.form;
     console.log(value, 'value');
-    this.nurseService.registerNurse(value).subscribe({
+    const user = {
+      email: value.email,
+      firstName: value.firstName,
+      lastName: value.lastName,
+      phoneNumber: value.phoneNumber,
+      organization: value.organization,
+      country: value.country,
+      sex: value.sex,
+    }
+    this.nurseService.registerNurse(user).subscribe({
       next: (response) => {
         console.log('Registered successfully:', response);
         this.router.navigate([`/register-success`])
@@ -122,22 +127,6 @@ export class RegisterPage implements OnInit {
           return 'Country is required';
         }
         break;
-    }
-  }
-
-  onKeyPressed(event: any) {
-    if (event.key === 'Backspace' && this.form.controls.phoneNumber.value === '+') {
-      event.preventDefault();
-    }
-  }
-
-
-  onChangeGender(event, type) {
-    if (type === 'male' && event.detail.checked) {
-      this.form.get('sex').patchValue('male');
-    }
-    if (type === 'female' && event.detail.checked) {
-      this.form.get('sex').patchValue('female');
     }
   }
 

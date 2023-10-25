@@ -106,7 +106,12 @@ export class AppComponent {
           queryParams: { invite: this.inviteToken },
         });
       } else {
-        this.router.navigate(["/login"]);
+        if (this.currentUser && this.currentUser.role === 'nurse') {
+          console.log('gandonnn');
+
+        } else {
+          this.router.navigate(["/login"]);
+        }
       }
     }
     this.redirected = true;
@@ -182,8 +187,9 @@ export class AppComponent {
       }
 
       console.log("router ", this.router, this.router.url);
+      console.log(this.currentUser, 'currentuser');
       if (!this.testRoute) {
-        // this.redirectToLogin();
+        this.redirectToLogin();
       }
 
         if ( !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'))) {

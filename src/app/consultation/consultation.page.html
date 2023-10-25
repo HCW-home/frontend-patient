@@ -49,6 +49,7 @@
                 >{{ consultation.doctor.phoneNumber }}</a
                 >
             </p>
+            <p class="backToDashboard" (click)="backToDashboard()">{{ 'Back to Dashboard' | translate }}</p>
         </ion-card-content>
     </ion-card>
 
@@ -75,6 +76,9 @@
                 i18n>
             {{ 'consultation.cancel' | translate }}
         </ion-button>
+
+        <p class="backToDashboard" (click)="backToDashboard()">{{ 'Back to Dashboard' | translate }}</p>
+
     </ion-card>
 
     <ion-grid class="chat">

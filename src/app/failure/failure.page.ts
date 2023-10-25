@@ -18,7 +18,7 @@ export class FailurePage implements OnInit {
   }
 
   backToLogin() {
-    this.router.navigate(["/request"])
+    this.router.navigate(["/requester"])
   }
 
 }

@@ -123,9 +123,13 @@ export class AuthService {
     return this.currentUserSubject.value.token;
   }
 
-  getCurrentUser(token?):Observable<any> {
-    const opts = { withCredentials: true };
-    
+  getCurrentUser():Observable<any> {
+    const headers = {};
+    const token = sessionStorage.getItem('nurseToken')
+    if (token) {
+      headers['x-access-token'] = token;
+    }
+    const opts = { withCredentials: true, headers };
 
     return this.http.get<any>(`${this.globalVariableService.getApiPath()}/current-user`, opts).pipe(map(res => {
 
@@ -144,6 +148,7 @@ export class AuthService {
         .pipe(map(res => {
           if (res.user && res.user.token) {
             sessionStorage.setItem('currentUser', JSON.stringify(res.user));
+            sessionStorage.setItem('nurseToken', res.user.token);
             this.currentUserSubject.next(res.user);
             return res.user;
           }

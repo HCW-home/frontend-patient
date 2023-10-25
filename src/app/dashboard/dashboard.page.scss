@@ -3,9 +3,7 @@ ion-content {
   background-color: var(--blue-bg-color);
   .card {
     min-width: 802px;
-    height: 457px;
     overflow: auto;
-
     background: #FFFFFF;
     border-radius: 12px;
     display: flex;
@@ -21,7 +19,7 @@ ion-content {
   }
 
   .board-wrapper {
-    margin-top: 40px;
+    margin: 5rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,7 +62,6 @@ ion-content {
       display: flex;
       flex-direction: column;
       gap: 5px;
-      max-width: 118px;
 
       .name {
           color: rgba(0, 0, 0, 1);
@@ -142,6 +139,12 @@ ion-content {
       }
     }
 
+    .buttons-wrapper {
+
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
     .resume-button {
       --border-radius: 20px;
       --background: #ffff;
@@ -149,6 +152,14 @@ ion-content {
       --color	: rgba(73, 177, 79, 1);
       font-size: 14px;
       font-weight: 500;
+    }
+
+    .cancel-button {
+      color: red;
+      text-decoration: underline;
+      text-decoration-color: red;
+      font-size: 0.7rem;
+      cursor: pointer;
     }
 
   }
@@ -171,4 +182,16 @@ ion-content {
 
 .position-relative {
   position: relative;
+}
+
+.empty-text {
+  color: rgba(0, 0, 0, 1);
+  font-style: normal;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  text-decoration: none;
+  text-transform: none;
+
 }
