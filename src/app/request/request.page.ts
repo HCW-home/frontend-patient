@@ -12,7 +12,7 @@ import {first} from "rxjs/operators";
 })
 export class RequestPage {
     showOpenIdLogin = true;
-    openIdLoginUrl = `${environment.host}${environment.api}/login-openid`;
+    openIdLoginUrl = `${environment.host}${environment.api}/login-openid?role=nurse`;
     returnUrl: string;
 
     constructor(

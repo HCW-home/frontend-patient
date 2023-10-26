@@ -22,11 +22,11 @@ export class RequestConsultationPage implements OnInit {
         queue: ["", [Validators.required]],
         firstName: ["", [Validators.required]],
         lastName: ["", [Validators.required]],
-        phoneNumber: ["", [Validators.required]],
-        organization: ["", [Validators.required]],
-        country: ["", [Validators.required]],
-        age: ["", [Validators.required]],
-        sex: ["male", [Validators.required]],
+        sex: ['', [Validators.required]],
+        phoneNumber: [""],
+        organization: [""],
+        country: [""],
+        age: [""],
         message: [""],
         attachment: [""]
     });
@@ -94,8 +94,23 @@ export class RequestConsultationPage implements OnInit {
         }, err => {
             console.log(err);
         });
+    }
 
-
+    getErrorMessage(formField: string) {
+        switch (formField) {
+            case 'firstName':
+                const nameErrors = this.form.controls.firstName.errors;
+                if (nameErrors.required) {
+                    return 'Firstname is required';
+                }
+                break;
+            case 'lastName':
+                const surnameErrors = this.form.controls.lastName.errors;
+                if (surnameErrors.required) {
+                    return 'Lastname is required';
+                }
+                break;
+         }
     }
 
 }
