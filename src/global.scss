@@ -44,7 +44,7 @@
 }
 
 * {
-  font-family: "Cooper Hewitt";
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .picker-wrapper {
@@ -226,4 +226,13 @@ ion-popover [popover]:not(:popover-open):not(dialog[open]) {
 
 .sc-ion-select-popover-md-h ion-list.sc-ion-select-popover-md {
   background: white;
+}
+
+ion-select {
+  width: 100%;
+
+  label {
+    color: black;
+    font-size: inherit;
+  }
 }

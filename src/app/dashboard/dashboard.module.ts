@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { I18nModule } from '../i18n/i18n.module';
 
 import { DashboardPage } from './dashboard.page';
+import {HeaderComponent} from "../shared/components/header/header.component";
 
 const routes: Routes = [
   {
@@ -17,14 +18,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes),
-    I18nModule,
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes),
+        I18nModule,
 
-  ],
-  declarations: [DashboardPage]
+    ],
+    declarations: [DashboardPage, HeaderComponent,],
+    exports: [DashboardPage, HeaderComponent,]
+
 })
 export class DashboardPageModule { }

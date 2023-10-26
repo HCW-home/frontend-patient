@@ -53,11 +53,10 @@ import { RequestConsultationComponent } from './shared/components/request-consul
 import { CloseConsultationComponent } from './shared/components/close-consultation/close-consultation.component';
 import { ChooseAttachmentComponent } from './shared/components/choose-attachment/choose-attachment.component';
 import { ConfigService } from './config.service';
-import { TranslatorFormComponent } from './login/translator-form/translator-form.component';
-import { LoginPageModule } from './login/login.module';
 
 import { HugAngularLibModule } from 'hcw-stream-lib';
 import {CountrySelectPageModule} from "./register/country-select/country-select.module";
+import {HeaderComponent} from "./shared/components/header/header.component";
 
 
 @NgModule({
@@ -67,21 +66,21 @@ import {CountrySelectPageModule} from "./register/country-select/country-select.
         ReactiveFormsModule,
         IonicModule.forRoot({
             platform: {
-              /** The default `desktop` function returns false for devices with a touchscreen.
-              * This is not always wanted, so this function tests the User Agent instead.
-              **/
-              'desktop': (win) => {
-                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(win.navigator.userAgent);
-                return !isMobile;
-              }
+                /** The default `desktop` function returns false for devices with a touchscreen.
+                 * This is not always wanted, so this function tests the User Agent instead.
+                 **/
+                "desktop": (win) => {
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(win.navigator.userAgent);
+                    return !isMobile;
+                }
             },
-          }),
+        }),
         AppRoutingModule,
         HttpClientModule,
         VideoRoomPageModule,
         AngularDraggableModule,
         FormsModule,
-       // VideoRoomPageModule, //cordova plugin add cordova-plugin-background-mode
+        // VideoRoomPageModule, //cordova plugin add cordova-plugin-background-mode
         // translate
         I18nModule,
         HugAngularLibModule,
@@ -90,17 +89,17 @@ import {CountrySelectPageModule} from "./register/country-select/country-select.
 
     ],
     providers: [
-        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-         AndroidPermissions,
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        AndroidPermissions,
         File,
         Camera,
         Media,
         NativeAudio,
         LocalNotifications,
         Network,
-        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        { provide: LOCALE_ID, useValue: 'fr-FR' },
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+        {provide: LOCALE_ID, useValue: "fr-FR"},
         ConfigService,
         {
             provide: APP_INITIALIZER,
@@ -114,6 +113,7 @@ import {CountrySelectPageModule} from "./register/country-select/country-select.
         RequestConsultationComponent,
         CloseConsultationComponent,
         ChooseAttachmentComponent,
+        HeaderComponent,
     ],
     bootstrap: [AppComponent],
 })

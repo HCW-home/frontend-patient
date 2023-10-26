@@ -1,23 +1,19 @@
 <ion-content>
-
-    <div style="display: flex; align-items: center; justify-content: center;margin: 20px">
-
+    <app-header></app-header>
+    <div class="request-wrapper">
         <div class="card">
-            <ion-text>
-                <h1 class="register">Account request</h1>
-            </ion-text>
+            <ion-text><h1 class="authenticate">Consultations</h1></ion-text>
 
-            <ion-text>
-                <h5>Once submitted, you will be redirected automatically in the consultation request. You will able to
-                    cancel until an expert will handle the request.</h5>
-            </ion-text>
-
+            <div class="request-text">
+                Once submitted, you will be redirected automatically in the consultation request. You will able to
+                cancel until an expert will handle the request.
+            </div>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
                 <ion-list>
                     <ion-item fill="solid" class="mb-3">
-                        <ion-select interface="popover" placeholder="Expert Area" formControlName="queue">
+                        <ion-select interface="popover" placeholder="Select Expert Area" formControlName="queue">
                             <ion-select-option [value]="option.id"
                                                *ngFor="let option of queues">{{option.name}}</ion-select-option>
                         </ion-select>
@@ -47,7 +43,7 @@
 
                 <ion-item (click)="openCountrySelect()" fill="solid" class="mb-3">
                     <ion-label position="floating">Country</ion-label>
-                    <ion-input readonly placeholder="Select Country" formControlName="country"
+                    <ion-input readonly="true" placeholder="Select Country" formControlName="country"
                     ></ion-input>
                 </ion-item>
 
@@ -60,7 +56,7 @@
 
                 <ion-list>
                     <ion-item fill="solid" class="mb-3">
-                        <ion-select interface="popover" placeholder="Gender" formControlName="sex">
+                        <ion-select interface="popover" placeholder="Select Gender" formControlName="sex">
                             <ion-select-option [value]="option.id"
                                                *ngFor="let option of genders">{{option.name}}</ion-select-option>
                         </ion-select>
@@ -74,11 +70,9 @@
                 </ion-item>
 
 
-                <button class="btn green"
-                        type="submit">
+                <button class="btn green mt-2" type="submit" [disabled]="!form.valid">
                     {{ 'Request Consultation'}}
                 </button>
-
 
             </form>
 

@@ -22,7 +22,7 @@ export class RequestConsultationPage implements OnInit {
         queue: ["", [Validators.required]],
         firstName: ["", [Validators.required]],
         lastName: ["", [Validators.required]],
-        sex: ['', [Validators.required]],
+        sex: ["", [Validators.required]],
         phoneNumber: [""],
         organization: [""],
         country: [""],
@@ -84,9 +84,9 @@ export class RequestConsultationPage implements OnInit {
             gender: value.sex,
             IMADTeam: "none",
             metadata: {
-                'Age': value.age,
-                'Country': value.country,
-                'Hospital/facility': value.organization
+                "Age": value.age,
+                "Country": value.country,
+                "Hospital/facility": value.organization
             }
         }).subscribe(res => {
             localStorage.setItem("currentConsultation", res.id);
@@ -96,21 +96,25 @@ export class RequestConsultationPage implements OnInit {
         });
     }
 
+    backToDashboard() {
+        this.router.navigate([`/dashboard`]);
+    }
+
     getErrorMessage(formField: string) {
         switch (formField) {
-            case 'firstName':
+            case "firstName":
                 const nameErrors = this.form.controls.firstName.errors;
                 if (nameErrors.required) {
-                    return 'Firstname is required';
+                    return "Firstname is required";
                 }
                 break;
-            case 'lastName':
+            case "lastName":
                 const surnameErrors = this.form.controls.lastName.errors;
                 if (surnameErrors.required) {
-                    return 'Lastname is required';
+                    return "Lastname is required";
                 }
                 break;
-         }
+        }
     }
 
 }

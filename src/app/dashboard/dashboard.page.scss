@@ -1,16 +1,15 @@
 ion-content {
-  font-family: Arial, Helvetica, sans-serif;
   background-color: var(--blue-bg-color);
   .card {
     min-width: 802px;
     overflow: auto;
     background: #FFFFFF;
-    border-radius: 12px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 1rem 5rem 2rem 5rem;
     flex-wrap: nowrap;
   }
 
@@ -26,12 +25,12 @@ ion-content {
   }
 
   .board {
-    margin-top: 10px;
+    margin-top: 1rem;
   }
 
   table {
    td {
-      padding: 10px;
+      padding: 1rem;
    }
 
     .border {
@@ -39,20 +38,15 @@ ion-content {
     }
 
     .avatar-container {
-      position: relative;
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
-      background-color: rgba(234, 221, 255, 1);
+      width: 3rem;
+      height: 3rem;
+      border-radius: 39px;
+      background-color: rgb(234, 221, 255);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: nowrap;
-      margin: 4px 0;
-      color: rgba(33, 0, 94, 1);
-      font-style: normal;
+      color: rgb(33, 0, 94);
       font-size: 1.2rem;
-      font-weight: 500;
       line-height: 1.2;
       letter-spacing: 0.01px;
 
@@ -178,8 +172,6 @@ ion-content {
   text-align: center;
 }
 
-
-
 .position-relative {
   position: relative;
 }
@@ -190,8 +182,8 @@ ion-content {
   font-size: 1.2rem;
   font-weight: 400;
   line-height: 1.2;
-  letter-spacing: 0px;
-  text-decoration: none;
-  text-transform: none;
+}
 
+.mt-2 {
+  margin-top: 2rem;
 }
