@@ -1,3 +1,11 @@
+hcw-athome-patient (0.4.4.24) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add header component
+  * error handlers for inputs
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 27 Oct 2023 09:39:00 +0200
+
 hcw-athome-patient (0.4.4.23) focal; urgency=medium
 
   [ Gor Grigoryan ]
