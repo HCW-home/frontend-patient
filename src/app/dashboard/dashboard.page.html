@@ -28,7 +28,7 @@
                             </td>
                             <td class="border">
                                 <div class="date-container">
-                                    <span class='date'>-</span>
+                                    <span class='date' *ngIf="consultation?.lastMsg?.createdAt">{{consultation?.lastMsg?.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                                     <ion-badge class="rounded-badge">{{consultation.unreadCount}}</ion-badge>
                                 </div>
                             </td>

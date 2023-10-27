@@ -3,6 +3,8 @@ import {Router} from "@angular/router";
 import {ConsultationService} from "../shared/services/consultation.service";
 import {CloseConsultationComponent} from "../shared/components/close-consultation/close-consultation.component";
 import {ModalController} from "@ionic/angular";
+import {Subscription} from "rxjs";
+import {SocketEventsService} from "../socket-events.service";
 
 @Component({
     selector: 'app-dashboard',
@@ -10,18 +12,23 @@ import {ModalController} from "@ionic/angular";
     styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage  {
+    private subscriptions: Array<Subscription> = [];
     activeCount: number = 0;
     closedCount: number = 0;
     consultations:any[]  = [];
     closedConsultations:any[]  = [];
+
     constructor(
         private consultationService: ConsultationService,
         private router: Router,
         public modalController: ModalController,
+        private _socketEventsService: SocketEventsService,
     ) { }
 
     ionViewWillEnter() {
         this.getConsultations();
+        this.listenToNewMessages();
+
     }
 
     getConsultations() {
@@ -57,4 +64,21 @@ export class DashboardPage  {
             this.getConsultations();
         }
     }
+
+    listenToNewMessages() {
+        this.subscriptions.push(
+            this._socketEventsService.onMessage().subscribe((msg) => {
+
+                console.log(this.consultations, 'this.consultations');
+                if (this.consultations.some((item) => item._id === msg.data.consultation)) {
+                    this.getConsultations();
+                    console.log("got message ", msg);
+                }
+                // this.scrollToBottom();
+
+                // this.readMessages();
+            })
+        );
+    }
+
 }
