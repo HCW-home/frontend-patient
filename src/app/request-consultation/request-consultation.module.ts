@@ -23,8 +23,8 @@ const routes: Routes = [
         I18nModule,
         ReactiveFormsModule,
     ],
-    declarations: [RequestConsultationPage, HeaderComponent,],
-    exports: [RequestConsultationPage, HeaderComponent,]
+    declarations: [RequestConsultationPage],
+    exports: [RequestConsultationPage]
 
 })
 export class RequestConsultationModule {

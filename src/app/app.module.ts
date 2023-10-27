@@ -113,7 +113,7 @@ import {HeaderComponent} from "./shared/components/header/header.component";
         RequestConsultationComponent,
         CloseConsultationComponent,
         ChooseAttachmentComponent,
-        HeaderComponent,
+        // HeaderComponent,
     ],
     bootstrap: [AppComponent],
 })
