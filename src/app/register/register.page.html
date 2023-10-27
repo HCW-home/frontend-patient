@@ -40,9 +40,9 @@
                     <ion-item fill="solid" class="mb-3">
                         <ion-label position="floating">Lastname</ion-label>
                         <ion-input
-                                (ionBlur)="validationService.clearSpace(form, 'firstName')"
-                                (ionFocus)="validationService.resetInputValidation(form, 'firstName')"
-                                (ionChange)="validationService.ltrim(form, 'firstName')"
+                                (ionBlur)="validationService.clearSpace(form, 'lastName')"
+                                (ionFocus)="validationService.resetInputValidation(form, 'lastName')"
+                                (ionChange)="validationService.ltrim(form, 'lastName')"
                                 placeholder="Enter lastName"
                                 formControlName="lastName"
                         ></ion-input>

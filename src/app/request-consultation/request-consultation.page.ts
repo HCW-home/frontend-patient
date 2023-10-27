@@ -6,6 +6,7 @@ import {ModalController} from "@ionic/angular";
 import {CountrySelectPage} from "../register/country-select/country-select.page";
 import {Queue, QueueService} from "../shared/services/queue.service";
 import {ConsultationService} from "../shared/services/consultation.service";
+import {ValidationService} from "../shared/services/validation.service";
 
 
 @Component({
@@ -23,7 +24,6 @@ export class RequestConsultationPage implements OnInit {
         firstName: ["", [Validators.required]],
         lastName: ["", [Validators.required]],
         sex: ["", [Validators.required]],
-        phoneNumber: [""],
         organization: [""],
         country: [""],
         age: [""],
@@ -37,6 +37,7 @@ export class RequestConsultationPage implements OnInit {
         private modalController: ModalController,
         private consultationService: ConsultationService,
         private queueService: QueueService,
+        public validationService: ValidationService,
         public configService: ConfigService) {
     }
 
@@ -112,6 +113,18 @@ export class RequestConsultationPage implements OnInit {
                 const surnameErrors = this.form.controls.lastName.errors;
                 if (surnameErrors.required) {
                     return "Lastname is required";
+                }
+                break;
+            case "queue":
+                const queueErrors = this.form.controls.queue.errors;
+                if (queueErrors.required) {
+                    return "Expert area is required";
+                }
+                break;
+            case "sex":
+                const sexErrors = this.form.controls.sex.errors;
+                if (sexErrors.required) {
+                    return "Gender is required";
                 }
                 break;
         }

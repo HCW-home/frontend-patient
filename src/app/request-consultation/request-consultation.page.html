@@ -17,27 +17,53 @@
                             <ion-select-option [value]="option.id"
                                                *ngFor="let option of queues">{{option.name}}</ion-select-option>
                         </ion-select>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'queue')">{{getErrorMessage('queue')}}</ion-note>
                     </ion-item>
                 </ion-list>
 
 
                 <ion-item fill="solid" class="mb-3">
                     <ion-label position="floating">Patient Firstname</ion-label>
-                    <ion-input placeholder="Enter Patient Firstname" formControlName="firstName"
+                    <ion-input
+                            (ionBlur)="validationService.clearSpace(form, 'firstName')"
+                            (ionFocus)="validationService.resetInputValidation(form, 'firstName')"
+                            (ionChange)="validationService.ltrim(form, 'firstName')"
+                            placeholder="Enter Patient Firstname" formControlName="firstName"
                     ></ion-input>
+                    <ion-note slot="error"
+                              *ngIf="validationService.showError(form, 'firstName')">{{getErrorMessage('firstName')}}</ion-note>
                 </ion-item>
-
 
                 <ion-item fill="solid" class="mb-3">
                     <ion-label position="floating">Patient Lastname</ion-label>
-                    <ion-input placeholder="Enter Patient Lastname" formControlName="lastName"
+                    <ion-input
+                            (ionBlur)="validationService.clearSpace(form, 'lastName')"
+                            (ionFocus)="validationService.resetInputValidation(form, 'lastName')"
+                            (ionChange)="validationService.ltrim(form, 'lastName')"
+                            placeholder="Enter Patient Lastname" formControlName="lastName"
                     ></ion-input>
+                    <ion-note slot="error"
+                              *ngIf="validationService.showError(form, 'lastName')">{{getErrorMessage('lastName')}}</ion-note>
                 </ion-item>
+
+                <ion-list>
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-select interface="popover" placeholder="Select Gender" formControlName="sex">
+                            <ion-select-option [value]="option.id"
+                                               *ngFor="let option of genders">{{option.name}}</ion-select-option>
+                        </ion-select>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'sex')">{{getErrorMessage('sex')}}</ion-note>
+
+                    </ion-item>
+                </ion-list>
+
 
 
                 <ion-item fill="solid" class="mb-3">
                     <ion-label position="floating">Age</ion-label>
-                    <ion-input placeholder="Enter Age" formControlName="age"
+                    <ion-input placeholder="Enter Age"  type="number" formControlName="age"
                     ></ion-input>
                 </ion-item>
 
@@ -54,19 +80,14 @@
                 </ion-item>
 
 
-                <ion-list>
-                    <ion-item fill="solid" class="mb-3">
-                        <ion-select interface="popover" placeholder="Select Gender" formControlName="sex">
-                            <ion-select-option [value]="option.id"
-                                               *ngFor="let option of genders">{{option.name}}</ion-select-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-list>
 
                 <ion-item fill="solid" class="mt-3">
-                    <ion-label position="floating">Message</ion-label>
-                    <ion-input placeholder="Message (Optional)" formControlName="message"
-                    ></ion-input>
+                    <ion-label position="floating">Message (Optional)</ion-label>
+<!--                    <ion-input placeholder="Message (Optional)" formControlName="message"-->
+<!--                    ></ion-input>-->
+                    <ion-textarea label="Solid textarea" labelPlacement="floating" fill="solid"
+                                  placeholder="Enter text"></ion-textarea>
+
                 </ion-item>
 
 

@@ -102,6 +102,18 @@ export class AuthService {
   //   }));
   // }
 
+  //  logout() {
+  //     // sessionStorage.removeItem('currentUser');
+  //     this.currentUserSubject.next(null);
+  //     this.socketEventsService.disconnect()
+  //     this.http.get(`${environment.api}/logout`).subscribe(r => {
+  //       console.log(r, "res");
+  //       this.router.navigate(["/login"]);
+  //     }, err => {
+  //       this.router.navigate(["/login"]);
+  //     })
+  //   }
+
   logout() {
     // remove user from local storage to log user out
     console.log('LOGOUT')

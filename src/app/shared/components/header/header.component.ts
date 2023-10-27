@@ -22,6 +22,10 @@ export class HeaderComponent implements OnInit {
     console.log(this.currentUser, 'currentUser');
   }
 
+  logOut() {
+    this.authService.logout();
+  }
+
 
 
 
