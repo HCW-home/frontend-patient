@@ -23,7 +23,7 @@
                             <td class="border">
                                 <div class="name-container">
                                     <span class='name'>{{consultation.consultation.firstName }} {{consultation.consultation.lastName}}</span>
-                                    <span class='message'>-</span>
+                                    <span class='message' *ngIf="consultation?.lastMsg?.text">{{consultation?.lastMsg?.text}}</span>
                                 </div>
                             </td>
                             <td class="border">
@@ -140,6 +140,11 @@
                                         <span class="value">{{consultation.consultation?.gender}}</span>
                                         <span class="value">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
                                     </div>
+                                </div>
+                            </td>
+                            <td class="border">
+                                <div class="buttons-wrapper">
+                                    <ion-button class="resume-button" (click)="resume(consultation)">View</ion-button>
                                 </div>
                             </td>
                         </tr>

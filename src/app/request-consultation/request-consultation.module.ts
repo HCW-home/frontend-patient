@@ -6,6 +6,7 @@ import {IonicModule} from "@ionic/angular";
 import {I18nModule} from "../i18n/i18n.module";
 import {RequestConsultationPage} from "./request-consultation.page";
 import {HeaderComponent} from "../shared/components/header/header.component";
+import {ChooseAttachmentComponent} from "../shared/components/choose-attachment/choose-attachment.component";
 
 const routes: Routes = [
     {
@@ -23,7 +24,7 @@ const routes: Routes = [
         I18nModule,
         ReactiveFormsModule,
     ],
-    declarations: [RequestConsultationPage],
+    declarations: [RequestConsultationPage, ChooseAttachmentComponent],
     exports: [RequestConsultationPage]
 
 })

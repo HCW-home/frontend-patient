@@ -52,8 +52,50 @@ ion-content {
 
 .attachment-wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  .uploader-wrapper {
+
+    height: 108px;
+    width: 100%;
+    border-radius: 8px;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 1px dashed #BCC2CE;
+
+   ion-img {
+     width: 50px;
+   }
+
+    .upload-text {
+      color: rgb(79,90,237);
+      line-height: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .upload-success-wrapper {
+      display: flex;
+      gap: 5px;
+      ion-img {
+        width: 12px;
+      }
+
+      .upload-success-text {
+        color: rgb(56,160, 108);
+        line-height: 20px;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+
+  }
 
 }
 
@@ -80,5 +122,22 @@ ion-content {
   margin-top: 1.5rem;
 }
 
+
+.label-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  .label {
+    color: black;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+}
 
 

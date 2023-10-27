@@ -49,7 +49,6 @@
                 >{{ consultation.doctor.phoneNumber }}</a
                 >
             </p>
-            <p class="backToDashboard" (click)="backToDashboard()">{{ 'Back to Dashboard' | translate }}</p>
         </ion-card-content>
     </ion-card>
 
@@ -77,7 +76,7 @@
             {{ 'consultation.cancel' | translate }}
         </ion-button>
 
-        <p class="backToDashboard" (click)="backToDashboard()">{{ 'Back to Dashboard' | translate }}</p>
+        <p class="backToDashboard" (click)="backToDashboard()" *ngIf="currentUser.role === 'nurse'">{{ 'Back to Dashboard' | translate }}</p>
 
     </ion-card>
 

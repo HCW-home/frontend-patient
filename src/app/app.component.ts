@@ -107,8 +107,7 @@ export class AppComponent {
         });
       } else {
         if (this.currentUser && this.currentUser.role === 'nurse') {
-          console.log('gandonnn');
-
+          this.router.navigate([`/dashboard`]);
         } else {
           this.router.navigate(["/login"]);
         }

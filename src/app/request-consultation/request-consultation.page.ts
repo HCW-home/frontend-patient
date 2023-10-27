@@ -7,10 +7,11 @@ import {CountrySelectPage} from "../register/country-select/country-select.page"
 import {Queue, QueueService} from "../shared/services/queue.service";
 import {ConsultationService} from "../shared/services/consultation.service";
 import {ValidationService} from "../shared/services/validation.service";
+import {MessageService} from "../message.service";
 
 
 @Component({
-    selector: "app-register",
+    selector: "app-request-consultation",
     templateUrl: "./request-consultation.page.html",
     styleUrls: ["./request-consultation.page.scss"],
 })
@@ -38,6 +39,7 @@ export class RequestConsultationPage implements OnInit {
         private consultationService: ConsultationService,
         private queueService: QueueService,
         public validationService: ValidationService,
+        private messageService: MessageService,
         public configService: ConfigService) {
     }
 
@@ -54,10 +56,6 @@ export class RequestConsultationPage implements OnInit {
                 console.log(err, "err");
             }
         );
-    }
-
-    uploadPhoto(fileChangeEvent) {
-        this.file = fileChangeEvent;
     }
 
     async openCountrySelect() {
@@ -90,8 +88,20 @@ export class RequestConsultationPage implements OnInit {
                 "Hospital/facility": value.organization
             }
         }).subscribe(res => {
-            localStorage.setItem("currentConsultation", res.id);
-            this.router.navigate([`/consultation/${res.id}`]);
+            if (value.message) {
+                this.messageService.sendMessage(res.id, value.message).subscribe({
+                    next: () => {
+                        localStorage.setItem("currentConsultation", res.id);
+                        this.router.navigate([`/consultation/${res.id}`]);
+
+                    }, error: (err) => {
+                        console.log(err, 'err');
+                    }
+                })
+            } else {
+                localStorage.setItem("currentConsultation", res.id);
+                this.router.navigate([`/consultation/${res.id}`]);
+            }
         }, err => {
             console.log(err);
         });
@@ -99,6 +109,15 @@ export class RequestConsultationPage implements OnInit {
 
     backToDashboard() {
         this.router.navigate([`/dashboard`]);
+    }
+
+    removeFile(e) {
+        this.file = null;
+    }
+
+    onFileListener(event: Event): void {
+        this.file = event;
+        console.log(event, 'eve');
     }
 
     getErrorMessage(formField: string) {
