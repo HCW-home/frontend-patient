@@ -1,3 +1,13 @@
+hcw-athome-patient (0.4.4.25) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * hide header component
+  * add last message
+  * subsribe to new messages updates in dashboard
+  * posting files
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 30 Oct 2023 09:00:21 +0100
+
 hcw-athome-patient (0.4.4.24) focal; urgency=medium
 
   [ Gor Grigoryan ]
