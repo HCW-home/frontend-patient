@@ -1,0 +1,16 @@
+<ng-template>
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>{{ 'imgModalName' }}</ion-title>
+            <ion-buttons slot="end">
+                <ion-button >{{ "login.back" | translate }}</ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+        <img [src]="'assets/icons/attach-icon.svg'"
+                alt="imgModalAlt"
+        />
+<!--        <ion-button (click)="closeImgModal(false)">{{ "login.back" | translate }}</ion-button>-->
+    </ion-content>
+</ng-template>

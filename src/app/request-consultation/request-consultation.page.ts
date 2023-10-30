@@ -8,6 +8,8 @@ import {Queue, QueueService} from "../shared/services/queue.service";
 import {ConsultationService} from "../shared/services/consultation.service";
 import {ValidationService} from "../shared/services/validation.service";
 import {MessageService} from "../message.service";
+import {forkJoin, of} from "rxjs";
+import {catchError, finalize, switchMap} from "rxjs/operators";
 
 
 @Component({
@@ -19,6 +21,7 @@ export class RequestConsultationPage implements OnInit {
     queues: Queue[] = [];
     genders = [{name: "Male", id: "male"}, {name: "Female", id: "female"}];
     file;
+    loading = false;
 
     form: FormGroup = this.fb.group({
         queue: ["", [Validators.required]],
@@ -75,7 +78,8 @@ export class RequestConsultationPage implements OnInit {
     }
 
     onSubmit() {
-        const {value} = this.form;
+        this.loading = true;
+        const { value } = this.form;
         this.consultationService.createConsultation({
             firstName: value.firstName,
             lastName: value.lastName,
@@ -87,21 +91,38 @@ export class RequestConsultationPage implements OnInit {
                 "Country": value.country,
                 "Hospital/facility": value.organization
             }
-        }).subscribe(res => {
-            if (value.message) {
-                this.messageService.sendMessage(res.id, value.message).subscribe({
-                    next: () => {
-                        localStorage.setItem("currentConsultation", res.id);
-                        this.router.navigate([`/consultation/${res.id}`]);
+        }).pipe(
+            switchMap(res => {
+                const actions = [];
+                if (value.message) {
+                    actions.push(this.messageService.sendMessage(res.id, value.message));
+                }
+                if (this.file) {
+                    actions.push(this.consultationService.postFile(this.file, res.id));
+                }
 
-                    }, error: (err) => {
+                if (actions.length === 0) {
+                    return of(res);
+                }
+
+                return forkJoin(actions).pipe(
+                    switchMap(() => of(res)),
+                    catchError(err => {
                         console.log(err, 'err');
-                    }
-                })
-            } else {
-                localStorage.setItem("currentConsultation", res.id);
-                this.router.navigate([`/consultation/${res.id}`]);
-            }
+                        throw err;
+                    })
+                );
+            }),
+            catchError(err => {
+                console.log(err);
+                throw err;
+            }),
+            finalize(() => {
+                this.loading = false;
+            })
+        ).subscribe(res => {
+            localStorage.setItem("currentConsultation", res.id);
+            this.router.navigate([`/consultation/${res.id}`]);
         }, err => {
             console.log(err);
         });
@@ -115,9 +136,8 @@ export class RequestConsultationPage implements OnInit {
         this.file = null;
     }
 
-    onFileListener(event: Event): void {
-        this.file = event;
-        console.log(event, 'eve');
+    onFileListener(event: any): void {
+        this.file = event.target.files[0];
     }
 
     getErrorMessage(formField: string) {

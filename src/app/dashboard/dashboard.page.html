@@ -24,6 +24,10 @@
                                 <div class="name-container">
                                     <span class='name'>{{consultation.consultation.firstName }} {{consultation.consultation.lastName}}</span>
                                     <span class='message' *ngIf="consultation?.lastMsg?.text">{{consultation?.lastMsg?.text}}</span>
+                                    <span class='attach' *ngIf="consultation?.lastMsg?.type === 'attachment'">
+                                        <ion-img src="assets/icons/attach-icon.svg" ></ion-img>
+                                        {{consultation?.lastMsg?.fileName}}
+                                    </span>
                                 </div>
                             </td>
                             <td class="border">

@@ -70,7 +70,17 @@ ion-content {
           font-size: 0.7rem;
           font-weight: 400;
           max-width: 200px;
+      }
 
+      .attach {
+        display: flex;
+        gap: 2px;
+        color: rgba(108, 108, 108, 1);
+
+        ion-img {
+          width: 20px;
+
+        }
       }
     }
 
