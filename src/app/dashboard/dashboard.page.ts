@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from "@angular/core";
 import {Router} from "@angular/router";
 import {ConsultationService} from "../shared/services/consultation.service";
 import {CloseConsultationComponent} from "../shared/components/close-consultation/close-consultation.component";
@@ -11,7 +11,7 @@ import {SocketEventsService} from "../socket-events.service";
     templateUrl: './dashboard.page.html',
     styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage  {
+export class DashboardPage implements OnDestroy {
     private subscriptions: Array<Subscription> = [];
     activeCount: number = 0;
     closedCount: number = 0;
@@ -68,17 +68,29 @@ export class DashboardPage  {
     listenToNewMessages() {
         this.subscriptions.push(
             this._socketEventsService.onMessage().subscribe((msg) => {
-
-                console.log(this.consultations, 'this.consultations');
                 if (this.consultations.some((item) => item._id === msg.data.consultation)) {
                     this.getConsultations();
-                    console.log("got message ", msg);
                 }
-                // this.scrollToBottom();
-
-                // this.readMessages();
             })
         );
+        this.subscriptions.push(
+            this._socketEventsService.onConsultationAccepted().subscribe((event) => {
+                if (this.consultations.some((item) => item._id === event.data._id)) {
+                    this.getConsultations();
+                }
+            })
+        );
+        this.subscriptions.push(
+            this._socketEventsService.onConsultationClosed().subscribe((event) => {
+                if (this.consultations.some((item) => item._id === event.data._id)) {
+                    this.getConsultations();
+                }
+            })
+        );
+    }
+
+    ngOnDestroy() {
+        this.subscriptions.forEach(sub => sub.unsubscribe());
     }
 
 }
