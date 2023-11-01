@@ -9,6 +9,7 @@
 
         <div class="overlay-content"
              [style.height]="consultation.consultation.status === 'closed'? 'calc(100% - 70px);':'calc(100% - 150px);'">
+            <app-feedback [consultation]="consultation" *ngIf="consultation.consultation.status === 'closed'"></app-feedback>
             <div class="info-items">
                 <div class="info-item">
                     <span class="title"> Patient name</span>
@@ -46,8 +47,6 @@
             <div class="consultation-wrapper">
                 <app-consultation-chat [consultation]="consultation"></app-consultation-chat>
             </div>
-            <!--      <chat-component-->
-            <!--      <app-chat [consultation]="consultation" [showInput]="false"></app-chat>-->
         </div>
     </div>
     <div *ngIf="consultation.consultation.status === 'active'" class="resume-c-btn" (click)="resumeConsultation()">

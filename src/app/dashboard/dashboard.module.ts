@@ -13,6 +13,7 @@ import {OverlayComponent} from "../shared/components/overlay/overlay.component";
 import {ConsultationPageModule} from "../consultation/consultation.module";
 import {ConsultationChatComponent} from "../shared/components/consultation-chat/consultation-chat.component";
 import {VideoRoomPageModule} from "../video-room/video-room.module";
+import {FeedbackComponent} from "../shared/components/feedback/feedback.component";
 
 const routes: Routes = [
   {
@@ -30,8 +31,8 @@ const routes: Routes = [
         I18nModule,
         VideoRoomPageModule
     ],
-    declarations: [DashboardPage, HeaderComponent,OverlayComponent, ConsultationChatComponent],
-    exports: [DashboardPage, HeaderComponent,OverlayComponent,ConsultationChatComponent]
+    declarations: [DashboardPage, HeaderComponent,OverlayComponent, ConsultationChatComponent,FeedbackComponent],
+    exports: [DashboardPage, HeaderComponent,OverlayComponent,ConsultationChatComponent, FeedbackComponent]
 
 })
 export class DashboardPageModule { }

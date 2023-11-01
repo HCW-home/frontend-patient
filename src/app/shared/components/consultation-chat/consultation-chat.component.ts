@@ -157,8 +157,6 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
     );
     this.subscriptions.push(
         this._socketEventsService.onCall().subscribe((e) => {
-          console.log("Calll ", e, this.consultation);
-
           this.hideKeyboard();
           this.ringing();
 
@@ -263,12 +261,12 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
             return this.authService.logout();
             // return this.router.navigate(['login']);
           }
-          if (
-              !consultation.consultation ||
-              consultation.consultation.status === "closed"
-          ) {
-            this.closeConsultation(consultation);
-          }
+          // if (
+          //     !consultation.consultation ||
+          //     consultation.consultation.status === "closed"
+          // ) {
+          //   this.closeConsultation(consultation);
+          // }
 
           this.subscriptions.push(
               this.callService.getCurrentCall(this.consultationId).subscribe(
@@ -289,22 +287,13 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
                 }
               })
           );
-            console.log('stexaaa gandon');
           this.zone.run(() => {
               this.getMessages();
-            // if (!this.consultation) {
-            //   this.consultation = consultation;
-            //     console.log('stexaaa gandon 222');
-            //
-            // } else {
-            //   this.consultation = consultation;
-            // }
           });
         });
   }
 
   closeConsultation(consultation) {
-    console.log("no consultation.consultation or closed .......");
     if (this.consultationSubscription) {
       this.consultationSubscription.unsubscribe();
       this.consultationSubscription = null;

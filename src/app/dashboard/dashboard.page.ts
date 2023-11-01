@@ -26,7 +26,7 @@ export class DashboardPage implements OnDestroy {
         private _socketEventsService: SocketEventsService,
     ) { }
 
-    ionViewWillEnter() {
+    ionViewDidEnter() {
         this.getConsultations();
         this.listenToNewMessages();
 

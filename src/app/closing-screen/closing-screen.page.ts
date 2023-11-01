@@ -1,16 +1,11 @@
 import { AuthService } from "./../auth/auth.service";
-import { Component, OnInit, Directive  } from "@angular/core";
+import { Component, OnInit  } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { ConsultationService } from "../consultation.service";
 import { ConfigService } from "../config.service";
 import { Platform } from "@ionic/angular";
-import { environment } from "../../environments/environment";
 import { App } from '@capacitor/app';
-
-
-declare let cordova: any;
-
 
 @Component({
   selector: "app-closing-screen",
