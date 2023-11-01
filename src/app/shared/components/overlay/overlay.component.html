@@ -9,37 +9,77 @@
 
         <div class="overlay-content"
              [style.height]="consultation.consultation.status === 'closed'? 'calc(100% - 70px);':'calc(100% - 150px);'">
+
+            <p class="keep-open" *ngIf="consultation.consultation.status !== 'active' && consultation.consultation.status !== 'closed'">
+                {{ 'consultation.plsKeepThisOpenPage' | translate }}
+            </p>
+            <ion-card *ngIf="consultation.consultation.status === 'active'"
+                      class="jumbotron ion-no-padding ion-no-margin">
+                <ion-card-header>
+                    <ion-card-title class="title">
+                        {{ 'consultation.consultation' | translate }}
+                        <br/>
+                        <strong>{{ 'consultation.capInProgress' | translate }}</strong>
+                    </ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
+                    <p class="subtitle">
+                        {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
+                    </p>
+                    <p class="subtitle doctor" *ngIf="consultation.doctor.phoneNumber">
+                        {{ 'consultation.phone' | translate }}
+                        <a href="tel:{{ consultation.doctor.phoneNumber }}"
+                        >{{ consultation.doctor.phoneNumber }}</a
+                        >
+                    </p>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card
+                    *ngIf="consultation.consultation.status === 'pending'"
+                    class="jumbotron await ion-no-padding ion-no-margin"
+            >
+                <ion-title class="title">
+                    {{ 'consultation.requestForConsultation' | translate }}
+                    <br/>
+                    <strong>{{ 'consultation.capInProgress' | translate }}</strong>
+                </ion-title>
+                <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
+
+
+            </ion-card>
+
             <app-feedback [consultation]="consultation" *ngIf="consultation.consultation.status === 'closed'"></app-feedback>
             <div class="info-items">
                 <div class="info-item">
-                    <span class="title"> Patient name</span>
+                    <span class="title-wrapper"> Patient name</span>
                     <span class="content">{{consultation.consultation.firstName }}{{consultation.consultation.lastName}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title"> Handled By </span>
+                    <span class="title-wrapper"> Handled By </span>
                     <span class="content" *ngIf="consultation.doctor; else requesting">{{consultation.doctor?.firstName }} {{consultation.doctor?.lastName}}</span>
                     <ng-template #requesting>
                         <span class="content">requesting</span>
                     </ng-template>
                 </div>
                 <div class="info-item">
-                    <span class="title"> Country </span>
+                    <span class="title-wrapper"> Country </span>
                     <span class="content">{{consultation.consultation?.metadata?.Country || '-'}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title"> Sex </span>
+                    <span class="title-wrapper"> Sex </span>
                     <span class="content">{{consultation.consultation.gender}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title"> Area </span>
+                    <span class="title-wrapper"> Area </span>
                     <span class="content">{{consultation.queue.name}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title"> Requested at </span>
+                    <span class="title-wrapper"> Requested at </span>
                     <span class="content">{{consultation.consultation.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title">Hospital/facility</span>
+                    <span class="title-wrapper">Hospital/facility</span>
                     <span class="content">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
                 </div>
             </div>

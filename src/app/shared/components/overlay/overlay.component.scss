@@ -94,6 +94,81 @@ div.buttons-wrapper div:last-child {
   background-color: #00b54a;
 }
 
+
+.jumbotron {
+  color: #ffffff;
+  max-height: 240px;
+  background-color: var(--ion-color-primary) !important;
+  background-position: center;
+  border-radius: 0;
+  text-align: center;
+}
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .jumbotron {
+      background-image: unset !important;
+    }
+  }
+}
+
+.jumbotron.await {
+  max-height: 283px;
+}
+
+@media screen and (max-width: 640px) {
+  .jumbotron,
+  .jumbotron.await {
+    max-height: 300px;
+  }
+}
+
+ion-card-title {
+  color: #fff;
+}
+.title {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.keep-open {
+  color: white;
+  text-align: center;
+  background: #ee5555;
+  padding: 10px;
+  margin: 0;
+  font-weight: bold;
+}
+
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .title {
+      text-align: left !important;
+    }
+    p {
+      text-align: left !important;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    #chatHeader1 {
+      text-align: left;
+      font-size: 1em;
+    }
+    .msg-time {
+      font-size: 0.8em !important;
+    }
+    .subtitle {
+      font-size: 1.1em;
+    }
+    .doctor-info-card {
+      padding-left: 0;
+    }
+    .keep-open {
+      padding-left: 20px;
+    }
+  }
+}
+
 .info-items {
   background-color: #ffffff;
   padding: 20px 30px;
@@ -107,7 +182,7 @@ div.buttons-wrapper div:last-child {
     gap: 5px;
     margin-bottom: 15px;
 
-    .title {
+    .title-wrapper {
       font-weight: 500;
       font-size: 0.8em;
       color: #929292;

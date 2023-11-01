@@ -10,45 +10,6 @@
         #scrollMe
         id="chatContainer"
 >
-    <p class="keep-open" *ngIf="consultation.consultation.status !== 'active'">
-        {{ 'consultation.plsKeepThisOpenPage' | translate }}
-    </p>
-    <ion-card
-            *ngIf="consultation.consultation.status === 'active'"
-            class="jumbotron ion-no-padding ion-no-margin">
-        <ion-card-header>
-            <ion-card-title class="title">
-                {{ 'consultation.consultation' | translate }}
-                <br/>
-                <strong>{{ 'consultation.capInProgress' | translate }}</strong>
-            </ion-card-title>
-        </ion-card-header>
-        <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
-            <p class="subtitle">
-                {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
-            </p>
-            <p class="subtitle doctor" *ngIf="consultation.doctor.phoneNumber">
-                {{ 'consultation.phone' | translate }}
-                <a href="tel:{{ consultation.doctor.phoneNumber }}"
-                >{{ consultation.doctor.phoneNumber }}</a
-                >
-            </p>
-        </ion-card-content>
-    </ion-card>
-
-    <ion-card
-            *ngIf="consultation.consultation.status === 'pending'"
-            class="jumbotron await ion-no-padding ion-no-margin"
-    >
-        <ion-title class="title">
-            {{ 'consultation.requestForConsultation' | translate }}
-            <br/>
-            <strong>{{ 'consultation.capInProgress' | translate }}</strong>
-        </ion-title>
-        <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
-
-
-    </ion-card>
 
     <ion-grid class="chat">
         <ion-grid

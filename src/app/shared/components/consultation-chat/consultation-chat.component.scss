@@ -1,24 +1,5 @@
 @import "src/theme/variables.scss";
 
-.jumbotron {
-  color: #ffffff;
-  max-height: 240px;
-  @include backgroundMixin($background-image-path);
-  background-color: var(--ion-color-primary) !important;
-  background-position: center;
-  border-radius: 0px;
-  text-align: center;
-}
-::ng-deep {
-  html[data-theme="accessibility"] {
-    .jumbotron {
-      background-image: unset !important;
-    }
-  }
-}
-.jumbotron.await {
-  max-height: 283px;
-}
 
 ion-card-title {
   color: #fff;
@@ -225,25 +206,13 @@ div.input > ion-grid > ion-row > ion-col > ion-icon {
 
 }
 
-@media screen and (max-width: 640px) {
-  .jumbotron,
-  .jumbotron.await {
-    max-height: 300px;
-  }
-}
+
 .join-call-btn-container {
   display: flex;
   font-size: 0.6em;
   justify-content: center;
 }
-.keep-open {
-  color: white;
-  text-align: center;
-  background: #ee5555;
-  padding: 10px;
-  margin: 0;
-  font-weight: bold;
-}
+
 #chatHeader1 {
   text-align: center;
   font-size: 0.9em;
