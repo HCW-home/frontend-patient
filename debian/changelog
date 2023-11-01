@@ -1,3 +1,13 @@
+hcw-athome-patient (0.4.4.26) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * build fix
+  * listen to consultation status change
+  * add overlay for genereal information
+  * feedback in overlay for closed consultations
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 01 Nov 2023 12:49:17 +0100
+
 hcw-athome-patient (0.4.4.25) focal; urgency=medium
 
   [ Gor Grigoryan ]
