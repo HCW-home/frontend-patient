@@ -1,0 +1,123 @@
+<ion-content>
+
+    <app-header></app-header>
+    <div class="profile-wrapper">
+
+        <div class="card">
+            <ion-text>
+                <h1 class="register">Profile</h1>
+            </ion-text>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <div class="form-inputs-wrapper">
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input
+                                (ionBlur)="validationService.clearSpace(form, 'email')"
+                                (ionFocus)="validationService.resetInputValidation(form, 'email')"
+                                (ionChange)="validationService.ltrim(form, 'email')"
+                                placeholder="Enter email"
+                                type="email"
+                                formControlName="email"
+                        ></ion-input>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'email')">{{getErrorMessage('email')}}</ion-note>
+
+                    </ion-item>
+
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label position="floating">Firstname</ion-label>
+                        <ion-input
+                                (ionBlur)="validationService.clearSpace(form, 'firstName')"
+                                (ionFocus)="validationService.resetInputValidation(form, 'firstName')"
+                                (ionChange)="validationService.ltrim(form, 'firstName')"
+                                placeholder="Enter firstname" formControlName="firstName"
+                        ></ion-input>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'firstName')">{{getErrorMessage('firstName')}}</ion-note>
+                    </ion-item>
+
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label position="floating">Lastname</ion-label>
+                        <ion-input
+                                (ionBlur)="validationService.clearSpace(form, 'lastName')"
+                                (ionFocus)="validationService.resetInputValidation(form, 'lastName')"
+                                (ionChange)="validationService.ltrim(form, 'lastName')"
+                                placeholder="Enter lastName"
+                                formControlName="lastName"
+                        ></ion-input>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'lastName')">{{getErrorMessage('lastName')}}</ion-note>
+                    </ion-item>
+
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label position="floating">Phone Number</ion-label>
+                        <ion-input
+                                maxlength="16"
+                                (ionBlur)="validationService.clearSpace(form, 'phoneNumber')"
+                                (ionFocus)="validationService.resetInputValidation(form, 'phoneNumber')"
+                                (ionChange)="validationService.ltrim(form, 'phoneNumber')"
+                                placeholder="Enter Phone Number"
+                                formControlName="phoneNumber"
+                        ></ion-input>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'phoneNumber')">{{getErrorMessage('phoneNumber')}}</ion-note>
+                    </ion-item>
+
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label position="floating">Organization</ion-label>
+                        <ion-input placeholder="Enter Organization"
+                                   (ionBlur)="validationService.clearSpace(form, 'organization')"
+                                   (ionFocus)="validationService.resetInputValidation(form, 'organization')"
+                                   (ionChange)="validationService.ltrim(form, 'organization')"
+                                   formControlName="organization"
+                                   autocomplete="off"
+                        ></ion-input>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'organization')">{{getErrorMessage('organization')}}</ion-note>
+                    </ion-item>
+
+                    <ion-item (click)="openCountrySelect()" fill="solid" class="mb-3">
+                        <ion-label position="floating">Country</ion-label>
+                        <ion-input placeholder="Select Country"
+                                   formControlName="country"
+                                   autocomplete="off"
+                        ></ion-input>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'country')">{{getErrorMessage('country')}}</ion-note>
+                    </ion-item>
+
+                    <ion-list>
+                        <ion-item fill="solid" class="mb-3">
+                            <ion-select interface="popover" placeholder="Gender" formControlName="sex">
+                                <ion-select-option [value]="option.id"
+                                                   *ngFor="let option of genders">{{option.name}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+
+                </div>
+
+                <ion-note slot="error" style="color: red"
+                          *ngIf="errorMessage">{{errorMessage}}</ion-note>
+
+                <button class="btn green"
+                        type="submit"
+                        [disabled]="!form.valid">
+                    Update Profile
+                </button>
+
+            </form>
+
+            <div class="label-wrapper" (click)="goToLogin()">
+                 <span class="label">
+                    Back to Dashboard
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+
+</ion-content>

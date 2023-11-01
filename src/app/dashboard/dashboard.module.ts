@@ -14,6 +14,8 @@ import {ConsultationPageModule} from "../consultation/consultation.module";
 import {ConsultationChatComponent} from "../shared/components/consultation-chat/consultation-chat.component";
 import {VideoRoomPageModule} from "../video-room/video-room.module";
 import {FeedbackComponent} from "../shared/components/feedback/feedback.component";
+import {LoaderComponent} from "../shared/components/loader/loader.component";
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -29,10 +31,11 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         I18nModule,
-        VideoRoomPageModule
+        VideoRoomPageModule,
+        SharedModule
     ],
-    declarations: [DashboardPage, HeaderComponent,OverlayComponent, ConsultationChatComponent,FeedbackComponent],
-    exports: [DashboardPage, HeaderComponent,OverlayComponent,ConsultationChatComponent, FeedbackComponent]
+    declarations: [DashboardPage, OverlayComponent, ConsultationChatComponent,FeedbackComponent, LoaderComponent],
+    exports: [DashboardPage, OverlayComponent,ConsultationChatComponent, FeedbackComponent, LoaderComponent]
 
 })
 export class DashboardPageModule { }

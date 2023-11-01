@@ -1,0 +1,58 @@
+<table style="    min-width: 802px; ">
+    <tbody>
+    <ng-container *ngFor="let items of [1,2,3,4]">
+        <tr>
+            <td>
+                <ion-avatar slot="start">
+                    <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+                </ion-avatar>
+            </td>
+            <td>
+                <div style='display: flex; gap: 10px'>
+                    <ion-skeleton-text [animated]="true" style="width: 60px"></ion-skeleton-text>
+                    <ion-skeleton-text [animated]="true" style="width: 90px"></ion-skeleton-text>
+                </div>
+                <ion-skeleton-text [animated]="true" style="width: 90px"></ion-skeleton-text>
+
+            </td>
+            <td>
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+                    <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+                    <ion-skeleton-text [animated]="true" style="width: 10px"></ion-skeleton-text>
+                </div>
+            </td>
+            <td>
+                <div style="display: flex; gap: 10px">
+                    <div>
+                        <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+                        <ion-skeleton-text [animated]="true" style="width: 100px"></ion-skeleton-text>
+                        <ion-skeleton-text [animated]="true" style="width: 30px"></ion-skeleton-text>
+                    </div>
+                    <div>
+                        <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+                        <ion-skeleton-text [animated]="true" style="width: 100px"></ion-skeleton-text>
+                        <ion-skeleton-text [animated]="true" style="width: 30px"></ion-skeleton-text>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div style="display: flex; gap: 10px">
+                    <div>
+                        <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+                        <ion-skeleton-text [animated]="true" style="width: 100px"></ion-skeleton-text>
+                        <ion-skeleton-text [animated]="true" style="width: 30px"></ion-skeleton-text>
+                    </div>
+                    <div>
+                        <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+                        <ion-skeleton-text [animated]="true" style="width: 100px"></ion-skeleton-text>
+                        <ion-skeleton-text [animated]="true" style="width: 30px"></ion-skeleton-text>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <ion-skeleton-text [animated]="true" style="width: 80px; height: 30px"></ion-skeleton-text>
+            </td>
+        </tr>
+    </ng-container>
+    </tbody>
+</table>

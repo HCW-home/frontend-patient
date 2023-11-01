@@ -5,6 +5,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {IonicModule} from "@ionic/angular";
 import {I18nModule} from "../i18n/i18n.module";
 import {RequestConsultationPage} from "./request-consultation.page";
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
     {
@@ -21,6 +22,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         I18nModule,
         ReactiveFormsModule,
+        SharedModule
     ],
     declarations: [RequestConsultationPage],
     exports: [RequestConsultationPage]

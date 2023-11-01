@@ -1,8 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
-import { ModalController, Platform } from '@ionic/angular';
 import { AuthService } from '../../../auth/auth.service';
-
-
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -10,24 +8,23 @@ import { AuthService } from '../../../auth/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  currentUser;
+  currentUser: any;
+
   constructor(
-    public modalController: ModalController,
     private authService: AuthService,
-    public platform: Platform,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
-    console.log(this.currentUser, 'currentUser');
   }
 
   logOut() {
     this.authService.logout();
   }
 
-
-
-
+  goToProfile() {
+    this.router.navigate([`profile`]);
+  }
 
 }

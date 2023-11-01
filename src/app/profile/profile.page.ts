@@ -3,17 +3,19 @@ import { ConfigService } from '../config.service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
-import {CountrySelectPage} from "./country-select/country-select.page";
 import {NurseService} from "../shared/services/nurse.service";
 import {ValidationService} from "../shared/services/validation.service";
+import {CountrySelectPage} from "../register/country-select/country-select.page";
+import {AuthService} from "../auth/auth.service";
 
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class ProfilePage implements OnInit {
+  currentUser: any;
   genders = [{name: "Male", id: "male"}, {name: "Female", id: "female"}];
   form: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
@@ -23,10 +25,10 @@ export class RegisterPage implements OnInit {
     organization: ['', [Validators.required]],
     country: ['', [Validators.required]],
     sex: ['male', [Validators.required]],
-    terms: [false, [Validators.requiredTrue]]
   });
   errorMessage: string;
   constructor(
+      private authService: AuthService,
       private fb: FormBuilder,
       private router: Router,
       private modalController: ModalController,
@@ -39,19 +41,34 @@ export class RegisterPage implements OnInit {
   }
 
   ngOnInit() {
+    this.currentUser = this.authService.currentUserValue;
+    if (this.currentUser) {
+      this.fillForm();
+    }
+  }
+
+  fillForm() {
+    this.form = this.fb.group({
+      email: [this.currentUser.email, [Validators.required, Validators.email]],
+      firstName: [this.currentUser.firstName, [Validators.required]],
+      lastName: [this.currentUser.lastName, [Validators.required]],
+      phoneNumber: [this.currentUser.phoneNumber, [Validators.required]],
+      organization: [this.currentUser.organization, [Validators.required]],
+      country: [this.currentUser.country, [Validators.required]],
+      sex: [this.currentUser.sex, [Validators.required]],
+    });
   }
 
   goToLogin() {
     this.router.navigate(["/requester"])
-
   }
 
   async openCountrySelect() {
     const countrySelect = await this.modalController.create({
       component: CountrySelectPage,
-
       animated: true
     });
+
     await countrySelect.present();
     const { data } = await countrySelect.onWillDismiss();
     if (data) {

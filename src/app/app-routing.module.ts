@@ -5,6 +5,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { DiagnosticGuard } from './_guards/diagnostic.guard';
 import {RequestPageModule} from "./request/request.module";
 import {NurseGuard} from "./_guards/nurse.guard";
+import {ProfileModule} from "./profile/profile.module";
 
 /**
  * Routes
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'fail', loadChildren: () => import('./failure/failure.module').then(m => m.FailureModule) },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule), canActivate: [NurseGuard] },
   { path: 'request-consultation', loadChildren: () => import('./request-consultation/request-consultation.module').then(m => m.RequestConsultationModule), canActivate: [NurseGuard] },
+  { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule), canActivate: [NurseGuard] },
 ];
 
 @NgModule({

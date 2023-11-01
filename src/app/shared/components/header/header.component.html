@@ -1,6 +1,7 @@
 <div class="board-wrapper">
     <div class="card">
         <div class="board">
+            <ion-button class="logout" (click)="goToProfile()">Profile </ion-button>
             <ion-button class="logout" (click)="logOut()">Logout ({{currentUser?.firstName}} {{currentUser?.lastName}}) </ion-button>
         </div>
     </div>

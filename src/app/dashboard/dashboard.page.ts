@@ -13,6 +13,7 @@ import {SocketEventsService} from "../socket-events.service";
 })
 export class DashboardPage implements OnDestroy {
     private subscriptions: Array<Subscription> = [];
+    loading: boolean = true;
     currentConsultation: any;
     activeCount: number = 0;
     closedCount: number = 0;
@@ -27,9 +28,9 @@ export class DashboardPage implements OnDestroy {
     ) { }
 
     ionViewDidEnter() {
+        this.loading = true;
         this.getConsultations();
         this.listenToNewMessages();
-
     }
 
     getConsultations() {
@@ -40,6 +41,7 @@ export class DashboardPage implements OnDestroy {
             this.closedCount = closedConsultations.length;
             this.consultations = activeConsultations;
             this.closedConsultations = closedConsultations;
+            this.loading = false;
         }, error => {
             console.log(error, 'error');
         })
@@ -71,6 +73,7 @@ export class DashboardPage implements OnDestroy {
     listenToNewMessages() {
         this.subscriptions.push(
             this._socketEventsService.onMessage().subscribe((msg) => {
+                console.log(1111);
                 if (this.consultations.some((item) => item._id === msg.data.consultation)) {
                     this.getConsultations();
                 }
@@ -78,6 +81,7 @@ export class DashboardPage implements OnDestroy {
         );
         this.subscriptions.push(
             this._socketEventsService.onConsultationAccepted().subscribe((event) => {
+                console.log(22222);
                 if (this.consultations.some((item) => item._id === event.data._id)) {
                     this.getConsultations();
                 }
@@ -85,6 +89,7 @@ export class DashboardPage implements OnDestroy {
         );
         this.subscriptions.push(
             this._socketEventsService.onConsultationClosed().subscribe((event) => {
+            console.log(3333);
                 if (this.consultations.some((item) => item._id === event.data._id)) {
                     this.getConsultations();
                 }

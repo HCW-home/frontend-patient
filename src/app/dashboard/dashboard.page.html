@@ -9,11 +9,13 @@
                     </h1>
                 </div>
             </ion-text>
+            <app-loader *ngIf="loading; else loadedConsultations"></app-loader>
 
-            <div class="board">
+            <ng-template #loadedConsultations>
+                <div class="board">
                 <table *ngIf="consultations.length; else emptyBlock">
                     <tbody>
-                    <ng-container *ngFor="let consultation of consultations">
+                        <ng-container *ngFor="let consultation of consultations">
                         <tr class="border" (click)="currentConsultation = consultation">
                             <td>
                                 <div class="avatar-container">
@@ -47,12 +49,13 @@
                                     </div>
 
                                     <div class="flex-item ion-align-items-start">
-                                        <span class="value" *ngIf="consultation.doctor; else canceled">{{consultation.doctor?.firstName }} {{consultation.doctor?.lastName}}</span>
+                                        <span class="value"
+                                              *ngIf="consultation?.doctor; else canceled">{{consultation?.doctor?.firstName }} {{consultation?.doctor?.lastName}}</span>
                                         <ng-template #canceled>
-                                            <span class="value" *ngIf="consultation.doctor; else canceled">canceled</span>
+                                            <span class="value">canceled</span>
                                         </ng-template>
-                                        <span class="value">{{consultation.consultation.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
-                                        <span class="value">{{consultation.queue.name}}</span>
+                                        <span class="value">{{consultation?.consultation?.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
+                                        <span class="value">{{consultation?.queue?.name}}</span>
                                     </div>
                                 </div>
                             </td>
@@ -73,7 +76,8 @@
                             </td>
                             <td>
                                 <div class="buttons-wrapper">
-                                    <ion-button class="resume-button" (click)="resume($event,consultation)">Resume</ion-button>
+                                    <ion-button class="resume-button" (click)="resume($event,consultation)">Resume
+                                    </ion-button>
                                     <span class="cancel-button" (click)="showCancelModal($event,consultation)"
                                           *ngIf="!consultation?.doctor">Cancel consultation</span>
                                 </div>
@@ -88,7 +92,7 @@
                     </div>
                 </ng-template>
             </div>
-
+            </ng-template>
             <button class="btn green mt-2" (click)="requestConsultation()">
                 Request new consultation
             </button>
@@ -105,68 +109,70 @@
                 </div>
             </ion-text>
 
-            <div class="board">
-                <table *ngIf="closedConsultations.length; else emptyHistoryBlock">
-                    <tbody>
-                    <ng-container *ngFor="let consultation of closedConsultations">
-                        <tr class="border" (click)="currentConsultation = consultation">
-                            <td>
-                                <div class="avatar-container">
-                                    {{consultation.consultation.firstName | titlecase | slice: 0: 1 }}{{consultation.consultation.lastName| titlecase | slice: 0: 1}}
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-container">
-                                    <span class='name'>{{consultation.consultation.firstName }}{{consultation.consultation.lastName}}</span>
-                                    <span class='message'
-                                          *ngIf="consultation?.lastMsg?.text">{{consultation?.lastMsg?.text}}</span>
-                                    <span class='attach' *ngIf="consultation?.lastMsg?.type === 'attachment'">
+            <app-loader *ngIf="loading; else loaded"></app-loader>
+            <ng-template #loaded>
+                <div class="board">
+                    <table *ngIf="closedConsultations?.length; else emptyHistoryBlock">
+                        <tbody>
+                        <ng-container *ngFor="let consultation of closedConsultations">
+                            <tr class="border" (click)="currentConsultation = consultation">
+                                <td>
+                                    <div class="avatar-container">
+                                        {{consultation.consultation.firstName | titlecase | slice: 0: 1 }}{{consultation.consultation.lastName| titlecase | slice: 0: 1}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="name-container">
+                                        <span class='name'>{{consultation.consultation.firstName }}{{consultation.consultation.lastName}}</span>
+                                        <span class='message'
+                                              *ngIf="consultation?.lastMsg?.text">{{consultation?.lastMsg?.text}}</span>
+                                        <span class='attach' *ngIf="consultation?.lastMsg?.type === 'attachment'">
                                         <ion-img src="assets/icons/attach-icon.svg"></ion-img>
-                                        {{consultation?.lastMsg?.fileName}}
+                                            {{consultation?.lastMsg?.fileName}}
                                     </span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-items">
-                                    <div class="flex-item ion-align-items-end">
-                                        <span class="title">Handled by:</span>
-                                        <span class="title">Requested at:</span>
-                                        <span class="title">Area:</span>
                                     </div>
+                                </td>
+                                <td>
+                                    <div class="table-items">
+                                        <div class="flex-item ion-align-items-end">
+                                            <span class="title">Handled by:</span>
+                                            <span class="title">Requested at:</span>
+                                            <span class="title">Area:</span>
+                                        </div>
 
-                                    <div class="flex-item ion-align-items-start">
-                                        <span class="value">{{consultation.doctor?.firstName || 'requesting'}} {{consultation.doctor?.lastName}}</span>
-                                        <span class="value">{{consultation.consultation?.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
-                                        <span class="value">{{consultation.queue?.name}}</span>
+                                        <div class="flex-item ion-align-items-start">
+                                            <span class="value">{{consultation.doctor?.firstName || 'requesting'}} {{consultation.doctor?.lastName}}</span>
+                                            <span class="value">{{consultation.consultation?.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
+                                            <span class="value">{{consultation.queue?.name}}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="table-items">
-                                    <div class="flex-item ion-align-items-end">
-                                        <span class="title">Closed at:</span>
-                                        <span class="title">Sex:</span>
-                                        <span class="title">Hospital/facility:</span>
-                                    </div>
+                                </td>
+                                <td>
+                                    <div class="table-items">
+                                        <div class="flex-item ion-align-items-end">
+                                            <span class="title">Closed at:</span>
+                                            <span class="title">Sex:</span>
+                                            <span class="title">Hospital/facility:</span>
+                                        </div>
 
-                                    <div class="flex-item ion-align-items-start">
-                                        <span class="value">{{consultation.consultation?.closedAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
-                                        <span class="value">{{consultation.consultation?.gender}}</span>
-                                        <span class="value">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
+                                        <div class="flex-item ion-align-items-start">
+                                            <span class="value">{{consultation.consultation?.closedAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
+                                            <span class="value">{{consultation.consultation?.gender}}</span>
+                                            <span class="value">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </ng-container>
-                    </tbody>
-                </table>
-                <ng-template #emptyHistoryBlock>
-                    <div class="empty-text">
-                        You have no consultation in history yet.
-                    </div>
-                </ng-template>
-            </div>
-
+                                </td>
+                            </tr>
+                        </ng-container>
+                        </tbody>
+                    </table>
+                    <ng-template #emptyHistoryBlock>
+                        <div class="empty-text">
+                            You have no consultation in history yet.
+                        </div>
+                    </ng-template>
+                </div>
+            </ng-template>
         </div>
     </div>
     <app-overlay
