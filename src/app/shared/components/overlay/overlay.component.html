@@ -1,0 +1,63 @@
+<div (click)="onClose($event)" id="overlay" class="overlay">
+    <div class="chat-cont">
+        <div class="header">
+            <ion-text>
+                <h3>General Information</h3>
+            </ion-text>
+        </div>
+
+
+        <div class="overlay-content"
+             [style.height]="consultation.consultation.status === 'closed'? 'calc(100% - 70px);':'calc(100% - 150px);'">
+            <div class="info-items">
+                <div class="info-item">
+                    <span class="title"> Patient name</span>
+                    <span class="content">{{consultation.consultation.firstName }}{{consultation.consultation.lastName}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title"> Handled By </span>
+                    <span class="content" *ngIf="consultation.doctor; else requesting">{{consultation.doctor?.firstName }} {{consultation.doctor?.lastName}}</span>
+                    <ng-template #requesting>
+                        <span class="content">requesting</span>
+                    </ng-template>
+                </div>
+                <div class="info-item">
+                    <span class="title"> Country </span>
+                    <span class="content">{{consultation.consultation?.metadata?.Country || '-'}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title"> Sex </span>
+                    <span class="content">{{consultation.consultation.gender}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title"> Area </span>
+                    <span class="content">{{consultation.queue.name}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title"> Requested at </span>
+                    <span class="content">{{consultation.consultation.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title">Hospital/facility</span>
+                    <span class="content">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
+                </div>
+            </div>
+
+            <div class="consultation-wrapper">
+                <app-consultation-chat [consultation]="consultation"></app-consultation-chat>
+            </div>
+            <!--      <chat-component-->
+            <!--      <app-chat [consultation]="consultation" [showInput]="false"></app-chat>-->
+        </div>
+    </div>
+    <div *ngIf="consultation.consultation.status === 'active'" class="resume-c-btn" (click)="resumeConsultation()">
+        {{ 'Resume' | translate }}
+    </div>
+
+    <div *ngIf="consultation.consultation.status === 'pending'" class="buttons-wrapper" >
+        <div (click)="showCancelModal($event)">{{ 'Cancel Request' | translate }}</div>
+        <div (click)="resumeConsultation()">{{ 'Resume' | translate }}</div>
+    </div>
+</div>
+
+

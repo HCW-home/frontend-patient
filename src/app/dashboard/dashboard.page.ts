@@ -13,6 +13,7 @@ import {SocketEventsService} from "../socket-events.service";
 })
 export class DashboardPage implements OnDestroy {
     private subscriptions: Array<Subscription> = [];
+    currentConsultation: any;
     activeCount: number = 0;
     closedCount: number = 0;
     consultations:any[]  = [];
@@ -48,12 +49,14 @@ export class DashboardPage implements OnDestroy {
         this.router.navigate(['/request-consultation'])
     }
 
-    resume(consultation){
+    resume(event,consultation){
+        event.stopPropagation();
         localStorage.setItem('currentConsultation', consultation._id);
         this.router.navigate([`/consultation/${consultation._id}`])
     }
 
-    async showCancelModal(consultation) {
+    async showCancelModal(event,consultation) {
+        event.stopPropagation();
         const modal = await this.modalController.create({
             component: CloseConsultationComponent,
             componentProps: { consultationId: consultation._id },
@@ -93,4 +96,12 @@ export class DashboardPage implements OnDestroy {
         this.subscriptions.forEach(sub => sub.unsubscribe());
     }
 
+    onCloseConsultation(event) {
+        this.currentConsultation = null;
+        if (event) {
+            this.getConsultations();
+        }
+    }
+
+    protected readonly onclose = onclose;
 }

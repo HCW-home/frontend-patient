@@ -9,6 +9,10 @@ import { I18nModule } from '../i18n/i18n.module';
 
 import { DashboardPage } from './dashboard.page';
 import {HeaderComponent} from "../shared/components/header/header.component";
+import {OverlayComponent} from "../shared/components/overlay/overlay.component";
+import {ConsultationPageModule} from "../consultation/consultation.module";
+import {ConsultationChatComponent} from "../shared/components/consultation-chat/consultation-chat.component";
+import {VideoRoomPageModule} from "../video-room/video-room.module";
 
 const routes: Routes = [
   {
@@ -24,10 +28,10 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         I18nModule,
-
+        VideoRoomPageModule
     ],
-    declarations: [DashboardPage, HeaderComponent,],
-    exports: [DashboardPage, HeaderComponent,]
+    declarations: [DashboardPage, HeaderComponent,OverlayComponent, ConsultationChatComponent],
+    exports: [DashboardPage, HeaderComponent,OverlayComponent,ConsultationChatComponent]
 
 })
 export class DashboardPageModule { }

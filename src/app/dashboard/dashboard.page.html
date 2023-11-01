@@ -1,5 +1,5 @@
 <ion-content>
-    <app-header ></app-header>
+    <app-header></app-header>
     <div class="board-wrapper">
         <div class="card">
             <ion-text>
@@ -14,25 +14,27 @@
                 <table *ngIf="consultations.length; else emptyBlock">
                     <tbody>
                     <ng-container *ngFor="let consultation of consultations">
-                        <tr class="border">
+                        <tr class="border" (click)="currentConsultation = consultation">
                             <td>
                                 <div class="avatar-container">
                                     {{consultation.consultation.firstName | titlecase | slice: 0: 1 }}{{consultation.consultation.lastName| titlecase | slice: 0: 1}}
                                 </div>
                             </td>
-                            <td >
+                            <td>
                                 <div class="name-container">
                                     <span class='name'>{{consultation.consultation.firstName }} {{consultation.consultation.lastName}}</span>
-                                    <span class='message' *ngIf="consultation?.lastMsg?.text">{{consultation?.lastMsg?.text}}</span>
+                                    <span class='message'
+                                          *ngIf="consultation?.lastMsg?.text">{{consultation?.lastMsg?.text}}</span>
                                     <span class='attach' *ngIf="consultation?.lastMsg?.type === 'attachment'">
-                                        <ion-img src="assets/icons/attach-icon.svg" ></ion-img>
+                                        <ion-img src="assets/icons/attach-icon.svg"></ion-img>
                                         {{consultation?.lastMsg?.fileName}}
                                     </span>
                                 </div>
                             </td>
                             <td>
                                 <div class="date-container">
-                                    <span class='date' *ngIf="consultation?.lastMsg?.createdAt">{{consultation?.lastMsg?.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
+                                    <span class='date'
+                                          *ngIf="consultation?.lastMsg?.createdAt">{{consultation?.lastMsg?.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                                     <ion-badge class="rounded-badge">{{consultation.unreadCount}}</ion-badge>
                                 </div>
                             </td>
@@ -45,8 +47,11 @@
                                     </div>
 
                                     <div class="flex-item ion-align-items-start">
-                                        <span class="value">{{consultation.doctor?.firstName || 'requesting'}} {{consultation.doctor?.lastName}}</span>
-                                        <span class="value">{{consultation.consultation.createdAt  | date: 'dd/MM/YYYY'}}</span>
+                                        <span class="value" *ngIf="consultation.doctor; else canceled">{{consultation.doctor?.firstName }} {{consultation.doctor?.lastName}}</span>
+                                        <ng-template #canceled>
+                                            <span class="value" *ngIf="consultation.doctor; else canceled">canceled</span>
+                                        </ng-template>
+                                        <span class="value">{{consultation.consultation.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                                         <span class="value">{{consultation.queue.name}}</span>
                                     </div>
                                 </div>
@@ -68,8 +73,9 @@
                             </td>
                             <td>
                                 <div class="buttons-wrapper">
-                                    <ion-button class="resume-button" (click)="resume(consultation)">Resume</ion-button>
-                                    <span class="cancel-button" (click)="showCancelModal(consultation)" *ngIf="!consultation?.doctor">Cancel consultation</span>
+                                    <ion-button class="resume-button" (click)="resume($event,consultation)">Resume</ion-button>
+                                    <span class="cancel-button" (click)="showCancelModal($event,consultation)"
+                                          *ngIf="!consultation?.doctor">Cancel consultation</span>
                                 </div>
                             </td>
                         </tr>
@@ -103,7 +109,7 @@
                 <table *ngIf="closedConsultations.length; else emptyHistoryBlock">
                     <tbody>
                     <ng-container *ngFor="let consultation of closedConsultations">
-                        <tr class="border">
+                        <tr class="border" (click)="currentConsultation = consultation">
                             <td>
                                 <div class="avatar-container">
                                     {{consultation.consultation.firstName | titlecase | slice: 0: 1 }}{{consultation.consultation.lastName| titlecase | slice: 0: 1}}
@@ -112,7 +118,12 @@
                             <td>
                                 <div class="name-container">
                                     <span class='name'>{{consultation.consultation.firstName }}{{consultation.consultation.lastName}}</span>
-                                    <span class='message'>-</span>
+                                    <span class='message'
+                                          *ngIf="consultation?.lastMsg?.text">{{consultation?.lastMsg?.text}}</span>
+                                    <span class='attach' *ngIf="consultation?.lastMsg?.type === 'attachment'">
+                                        <ion-img src="assets/icons/attach-icon.svg"></ion-img>
+                                        {{consultation?.lastMsg?.fileName}}
+                                    </span>
                                 </div>
                             </td>
                             <td>
@@ -125,7 +136,7 @@
 
                                     <div class="flex-item ion-align-items-start">
                                         <span class="value">{{consultation.doctor?.firstName || 'requesting'}} {{consultation.doctor?.lastName}}</span>
-                                        <span class="value">{{consultation.consultation?.createdAt  | date: 'dd/MM/YYYY'}}</span>
+                                        <span class="value">{{consultation.consultation?.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                                         <span class="value">{{consultation.queue?.name}}</span>
                                     </div>
                                 </div>
@@ -139,7 +150,7 @@
                                     </div>
 
                                     <div class="flex-item ion-align-items-start">
-                                        <span class="value">{{consultation.consultation?.closedAt  | date: 'dd/MM/YYYY'}}</span>
+                                        <span class="value">{{consultation.consultation?.closedAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                                         <span class="value">{{consultation.consultation?.gender}}</span>
                                         <span class="value">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
                                     </div>
@@ -147,7 +158,7 @@
                             </td>
                             <td>
                                 <div class="buttons-wrapper">
-                                    <ion-button class="resume-button" (click)="resume(consultation)">View</ion-button>
+                                    <ion-button class="resume-button" (click)="resume($event,consultation)">View</ion-button>
                                 </div>
                             </td>
                         </tr>
@@ -163,6 +174,11 @@
 
         </div>
     </div>
-
+    <app-overlay
+            (close)="onCloseConsultation($event)"
+            *ngIf="currentConsultation"
+            [consultation]="currentConsultation"
+    >
+    </app-overlay>
 
 </ion-content>

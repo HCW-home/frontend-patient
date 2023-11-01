@@ -91,11 +91,12 @@ ion-content {
 
       .attach {
         display: flex;
-        gap: 2px;
+        align-items: center;
+        gap: 5px;
         color: rgba(108, 108, 108, 1);
 
         ion-img {
-          width: 20px;
+          width: 15px;
 
         }
       }
@@ -117,11 +118,6 @@ ion-content {
 
       .rounded-badge {
         background-color: rgba(179, 38, 30, 1);
-        border-radius: 20px;
-        line-height: 1.3;
-        width: 20px;
-        height: 20px;
-
       }
     }
 
@@ -192,10 +188,6 @@ ion-content {
 .badge {
   position: absolute;
   top: -5px;
-  line-height: 1.3;
-  border-radius: 20px;
-  width: 20px;
-  height: 20px;
   background-color: rgba(179, 38, 30, 1);
   text-align: center;
 }
