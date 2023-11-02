@@ -1,3 +1,11 @@
+hcw-athome-patient (0.4.4.28) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * ui fixes
+  * logout and file drop directive
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 02 Nov 2023 09:31:14 +0100
+
 hcw-athome-patient (0.4.4.27) focal; urgency=medium
 
   [ Gor Grigoryan ]
