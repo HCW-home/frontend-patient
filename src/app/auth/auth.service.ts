@@ -114,6 +114,19 @@ export class AuthService {
   //     })
   //   }
 
+  logOutNurse() {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.currentUserSubject.next(null);
+    this._socketEventsService.disconnect();
+    this.http.get(`${this.globalVariableService.getApiPath()}/logout`).subscribe(r => {
+      console.log(r, "res");
+      this.router.navigate(["/login"]);
+    }, err => {
+      this.router.navigate(["/login"]);
+    })
+  }
+
   logout() {
     // remove user from local storage to log user out
     console.log('LOGOUT')

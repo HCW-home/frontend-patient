@@ -4,17 +4,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HeaderComponent} from "./components/header/header.component";
 import {IonicModule} from "@ionic/angular";
+import {FileDropDirective} from "./directives/file-drop.directive";
 
 
 
 @NgModule({
-  declarations: [PeerAudioComponent, PeerVideoComponent, HeaderComponent],
+  declarations: [PeerAudioComponent, PeerVideoComponent, HeaderComponent,FileDropDirective],
   imports: [
     CommonModule,
     IonicModule
   ],
   exports: [
-    PeerAudioComponent, PeerVideoComponent, HeaderComponent
+    PeerAudioComponent, PeerVideoComponent, HeaderComponent,FileDropDirective
   ]
 })
 export class SharedModule { }

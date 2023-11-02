@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.logout();
+    this.authService.logOutNurse();
   }
 
   goToProfile() {

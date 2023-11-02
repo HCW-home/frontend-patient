@@ -10,6 +10,7 @@ import {ValidationService} from "../shared/services/validation.service";
 import {MessageService} from "../message.service";
 import {forkJoin, of} from "rxjs";
 import {catchError, finalize, switchMap} from "rxjs/operators";
+import {CdkDragDrop} from "@angular/cdk/drag-drop";
 
 
 @Component({
@@ -132,13 +133,24 @@ export class RequestConsultationPage implements OnInit {
         this.router.navigate([`/dashboard`]);
     }
 
-    removeFile(e) {
+    removeFile(event: Event) {
+        event.stopPropagation();
         this.file = null;
     }
 
     onFileListener(event: any): void {
         this.file = event.target.files[0];
     }
+
+    // onFileDropped(event: CdkDragDrop<string[]>) {
+    //     console.log('stexaaaa');
+    //     let files = event.item.data;
+    // }
+
+    onFileDropped(files: FileList): void {
+        this.onFileListener({ target: { files } });
+    }
+
 
     getErrorMessage(formField: string) {
         switch (formField) {

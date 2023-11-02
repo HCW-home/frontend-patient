@@ -22,7 +22,7 @@ export class RegisterPage implements OnInit {
     phoneNumber: ['', [Validators.required]],
     organization: ['', [Validators.required]],
     country: ['', [Validators.required]],
-    sex: ['male', [Validators.required]],
+    sex: ['', [Validators.required]],
     terms: [false, [Validators.requiredTrue]]
   });
   errorMessage: string;

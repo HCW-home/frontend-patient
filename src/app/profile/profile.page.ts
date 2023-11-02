@@ -24,7 +24,7 @@ export class ProfilePage implements OnInit {
     phoneNumber: ['', [Validators.required]],
     organization: ['', [Validators.required]],
     country: ['', [Validators.required]],
-    sex: ['male', [Validators.required]],
+    sex: ['', [Validators.required]],
   });
   errorMessage: string;
   constructor(
@@ -49,9 +49,9 @@ export class ProfilePage implements OnInit {
 
   fillForm() {
     this.form = this.fb.group({
-      email: [this.currentUser.email, [Validators.required, Validators.email]],
-      firstName: [this.currentUser.firstName, [Validators.required]],
-      lastName: [this.currentUser.lastName, [Validators.required]],
+      email: [{value:this.currentUser.email, disabled: true}, [Validators.required, Validators.email]],
+      firstName: [{value: this.currentUser.firstName, disabled: true}, [Validators.required]],
+      lastName: [{value: this.currentUser.lastName, disabled: true}, [Validators.required]],
       phoneNumber: [this.currentUser.phoneNumber, [Validators.required]],
       organization: [this.currentUser.organization, [Validators.required]],
       country: [this.currentUser.country, [Validators.required]],
@@ -91,17 +91,6 @@ export class ProfilePage implements OnInit {
       country: value.country,
       sex: value.sex,
     }
-    this.nurseService.registerNurse(user).subscribe({
-      next: (response) => {
-        console.log('Registered successfully:', response);
-        this.router.navigate([`/register-success`])
-
-      }, error: (err) => {
-        this.errorMessage = err.error?.error || 'Something went wrong';
-        // this.router.navigate([`/fail`])
-        console.log(err, 'err');
-      }
-    })
   }
 
   getErrorMessage(formField: string) {

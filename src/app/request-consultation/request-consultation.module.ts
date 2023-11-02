@@ -1,4 +1,5 @@
 import {NgModule} from "@angular/core";
+import {DragDropModule} from "@angular/cdk/drag-drop";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Routes, RouterModule} from "@angular/router";
@@ -22,7 +23,8 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         I18nModule,
         ReactiveFormsModule,
-        SharedModule
+        DragDropModule,
+        SharedModule,
     ],
     declarations: [RequestConsultationPage],
     exports: [RequestConsultationPage]

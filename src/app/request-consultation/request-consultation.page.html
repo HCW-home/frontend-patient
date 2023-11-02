@@ -88,7 +88,9 @@
                 </ion-item>
 
 
-                <div class="attachment-wrapper " (click)="fileInput.click()">
+                <div class="attachment-wrapper" (click)="fileInput.click()"
+                     fileDrop
+                     (fileDropped)="onFileDropped($event)">
                     <input type="file" #fileInput class="d-none" style="display: none"
                            (change)="onFileListener($event)">
                     <div class="uploader-wrapper">
@@ -98,8 +100,9 @@
                         <div class="upload-success-wrapper" *ngIf="file">
                             <ion-img src="assets/icons/checkmark.svg"></ion-img>
                             <span class="upload-success-text">Upload Document</span>
-                            <ion-img src="assets/icons/remove.svg" (click)="removeFile()"></ion-img>
+                            <ion-img src="assets/icons/remove.svg" (click)="removeFile($event)"></ion-img>
                         </div>
+
                     </div>
 
                 </div>
