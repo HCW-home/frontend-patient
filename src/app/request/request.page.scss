@@ -18,6 +18,9 @@ ion-content {
     justify-content: center;
     padding:  7rem 10rem;
     flex-wrap: nowrap;
+    @media (max-width: 768px) {
+      padding: 2rem;
+    }
   }
 
   .authenticate {

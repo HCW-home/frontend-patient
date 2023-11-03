@@ -52,10 +52,10 @@ export class ProfilePage implements OnInit {
       email: [{value:this.currentUser.email, disabled: true}, [Validators.required, Validators.email]],
       firstName: [{value: this.currentUser.firstName, disabled: true}, [Validators.required]],
       lastName: [{value: this.currentUser.lastName, disabled: true}, [Validators.required]],
-      phoneNumber: [this.currentUser.phoneNumber, [Validators.required]],
-      organization: [this.currentUser.organization, [Validators.required]],
-      country: [this.currentUser.country, [Validators.required]],
-      sex: [this.currentUser.sex, [Validators.required]],
+      phoneNumber: [{value: this.currentUser.phoneNumber, disabled: true}, [Validators.required]],
+      organization: [{value: this.currentUser.organization, disabled: true}, [Validators.required]],
+      country: [{value: this.currentUser.country, disabled: true}, [Validators.required]],
+      sex: [{value: this.currentUser.sex, disabled: true}, [Validators.required]],
     });
   }
 

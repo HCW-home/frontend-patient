@@ -1,6 +1,6 @@
 import { AuthService } from "./../auth/auth.service";
 import { Component, OnInit  } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import { ConsultationService } from "../consultation.service";
 import { ConfigService } from "../config.service";
@@ -34,6 +34,7 @@ export class ClosingScreenPage implements OnInit {
   currentUser;
   constructor(
     private activeRoute: ActivatedRoute,
+    private router: Router,
     private consultationService: ConsultationService,
     private authService: AuthService,
     public configService: ConfigService,
@@ -59,8 +60,6 @@ export class ClosingScreenPage implements OnInit {
   }
 
   closeApp() {
-    console.log('hello');
-    
     localStorage.clear();
     App.exitApp();
   }
@@ -85,7 +84,6 @@ export class ClosingScreenPage implements OnInit {
    */
   onFormSubmit() {
 
-
     if (this.feedbackSubmitted || !this.userRating == null) {
       return;
     }
@@ -98,7 +96,11 @@ export class ClosingScreenPage implements OnInit {
       )
       .subscribe(
         (res) => {
-          this.feedbackSaved = true;
+          if (this.currentUser.role === 'nurse') {
+            this.router.navigate([`/dashboard`]);
+          } else {
+            this.feedbackSaved = true;
+          }
         },
         (err) => {
           this.feedbackSubmitted = false;

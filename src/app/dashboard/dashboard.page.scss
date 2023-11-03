@@ -1,8 +1,21 @@
 ion-content {
   background-color: var(--blue-bg-color);
+  scrollbar-track-color: #f1f1f1;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 8px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(108, 108, 108, 1);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
   .card {
-    min-width: 802px;
-    overflow: auto;
+    max-width: 90%;
     background: #FFFFFF;
     border-radius: 10px;
     display: flex;
@@ -11,6 +24,14 @@ ion-content {
     justify-content: center;
     padding: 1rem 5rem 2rem 5rem;
     flex-wrap: nowrap;
+    @media (max-width: 768px) {
+      width: 100%;
+      padding: 1rem;
+    }
+    @media (max-width: 1024px) {
+      width: 100%;
+      padding: 2rem;
+    }
   }
 
   ion-text {
@@ -32,6 +53,8 @@ ion-content {
   }
 
   .board {
+    overflow: auto;
+    width: calc(100% + 10px);
     margin-top: 1rem;
   }
 
@@ -150,6 +173,7 @@ ion-content {
           font-size: 1rem;
           font-weight: 400;
           line-height: 1.2;
+          white-space: nowrap;
         }
 
         .value {
@@ -158,6 +182,7 @@ ion-content {
           font-size: 1rem;
           font-weight: 400;
           line-height: 1.2;
+          white-space: nowrap;
         }
       }
     }

@@ -88,7 +88,7 @@
                 </ion-item>
 
 
-                <div class="attachment-wrapper" (click)="fileInput.click()"
+                <div class="attachment-wrapper" (click)="fileInput.value = null;fileInput.click()"
                      fileDrop
                      (fileDropped)="onFileDropped($event)">
                     <input type="file" #fileInput class="d-none" style="display: none"
