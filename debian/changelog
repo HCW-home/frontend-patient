@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.29) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * responsiv styles and minor fixes
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 03 Nov 2023 14:45:19 +0100
+
 hcw-athome-patient (0.4.4.28) focal; urgency=medium
 
   [ Gor Grigoryan ]
