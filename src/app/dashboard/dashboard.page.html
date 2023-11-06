@@ -119,7 +119,7 @@
                         <tbody>
                         <ng-container *ngFor="let consultation of closedConsultations">
                             <tr class="border" (click)="onSelectClosedConsultation(consultation)">
-                                <td>
+                                <td class="no-stack in-row">
                                     <div class="avatar-container">
                                         {{consultation.consultation.firstName | titlecase | slice: 0: 1 }}{{consultation.consultation.lastName| titlecase | slice: 0: 1}}
                                     </div>
