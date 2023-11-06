@@ -31,6 +31,8 @@
                                         <ion-img src="assets/icons/attach-icon.svg"></ion-img>
                                             {{consultation?.lastMsg?.fileName}}
                                     </span>
+                                        <span class='message'
+                                              *ngIf="!consultation?.lastMsg">{{noMessageText}}</span>
                                     </div>
                                 </td>
                                 <td class="stacked-cell">
@@ -131,6 +133,8 @@
                                         <ion-img src="assets/icons/attach-icon.svg"></ion-img>
                                             {{consultation?.lastMsg?.fileName}}
                                     </span>
+                                        <span class='message'
+                                              *ngIf="!consultation?.lastMsg">No message</span>
                                     </div>
                                 </td>
                                 <td class="stacked-cell">

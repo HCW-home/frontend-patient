@@ -1,10 +1,11 @@
-import {Component, OnDestroy} from "@angular/core";
+import {Component, NgZone, OnDestroy} from "@angular/core";
 import {Router} from "@angular/router";
 import {ConsultationService} from "../shared/services/consultation.service";
 import {CloseConsultationComponent} from "../shared/components/close-consultation/close-consultation.component";
 import {ModalController, Platform} from "@ionic/angular";
 import {Subscription} from "rxjs";
 import {SocketEventsService} from "../socket-events.service";
+import {NativeAudio} from "@capacitor-community/native-audio";
 
 @Component({
     selector: "app-dashboard",
@@ -12,6 +13,8 @@ import {SocketEventsService} from "../socket-events.service";
     styleUrls: ["./dashboard.page.scss"],
 })
 export class DashboardPage implements OnDestroy {
+    noMessageText: string = '<No Message>';
+
     private subscriptions: Array<Subscription> = [];
     loading: boolean = true;
     currentConsultation: any;
@@ -20,12 +23,18 @@ export class DashboardPage implements OnDestroy {
     consultations: any[] = [];
     closedConsultations: any[] = [];
 
+    callRunning = false;
+    ongoingCall = null;
+    shouldJoinCall = false;
+
+
     constructor(
         private consultationService: ConsultationService,
         private router: Router,
         public modalController: ModalController,
         private platformService: Platform,
         private _socketEventsService: SocketEventsService,
+        private zone: NgZone,
     ) {
     }
 
@@ -33,6 +42,7 @@ export class DashboardPage implements OnDestroy {
         this.loading = true;
         this.getConsultations();
         this.listenToNewMessages();
+        this.listenToCallEvents();
     }
 
     getConsultations() {
@@ -75,7 +85,6 @@ export class DashboardPage implements OnDestroy {
     listenToNewMessages() {
         this.subscriptions.push(
             this._socketEventsService.onMessage().subscribe((msg) => {
-                console.log(1111);
                 if (this.consultations.some((item) => item._id === msg.data.consultation)) {
                     this.getConsultations();
                 }
@@ -83,7 +92,6 @@ export class DashboardPage implements OnDestroy {
         );
         this.subscriptions.push(
             this._socketEventsService.onConsultationAccepted().subscribe((event) => {
-                console.log(22222);
                 if (this.consultations.some((item) => item._id === event.data._id)) {
                     this.getConsultations();
                 }
@@ -91,13 +99,88 @@ export class DashboardPage implements OnDestroy {
         );
         this.subscriptions.push(
             this._socketEventsService.onConsultationClosed().subscribe((event) => {
-                console.log(3333);
                 if (this.consultations.some((item) => item._id === event.data._id)) {
                     this.getConsultations();
                 }
             })
         );
     }
+
+    listenToCallEvents() {
+        // this.subscriptions.push(
+        //     this._socketEventsService.onRejectCall().subscribe((event) => {
+        //         const message = this.chatMessages.find(
+        //             (msg) => msg.id === event.data.message.id
+        //         );
+        //         console.log("video message ", message);
+        //         if (message) {
+        //             message.closedAt = new Date();
+        //         }
+        //     })
+        // );
+        // this.subscriptions.push(
+        //     this._socketEventsService.onAcceptCall().subscribe((event) => {
+        //         const message = this.chatMessages.find(
+        //             (msg) => msg.id === event.data.message.id
+        //         );
+        //         if (message) {
+        //             message.acceptedAt = new Date();
+        //         }
+        //     })
+        // );
+        this.subscriptions.push(
+            this._socketEventsService.onCall().subscribe((e) => {
+                console.log("Calll ", e, 'e');
+
+                this.ringing();
+
+                this.zone.run(() => {
+                    console.log("get call 1", e);
+                    this.callRunning = true;
+                    this.ongoingCall = e.data.msg;
+                    this.shouldJoinCall = false;
+                });
+            })
+        );
+        this.subscriptions.push(
+            this._socketEventsService.onEndCall().subscribe((e) => {
+                console.log("End Calll ", e);
+
+                this.zone.run(() => {
+                    console.log("get call 2", e);
+                    this.callRunning = false;
+                    this.ongoingCall = null;
+                    this.shouldJoinCall = false;
+                });
+            })
+        );
+    }
+
+    ringing() {
+        this.platformService
+            .ready()
+            .then(() => {
+                console.log("RINGING NOW", NativeAudio.loop);
+                NativeAudio.play({assetId: "ringSound", time: 0});
+                return NativeAudio.loop({assetId: "ringSound"});
+            })
+            .then(
+                (res) => {
+                },
+                (err) => {
+                    console.log("error ", err);
+                }
+            );
+    }
+
+    hangup() {
+        this.zone.run(() => {
+            NativeAudio.stop({assetId: "ringSound"});
+            this.callRunning = false;
+            this.shouldJoinCall = false;
+        });
+    }
+
 
     ngOnDestroy() {
         this.subscriptions.forEach(sub => sub.unsubscribe());
