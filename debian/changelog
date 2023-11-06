@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.33) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * fix rejecting call functionality
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 11:16:51 +0100
+
 hcw-athome-patient (0.4.4.32) focal; urgency=medium
 
   [ Gor Grigoryan ]
