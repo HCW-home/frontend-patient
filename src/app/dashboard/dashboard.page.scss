@@ -72,10 +72,6 @@ ion-content {
       display: none;
     }
 
-    //tr, .stacked-cell {
-    //  margin-bottom: 10px;
-    //}
-
     .stacked-cell {
       display: flex;
       justify-content: center;
@@ -97,9 +93,6 @@ ion-content {
     tr {
       border-left: 2px solid transparent;
       transition: transform 0.3s ease-in-out;
-      &:hover {
-        transform: translateX(10px);
-      }
     }
 
 
