@@ -98,12 +98,11 @@
 
                 </div>
 
-                <ion-item lines="none">
+                <div class="checkbox-wrapper">
                     <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
-                    <ion-label>By clicking the tickbox, you accept the <span class="terms">terms and conditions</span>
-                    </ion-label>
-                </ion-item>
-
+                    <span>By clicking the tickbox, you accept the <span class="terms" (click)="goToTerms()">terms and conditions</span>
+                    </span>
+                </div>
                 <ion-note slot="error" style="color: red"
                           *ngIf="errorMessage">{{errorMessage}}</ion-note>
 

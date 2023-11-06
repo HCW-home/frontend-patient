@@ -19,7 +19,7 @@
 .container {
   display: block;
   margin: 30px auto;
-  width: 70%;
+  //width: 70%;
   font-size: 1.1em;
 }
 h3 {
@@ -35,8 +35,8 @@ p {
 
   div {
     display: inline-block;
-    height: 100px;
-    width: 100px;
+    height: 80px;
+    width: 80px;
     border-radius: 20px;
     cursor: pointer;
     border: 2px solid #ddd;
