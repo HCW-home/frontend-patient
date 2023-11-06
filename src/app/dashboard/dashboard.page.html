@@ -1,3 +1,18 @@
+<app-video-room
+        *ngIf="ongoingCall && shouldJoinCall && ringingConsultation"
+        [sessionId]="ringingConsultation.id"
+        (hangup)="hangup()"
+        [accepted]="true"
+        [message]="ongoingCall"
+        [token]="ongoingCall.token"
+></app-video-room>
+<app-video-room
+        *ngIf="callRunning && ringingConsultation"
+        [sessionId]="ringingConsultation.id"
+        [message]="ongoingCall"
+        [token]="ongoingCall.token"
+        (hangup)="hangup()"
+></app-video-room>
 <ion-content>
     <app-header></app-header>
     <div class="board-wrapper">

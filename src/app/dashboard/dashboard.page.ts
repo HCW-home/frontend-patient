@@ -17,6 +17,7 @@ export class DashboardPage implements OnDestroy {
 
     private subscriptions: Array<Subscription> = [];
     loading: boolean = true;
+    ringingConsultation: any;
     currentConsultation: any;
     activeCount: number = 0;
     closedCount: number = 0;
@@ -107,37 +108,39 @@ export class DashboardPage implements OnDestroy {
     }
 
     listenToCallEvents() {
-        // this.subscriptions.push(
-        //     this._socketEventsService.onRejectCall().subscribe((event) => {
-        //         const message = this.chatMessages.find(
-        //             (msg) => msg.id === event.data.message.id
-        //         );
-        //         console.log("video message ", message);
-        //         if (message) {
-        //             message.closedAt = new Date();
-        //         }
-        //     })
-        // );
-        // this.subscriptions.push(
-        //     this._socketEventsService.onAcceptCall().subscribe((event) => {
-        //         const message = this.chatMessages.find(
-        //             (msg) => msg.id === event.data.message.id
-        //         );
-        //         if (message) {
-        //             message.acceptedAt = new Date();
-        //         }
-        //     })
-        // );
+        this.subscriptions.push(
+            this._socketEventsService.onRejectCall().subscribe((event) => {
+                console.log('Event onRejectCall');
+                // const message = this.chatMessages.find(
+                //     (msg) => msg.id === event.data.message.id
+                // );
+                // console.log("video message ", message);
+                // if (message) {
+                //     message.closedAt = new Date();
+                // }
+            })
+        );
+        this.subscriptions.push(
+            this._socketEventsService.onAcceptCall().subscribe((event) => {
+                console.log('Event onAcceptCall');
+                // const message = this.chatMessages.find(
+                //     (msg) => msg.id === event.data.message.id
+                // );
+                // if (message) {
+                //     message.acceptedAt = new Date();
+                // }
+            })
+        );
         this.subscriptions.push(
             this._socketEventsService.onCall().subscribe((e) => {
                 console.log("Calll ", e, 'e');
 
                 this.ringing();
-
                 this.zone.run(() => {
                     console.log("get call 1", e);
                     this.callRunning = true;
                     this.ongoingCall = e.data.msg;
+                    this.ringingConsultation = e.data.consultation;
                     this.shouldJoinCall = false;
                 });
             })
@@ -151,6 +154,7 @@ export class DashboardPage implements OnDestroy {
                     this.callRunning = false;
                     this.ongoingCall = null;
                     this.shouldJoinCall = false;
+                    this.ringingConsultation = null;
                 });
             })
         );
@@ -178,6 +182,7 @@ export class DashboardPage implements OnDestroy {
             NativeAudio.stop({assetId: "ringSound"});
             this.callRunning = false;
             this.shouldJoinCall = false;
+            this.ringingConsultation = null;
         });
     }
 
