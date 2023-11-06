@@ -390,7 +390,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     }
     
     this.openViduSrv
-      .rejectCall(this.sessionId || this.consultation._id, this.message.id)
+      .rejectCall(this.sessionId || this.consultation?._id || this.consultation?.id, this.message.id)
       .then((r) => {
         console.log("exit ", this.sessionId);
       })
