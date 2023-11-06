@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.36) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * remove transition
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 15:26:29 +0100
+
 hcw-athome-patient (0.4.4.35) focal; urgency=medium
 
   [ Gor Grigoryan ]
