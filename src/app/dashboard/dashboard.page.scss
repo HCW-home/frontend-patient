@@ -2,18 +2,6 @@ ion-content {
   background-color: var(--blue-bg-color);
   scrollbar-track-color: #f1f1f1;
 
-  ::-webkit-scrollbar {
-    width: 8px;
-    border-radius: 8px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(108, 108, 108, 1);
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
   .card {
     max-width: 90%;
     background: #FFFFFF;
@@ -57,6 +45,49 @@ ion-content {
     width: calc(100% + 10px);
     margin-top: 1rem;
   }
+
+  @media screen and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    th, td {
+      width: 100%;
+    }
+
+    tr {
+      margin-bottom: 0.625rem;
+    }
+
+    td {
+      padding: 0.625rem;
+    }
+
+    .no-stack {
+      display: inline-block;
+      width: auto;
+    }
+
+    thead {
+      display: none;
+    }
+
+    //tr, .stacked-cell {
+    //  margin-bottom: 10px;
+    //}
+
+    .stacked-cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .in-row {
+      padding: 8px;
+    }
+
+  }
+
 
   table {
    td {
@@ -133,7 +164,7 @@ ion-content {
     .date-container {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 5px;
       align-items: center;
 
       .date {
@@ -141,11 +172,10 @@ ion-content {
         font-style: normal;
         font-size: 1rem;
         font-weight: 400;
-        line-height: 1.2;
       }
 
       .rounded-badge {
-        background-color: rgba(179, 38, 30, 1);
+        background-color: #E3393A;
       }
     }
 
@@ -203,9 +233,9 @@ ion-content {
     }
 
     .cancel-button {
-      color: red;
+      color: #E3393A;
       text-decoration: underline;
-      text-decoration-color: red;
+      text-decoration-color: #E3393A;
       font-size: 0.7rem;
       cursor: pointer;
     }
@@ -218,7 +248,7 @@ ion-content {
 .badge {
   position: absolute;
   top: -5px;
-  background-color: rgba(179, 38, 30, 1);
+  background-color: #E3393A;
   text-align: center;
 }
 

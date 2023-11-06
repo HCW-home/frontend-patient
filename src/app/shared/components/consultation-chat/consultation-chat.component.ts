@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CloseConsultationComponent} from "../close-consultation/close-consultation.component";
-import {AlertController, IonContent, IonModal, ModalController, Platform} from "@ionic/angular";
+import {IonContent, IonModal, ModalController, Platform} from "@ionic/angular";
 import {Media, MediaObject} from "@awesome-cordova-plugins/media/ngx";
 import {Subscription} from "rxjs";
 import {CallService} from "../../../call.service";
@@ -73,16 +73,13 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
       public modalController: ModalController,
       private file: File,
       private media: Media,
-      public alertController: AlertController,
       private globalVariableService: GlobalVariableService,
       public platform: Platform,
       private translate: TranslateService,
-      // private nativeAudio: NativeAudio,
   ) {}
 
   ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
-      console.log(this.currentUser, 'currentUser');
     this.consultationId = this.consultation._id;
     this.getConsultation();
     this.listenToCallEvents();
@@ -90,18 +87,8 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
   }
 
 
-  // ionViewDidEnter() {
-  //   document.addEventListener("backbutton", function (e) {
-  //     console.log("disable back button")
-  //     e.preventDefault();
-  //     e.stopPropagation();
-  //     e.stopImmediatePropagation()
-  //   }, false);
-  // }
-
   @HostListener("document:ionBackButton", ["$event"])
   overrideHardwareBackAction(event: any) {
-    console.log("back button");
     event.stopImmediatePropagation();
     event.stopPropagation();
     event.preventDefault();

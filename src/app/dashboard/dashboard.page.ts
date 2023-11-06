@@ -2,14 +2,14 @@ import {Component, OnDestroy} from "@angular/core";
 import {Router} from "@angular/router";
 import {ConsultationService} from "../shared/services/consultation.service";
 import {CloseConsultationComponent} from "../shared/components/close-consultation/close-consultation.component";
-import {ModalController} from "@ionic/angular";
+import {ModalController, Platform} from "@ionic/angular";
 import {Subscription} from "rxjs";
 import {SocketEventsService} from "../socket-events.service";
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.page.html',
-    styleUrls: ['./dashboard.page.scss'],
+    selector: "app-dashboard",
+    templateUrl: "./dashboard.page.html",
+    styleUrls: ["./dashboard.page.scss"],
 })
 export class DashboardPage implements OnDestroy {
     private subscriptions: Array<Subscription> = [];
@@ -17,15 +17,17 @@ export class DashboardPage implements OnDestroy {
     currentConsultation: any;
     activeCount: number = 0;
     closedCount: number = 0;
-    consultations:any[]  = [];
-    closedConsultations:any[]  = [];
+    consultations: any[] = [];
+    closedConsultations: any[] = [];
 
     constructor(
         private consultationService: ConsultationService,
         private router: Router,
         public modalController: ModalController,
+        private platformService: Platform,
         private _socketEventsService: SocketEventsService,
-    ) { }
+    ) {
+    }
 
     ionViewDidEnter() {
         this.loading = true;
@@ -35,36 +37,36 @@ export class DashboardPage implements OnDestroy {
 
     getConsultations() {
         this.consultationService.getConsultations().subscribe((res) => {
-            const activeConsultations = res.filter(c => c.consultation.status === 'active' || c.consultation.status === 'pending');
-            const closedConsultations = res.filter(c => c.consultation.status === 'closed');
+            const activeConsultations = res.filter(c => c.consultation.status === "active" || c.consultation.status === "pending");
+            const closedConsultations = res.filter(c => c.consultation.status === "closed");
             this.activeCount = activeConsultations.length;
             this.closedCount = closedConsultations.length;
             this.consultations = activeConsultations;
             this.closedConsultations = closedConsultations;
             this.loading = false;
         }, error => {
-            console.log(error, 'error');
-        })
+            console.log(error, "error");
+        });
     }
 
     requestConsultation() {
-        this.router.navigate(['/request-consultation'])
+        this.router.navigate(["/request-consultation"]);
     }
 
-    resume(event,consultation){
+    resume(event, consultation) {
         event.stopPropagation();
-        localStorage.setItem('currentConsultation', consultation._id);
-        this.router.navigate([`/consultation/${consultation._id}`])
+        localStorage.setItem("currentConsultation", consultation._id);
+        this.router.navigate([`/consultation/${consultation._id}`]);
     }
 
-    async showCancelModal(event,consultation) {
+    async showCancelModal(event, consultation) {
         event.stopPropagation();
         const modal = await this.modalController.create({
             component: CloseConsultationComponent,
-            componentProps: { consultationId: consultation._id },
+            componentProps: {consultationId: consultation._id},
         });
-         await modal.present();
-        const { data } = await modal.onDidDismiss();
+        await modal.present();
+        const {data} = await modal.onDidDismiss();
         if (data) {
             this.getConsultations();
         }
@@ -89,7 +91,7 @@ export class DashboardPage implements OnDestroy {
         );
         this.subscriptions.push(
             this._socketEventsService.onConsultationClosed().subscribe((event) => {
-            console.log(3333);
+                console.log(3333);
                 if (this.consultations.some((item) => item._id === event.data._id)) {
                     this.getConsultations();
                 }
@@ -105,6 +107,24 @@ export class DashboardPage implements OnDestroy {
         this.currentConsultation = null;
         if (event) {
             this.getConsultations();
+        }
+    }
+
+    onSelectConsultation(consultation) {
+        if (this.platformService.is("mobileweb")) {
+            localStorage.setItem("currentConsultation", consultation._id);
+            this.router.navigate([`/consultation/${consultation._id}`]);
+        } else {
+            this.currentConsultation = consultation;
+        }
+    }
+
+    onSelectClosedConsultation(consultation) {
+        if (this.platformService.is("mobileweb")) {
+            localStorage.setItem("currentConsultation", consultation._id);
+            this.router.navigate([`/consultation/${consultation._id}`]);
+        } else {
+            this.currentConsultation = consultation;
         }
     }
 

@@ -20,6 +20,11 @@
   height: 283px;
 }
 
+.closedWrapper {
+  background-color: var(--ion-color-primary) !important;
+
+}
+
 ion-card-title {
   color: #fff;
 }
@@ -41,6 +46,7 @@ ion-card-content {
   margin-top: 3rem;
   text-decoration: underline;
   font-weight: 600;
+  color: #FFFFFF;
   text-decoration-color: #FFFFFF;
 }
 
