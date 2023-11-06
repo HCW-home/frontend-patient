@@ -5,6 +5,7 @@
         [accepted]="true"
         [message]="ongoingCall"
         [token]="ongoingCall.token"
+        [user]="callingDoctor"
 ></app-video-room>
 <app-video-room
         *ngIf="callRunning && ringingConsultation"
@@ -12,6 +13,7 @@
         [message]="ongoingCall"
         [token]="ongoingCall.token"
         (hangup)="hangup()"
+        [user]="callingDoctor"
 ></app-video-room>
 <ion-content>
     <app-header></app-header>

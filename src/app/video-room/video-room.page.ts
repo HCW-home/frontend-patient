@@ -163,6 +163,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   @Input() token: string;
   @Input() patient;
   @Input() audioOnly;
+  @Input() user;
   @Input() videoDeviceId: string;
   @Input() audioDeviceId: string;
   reconnecting = false;
@@ -173,7 +174,6 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   peerId;
   myCamStream: Stream;
 
-  user;
   noWebCam;
   buttonsVisibility;
 

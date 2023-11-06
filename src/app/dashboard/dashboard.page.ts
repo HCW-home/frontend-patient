@@ -18,6 +18,7 @@ export class DashboardPage implements OnDestroy {
     private subscriptions: Array<Subscription> = [];
     loading: boolean = true;
     ringingConsultation: any;
+    callingDoctor: any;
     currentConsultation: any;
     activeCount: number = 0;
     closedCount: number = 0;
@@ -141,6 +142,7 @@ export class DashboardPage implements OnDestroy {
                     this.callRunning = true;
                     this.ongoingCall = e.data.msg;
                     this.ringingConsultation = e.data.consultation;
+                    this.callingDoctor = e.data.user
                     console.log(this.ringingConsultation, 'ringingConsultation');
                     this.shouldJoinCall = false;
                 });
@@ -156,6 +158,7 @@ export class DashboardPage implements OnDestroy {
                     this.ongoingCall = null;
                     this.shouldJoinCall = false;
                     this.ringingConsultation = null;
+                    this.callingDoctor = null;
                 });
             })
         );
@@ -184,6 +187,7 @@ export class DashboardPage implements OnDestroy {
             this.callRunning = false;
             this.shouldJoinCall = false;
             this.ringingConsultation = null;
+            this.callingDoctor = null;
         });
     }
 
