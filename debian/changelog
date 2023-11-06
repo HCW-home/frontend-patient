@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.30) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * hide overlay for mobile, add responsive styles
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 09:26:40 +0100
+
 hcw-athome-patient (0.4.4.29) focal; urgency=medium
 
   [ Gor Grigoryan ]
