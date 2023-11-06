@@ -5,7 +5,7 @@
         
         </div>
         <div class="back">
-          <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
+          <a (click)="goBack()" class="back-link">{{ 'cgu.backToHome' | translate }}</a>
         </div>
 
         <h2>{{ 'cgu.termsAndConditions' | translate }}</h2>
@@ -15,7 +15,7 @@
         </markdown>
 
       <div class="back">
-        <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
+        <a (click)="goBack()" class="back-link">{{ 'cgu.backToHome' | translate }}</a>
       </div>
     </div>
   </div>
