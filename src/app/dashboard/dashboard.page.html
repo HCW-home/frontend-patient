@@ -1,6 +1,6 @@
 <app-video-room
         *ngIf="ongoingCall && shouldJoinCall && ringingConsultation"
-        [sessionId]="ringingConsultation.id"
+        [sessionId]="ringingConsultation"
         (hangup)="hangup()"
         [accepted]="true"
         [message]="ongoingCall"
@@ -8,7 +8,7 @@
 ></app-video-room>
 <app-video-room
         *ngIf="callRunning && ringingConsultation"
-        [sessionId]="ringingConsultation.id"
+        [sessionId]="ringingConsultation"
         [message]="ongoingCall"
         [token]="ongoingCall.token"
         (hangup)="hangup()"

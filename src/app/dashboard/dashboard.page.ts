@@ -141,6 +141,7 @@ export class DashboardPage implements OnDestroy {
                     this.callRunning = true;
                     this.ongoingCall = e.data.msg;
                     this.ringingConsultation = e.data.consultation;
+                    console.log(this.ringingConsultation, 'ringingConsultation');
                     this.shouldJoinCall = false;
                 });
             })
