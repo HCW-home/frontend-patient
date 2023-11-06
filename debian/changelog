@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.34) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * handle reject call
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 12:27:41 +0100
+
 hcw-athome-patient (0.4.4.33) focal; urgency=medium
 
   [ Gor Grigoryan ]
