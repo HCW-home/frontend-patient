@@ -1,24 +1,20 @@
 <ion-content>
     <div class="auth-wrapper">
-
         <div class="card">
             <ion-text>
-                <h1 class="authenticate">Authenticate</h1>
+                <h1 class="authenticate">{{ 'authenticate.authenticate' | translate }}</h1>
             </ion-text>
-
             <p class="btn green" *ngIf="showOpenIdLogin">
                 <a [href]="openIdLoginUrl" class="login-btn">
-                    Login with your IRCR credential
+                    {{'authenticate.login_with' | translate}}
                 </a>
             </p>
-
             <div class="label-wrapper">
                  <span class="label" (click)="register()">
-                    No account ? Request account here
+                    {{'authenticate.no_account' | translate}}
                 </span>
             </div>
         </div>
     </div>
-
-
+    <app-select-language></app-select-language>
 </ion-content>

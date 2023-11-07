@@ -10,7 +10,6 @@ import {ValidationService} from "../shared/services/validation.service";
 import {MessageService} from "../message.service";
 import {forkJoin, of} from "rxjs";
 import {catchError, finalize, switchMap} from "rxjs/operators";
-import {CdkDragDrop} from "@angular/cdk/drag-drop";
 
 
 @Component({

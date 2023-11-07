@@ -151,7 +151,7 @@
                                             {{consultation?.lastMsg?.fileName}}
                                     </span>
                                         <span class='message'
-                                              *ngIf="!consultation?.lastMsg">No message</span>
+                                              *ngIf="!consultation?.lastMsg">{{noMessageText}}</span>
                                     </div>
                                 </td>
                                 <td class="stacked-cell">

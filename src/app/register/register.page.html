@@ -4,19 +4,19 @@
 
         <div class="card">
             <ion-text>
-                <h1 class="register">Account request</h1>
+                <h1 class="register">{{ 'register.account_request' | translate }}</h1>
             </ion-text>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
                 <div class="form-inputs-wrapper">
                     <ion-item fill="solid" class="mb-3">
-                        <ion-label position="floating">Email</ion-label>
+                        <ion-label position="floating">{{'register.email' | translate}}</ion-label>
                         <ion-input
                                 (ionBlur)="validationService.clearSpace(form, 'email')"
                                 (ionFocus)="validationService.resetInputValidation(form, 'email')"
                                 (ionChange)="validationService.ltrim(form, 'email')"
-                                placeholder="Enter email"
+                                placeholder="{{ 'register.enter_email' | translate }}"
                                 type="email"
                                 formControlName="email"
                         ></ion-input>
@@ -26,24 +26,25 @@
                     </ion-item>
 
                     <ion-item fill="solid" class="mb-3">
-                        <ion-label position="floating">Firstname</ion-label>
+                        <ion-label position="floating">{{'register.firstName' | translate}}</ion-label>
                         <ion-input
                                 (ionBlur)="validationService.clearSpace(form, 'firstName')"
                                 (ionFocus)="validationService.resetInputValidation(form, 'firstName')"
                                 (ionChange)="validationService.ltrim(form, 'firstName')"
-                                placeholder="Enter firstname" formControlName="firstName"
+                                placeholder="{{ 'register.enter_firstName' | translate }}"
+                                formControlName="firstName"
                         ></ion-input>
                         <ion-note slot="error"
                                   *ngIf="validationService.showError(form, 'firstName')">{{getErrorMessage('firstName')}}</ion-note>
                     </ion-item>
 
                     <ion-item fill="solid" class="mb-3">
-                        <ion-label position="floating">Lastname</ion-label>
+                        <ion-label position="floating">{{'register.lastname' | translate}}</ion-label>
                         <ion-input
                                 (ionBlur)="validationService.clearSpace(form, 'lastName')"
                                 (ionFocus)="validationService.resetInputValidation(form, 'lastName')"
                                 (ionChange)="validationService.ltrim(form, 'lastName')"
-                                placeholder="Enter lastName"
+                                placeholder="{{ 'register.enter_lastname' | translate }}"
                                 formControlName="lastName"
                         ></ion-input>
                         <ion-note slot="error"
@@ -51,13 +52,13 @@
                     </ion-item>
 
                     <ion-item fill="solid" class="mb-3">
-                        <ion-label position="floating">Phone Number</ion-label>
+                        <ion-label position="floating">{{'register.phone_number' | translate}}</ion-label>
                         <ion-input
                                 maxlength="16"
                                 (ionBlur)="validationService.clearSpace(form, 'phoneNumber')"
                                 (ionFocus)="validationService.resetInputValidation(form, 'phoneNumber')"
                                 (ionChange)="validationService.ltrim(form, 'phoneNumber')"
-                                placeholder="Enter Phone Number"
+                                placeholder="{{ 'register.enter_phone_number' | translate }}"
                                 formControlName="phoneNumber"
                         ></ion-input>
                         <ion-note slot="error"
@@ -65,21 +66,21 @@
                     </ion-item>
 
                     <ion-item fill="solid" class="mb-3">
-                        <ion-label position="floating">Organization</ion-label>
-                        <ion-input placeholder="Enter Organization"
-                                   (ionBlur)="validationService.clearSpace(form, 'organization')"
+                        <ion-label position="floating">{{'register.organization' | translate}}</ion-label>
+                        <ion-input (ionBlur)="validationService.clearSpace(form, 'organization')"
                                    (ionFocus)="validationService.resetInputValidation(form, 'organization')"
                                    (ionChange)="validationService.ltrim(form, 'organization')"
-                                   formControlName="organization"
+                                   placeholder="{{ 'register.enter_organization' | translate }}"
                                    autocomplete="off"
+                                   formControlName="organization"
                         ></ion-input>
                         <ion-note slot="error"
                                   *ngIf="validationService.showError(form, 'organization')">{{getErrorMessage('organization')}}</ion-note>
                     </ion-item>
 
                     <ion-item (click)="openCountrySelect()" fill="solid" class="mb-3">
-                        <ion-label position="floating">Country</ion-label>
-                        <ion-input placeholder="Select Country"
+                        <ion-label position="floating">{{'register.country' | translate}}</ion-label>
+                        <ion-input placeholder="{{ 'register.select_country' | translate }}"
                                    formControlName="country"
                                    autocomplete="off"
                         ></ion-input>
@@ -89,7 +90,8 @@
 
                     <ion-list>
                         <ion-item fill="solid" class="mb-3">
-                            <ion-select interface="popover" placeholder="Gender" formControlName="sex">
+                            <ion-select interface="popover" placeholder="{{ 'register.gender' | translate }}"
+                                        formControlName="sex">
                                 <ion-select-option [value]="option.id"
                                                    *ngFor="let option of genders">{{option.name}}</ion-select-option>
                             </ion-select>
@@ -100,24 +102,23 @@
 
                 <div class="checkbox-wrapper">
                     <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
-                    <span>By clicking the tickbox, you accept the <span class="terms" (click)="goToTerms()">terms and conditions</span>
+                    <span>{{ 'register.by_checking_box' | translate }} <span class="terms" (click)="goToTerms()">{{ 'register.terms' | translate }}</span>
                     </span>
                 </div>
-                <ion-note slot="error" style="color: red"
+                <ion-note slot="error" class="error-text"
                           *ngIf="errorMessage">{{errorMessage}}</ion-note>
-
 
                 <button class="btn green"
                         type="submit"
                         [disabled]="!form.valid">
-                    Submit Registration
+                    {{ 'register.submit_registration' | translate }}
                 </button>
 
             </form>
 
             <div class="label-wrapper" (click)="goToLogin()">
                  <span class="label">
-                    Own already an account ? Login here
+                     {{ 'register.own_account' | translate }}
                 </span>
             </div>
 

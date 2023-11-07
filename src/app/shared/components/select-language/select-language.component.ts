@@ -11,7 +11,7 @@ export class SelectLanguageComponent {
 
   constructor(public translate: TranslateService) {}
 
-  changeLang(event, lang) {
+  changeLang(lang) {
     console.log("LANGGAGGE", lang)
     window.localStorage.setItem("hhp-lang", lang);
     this.translate.use(lang);

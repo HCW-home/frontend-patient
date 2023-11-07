@@ -6,6 +6,7 @@ import {ModalController} from "@ionic/angular";
 import {CountrySelectPage} from "./country-select/country-select.page";
 import {NurseService} from "../shared/services/nurse.service";
 import {ValidationService} from "../shared/services/validation.service";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -32,6 +33,7 @@ export class RegisterPage implements OnInit {
       private modalController: ModalController,
       private nurseService: NurseService,
       public validationService: ValidationService,
+      private translate: TranslateService,
       public configService: ConfigService) {
     this.form.valueChanges.subscribe(() => {
       this.errorMessage = '';
@@ -83,7 +85,7 @@ export class RegisterPage implements OnInit {
         this.router.navigate([`/register-success`])
 
       }, error: (err) => {
-        this.errorMessage = err.error?.error || 'Something went wrong';
+        this.errorMessage = err.error?.error || this.translate.instant('appComponent.serverError');
         // this.router.navigate([`/fail`])
         console.log(err, 'err');
       }
@@ -95,38 +97,38 @@ export class RegisterPage implements OnInit {
       case 'email':
         const emailErrors = this.form.controls.email.errors;
         if (emailErrors.required) {
-          return 'Email is required';
+          return this.translate.instant("register.email_required");
         } else {
-          return 'Invalid email address';
+          return this.translate.instant("register.invalid_email");
         }
       case 'firstName':
         const nameErrors = this.form.controls.firstName.errors;
         if (nameErrors.required) {
-          return 'Firstname is required';
+          return this.translate.instant("register.firstName_required");
         }
         break;
       case 'lastName':
         const surnameErrors = this.form.controls.lastName.errors;
         if (surnameErrors.required) {
-          return 'Lastname is required';
+          return this.translate.instant("register.lastName_required");
         }
         break;
       case 'phoneNumber':
         const phoneNumberErrors = this.form.controls.phoneNumber.errors;
         if (phoneNumberErrors.required) {
-          return 'Phone number is required';
+          return this.translate.instant("register.phone_required");
         }
         break;
       case 'organization':
         const organizationErrors = this.form.controls.organization.errors;
         if (organizationErrors.required) {
-          return 'Organization is required';
+          return this.translate.instant("register.organization_required");
         }
         break;
       case 'country':
         const countryErrors = this.form.controls.country.errors;
         if (countryErrors.required) {
-          return 'Country is required';
+          return this.translate.instant("register.country_required");
         }
         break;
     }

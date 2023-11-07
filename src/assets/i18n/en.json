@@ -193,6 +193,38 @@
   "appComponent": {
     "serverError": "Something went wrong"
   },
+  "authenticate": {
+    "authenticate": "Authenticate",
+    "login_with": "Login with your IRCR credential",
+    "no_account": "No account ? Request account here"
+  },
+  "register": {
+    "account_request": "Account request",
+    "email": "Email",
+    "enter_email": "Enter email",
+    "firstName": "Firstname",
+    "enter_firstName": "Enter firstname",
+    "lastname": "Lastname",
+    "enter_lastname": "Enter lastname",
+    "phone_number": "Phone Number",
+    "enter_phone_number": "Enter Phone Number",
+    "organization": "Organization",
+    "enter_organization": "Enter Organization",
+    "country": "Country",
+    "select_country": "Select Country",
+    "gender": "Gender",
+    "by_checking_box": "By clicking the tickbox, you accept the",
+    "terms": "terms and conditions",
+    "submit_registration": "Submit Registration",
+    "own_account": "Own already an account ? Login here",
+    "country_required": "Country is required",
+    "organization_required": "Organization is required",
+    "phone_required": "Phone number is required",
+    "lastName_required": "Lastname is required",
+    "firstName_required": "Firstname is required",
+    "email_required": "Email is required",
+    "invalid_email": "Invalid email address"
+  },
   "fr": "Français",
   "en": "English",
   "es": "Español",
