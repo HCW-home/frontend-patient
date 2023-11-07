@@ -10,6 +10,7 @@ import {ValidationService} from "../shared/services/validation.service";
 import {MessageService} from "../message.service";
 import {forkJoin, of} from "rxjs";
 import {catchError, finalize, switchMap} from "rxjs/operators";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -43,6 +44,7 @@ export class RequestConsultationPage implements OnInit {
         private queueService: QueueService,
         public validationService: ValidationService,
         private messageService: MessageService,
+        private translate: TranslateService,
         public configService: ConfigService) {
     }
 
@@ -141,40 +143,34 @@ export class RequestConsultationPage implements OnInit {
         this.file = event.target.files[0];
     }
 
-    // onFileDropped(event: CdkDragDrop<string[]>) {
-    //     console.log('stexaaaa');
-    //     let files = event.item.data;
-    // }
-
     onFileDropped(files: FileList): void {
         this.onFileListener({ target: { files } });
     }
-
 
     getErrorMessage(formField: string) {
         switch (formField) {
             case "firstName":
                 const nameErrors = this.form.controls.firstName.errors;
                 if (nameErrors.required) {
-                    return "Firstname is required";
+                    return this.translate.instant("request_consultation.patient_firstname_required");
                 }
                 break;
             case "lastName":
                 const surnameErrors = this.form.controls.lastName.errors;
                 if (surnameErrors.required) {
-                    return "Lastname is required";
+                    return this.translate.instant("request_consultation.patient_lastname_required");
                 }
                 break;
             case "queue":
                 const queueErrors = this.form.controls.queue.errors;
                 if (queueErrors.required) {
-                    return "Expert area is required";
+                    return this.translate.instant("request_consultation.expert_area_required");
                 }
                 break;
             case "sex":
                 const sexErrors = this.form.controls.sex.errors;
                 if (sexErrors.required) {
-                    return "Gender is required";
+                    return this.translate.instant("request_consultation.gender_required");
                 }
                 break;
         }

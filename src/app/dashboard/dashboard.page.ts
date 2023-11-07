@@ -6,6 +6,7 @@ import {ModalController, Platform} from "@ionic/angular";
 import {Subscription} from "rxjs";
 import {SocketEventsService} from "../socket-events.service";
 import {NativeAudio} from "@capacitor-community/native-audio";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: "app-dashboard",
@@ -13,8 +14,7 @@ import {NativeAudio} from "@capacitor-community/native-audio";
     styleUrls: ["./dashboard.page.scss"],
 })
 export class DashboardPage implements OnDestroy {
-    noMessageText: string = '<No Message>';
-
+    noMessageText: string;
     private subscriptions: Array<Subscription> = [];
     loading: boolean = true;
     ringingConsultation: any;
@@ -36,11 +36,13 @@ export class DashboardPage implements OnDestroy {
         public modalController: ModalController,
         private platformService: Platform,
         private _socketEventsService: SocketEventsService,
+        private translate: TranslateService,
         private zone: NgZone,
     ) {
     }
 
     ionViewDidEnter() {
+        this.noMessageText = this.translate.instant("dashboard.no_message");
         this.loading = true;
         this.getConsultations();
         this.listenToNewMessages();
@@ -111,7 +113,7 @@ export class DashboardPage implements OnDestroy {
     listenToCallEvents() {
         this.subscriptions.push(
             this._socketEventsService.onRejectCall().subscribe((event) => {
-                console.log('Event onRejectCall');
+                console.log("Event onRejectCall");
                 // const message = this.chatMessages.find(
                 //     (msg) => msg.id === event.data.message.id
                 // );
@@ -123,7 +125,7 @@ export class DashboardPage implements OnDestroy {
         );
         this.subscriptions.push(
             this._socketEventsService.onAcceptCall().subscribe((event) => {
-                console.log('Event onAcceptCall');
+                console.log("Event onAcceptCall");
                 // const message = this.chatMessages.find(
                 //     (msg) => msg.id === event.data.message.id
                 // );
@@ -134,7 +136,7 @@ export class DashboardPage implements OnDestroy {
         );
         this.subscriptions.push(
             this._socketEventsService.onCall().subscribe((e) => {
-                console.log("Calll ", e, 'e');
+                console.log("Calll ", e, "e");
 
                 this.ringing();
                 this.zone.run(() => {
@@ -142,8 +144,8 @@ export class DashboardPage implements OnDestroy {
                     this.callRunning = true;
                     this.ongoingCall = e.data.msg;
                     this.ringingConsultation = e.data.consultation;
-                    this.callingDoctor = e.data.user
-                    console.log(this.ringingConsultation, 'ringingConsultation');
+                    this.callingDoctor = e.data.user;
+                    console.log(this.ringingConsultation, "ringingConsultation");
                     this.shouldJoinCall = false;
                 });
             })

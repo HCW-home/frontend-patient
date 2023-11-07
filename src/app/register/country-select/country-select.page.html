@@ -1,12 +1,13 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Select Country</ion-title>
+        <ion-title>{{ 'country_select.select_country' | translate }}</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <ion-list>
         <ng-container>
             <ion-searchbar
+                    placeholder="{{ 'country_select.search' | translate }}"
                     (ionInput)="updateCountries($event)"
             ></ion-searchbar>
             <ion-item *ngFor="let country of filteredCountries" (click)="selectCountry(country)">

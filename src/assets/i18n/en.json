@@ -225,6 +225,63 @@
     "email_required": "Email is required",
     "invalid_email": "Invalid email address"
   },
+  "header": {
+    "profile": "Profile",
+    "logOut": "Logout"
+  },
+  "profile": {
+    "profile": "Profile"
+  },
+  "dashboard": {
+    "consultations": "Consultations",
+    "history": "History",
+    "handled_by": "Handled by:",
+    "requested_at": "Requested at:",
+    "closed_at": "Closed at:",
+    "area": "Area:",
+    "country": "Country:",
+    "sex": "Sex:",
+    "hospital": "Hospital/facility:",
+    "resume": "Resume",
+    "requesting": "requesting",
+    "canceled": "canceled",
+    "no_message": "<No Message>",
+    "cancel_consultation": "Cancel consultation",
+    "request_new_consultation": "Request new consultation",
+    "no_consultation": "You have no consultation in history yet. Use the button below to open new consultation request.",
+    "no_consultation_history": "You have no consultation in history yet."
+  },
+  "request_consultation": {
+    "consultation_request_form": "Consultation request form",
+    "request_form_title": "Once submitted, you will be redirected automatically in the consultation request. You will able to cancel until an expert will handle the request.",
+    "select_expert_area": "Select Expert Area",
+    "expert_area_required": "Expert area is required",
+    "patient_firstname": "Patient Firstname",
+    "patient_firstname_required": "Patient Firstname is required",
+    "enter_patient_firstname": "Enter Patient Firstname",
+    "patient_lastname": "Patient Lastname",
+    "patient_lastname_required": "Patient Lastname is required",
+    "enter_patient_lastname": "Enter Patient Lastname",
+    "select_gender": "Select Gender",
+    "gender_required": "Gender is required",
+    "age": "Age",
+    "enter_age": "Enter Age",
+    "country": "Country",
+    "select_country": "Select Country",
+    "patient_hospitality": "Patient hospital/facility",
+    "enter_patient_hospitality": "Enter Patient hospital/facility",
+    "message_optional": "Message (Optional)",
+    "enter_text": "Enter text",
+    "upload_document": "Upload Document",
+    "request_consultation": "Request Consultation"
+  },
+  "country_select": {
+    "select_country": "Select Country",
+    "search": "Search"
+  },
+  "common": {
+    "back_to_dashboard": "Back To Dashboard"
+  },
   "fr": "Français",
   "en": "English",
   "es": "Español",
