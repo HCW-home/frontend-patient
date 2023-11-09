@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
   password: string;
   connectionErrorMessage =
     "Le serveur distant n'est pas joinable, veuillez vérifier votre connectivité";
-  inviteToken = "";
+  inviteToken;
   inviteKey = "";
   firstName = "";
   lastName = "";
@@ -99,7 +99,8 @@ export class LoginPage implements OnInit {
 
   ngAfterContentInit() {
     console.log("ngAfterContentInit");
-    const inviteToken = localStorage.getItem("inviteToken");
+    const token = localStorage.getItem('inviteToken') || '';
+    const inviteToken = this.sanitizer.bypassSecurityTrustHtml(token);
     if (this.inviteToken !== inviteToken || this.inviteKey !== inviteToken) {
       this.inviteToken = inviteToken;
       this.inviteKey = this.inviteToken;
