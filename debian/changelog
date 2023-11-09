@@ -1,3 +1,21 @@
+hcw-athome-patient (0.4.4.38) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add some translations, langage select, ui fixes
+  * add translations for dashboard, request consultation, profile,header and country select
+  * header style change
+
+  [ Olivier Bitsch ]
+  * Update nginx configuration file (security reason)
+
+  [ Gor Grigoryan ]
+  * fix redirection from terms page
+
+  [ Olivier Bitsch ]
+  * Update nginx configuration file (security reason)
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 09 Nov 2023 09:57:35 +0100
+
 hcw-athome-patient (0.4.4.37) focal; urgency=medium
 
   [ Gor Grigoryan ]
