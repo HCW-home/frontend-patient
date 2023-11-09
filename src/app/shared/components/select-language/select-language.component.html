@@ -1,0 +1,12 @@
+<div id="hhpMultiLang">
+  <div class="sl-container">
+    <ion-icon name="globe"></ion-icon>
+    <select class="lang" #langSelect (change)="changeLang(langSelect.value)">
+      <option
+        *ngFor="let lang of translate.getLangs()"
+        [value]="lang"
+        [attr.selected]="lang === translate.currentLang ? '' : null"
+      >{{lang | translate}}</option>
+    </select>
+  </div>
+</div>

@@ -1,0 +1,197 @@
+.overlay {
+  position: fixed;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1011;
+  cursor: pointer;
+}
+
+.overlay-content {
+  position: absolute;
+  top: 74px;
+  width: 100%;
+  height: calc(100% - 150px);
+  overflow: auto;
+}
+
+
+.chat-cont {
+  width: 33.33%;
+  height: 100%;
+  position: fixed;
+  z-index: 112;
+  background-color: #fafafa;
+  min-width: 400px;
+  right: 0;
+}
+
+.header {
+  min-width: 400px;
+  border-bottom: 1px solid rgb(209, 209, 209);
+  background-color: #ffffff;
+  top: 0;
+  height: 70px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+
+div.resume-c-btn {
+  text-align: center;
+  background-color: #00b54a;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  right: 0;
+  position: fixed;
+  width: 33.33%;
+  min-width: 400px;
+  bottom: 0;
+  height: 70px;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+}
+
+div.buttons-wrapper {
+  right: 0;
+  position: fixed;
+  width: 33.33%;
+  min-width: 400px;
+  bottom: 0;
+  height: 70px;
+  z-index: 120;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #ffffff;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1
+
+  }
+}
+
+
+div.buttons-wrapper div:first-child {
+  background-color: #E3393A;
+}
+div.buttons-wrapper div:last-child {
+  background-color: #00b54a;
+}
+
+
+.jumbotron {
+  color: #ffffff;
+  max-height: 240px;
+  background-color: var(--ion-color-primary) !important;
+  background-position: center;
+  border-radius: 0;
+  text-align: center;
+}
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .jumbotron {
+      background-image: unset !important;
+    }
+  }
+}
+
+.jumbotron.await {
+  max-height: 283px;
+}
+
+@media screen and (max-width: 640px) {
+  .jumbotron,
+  .jumbotron.await {
+    max-height: 300px;
+  }
+}
+
+ion-card-title {
+  color: #fff;
+}
+.title {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.keep-open {
+  color: white;
+  text-align: center;
+  background: #E3393A;
+  padding: 10px;
+  margin: 0;
+  font-weight: bold;
+}
+
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .title {
+      text-align: left !important;
+    }
+    p {
+      text-align: left !important;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    #chatHeader1 {
+      text-align: left;
+      font-size: 1em;
+    }
+    .msg-time {
+      font-size: 0.8em !important;
+    }
+    .subtitle {
+      font-size: 1.1em;
+    }
+    .doctor-info-card {
+      padding-left: 0;
+    }
+    .keep-open {
+      padding-left: 20px;
+    }
+  }
+}
+
+.info-items {
+  background-color: #ffffff;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .info-item {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
+
+    .title-wrapper {
+      font-weight: 500;
+      font-size: 0.8em;
+      color: #929292;
+    }
+
+    .content {
+      font-size: 1em;
+    }
+
+
+  }
+}

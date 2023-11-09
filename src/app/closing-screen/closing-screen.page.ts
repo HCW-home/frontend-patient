@@ -1,16 +1,11 @@
 import { AuthService } from "./../auth/auth.service";
-import { Component, OnInit, Directive  } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit  } from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import { ConsultationService } from "../consultation.service";
 import { ConfigService } from "../config.service";
 import { Platform } from "@ionic/angular";
-import { environment } from "../../environments/environment";
 import { App } from '@capacitor/app';
-
-
-declare let cordova: any;
-
 
 @Component({
   selector: "app-closing-screen",
@@ -39,6 +34,7 @@ export class ClosingScreenPage implements OnInit {
   currentUser;
   constructor(
     private activeRoute: ActivatedRoute,
+    private router: Router,
     private consultationService: ConsultationService,
     private authService: AuthService,
     public configService: ConfigService,
@@ -64,8 +60,6 @@ export class ClosingScreenPage implements OnInit {
   }
 
   closeApp() {
-    console.log('hello');
-    
     localStorage.clear();
     App.exitApp();
   }
@@ -90,7 +84,6 @@ export class ClosingScreenPage implements OnInit {
    */
   onFormSubmit() {
 
-
     if (this.feedbackSubmitted || !this.userRating == null) {
       return;
     }
@@ -103,7 +96,11 @@ export class ClosingScreenPage implements OnInit {
       )
       .subscribe(
         (res) => {
-          this.feedbackSaved = true;
+          if (this.currentUser.role === 'nurse') {
+            this.router.navigate([`/dashboard`]);
+          } else {
+            this.feedbackSaved = true;
+          }
         },
         (err) => {
           this.feedbackSubmitted = false;

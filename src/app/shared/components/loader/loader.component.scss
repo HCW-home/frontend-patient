@@ -1,0 +1,13 @@
+table {
+  td {
+    padding: 1rem;
+  }
+
+
+
+  tr:not(:last-child) {
+    border-bottom: 1px solid rgba(189, 189, 189, 1);
+  }
+
+
+}

@@ -1,43 +1,44 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {Routes, RouterModule} from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from "@ionic/angular";
 
 // translate
-import { I18nModule } from '../i18n/i18n.module';
-import { SelectLanguageComponent } from '../select-language/select-language.component';
+import {I18nModule} from "../i18n/i18n.module";
 
-import { LoginPage } from './login.page';
-import { TranslatorFormComponent } from './translator-form/translator-form.component';
+import {LoginPage} from "./login.page";
+import {TranslatorFormComponent} from "./translator-form/translator-form.component";
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LoginPage
-  }
+    {
+        path: "",
+        component: LoginPage
+    }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes),
-    I18nModule,
-    ReactiveFormsModule,
-    FormsModule,
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes),
+        I18nModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule
 
-  ],
+    ],
 
-  declarations: [
-    LoginPage,
-    SelectLanguageComponent,
-    TranslatorFormComponent
-  ],
-  exports:[
-    TranslatorFormComponent
-  ]
+    declarations: [
+        LoginPage,
+        TranslatorFormComponent
+    ],
+    exports: [
+        TranslatorFormComponent
+    ]
 })
-export class LoginPageModule { }
+export class LoginPageModule {
+}

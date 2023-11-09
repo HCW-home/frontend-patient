@@ -102,6 +102,31 @@ export class AuthService {
   //   }));
   // }
 
+  //  logout() {
+  //     // sessionStorage.removeItem('currentUser');
+  //     this.currentUserSubject.next(null);
+  //     this.socketEventsService.disconnect()
+  //     this.http.get(`${environment.api}/logout`).subscribe(r => {
+  //       console.log(r, "res");
+  //       this.router.navigate(["/login"]);
+  //     }, err => {
+  //       this.router.navigate(["/login"]);
+  //     })
+  //   }
+
+  logOutNurse() {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.currentUserSubject.next(null);
+    this._socketEventsService.disconnect();
+    this.http.get(`${this.globalVariableService.getApiPath()}/logout`).subscribe(r => {
+      console.log(r, "res");
+      this.router.navigate(["/login"]);
+    }, err => {
+      this.router.navigate(["/login"]);
+    })
+  }
+
   logout() {
     // remove user from local storage to log user out
     console.log('LOGOUT')
@@ -123,9 +148,13 @@ export class AuthService {
     return this.currentUserSubject.value.token;
   }
 
-  getCurrentUser(token?):Observable<any> {
-    const opts = { withCredentials: true };
-    
+  getCurrentUser():Observable<any> {
+    const headers = {};
+    const token = sessionStorage.getItem('nurseToken')
+    if (token) {
+      headers['x-access-token'] = token;
+    }
+    const opts = { withCredentials: true, headers };
 
     return this.http.get<any>(`${this.globalVariableService.getApiPath()}/current-user`, opts).pipe(map(res => {
 
@@ -133,5 +162,21 @@ export class AuthService {
 
       return res.user
     }))
+  }
+
+  login(token) {
+    const headers = {};
+    if (token) {
+      headers['x-access-token'] = token;
+    }
+    return this.http.get<any>(`${this.globalVariableService.getApiPath()}/current-user`, { headers })
+        .pipe(map(res => {
+          if (res.user && res.user.token) {
+            sessionStorage.setItem('currentUser', JSON.stringify(res.user));
+            sessionStorage.setItem('nurseToken', res.user.token);
+            this.currentUserSubject.next(res.user);
+            return res.user;
+          }
+        }));
   }
 }

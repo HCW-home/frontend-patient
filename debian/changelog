@@ -1,9 +1,149 @@
-hcw-athome-patient (0.4.4.20) focal; urgency=medium
+hcw-athome-patient (0.4.4.38) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add some translations, langage select, ui fixes
+  * add translations for dashboard, request consultation, profile,header and country select
+  * header style change
+
+  [ Olivier Bitsch ]
+  * Update nginx configuration file (security reason)
+
+  [ Gor Grigoryan ]
+  * fix redirection from terms page
+
+  [ Olivier Bitsch ]
+  * Update nginx configuration file (security reason)
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 09 Nov 2023 09:57:35 +0100
+
+hcw-athome-patient (0.4.4.37) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add doctor name on ringing screen
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 17:33:20 +0100
+
+hcw-athome-patient (0.4.4.36) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * remove transition
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 15:26:29 +0100
+
+hcw-athome-patient (0.4.4.35) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * feedback page fix and terms
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 14:50:36 +0100
+
+hcw-athome-patient (0.4.4.34) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * handle reject call
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 12:27:41 +0100
+
+hcw-athome-patient (0.4.4.33) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * fix rejecting call functionality
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 11:16:51 +0100
+
+hcw-athome-patient (0.4.4.32) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * video room on dashboard
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 10:54:43 +0100
+
+hcw-athome-patient (0.4.4.31) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * listen to call events
+  * history style fix
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 10:12:20 +0100
+
+hcw-athome-patient (0.4.4.30) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * hide overlay for mobile, add responsive styles
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 06 Nov 2023 09:26:40 +0100
+
+hcw-athome-patient (0.4.4.29) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * responsiv styles and minor fixes
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 03 Nov 2023 14:45:19 +0100
+
+hcw-athome-patient (0.4.4.28) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * ui fixes
+  * logout and file drop directive
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 02 Nov 2023 09:31:14 +0100
+
+hcw-athome-patient (0.4.4.27) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * ui fixes in general information
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 01 Nov 2023 16:15:43 +0100
+
+hcw-athome-patient (0.4.4.26) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * build fix
+  * listen to consultation status change
+  * add overlay for genereal information
+  * feedback in overlay for closed consultations
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 01 Nov 2023 12:49:17 +0100
+
+hcw-athome-patient (0.4.4.25) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * hide header component
+  * add last message
+  * subsribe to new messages updates in dashboard
+  * posting files
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 30 Oct 2023 09:00:21 +0100
+
+hcw-athome-patient (0.4.4.24) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add header component
+  * error handlers for inputs
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 27 Oct 2023 09:39:00 +0200
+
+hcw-athome-patient (0.4.4.23) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * change openid login url
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 26 Oct 2023 17:09:14 +0200
+
+hcw-athome-patient (0.4.4.22) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add consultations dashboard
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 25 Oct 2023 13:28:28 +0200
+
+hcw-athome-patient (0.4.4.21) focal; urgency=medium
 
   [ Gor Grigoryan ]
   * update hcw-stream-lib
+  * requester ui
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 04 Oct 2023 14:01:29 +0200
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 23 Oct 2023 14:32:07 +0200
 
 hcw-athome-patient (0.4.4.19) focal; urgency=medium
 

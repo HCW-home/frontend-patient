@@ -26,7 +26,7 @@
         #scrollMe
         id="chatContainer"
 >
-    <p class="keep-open" *ngIf="consultation.consultation.status !== 'active'">
+    <p class="keep-open" *ngIf="consultation.consultation.status !== 'active' && consultation.consultation.status !== 'closed'">
         {{ 'consultation.plsKeepThisOpenPage' | translate }}
     </p>
     <ion-card
@@ -49,6 +49,15 @@
                 >{{ consultation.doctor.phoneNumber }}</a
                 >
             </p>
+            <p class="backToDashboard" *ngIf="currentUser.role ==='nurse'" (click)="backToDashboard()">{{ 'Back to Dashboard' | translate }}</p>
+        </ion-card-content>
+    </ion-card>
+    <ion-card
+            *ngIf="consultation.consultation.status === 'closed'"
+            class="closedWrapper ion-no-padding ion-no-margin">
+
+        <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
+            <p class="backToDashboard" *ngIf="currentUser.role ==='nurse'" (click)="backToDashboard()">{{ 'Back to Dashboard' | translate }}</p>
         </ion-card-content>
     </ion-card>
 
@@ -75,6 +84,9 @@
                 i18n>
             {{ 'consultation.cancel' | translate }}
         </ion-button>
+
+        <p class="backToDashboard" (click)="backToDashboard()" *ngIf="currentUser.role === 'nurse'">{{ 'Back to Dashboard' | translate }}</p>
+
     </ion-card>
 
     <ion-grid class="chat">

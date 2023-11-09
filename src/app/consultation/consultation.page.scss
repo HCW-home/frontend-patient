@@ -20,6 +20,11 @@
   height: 283px;
 }
 
+.closedWrapper {
+  background-color: var(--ion-color-primary) !important;
+
+}
+
 ion-card-title {
   color: #fff;
 }
@@ -33,6 +38,16 @@ ion-card-content {
 .subtitle {
   text-align: center;
   font-size: 1em;
+}
+.backToDashboard {
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+  margin-top: 3rem;
+  text-decoration: underline;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-decoration-color: #FFFFFF;
 }
 
 .subtitle.doctor {

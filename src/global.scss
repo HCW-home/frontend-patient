@@ -44,7 +44,7 @@
 }
 
 * {
-  font-family: "Cooper Hewitt";
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .picker-wrapper {
@@ -72,6 +72,7 @@ ion-card {
   padding-top: 4px;
 }
 app-login,
+app-icrc,
 app-test-call {
   background-image: url($background-image-path);
 
@@ -211,3 +212,27 @@ html[data-theme="accessibility"] {
   }
 }
 
+
+.alert-wrapper.sc-ion-alert-md {
+  background: white !important;
+  --background: white !important;
+}
+
+ion-popover [popover]:not(:popover-open):not(dialog[open]) {
+  display: contents;
+  --backdrop-opacity: 1;
+
+}
+
+.sc-ion-select-popover-md-h ion-list.sc-ion-select-popover-md {
+  background: white;
+}
+
+ion-select {
+  width: 100%;
+
+  label {
+    color: black;
+    font-size: inherit;
+  }
+}

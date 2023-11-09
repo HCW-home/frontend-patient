@@ -1,0 +1,61 @@
+ion-content {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--blue-bg-color);
+
+  .auth-wrapper {
+    height: calc(100% - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    background: #FFFFFF;
+    font-size: 14px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding:  7rem 10rem;
+    flex-wrap: nowrap;
+    @media (max-width: 768px) {
+      padding: 2rem;
+    }
+  }
+
+  .authenticate {
+    color: rgba(0, 0, 0, 1);
+    font-style: normal;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .label-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .label {
+    color: black;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.01px;
+    text-decoration: underline;
+    text-decoration-color: black;
+    cursor: pointer;
+  }
+
+  .login-btn {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+
+}
