@@ -1,3 +1,13 @@
+hcw-athome-patient (0.4.4.40) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Fix typo
+
+  [ Gor Grigoryan ]
+  * default english for translations
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 09 Nov 2023 17:25:43 +0100
+
 hcw-athome-patient (0.4.4.39) focal; urgency=medium
 
   * New dev release 0.4.4.20
