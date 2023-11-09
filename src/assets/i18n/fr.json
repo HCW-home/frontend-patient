@@ -208,7 +208,7 @@
   "dashboard.cancel_consultation": "Annuler la consultation",
   "dashboard.request_new_consultation": "Demander une nouvelle consultation",
   "dashboard.no_consultation": "Vous n'avez pas encore de consultation clôturée. Utilisez le bouton ci-dessus pour ouvrir une nouvelle demande de consultation.",
-  "dashboard.no_consultation_history": "Vous n'avez pas encore de consultation en clôturée.",
+  "dashboard.no_consultation_history": "Vous n'avez pas encore de consultation clôturée.",
   "request_consultation.consultation_request_form": "Formulaire de demande de consultation",
   "request_consultation.request_form_title": "Une fois soumis, vous serez redirigé automatiquement dans la demande de consultation. Vous pourrez annuler jusqu'à ce qu'un expert traite la demande.",
   "request_consultation.select_expert_area": "Sélectionnez le domaine d'expertise",
