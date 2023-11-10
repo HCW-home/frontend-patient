@@ -195,7 +195,7 @@
   },
   "authenticate": {
     "authenticate": "Authenticate",
-    "login_with": "Login with your IRCR credential",
+    "login_with": "Institutional Connection",
     "no_account": "No account ? Request account here"
   },
   "register": {
