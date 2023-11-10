@@ -100,7 +100,7 @@ export class LoginPage implements OnInit {
   ngAfterContentInit() {
     console.log("ngAfterContentInit");
     const token = localStorage.getItem('inviteToken') || '';
-    const inviteToken = this.sanitizer.bypassSecurityTrustHtml(token);
+    const inviteToken = token;
     if (this.inviteToken !== inviteToken || this.inviteKey !== inviteToken) {
       this.inviteToken = inviteToken;
       this.inviteKey = this.inviteToken;
