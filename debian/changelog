@@ -1,3 +1,17 @@
+hcw-athome-patient (0.4.4.42) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Fix login screen
+
+  [ Gor Grigoryan ]
+  * update hcw-stream-lib
+  * update hcw-stream-lib
+
+  [ Olivier Bitsch ]
+  * Optimize image
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 14 Nov 2023 09:03:42 +0100
+
 hcw-athome-patient (0.4.4.41) focal; urgency=medium
 
   [ Gor Grigoryan ]

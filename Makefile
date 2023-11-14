@@ -49,6 +49,13 @@ sign:
 	cd android && jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks app/build/outputs/bundle/release/app-release.aab alias-hug-at-home
 	cd android && apksigner sign --ks ~/Documents/Clients/HUG/HUG@Home/android-release-key-playstore.jks app/build/outputs/apk/release/app-release-unsigned.apk
 
+do-release:
+	gbp dch  --ignore-branch
+	sed -i 's/UNRELEASED/focal/' debian/changelog
+	sed -i "s/Version:.*/Version: $(VERSION)/" redhat/hcw-athome-patient.spec
+	git add debian/changelog redhat/hcw-athome-caregiver.spec
+	echo "You can run now:\n git commit -m \"New release ${VERSION}\""
+
 
 INFO := @bash -c '\
   printf $(YELLOW); \
