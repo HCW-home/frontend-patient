@@ -47,9 +47,6 @@ p {
   color: #fff;
 }
 
-.buttons {
-  margin-top: 50px;
-}
 
 .container {
   display: block;
@@ -125,6 +122,29 @@ ion-card {
 ion-content {
   background: transparent;
 }
+
+.checkbox-wrapper {
+  display: flex;
+  gap: 10px;
+  color: white;
+  justify-content: center;
+  margin-top: 3rem;
+
+  ion-checkbox {
+    --border-color: #fff;
+    --background-checked: #fff;
+    --checkmark-color: var(--blue-bg-color);
+    --border-color-checked: var(--blue-bg-color);
+  }
+
+  .terms {
+    text-decoration: underline;
+    text-decoration-color: #FFFFFF;
+    cursor: pointer;
+  }
+
+}
+
 footer {
   display: flex;
   align-items: center;

@@ -11,7 +11,6 @@ import {first} from "rxjs/operators";
     styleUrls: ["./request.page.scss"],
 })
 export class RequestPage {
-    showOpenIdLogin = true;
     openIdLoginUrl = `${environment.host}${environment.api}/login-openid?role=nurse`;
     returnUrl: string;
 

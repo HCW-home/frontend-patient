@@ -70,7 +70,7 @@
   "login.home": "Home",
   "login.translationRequestAccepted": "Merci pour la confirmation, vous allez recevoir très prochainement les informations par mail.",
   "login.translationRequestRefused": "Merci pour votre retour, nous allons informer le soignant de cette indisponibilité.",
-  "login.homeIsAHUGTeleconsultation": "{{branding}} est un système de téléconsultation. Vous êtes sur le point de rejoindre votre consultation, veuillez ne pas quitter cette page. En rejoignant la consultation, vous acceptez les Conditions Générales d’Utilisation (CGU).",
+  "login.homeIsAHUGTeleconsultation": "{{branding}} est un système de téléconsultation. Vous êtes sur le point de rejoindre votre consultation, veuillez ne pas quitter cette page.",
   "login.warning": "Attention",
   "login.thisApplicationIsIntented": "Cette application est prévue pour fonctionner via un lien d'invitation reçu par SMS ou par email. Cliquez sur ce lien au préalable afin d'ouvrir une consultation.",
   "login.closeTheApplication": "Fermer l'application",

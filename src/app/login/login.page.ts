@@ -43,6 +43,7 @@ export class LoginPage implements OnInit {
   error = "";
   email: string;
   password: string;
+  termsChecked: boolean = false;
   connectionErrorMessage =
     "Le serveur distant n'est pas joinable, veuillez vérifier votre connectivité";
   inviteToken;
@@ -560,6 +561,10 @@ export class LoginPage implements OnInit {
   closeApp() {
     localStorage.clear();
     App.exitApp();
+  }
+
+  goToTerms() {
+    this.router.navigate(["/cgu"]);
   }
 
   /**

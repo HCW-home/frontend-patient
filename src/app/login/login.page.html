@@ -164,13 +164,17 @@
             ></ion-input>
           </ion-item>
 
+          <div class="checkbox-wrapper">
+            <ion-checkbox slot="start" [(ngModel)]="termsChecked"></ion-checkbox>
+            <span> {{ 'login.termsText' | translate:configService.config}} <span class="terms" (click)="goToTerms()">{{ 'register.terms' | translate }}</span>  {{ 'login.termsSecondText' | translate:configService.config}} </span>
+          </div>
+
           <div
             class="buttons"
           >
             <button
               class="btn green"
-              mat-button
-              [disabled]="isExpert && (!firstName || !lastName)"
+              [disabled]="(isExpert && (!firstName || !lastName || !termsChecked)) || !termsChecked"
               type="submit"
               [class.submitted]="submitted"
             >
@@ -206,16 +210,16 @@
         </p>
       </ng-container>
 
-      <div class="footer">
-        <button
-          type="button"
-          [routerLink]="['/cgu']"
-          title="Lire les CGU"
-          class="btn terms-btn"
-        >
-          {{ 'login.termsOfService' | translate }}
-        </button>
-      </div>
+<!--      <div class="footer">-->
+<!--        <button-->
+<!--          type="button"-->
+<!--          [routerLink]="['/cgu']"-->
+<!--          title="Lire les CGU"-->
+<!--          class="btn terms-btn"-->
+<!--        >-->
+<!--          {{ 'login.termsOfService' | translate }}-->
+<!--        </button>-->
+<!--      </div>-->
 
       <app-select-language></app-select-language>
     </div>
