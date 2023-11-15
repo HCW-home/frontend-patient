@@ -161,6 +161,8 @@
   },
   "videoRoom": {
     "call": "Call",
+    "audioCall": "Audio call",
+    "videoCall": "Video call",
     "audio": "audio",
     "video": "video",
     "accept": "Accept",

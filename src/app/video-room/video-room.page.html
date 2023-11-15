@@ -9,11 +9,14 @@
         <ion-row>
           <ion-title *ngIf="user" class="doctor-title">
             {{user.firstName }} {{user.lastName | uppercase }} <br />
-            <strong
-              >{{ 'videoRoom.call' | translate }} {{audioOnly?
-              ('videoRoom.audio' | translate):('videoRoom.video' |
-              translate)}}</strong
-            >
+            <strong *ngIf="message?.type === 'audioCall'; else videoCall">
+              {{'videoRoom.audioCall' | translate}}
+            </strong>
+            <ng-template #videoCall>
+              <strong >
+                {{'videoRoom.videoCall' | translate}}
+              </strong>
+            </ng-template>
           </ion-title>
         </ion-row>
         <ion-row>
