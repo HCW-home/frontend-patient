@@ -11,40 +11,13 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import "src/theme/variables.scss";
 
-@font-face {
-  font-family: "Cooper Hewitt";
-  src: url("./assets/fonts/CooperHewitt-Bold.eot");
-  src: url("./assets/fonts/CooperHewitt-Bold.eot") format("embedded-opentype"),
-    url("./assets/fonts/CooperHewitt-Bold.svg") format("svg"),
-    url("./assets/fonts/CooperHewitt-Bold.woff") format("woff"),
-    url("./assets/fonts/CooperHewitt-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: bold;
-}
-
-@font-face {
-  font-family: "Cooper Hewitt";
-  src: url("./assets/fonts/CooperHewitt-Book.eot");
-  src: url("./assets/fonts/CooperHewitt-Book.eot") format("embedded-opentype"),
-    url("./assets/fonts/CooperHewitt-Book.svg") format("svg"),
-    url("./assets/fonts/CooperHewitt-Book.woff") format("woff"),
-    url("./assets/fonts/CooperHewitt-Book.ttf") format("truetype");
-  font-weight: lighter;
-  font-style: lighter;
-}
-
-@font-face {
-  font-family: "Source Sans Pro";
-  src: url("./assets/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf")
-    format("truetype");
-}
 
 :root {
   --ion-background-color: transparent;
 }
 
 * {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Roboto', "Helvetica Neue", sans-serif;
 }
 
 .picker-wrapper {
