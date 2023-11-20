@@ -11,7 +11,7 @@ export class NurseService {
     ) {}
 
     registerNurse(body) {
-        return this.http.post<any>(this.globalVariableService.getApiPath() + "/registerNurse", body);
+        return this.http.post<any>(this.globalVariableService.getApiPath() + "/register-nurse", body);
     }
 
 }
