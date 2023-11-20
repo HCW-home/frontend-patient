@@ -1,3 +1,16 @@
+hcw-athome-patient (0.4.4.43) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs #6212, Add tickbox on invite link opening page
+  * refs #6203, Call video is written even for audio call
+  * add Roboto font
+
+  [ Olivier Bitsch ]
+  * Improve security headers
+  * Remove capital letter in backend
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 20 Nov 2023 15:54:18 +0100
+
 hcw-athome-patient (0.4.4.42) focal; urgency=medium
 
   [ Olivier Bitsch ]
