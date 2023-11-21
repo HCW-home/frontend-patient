@@ -53,7 +53,7 @@ do-release:
 	gbp dch  --ignore-branch
 	sed -i 's/UNRELEASED/focal/' debian/changelog
 	sed -i "s/Version:.*/Version: $(VERSION)/" redhat/hcw-athome-patient.spec
-	git add debian/changelog redhat/hcw-athome-caregiver.spec
+	git add debian/changelog redhat/hcw-athome-patient.spec
 	echo "You can run now:\n git commit -m \"New release ${VERSION}\""
 
 
