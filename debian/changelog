@@ -9,7 +9,7 @@ hcw-athome-patient (0.4.4.43) focal; urgency=medium
   * Improve security headers
   * Remove capital letter in backend
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 20 Nov 2023 15:54:18 +0100
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 21 Nov 2023 10:03:51 +0100
 
 hcw-athome-patient (0.4.4.42) focal; urgency=medium
 
