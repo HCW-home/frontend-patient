@@ -31,7 +31,6 @@ export class ConsultationService {
     formData.append("attachment", file, file.name);
     return this.http.post(endpoint, formData, {
       headers: {
-        "mime-type": file.type,
         fileName: encodeURIComponent(file.name),
       },
     });

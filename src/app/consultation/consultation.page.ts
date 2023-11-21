@@ -487,7 +487,7 @@ export class ConsultationPage
                 this.globalVariableService.getApiPath() +
                 `/consultation/${
                     this.consultation._id || this.consultation.id
-                }/attachment/${msg.id}?token=${this.currentUser.token}`;
+                }/attachment/${msg.id}`;
 
             if (msg.mimeType.endsWith("jpeg") || msg.mimeType.endsWith("png")) {
                 msg.isImage = true;
@@ -612,9 +612,16 @@ export class ConsultationPage
             );
     }
 
-    openlink(url) {
-        console.log("opening", url);
-        Browser.open({url: url});
+    downloadPdf(pdfUrl: string, fileName: string): void {
+        this.consultationService.downloadPdf(pdfUrl).subscribe(blob => {
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName || 'attachment.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(link.href);
+        });
     }
 
     openImgModal(img) {
