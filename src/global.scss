@@ -47,7 +47,6 @@ ion-card {
 app-login,
 app-icrc,
 app-test-call {
-  background-image: url($background-image-path);
 
   background-size: 100%;
   background-position: center;
@@ -124,7 +123,6 @@ app-test-call {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url($background-image-path);
 
   button {
     margin: auto;

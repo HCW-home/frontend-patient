@@ -243,17 +243,6 @@ export class LoginPage implements OnInit {
 
     const lang = window.localStorage.getItem("hhp-lang");
     this.translate.use(lang);
-    /**
-    if (invite.patientLanguage) {
-      if (this.translate.getLangs().includes(invite.patientLanguage)) {
-        this.translate.use(invite.patientLanguage);
-        window.localStorage.setItem("hhp-lang", invite.patientLanguage);
-      } else {
-        this.translate.use("fr");
-        window.localStorage.setItem("hhp-lang", "fr");
-      }
-    }
-     */
 
     if (this.currentUser) {
       if (this.currentUser.inviteToken === this.invite.id) {

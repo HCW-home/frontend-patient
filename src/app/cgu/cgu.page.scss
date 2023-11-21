@@ -3,7 +3,6 @@
 .wrap {
   width: 100%;
   min-height: 100%;
-  @include backgroundMixin($background-image-path);
   background-color: var(--ion-color-primary) !important;
   background-size: 100%;
   background-position: center;

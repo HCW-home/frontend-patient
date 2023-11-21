@@ -28,6 +28,7 @@ import { TestComponent } from "./test/test.component";
 import { filter } from "rxjs/operators";
 import { environment } from "../environments/environment";
 import { Browser } from '@capacitor/browser';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: "app-root",
@@ -54,15 +55,18 @@ export class AppComponent {
     // private nativeAudio: NativeAudio,
     private file: File,
     private router: Router,
+    public translate: TranslateService,
     public globalVariableService: GlobalVariableService
   ) {
-    
     const parsedUrl = new URL(window.location.href);
     console.log("PARSED URL", parsedUrl);
     this.inviteToken = parsedUrl.searchParams.get("invite");
     if (!this.inviteToken && window.location.href.match(/invite=([^&]*)/)) {
       // parse invite from url using regex
       this.inviteToken = window.location.href.match(/invite=([^&]*)/)[1];
+    }
+    if (localStorage.getItem('hhp-lang')) {
+      localStorage.setItem('hhp-lang',this.translate.currentLang);
     }
     this.testRoute = window.location.href.includes("test-call") || window.location.href.includes("requester") || window.location.href.includes("cgu");
 

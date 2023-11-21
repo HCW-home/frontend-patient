@@ -5,8 +5,6 @@
 
 $font-path: "../assets/fonts";
 
-$background-image-path: "/icons/background.jpg";
-$background-image-2x-path: "/background@2x.jpg";
 :root {
   /** primary **/
   --ion-color-primary: #266eb7;
@@ -82,18 +80,4 @@ $background-image-2x-path: "/background@2x.jpg";
   --ion-color-light-tint: #f5f6f9;
 
   --blue-bg-color: #0072bb;
-}
-@mixin backgroundMixin($hasBackgroundImage) {
-  @if $background-image-path {
-    //do something
-    background-image: url($background-image-path);
-  } @else {
-    background-image: unset !important;
-  }
-  @if $background-image-2x-path {
-    //do something
-    background-image: url($background-image-2x-path);
-  } @else {
-    background-image: unset !important;
-  }
 }

@@ -3,7 +3,6 @@
 .jumbotron {
   color: #ffffff;
   height: 240px;
-  @include backgroundMixin($background-image-path);
   background-color: var(--ion-color-primary) !important;
   background-position: center;
   border-radius: 0px;
