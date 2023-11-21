@@ -16,7 +16,7 @@ declare let window: any;
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  public currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   private loggedIn: Subject<User> = new Subject();
   private inviteToken: Subject<string> = new Subject();
   public currentUser: Observable<User>;
@@ -113,6 +113,12 @@ export class AuthService {
   //       this.router.navigate(["/login"]);
   //     })
   //   }
+
+  refreshTokens() {
+    const currentUser = this.currentUserValue;
+    const refreshToken = currentUser.refreshToken;
+    return this.http.post<any>(`${this.globalVariableService.getApiPath()}/refresh-token`,{ refreshToken });
+  }
 
   logOutNurse() {
     localStorage.clear();

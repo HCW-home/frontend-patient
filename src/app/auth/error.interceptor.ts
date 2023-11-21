@@ -27,7 +27,13 @@ export class ErrorInterceptor implements HttpInterceptor {
       // }
 
       // const error = err.error.message || err.statusText;
-      console.log('error ', err);
+      const refreshTokenEndpoint = 'refresh-token';
+
+      const currentUser = this.authService.currentUserValue;
+      if (err.status === 401  && request.url.includes(refreshTokenEndpoint)) {
+        this.authService.logOutNurse();
+      }
+
       return throwError(err);
     }));
   }

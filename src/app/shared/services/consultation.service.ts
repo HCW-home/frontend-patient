@@ -11,10 +11,7 @@ export class ConsultationService {
   constructor(
     private http: HttpClient,
     private globalVariableService: GlobalVariableService
-  ) {
-
-  }
-
+  ) {}
 
   createConsultation(consultation): Observable<any> {
     return this.http.post<any[]>(this.globalVariableService.getApiPath() + `/consultation`, consultation)

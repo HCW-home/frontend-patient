@@ -80,14 +80,10 @@ export class RegisterPage implements OnInit {
       sex: value.sex,
     }
     this.nurseService.registerNurse(user).subscribe({
-      next: (response) => {
-        console.log('Registered successfully:', response);
+      next: () => {
         this.router.navigate([`/register-success`])
-
       }, error: (err) => {
         this.errorMessage = err.error?.error || this.translate.instant('appComponent.serverError');
-        // this.router.navigate([`/fail`])
-        console.log(err, 'err');
       }
     })
   }
