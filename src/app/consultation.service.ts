@@ -231,7 +231,6 @@ export class ConsultationService {
     return this.http
       .post(endpoint, formData, {
         headers: {
-          'mime-type': this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity).type,
           'x-access-token': `${this.currentUser.token}`,
           fileName: 'image.jpg'
         }
@@ -247,7 +246,6 @@ export class ConsultationService {
     return this.http
       .post(endpoint, formData, {
         headers: {
-          'mime-type': file.mimeType,
           'x-access-token': `${this.currentUser.token}`,
           fileName: file.name
         }
@@ -324,6 +322,16 @@ export class ConsultationService {
     }));
 
 
+  }
+
+  downloadPdf(url: string): Observable<Blob> {
+    return this.http.get(url, { responseType: 'blob' }).pipe(
+        tap(
+            data => console.log('PDF downloaded successfully.'),
+            error => console.error('Error downloading the file.'),
+            () => console.info('Download completed.')
+        )
+    );
   }
 
 

@@ -110,7 +110,7 @@
                             {{'consultation.download' | translate}}:
                             <a
                                     *ngIf="msg.isFile"
-                                    (click)="openlink(msg.attachmentsURL)"
+                                    (click)="downloadPdf(msg.attachmentsURL, msg.fileName)"
                             >
                                 {{msg.fileName}}
                             </a>
