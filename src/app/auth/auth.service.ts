@@ -126,7 +126,6 @@ export class AuthService {
     this.currentUserSubject.next(null);
     this._socketEventsService.disconnect();
     this.http.get(`${this.globalVariableService.getApiPath()}/logout`).subscribe(r => {
-      console.log(r, "res");
       this.router.navigate(["/login"]);
     }, err => {
       this.router.navigate(["/login"]);

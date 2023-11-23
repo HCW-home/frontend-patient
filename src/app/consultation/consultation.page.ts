@@ -22,8 +22,9 @@ import {File, FileEntry} from "@awesome-cordova-plugins/file/ngx";
 import {Media, MediaObject} from "@awesome-cordova-plugins/media/ngx";
 import {GlobalVariableService} from "../global-variable.service";
 import {TranslateService} from "@ngx-translate/core";
-import {Browser} from "@capacitor/browser";
 import {IonModal} from "@ionic/angular";
+import {DomSanitizer} from "@angular/platform-browser";
+import {ErrorModalComponent} from "../shared/components/error-modal/error-modal.component";
 
 @Component({
     selector: "app-consultation",
@@ -78,6 +79,7 @@ export class ConsultationPage
         private globalVariableService: GlobalVariableService,
         public platform: Platform,
         private translate: TranslateService,
+        private _sanitizer: DomSanitizer,
         // private nativeAudio: NativeAudio,
     ) {
     }
@@ -444,6 +446,9 @@ export class ConsultationPage
                     this.scrollToBottom();
                     this.isUploading = false;
                 });
+            }, async (err) => {
+                const message =  err.error?.message || err.error ||  err.message || err.statusText || err;
+                await this.presentErrorModal(message)
             });
     }
 
@@ -483,17 +488,29 @@ export class ConsultationPage
 
     adjustMsg(msg) {
         if (msg.type === "attachment") {
-            msg.attachmentsURL =
+            const requestUrl =
                 this.globalVariableService.getApiPath() +
                 `/consultation/${
                     this.consultation._id || this.consultation.id
-                }/attachment/${msg.id}`;
+                }/attachment/${msg.id}`
+            const user = this.authService.currentUserValue;
 
             if (msg.mimeType.endsWith("jpeg") || msg.mimeType.endsWith("png")) {
+                fetch(requestUrl, {
+                    headers: {
+                        'x-access-token': user.token,
+                    }
+                }).then(res=> {
+                    return res.blob()
+                }).then(imageFile=>{
+                    msg.isImage = true
+                    msg.attachmentsURL = this._sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageFile));
+                })
                 msg.isImage = true;
             } else if (msg.mimeType.startsWith("audio")) {
                 msg.isAudio = true;
             } else {
+                msg.attachmentsURL = requestUrl;
                 msg.isFile = true;
             }
         }
@@ -626,7 +643,7 @@ export class ConsultationPage
 
     openImgModal(img) {
 
-        this.imgModalSrc = img.target.currentSrc;
+        this.imgModalSrc = this._sanitizer.bypassSecurityTrustResourceUrl(img.target.currentSrc);
         this.imgModalAlt = img.target.alt;
         this.imgModalName = "Image";
         this.isImgModalOpen = true;
@@ -706,4 +723,16 @@ export class ConsultationPage
 
         return blob;
     }
+
+    async presentErrorModal(message: string) {
+        const modal = await this.modalController.create({
+            component: ErrorModalComponent,
+            cssClass: 'error-modal',
+            componentProps: {
+                message
+            }
+        });
+        return await modal.present();
+    }
+
 }

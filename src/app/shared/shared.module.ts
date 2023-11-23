@@ -7,18 +7,19 @@ import {IonicModule} from "@ionic/angular";
 import {FileDropDirective} from "./directives/file-drop.directive";
 import {SelectLanguageComponent} from "./components/select-language/select-language.component";
 import {I18nModule} from "../i18n/i18n.module";
+import {ErrorModalComponent} from "./components/error-modal/error-modal.component";
 
 
 
 @NgModule({
-    declarations: [PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent],
+    declarations: [PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent, ErrorModalComponent],
     imports: [
         CommonModule,
         IonicModule,
         I18nModule
     ],
     exports: [
-        PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent
+        PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent, ErrorModalComponent
     ]
 
 

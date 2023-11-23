@@ -214,53 +214,50 @@ export class ConsultationService {
     }));
   }
 
-  postFile(blob: File, fileName, consultationId): Observable<any> {
-  let file
-    if (!blob.lastModified) {
-      file = this.blobToFile(blob, fileName);
-      console.log('file name:', file);
-      
-    } else {
-      file = blob
-      
-    }
-    const endpoint = this.globalVariableService.getApiPath() + `/consultation/${consultationId}/upload-file`;
-    const formData: FormData = new FormData();
-    if(file.changingThisBreaksApplicationSecurity !== undefined){      
-      formData.append('attachment', this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity), file.name);
-    return this.http
-      .post(endpoint, formData, {
-        headers: {
-          'x-access-token': `${this.currentUser.token}`,
-          fileName: 'image.jpg'
+    postFile(blob: File, fileName, consultationId): Observable<any> {
+        let file;
+        if (!blob.lastModified) {
+            file = this.blobToFile(blob, fileName);
+            console.log("file name:", file);
+
+        } else {
+            file = blob;
+
         }
-      });
-    }else{
-      console.log(file);
-      
-      const rawFile = new File([file], file.name, {
-        type: file.mimeType,
-      });
-  
-      formData.append('attachment', rawFile, file.name);
-    return this.http
-      .post(endpoint, formData, {
-        headers: {
-          'x-access-token': `${this.currentUser.token}`,
-          fileName: file.name
+        const endpoint = this.globalVariableService.getApiPath() + `/consultation/${consultationId}/upload-file`;
+        const formData: FormData = new FormData();
+        if (file.changingThisBreaksApplicationSecurity !== undefined) {
+        const { blobFile, type} = this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity) || {};
+            formData.append("attachment", blobFile, file.name ? file.name : `image.${type}`);
+            return this.http
+                .post(endpoint, formData, {
+                    headers: {
+                        "x-access-token": `${this.currentUser.token}`,
+                        fileName: file.name ? file.name : `image.${type}`
+                    }
+                });
+
+        } else {
+
+            const rawFile = new File([file], file.name, {
+                type: file.mimeType,
+            });
+
+            formData.append("attachment", rawFile, file.name);
+            return this.http
+                .post(endpoint, formData, {
+                    headers: {
+                        "x-access-token": `${this.currentUser.token}`,
+                        fileName: file.name
+                    }
+                });
         }
-      }); 
+
+
     }
-
-    
-    
-
-
-   
-  }
 
   //! Convert our file from base64 to blob
-  private convertBase64ToBlob(base64: string) {    
+  private convertBase64ToBlob(base64: string) {
     const info = this.getInfoFromBase64(base64);
     const sliceSize = 512;
     const byteCharacters = window.atob(info.rawBase64);
@@ -277,16 +274,16 @@ export class ConsultationService {
       byteArrays.push(new Uint8Array(byteNumbers));
     }
 
-    
-    return new Blob(byteArrays, { type: info.mime });
+
+    return { blobFile : new Blob(byteArrays, {type: info.mime}), type: info.mime?.split("/")?.pop()};
   }
 
-  private getInfoFromBase64(base64: string) {    
+  private getInfoFromBase64(base64: string) {
     const meta = base64.split(',')[0];
     const rawBase64 = base64.split(',')[1].replace(/\s/g, '');
     const mime = /:([^;]+);/.exec(meta)[1];
     const extension = /\/([^;]+);/.exec(meta)[1];
-    
+
     return {
       mime,
       extension,
