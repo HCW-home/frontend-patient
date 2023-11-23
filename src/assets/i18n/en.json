@@ -114,7 +114,9 @@
     "theRemoteServerIsNotReachable": "The remote server cannot be reached, please check your connectivity",
     "pleaseEnterYourInvitationKey": "Please enter your invitation key",
     "youAlreadyOwnTheApplication": "Already have the application?",
-    "unsupportedBrowser": "Your browser is not supported for a teleconsultation. Try to open the link in Safari (IOS) or Chrome. If you are opening this link from Outlook (IOS), you should have an option to open this page in another browser from the (...) menu at the bottom of this page."
+    "unsupportedBrowser": "Your browser is not supported for a teleconsultation. Try to open the link in Safari (IOS) or Chrome. If you are opening this link from Outlook (IOS), you should have an option to open this page in another browser from the (...) menu at the bottom of this page.",
+    "firstName": "First Name",
+    "lastName": "Last Name"
   },
   "translatorForm": {
     "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} is a teleconsultation system. You are about to accept an online appointment with a patient and caregiver.",
