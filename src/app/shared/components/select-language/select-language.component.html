@@ -5,7 +5,6 @@
       <option
         *ngFor="let lang of translate.getLangs()"
         [value]="lang"
-        [attr.selected]="lang === translate.currentLang ? '' : null"
       >{{lang | translate}}</option>
     </select>
   </div>

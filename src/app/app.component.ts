@@ -65,7 +65,7 @@ export class AppComponent {
       // parse invite from url using regex
       this.inviteToken = window.location.href.match(/invite=([^&]*)/)[1];
     }
-    if (localStorage.getItem('hhp-lang')) {
+    if (!localStorage.getItem('hhp-lang')) {
       localStorage.setItem('hhp-lang',this.translate.currentLang);
     }
     this.testRoute = window.location.href.includes("test-call") || window.location.href.includes("requester") || window.location.href.includes("cgu");

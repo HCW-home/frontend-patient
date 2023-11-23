@@ -125,7 +125,7 @@
         </ion-card>
 
         <form
-          *ngIf=" !invite || invite.type === 'PATIENT' || invite.type === 'TRANSLATOR' || invite.type === 'GUEST' "
+          *ngIf="invite"
           (submit)="onSubmit()"
           class="login-form"
         >
@@ -160,7 +160,7 @@
               [(ngModel)]="lastName"
               name="lastName"
               type="string"
-              placeholder="First Name"
+              placeholder="Last Name"
             ></ion-input>
           </ion-item>
 
@@ -169,9 +169,7 @@
             <span> {{ 'login.termsText' | translate:configService.config}} <span class="terms" (click)="goToTerms()">{{ 'register.terms' | translate }}</span>  {{ 'login.termsSecondText' | translate:configService.config}} </span>
           </div>
 
-          <div
-            class="buttons"
-          >
+          <div class="buttons">
             <button
               class="btn green"
               [disabled]="(isExpert && (!firstName || !lastName || !termsChecked)) || !termsChecked"

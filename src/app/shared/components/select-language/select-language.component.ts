@@ -7,11 +7,14 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ["./select-language.component.scss"],
 })
 export class SelectLanguageComponent {
-
-  constructor(public translate: TranslateService) {}
+  selectedLanguage: string
+  constructor(public translate: TranslateService) {
+    this.selectedLanguage = localStorage.getItem("hhp-lang") || 'en';
+  }
 
   changeLang(lang: string) {
-    window.localStorage.setItem("hhp-lang", lang);
+    this.selectedLanguage  = lang;
+    localStorage.setItem("hhp-lang", lang);
     this.translate.use(lang);
   }
 }
