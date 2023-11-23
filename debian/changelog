@@ -1,3 +1,13 @@
+hcw-athome-patient (0.4.4.46) UNRELEASED; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Allow 3Mb by default
+
+  [ Gor Grigoryan ]
+  * expert link opening issue
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 23 Nov 2023 16:03:41 +0100
+
 hcw-athome-patient (0.4.4.45) focal; urgency=medium
 
   [ Gor Grigoryan ]
