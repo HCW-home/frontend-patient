@@ -1,4 +1,4 @@
-hcw-athome-patient (0.4.4.46) UNRELEASED; urgency=medium
+hcw-athome-patient (0.4.4.47) focal; urgency=medium
 
   [ Olivier Bitsch ]
   * Allow 3Mb by default
