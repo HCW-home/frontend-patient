@@ -19,7 +19,9 @@ export class JwtInterceptor implements HttpInterceptor {
         const currentUser = this.authService.currentUserValue;
         if (currentUser && currentUser.token) {
             headersConfig["x-access-token"] = currentUser.token;
-            headersConfig["inviteToken"] = this.authService.currentInviteToken;
+            if (this.authService.currentInviteToken) {
+                headersConfig["inviteToken"] = this.authService.currentInviteToken;
+            }
         }
 
         request = request.clone({

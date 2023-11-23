@@ -492,7 +492,7 @@ export class ConsultationPage
                 this.globalVariableService.getApiPath() +
                 `/consultation/${
                     this.consultation._id || this.consultation.id
-                }/attachment/${msg.id}`
+                }/attachment/${msg.id}`;
             const user = this.authService.currentUserValue;
 
             if (msg.mimeType.endsWith("jpeg") || msg.mimeType.endsWith("png")) {

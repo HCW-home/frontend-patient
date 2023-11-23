@@ -23,7 +23,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {ChooseAttachmentComponent} from "../choose-attachment/choose-attachment.component";
 import {first} from "rxjs/operators";
 import {NativeAudio} from "@capacitor-community/native-audio";
-import {Browser} from "@capacitor/browser";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-consultation-chat',
@@ -76,6 +76,7 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
       private globalVariableService: GlobalVariableService,
       public platform: Platform,
       private translate: TranslateService,
+      private _sanitizer: DomSanitizer,
   ) {}
 
   ngOnInit() {
@@ -454,18 +455,31 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
 
   adjustMsg(msg) {
     if (msg.type === "attachment") {
-      msg.attachmentsURL =
-          this.globalVariableService.getApiPath() +
-          `/consultation/${
-              this.consultation._id || this.consultation.id
-          }/attachment/${msg.id}`;
+        const requestUrl =
+            this.globalVariableService.getApiPath() +
+            `/consultation/${
+                this.consultation._id || this.consultation.id
+            }/attachment/${msg.id}`;
+        const user = this.authService.currentUserValue;
 
       if (msg.mimeType.endsWith("jpeg") || msg.mimeType.endsWith("png")) {
+          fetch(requestUrl, {
+              headers: {
+                  'x-access-token': user.token,
+              }
+          }).then(res=> {
+              return res.blob()
+          }).then(imageFile=>{
+              msg.isImage = true
+              msg.attachmentsURL = this._sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(imageFile));
+          })
         msg.isImage = true;
       } else if (msg.mimeType.startsWith("audio")) {
         msg.isAudio = true;
+
       } else {
-        msg.isFile = true;
+          msg.attachmentsURL = requestUrl;
+          msg.isFile = true;
       }
     }
 

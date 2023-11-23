@@ -30,8 +30,7 @@
                                 class="ion-no-padding ion-no-margin"
                         >
                             {{'consultation.download' | translate}}:
-                            <a
-                                    *ngIf="msg.isFile"
+                            <a *ngIf="msg.isFile"
                                     (click)="downloadPdf(msg.attachmentsURL, msg.fileName)"
                             >
                                 {{msg.fileName}}
