@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+import {LanguageService} from "../../services/language.service";
 
 @Component({
   selector: "app-select-language",
@@ -8,8 +9,9 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class SelectLanguageComponent {
   selectedLanguage: string
-  constructor(public translate: TranslateService) {
-    this.selectedLanguage = localStorage.getItem("hhp-lang") || 'en';
+  constructor(public translate: TranslateService,
+              private languageService: LanguageService) {
+    this.selectedLanguage = this.languageService.getCurrentLanguage();
   }
 
   changeLang(lang: string) {

@@ -19,6 +19,7 @@ import { access } from "fs";
 import { ConfigService } from "../config.service";
 import { SocketEventsService } from "../socket-events.service";
 import { App } from '@capacitor/app';
+import {LanguageService} from "../shared/services/language.service";
 
 const coeff = 1000 * 60 * 5;
 
@@ -91,7 +92,8 @@ export class LoginPage implements OnInit {
     private translatorServ: TranslatorService,
     public configService: ConfigService,
     private socketService: SocketEventsService,
-    public roomService: RoomService
+    public roomService: RoomService,
+    private languageService: LanguageService
   ) {
     this.connectionErrorMessage = translate.instant(
       "login.theRemoteServerIsNotReachable"
@@ -241,7 +243,7 @@ export class LoginPage implements OnInit {
     this.isExpert = !!invite.isExpert;
     this.expertToken = invite.expertToken;
 
-    const lang = window.localStorage.getItem("hhp-lang");
+    const lang = this.languageService.getCurrentLanguage();
     this.translate.use(lang);
 
     if (this.currentUser) {

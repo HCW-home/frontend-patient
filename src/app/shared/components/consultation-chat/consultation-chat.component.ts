@@ -24,6 +24,7 @@ import {ChooseAttachmentComponent} from "../choose-attachment/choose-attachment.
 import {first} from "rxjs/operators";
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {DomSanitizer} from "@angular/platform-browser";
+import {LanguageService} from "../../services/language.service";
 
 @Component({
   selector: 'app-consultation-chat',
@@ -76,6 +77,7 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
       private globalVariableService: GlobalVariableService,
       public platform: Platform,
       private translate: TranslateService,
+      private languageService: LanguageService,
       private _sanitizer: DomSanitizer,
   ) {}
 
@@ -233,7 +235,7 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
   }
 
   getConsultation() {
-    const lang = window.localStorage.getItem("hhp-lang") || 'en';
+      const lang = this.languageService.getCurrentLanguage();
     this.translate.use(lang);
     this.consultationSubscription = this.conServ
         .getConsultation(this.consultationId)

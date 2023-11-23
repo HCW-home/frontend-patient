@@ -25,6 +25,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {IonModal} from "@ionic/angular";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ErrorModalComponent} from "../shared/components/error-modal/error-modal.component";
+import {LanguageService} from "../shared/services/language.service";
 
 @Component({
     selector: "app-consultation",
@@ -79,6 +80,7 @@ export class ConsultationPage
         private globalVariableService: GlobalVariableService,
         public platform: Platform,
         private translate: TranslateService,
+        private languageService: LanguageService,
         private _sanitizer: DomSanitizer,
         // private nativeAudio: NativeAudio,
     ) {
@@ -253,7 +255,7 @@ export class ConsultationPage
     }
 
     getConsultation() {
-        const lang = window.localStorage.getItem("hhp-lang");
+        const lang = this.languageService.getCurrentLanguage();
         this.translate.use(lang);
         this.consultationSubscription = this.conServ
             .getConsultation(this.consultationId)

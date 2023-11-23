@@ -29,6 +29,7 @@ import { filter } from "rxjs/operators";
 import { environment } from "../environments/environment";
 import { Browser } from '@capacitor/browser';
 import {TranslateService} from "@ngx-translate/core";
+import {LanguageService} from "./shared/services/language.service";
 
 @Component({
   selector: "app-root",
@@ -56,6 +57,7 @@ export class AppComponent {
     private file: File,
     private router: Router,
     public translate: TranslateService,
+    private languageService: LanguageService,
     public globalVariableService: GlobalVariableService
   ) {
     const parsedUrl = new URL(window.location.href);
@@ -66,7 +68,8 @@ export class AppComponent {
       this.inviteToken = window.location.href.match(/invite=([^&]*)/)[1];
     }
     if (!localStorage.getItem('hhp-lang')) {
-      localStorage.setItem('hhp-lang',this.translate.currentLang);
+      const lang = this.languageService.getCurrentLanguage();
+      localStorage.setItem('hhp-lang',lang);
     }
     this.testRoute = window.location.href.includes("test-call") || window.location.href.includes("requester") || window.location.href.includes("cgu");
 
