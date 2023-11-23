@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.45) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * interceptor fix
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 23 Nov 2023 14:12:45 +0100
+
 hcw-athome-patient (0.4.4.44) focal; urgency=medium
 
   [ Gor Grigoryan ]
