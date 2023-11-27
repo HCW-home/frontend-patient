@@ -116,7 +116,7 @@ export class AuthService {
 
   refreshTokens() {
     const currentUser = this.currentUserValue;
-    const refreshToken = currentUser.refreshToken;
+    const refreshToken = currentUser?.refreshToken;
     return this.http.post<any>(`${this.globalVariableService.getApiPath()}/refresh-token`,{ refreshToken });
   }
 

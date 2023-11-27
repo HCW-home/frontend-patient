@@ -28,6 +28,7 @@ export class SocketEventsService {
   public newConsultationSubj: Subject<any> = new Subject()
   public endCallSubj: Subject<any> = new Subject()
 
+  private connection: Subject<String> = new Subject()
 
   constructor(
     // private localNotifications: LocalNotifications,
@@ -90,6 +91,44 @@ export class SocketEventsService {
       })
     })
 
+    this.socket.on('error', (err) => {
+      this.connection.next('connect_failed')
+      console.info('Error connecting to server', err)
+    })
+
+    this.socket.on('disconnect', () => {
+      console.info('Disconnect from server')
+    })
+
+    this.socket.on('reconnect', (number) => {
+      this.connection.next('connect')
+      console.info('Reconnected to server', number)
+    })
+
+    this.socket.on('reconnect_attempt', () => {
+      this.connection.next('connect_failed')
+      console.info('Reconnect Attempt')
+    })
+
+    this.socket.on('reconnecting', (number) => {
+      console.info('Reconnecting to server', number)
+    })
+
+    this.socket.on('reconnect_error', (err) => {
+      this.connection.next('connect_failed')
+      console.info('Reconnect Error', err)
+    })
+
+    this.socket.on('reconnect_failed', () => {
+      this.connection.next('connect_failed')
+      console.info('Reconnect failed')
+    })
+
+    this.socket.on('connect_error', () => {
+      this.connection.next('connect_failed')
+      console.info('connect_error')
+    })
+
     // this.localNotifications.on('click').subscribe((e) => {
     //   console.log('notification event,  ', e)
     // })
@@ -120,6 +159,13 @@ export class SocketEventsService {
         cb()
       })
     })
+  }
+
+  updateConnectionStatus(status) {
+    this.connection.next(status)
+  }
+  connectionSub(): Subject<any> {
+    return this.connection
   }
 
   listenToEvents() {

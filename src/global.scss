@@ -211,3 +211,17 @@ ion-select {
 .error-modal {
   --height: 250px;
 }
+
+.red-toast .toast-wrapper {
+  background-color: red;
+  color: white;
+}
+
+.green-toast .toast-wrapper {
+  background-color: green;
+  color: white;
+}
+
+.close-button {
+  color: white;
+}

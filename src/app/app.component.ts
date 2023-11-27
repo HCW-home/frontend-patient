@@ -2,7 +2,7 @@ import { Observable, Subscription } from "rxjs";
 import { GlobalVariableService } from "./global-variable.service";
 import { Component, OnInit, NgZone, Directive } from "@angular/core";
 
-import { Platform, NavController } from "@ionic/angular";
+import {Platform, NavController, ToastController} from "@ionic/angular";
 
 // import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
 import { SplashScreen } from '@capacitor/splash-screen';
@@ -43,6 +43,8 @@ export class AppComponent {
   consultation;
   callsSub: Subscription;
   inviteToken: string;
+  lastConnectionStatus = "";
+  private toast: HTMLIonToastElement;
 
   testRoute = false;
   constructor(
@@ -53,6 +55,7 @@ export class AppComponent {
     private socketEventsService: SocketEventsService,
     private consultationService: ConsultationService,
     private zone: NgZone,
+    private toastController: ToastController,
     // private nativeAudio: NativeAudio,
     private file: File,
     private router: Router,
@@ -222,6 +225,26 @@ export class AppComponent {
     });
   }
 
+  async presentToast(message: string, className: string) {
+    if (this.toast) {
+      this.toast.dismiss();
+    }
+    this.toast = await this.toastController.create({
+      message,
+      position: 'bottom',
+      cssClass: className,
+      buttons: [
+        {
+          side: 'end',
+          icon: 'close',
+          role: 'cancel',
+          cssClass: 'close-button',
+        }
+      ]
+    });
+    this.toast.present();
+  }
+
   initServices(r?) {
     this.socketEventsService.init(r, () => {});
 
@@ -234,6 +257,24 @@ export class AppComponent {
       this.consultation.id = e._id;
       this.callRunning = true;
     });
+
+    this.socketEventsService.connectionSub().subscribe((status) => {
+      if (
+          status === "connect_failed" &&
+          this.lastConnectionStatus !== "connect_failed"
+      ) {
+        this.lastConnectionStatus = "connect_failed";
+        setTimeout(() => {
+          this.presentToast(this.translate.instant("common.connectionFailed"), 'red-toast');
+        }, 100);
+      } else if (status === "connect") {
+        if (this.toast && this.lastConnectionStatus === "connect_failed") {
+          this.presentToast(this.translate.instant('common.reconnected'), 'green-toast')
+        }
+        this.lastConnectionStatus = "connect";
+      }
+    });
+
     // incoming call
   }
 
