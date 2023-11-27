@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
     this.currentUser = this.authService.currentUserValue;
   }
 
-  logOut() {
-    this.authService.logOutNurse();
+  logOut(hard = false) {
+    this.authService.logOutNurse(hard);
   }
 
   goToProfile() {

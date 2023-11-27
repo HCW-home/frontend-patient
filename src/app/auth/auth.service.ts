@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { User } from '../user';
 import { GlobalVariableService } from '../global-variable.service';
 import { CapacitorCookies } from '@capacitor/core';
+import {ConfigService} from "../config.service";
 
 declare let window: any;
 
@@ -27,7 +28,9 @@ export class AuthService {
     private consultationService: ConsultationService,
     private router: Router,
     private globalVariableService: GlobalVariableService,
-    private platform: Platform
+    private platform: Platform,
+    public configService: ConfigService,
+
   ) {
 
   }
@@ -120,13 +123,24 @@ export class AuthService {
     return this.http.post<any>(`${this.globalVariableService.getApiPath()}/refresh-token`,{ refreshToken });
   }
 
-  logOutNurse() {
+  logOutNurse(hard = false) {
     localStorage.clear();
     sessionStorage.clear();
     this.currentUserSubject.next(null);
     this._socketEventsService.disconnect();
+
+
+
     this.http.get(`${this.globalVariableService.getApiPath()}/logout`).subscribe(r => {
-      this.router.navigate(["/login"]);
+      if (hard) {
+        if (this.configService.config.method === "openid") {
+          window.location.href = this.configService.config.openIdLogoutUri;
+        } else {
+          this.router.navigate(["/login"]);
+        }
+      } else {
+        this.router.navigate(["/login"]);
+      }
     }, err => {
       this.router.navigate(["/login"]);
     })

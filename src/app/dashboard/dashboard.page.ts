@@ -7,6 +7,7 @@ import {Subscription} from "rxjs";
 import {SocketEventsService} from "../socket-events.service";
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {TranslateService} from "@ngx-translate/core";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
     selector: "app-dashboard",
@@ -14,6 +15,7 @@ import {TranslateService} from "@ngx-translate/core";
     styleUrls: ["./dashboard.page.scss"],
 })
 export class DashboardPage implements OnDestroy {
+    currentUser: any;
     noMessageText: string;
     private subscriptions: Array<Subscription> = [];
     loading: boolean = true;
@@ -38,10 +40,12 @@ export class DashboardPage implements OnDestroy {
         private _socketEventsService: SocketEventsService,
         private translate: TranslateService,
         private zone: NgZone,
+        private authService: AuthService
     ) {
     }
 
     ionViewDidEnter() {
+        this.checkAndReinitializeSocket();
         this.noMessageText = this.translate.instant("dashboard.no_message");
         this.loading = true;
         this.getConsultations();
@@ -223,5 +227,12 @@ export class DashboardPage implements OnDestroy {
         }
     }
 
-    protected readonly onclose = onclose;
+    async checkAndReinitializeSocket() {
+        this.currentUser = this.authService.currentUserValue;
+        if (!this._socketEventsService.isSocketConnected()) {
+            await this._socketEventsService.init(this.currentUser, () => {
+            });
+        }
+    }
+
 }

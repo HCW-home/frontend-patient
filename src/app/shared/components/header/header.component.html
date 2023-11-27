@@ -2,7 +2,7 @@
     <div class="card">
         <div class="board">
             <ion-button class="logout" (click)="goToProfile()">{{ 'header.profile' | translate}}</ion-button>
-            <ion-button class="logout" (click)="logOut()">{{ 'header.logOut' | translate}} ({{currentUser?.firstName}} {{currentUser?.lastName}}) </ion-button>
+            <ion-button class="logout" (click)="logOut(true)">{{ 'header.logOut' | translate}} ({{currentUser?.firstName}} {{currentUser?.lastName}}) </ion-button>
         </div>
     </div>
 </div>

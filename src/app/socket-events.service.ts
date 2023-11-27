@@ -261,4 +261,8 @@ export class SocketEventsService {
     }
     return this.socket.disconnect()
   }
+
+  isSocketConnected(): boolean {
+    return this.socket && this.socket.isConnected();
+  }
 }
