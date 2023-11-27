@@ -1,3 +1,11 @@
+hcw-athome-patient (0.4.4.49) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * remve usehash logic
+  * refs #6183, Notify patient when his connexion goes offline
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 27 Nov 2023 11:40:38 +0100
+
 hcw-athome-patient (0.4.4.48) focal; urgency=medium
 
   [ Gor Grigoryan ]
