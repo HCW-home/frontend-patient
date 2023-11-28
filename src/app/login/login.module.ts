@@ -11,6 +11,7 @@ import {I18nModule} from "../i18n/i18n.module";
 import {LoginPage} from "./login.page";
 import {TranslatorFormComponent} from "./translator-form/translator-form.component";
 import {SharedModule} from "../shared/shared.module";
+import {MarkdownModule} from "ngx-markdown";
 
 const routes: Routes = [
     {
@@ -28,8 +29,8 @@ const routes: Routes = [
         I18nModule,
         ReactiveFormsModule,
         FormsModule,
-        SharedModule
-
+        SharedModule,
+        MarkdownModule.forRoot()
     ],
 
     declarations: [

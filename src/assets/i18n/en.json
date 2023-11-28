@@ -4,7 +4,8 @@
   },
   "cgu": {
     "termsAndConditions": "Terms & Conditions (T&C)",
-    "backToHome": "Return to Home"
+    "backToHome": "Return to Home",
+    "selectCountry": "This terms applies to the country:"
   },
   "closingScreen": {
     "theConsultationIsNowOver": "The teleconsultation is now over",
@@ -118,6 +119,7 @@
     "firstName": "First Name",
     "lastName": "Last Name"
   },
+
   "translatorForm": {
     "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} is a teleconsultation system. You are about to accept an online appointment with a patient and caregiver.",
     "caregiverName": "Name of caregiver",

@@ -1,8 +1,18 @@
-<ion-content padding>
+<ion-content >
   <div class="wrap">
     <div class="container">
-      <div class="title">
-        
+      <div class="title" *ngIf="!error">
+        {{ 'cgu.selectCountry' | translate}}
+        <div id="hhpCountrySelect">
+          <div class="sl-container">
+            <ion-icon name="globe"></ion-icon>
+            <select class="lang" #langSelect (change)="changeCountry(langSelect.value)">
+              <option *ngFor="let country of countries"
+                      [value]="country"
+              >{{country}}</option>
+            </select>
+          </div>
+        </div>
         </div>
         <div class="back">
           <a (click)="goBack()" class="back-link">{{ 'cgu.backToHome' | translate }}</a>
@@ -10,7 +20,7 @@
 
         <h2>{{ 'cgu.termsAndConditions' | translate }}</h2>
 
-        <markdown src="assets/terms.md">
+        <markdown [src]="error ? 'assets/terms.md' : 'assets/terms/' + selectedTermName">
           Terms and conditions have not yet been configured.
         </markdown>
 

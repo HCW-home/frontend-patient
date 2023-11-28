@@ -114,6 +114,12 @@
           {{ 'login.ifYouReceivedThisInvitation' | translate }}
         </p>
 
+        <div class="text-white">
+        <markdown [src]="'assets/home.md'">
+        </markdown>
+
+        </div>
+
         <ion-card *ngIf="!inviteToken">
           <ion-card-header>
             <ion-card-title>{{ 'login.warning' | translate }}</ion-card-title>

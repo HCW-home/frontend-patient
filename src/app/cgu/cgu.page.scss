@@ -106,3 +106,34 @@ table {
     }
   }
 }
+
+#hhpCountrySelect {
+  margin-top: 10px;
+  cursor: pointer;
+  left: calc(50% - 21px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .sl-container {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    position: relative;
+  }
+  .caret-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+  }
+}
+
+.lang {
+  background-color: var(--ion-color-primary);
+  outline: none;
+  border: 0;
+}
+
+ion-icon {
+  color: white;
+}

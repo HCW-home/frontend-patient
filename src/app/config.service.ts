@@ -15,6 +15,10 @@ export class ConfigService {
     private globalVariableService: GlobalVariableService
   ) {}
 
+    getCountries() {
+        return this.http.get<string[]>('assets/terms/countries.json');
+    }
+
   getConfig() {
     this.globalVariableService.host.subscribe(() => {
       console.log(
