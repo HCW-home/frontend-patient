@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.51) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add terms for different countries
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 28 Nov 2023 11:18:18 +0100
+
 hcw-athome-patient (0.4.4.50) focal; urgency=medium
 
   [ Gor Grigoryan ]
