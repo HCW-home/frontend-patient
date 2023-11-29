@@ -206,7 +206,8 @@ export class ConsultationPage
             direction: "outgoing",
             text: this.chatText,
             createdAt: Date.now(),
-            from: {
+            fromUserDetail: {
+                role: this.currentUser.role,
                 firstName: this.currentUser.role === "patient" ? this.consultation?.consultation?.firstName : this.currentUser?.firstName,
                 lastName: this.currentUser.role === "patient" ? this.consultation?.consultation?.lastName : this.currentUser?.lastName
             }
@@ -517,7 +518,7 @@ export class ConsultationPage
             }
         }
 
-        if (msg.from.id === this.currentUser.id) {
+        if (msg.from === this.currentUser.id) {
             msg.direction = "outgoing";
         } else {
             msg.direction = "incoming";

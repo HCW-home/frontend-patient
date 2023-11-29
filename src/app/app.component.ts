@@ -227,7 +227,7 @@ export class AppComponent {
 
   async presentToast(message: string, className: string) {
     if (this.toast) {
-      this.toast.dismiss();
+      await this.toast.dismiss();
     }
     this.toast = await this.toastController.create({
       message,

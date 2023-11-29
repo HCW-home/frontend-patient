@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  AfterViewChecked,
   AfterViewInit,
   ViewChild,
   NgZone,
@@ -31,7 +30,7 @@ import {LanguageService} from "../../services/language.service";
   templateUrl: './consultation-chat.component.html',
   styleUrls: ['./consultation-chat.component.scss']
 })
-export class ConsultationChatComponent   implements OnInit, AfterViewChecked, AfterViewInit {
+export class ConsultationChatComponent   implements OnInit, AfterViewInit {
   @ViewChild(IonContent) contentArea: IonContent;
   @ViewChild("txtArea") textArea;
   @ViewChild(IonModal) modal: IonModal;
@@ -183,15 +182,16 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
     }
 
     this.chatText = this.chatText.trim();
-    this.chatMessages.push({
-      direction: "outgoing",
-      text: this.chatText,
-      createdAt: Date.now(),
-      from: {
-        firstName:  this.currentUser.role === 'patient' ?  this.consultation?.consultation?.firstName : this.currentUser?.firstName,
-        lastName:   this.currentUser.role === 'patient' ?  this.consultation?.consultation?.lastName : this.currentUser?.lastName
-      }
-    });
+      this.chatMessages.push({
+          direction: "outgoing",
+          text: this.chatText,
+          createdAt: Date.now(),
+          fromUserDetail: {
+              role: this.currentUser.role,
+              firstName: this.currentUser.role === "patient" ? this.consultation?.consultation?.firstName : this.currentUser?.firstName,
+              lastName: this.currentUser.role === "patient" ? this.consultation?.consultation?.lastName : this.currentUser?.lastName
+          }
+      });
     this.scrollToBottom();
 
     this.subscriptions.push(
@@ -212,11 +212,6 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
             )
     );
     this.chatText = "";
-  }
-  ngAfterViewChecked() {
-    //  this.contentArea.scrollToBottom();
-    // this.scrollToBottom();
-    // this.contentArea.scrollToBottom();
   }
 
   ngAfterViewInit() {
@@ -318,13 +313,6 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
     this.consultationService.readMessages(this.consultationId);
   }
 
-  sendMsg(event) {
-    if (event.charCode === 13) {
-      this.send();
-      return false;
-    }
-  }
-
   scrollToBottom(after?) {
     setTimeout(() => {
       if (this.contentArea) {
@@ -340,32 +328,6 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
       componentProps: { consultationId: this.consultationId },
     });
     return await modal.present();
-  }
-
-  async showAttachmentModal() {
-    const modal = await this.modalController.create({
-      component: ChooseAttachmentComponent,
-      componentProps: { consultationId: this.consultationId },
-    });
-    await modal.present();
-    const { data } = await modal.onDidDismiss();
-
-    console.log("modal dismissed ", data);
-
-
-    if (data.filePath) {
-      if (typeof data.filePath === "object") {
-        this.uploadBlob(data.filePath, data.filePath.name);
-
-        // this.uploadBlob(data.filePath, data.filePath.name);
-      } else if (data.filePath.length > 100000) {
-        const blob = this.b64toBlob(data.filePath, "image/jpeg");
-        this.uploadBlob(blob, "image.jpg");
-      }
-      else {
-        this.upload(data.filePath);
-      }
-    }
   }
 
   upload(filePath) {
@@ -421,40 +383,6 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
         });
   }
 
-  // ngOnDestroy(): void {
-  //   console.log('destroy >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.');
-  //   if (this.consultationSubscription) {
-  //     this.consultationSubscription.unsubscribe();
-  //   }
-  //   this.subscriptions.forEach((subscription: Subscription) => {
-  //     subscription.unsubscribe();
-  //   });
-
-  // }
-
-  startRecording() {
-    this.isRecording = true;
-    const filePath = this.file.externalDataDirectory + Date.now() + ".mp3";
-    this.audioFile = this.media.create(filePath);
-
-    this.subscriptions.push(
-        this.audioFile.onSuccess.subscribe((amp) => {
-          this.upload(filePath);
-
-        })
-    );
-    this.subscriptions.push(
-        this.audioFile.onError.subscribe((e) => {
-          console.log("Error ", e);
-        })
-    );
-    this.subscriptions.push(
-        this.audioFile.onStatusUpdate.subscribe((status) => console.log(status))
-    );
-
-    this.audioFile.startRecord();
-  }
-
   adjustMsg(msg) {
     if (msg.type === "attachment") {
         const requestUrl =
@@ -485,7 +413,7 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
       }
     }
 
-    if (msg.from.id === this.currentUser.id) {
+    if (msg.from === this.currentUser.id) {
       msg.direction = "outgoing";
     } else {
       msg.direction = "incoming";
@@ -524,42 +452,6 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
             }
           });
         });
-  }
-
-  public handleScroll(event) {
-    this.contentScrollTop = event.detail.scrollTop;
-    if (event.detail.scrollTop < 400 && !this.loadingMsgs) {
-      this.getMessages(true);
-    }
-  }
-
-  async stopRecording() {
-    this.isRecording = false;
-    await this.audioFile.stopRecord();
-  }
-
-  public blobToFile = (theBlob: Blob, fileName: string) => {
-    const b: any = theBlob;
-    // A Blob() is almost a File() - it's just missing the two properties below which we will add
-    b.__proto__ = File.prototype;
-    b.lastModifiedDate = new Date();
-    b.name = fileName;
-
-    // Cast to a File() type
-    return <any>theBlob;
-  };
-
-  adjustScroll() {
-    this.scrollToBottom(300);
-  }
-
-  hangup() {
-    this.zone.run(() => {
-      console.log("leave call", this.platform.is("cordova"));
-      NativeAudio.stop({assetId: 'ringSound'});
-      this.callRunning = false;
-      this.shouldJoinCall = false;
-    });
   }
 
   joinCall() {
@@ -620,11 +512,6 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
     this.isImgModalOpen = isOpen
   }
 
-  backToDashboard() {
-    localStorage.removeItem('currentConsultation');
-    this.router.navigate([`/dashboard`]);
-  }
-
 
   hideKeyboard() {
     // this set timeout needed for case when hideKeyborad
@@ -657,37 +544,4 @@ export class ConsultationChatComponent   implements OnInit, AfterViewChecked, Af
     }, 50);
   }
 
-  /**
-   * Convert a base64 string in a Blob according to the data and contentType.
-   *
-   * @param b64Data {String} Pure base64 string without contentType
-   * @param contentType {String} the content type of the file i.e (image/jpeg - image/png - text/plain)
-   * @param sliceSize {Int} SliceSize to process the byteCharacters
-   * @see http://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
-   * @return Blob
-   */
-  b64toBlob(b64Data, contentType, sliceSize?) {
-    contentType = contentType || "";
-    sliceSize = sliceSize || 512;
-
-    var byteCharacters = atob(b64Data);
-    var byteArrays = [];
-
-    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-      var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-      var byteNumbers = new Array(slice.length);
-      for (var i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-
-      var byteArray = new Uint8Array(byteNumbers);
-
-      byteArrays.push(byteArray);
-    }
-
-    var blob = new Blob(byteArrays, { type: contentType });
-
-    return blob;
-  }
 }

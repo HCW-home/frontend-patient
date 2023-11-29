@@ -74,14 +74,14 @@
             </ion-row>
 
 
-            <div class="msg-time" *ngIf="msg.from?.role === 'patient'; else oters ">
+            <div class="msg-time" *ngIf="msg.fromUserDetail?.role === 'patient' && msg.type === 'text'; else oters ">
                 {{consultation.consultation?.firstName}} {{consultation.consultation?.lastName}} -
                 {{msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
                 }}</div>
 
             <ng-template #oters>
-                <div class="msg-time" *ngIf="msg.from?.firstName || msg.from?.lastName">
-                    {{msg.from?.firstName}} {{msg.from?.lastName}} -
+                <div class="msg-time" *ngIf="(msg.fromUserDetail?.firstName || msg.fromUserDetail?.lastName) && msg.type === 'text'">
+                    {{msg.fromUserDetail?.firstName}} {{msg.fromUserDetail?.lastName}} -
                     {{msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
                     }}</div>
             </ng-template>
