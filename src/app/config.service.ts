@@ -32,6 +32,9 @@ export class ConfigService {
           console.log("got config", config);
           this.config = config;
           this.configSub.next(config);
+            if (config.matomoUrl && config.matomoId) {
+                this.initializeMatomo(config.matomoUrl, config.matomoId);
+            }
           this.globalVariableService.serverError = false;
           if (
             config.accessibilityMode &&
@@ -48,4 +51,20 @@ export class ConfigService {
         });
     });
   }
+
+    //Matomo
+    initializeMatomo(url: string, siteId: string): void {
+        // @ts-ignore
+        var _paq = window._paq = window._paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u = url;
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', siteId]);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.async = true; g.src = u+'matomo.js'; s.parentNode.insertBefore(g, s);
+        })();
+    }
+
 }
