@@ -1,3 +1,11 @@
+hcw-athome-patient (0.4.4.52) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs #6251, messages returns too many information relative to doctor
+  * refs #6122, Implement Matomo (analytics)
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 01 Dec 2023 08:29:17 +0100
+
 hcw-athome-patient (0.4.4.51) focal; urgency=medium
 
   [ Gor Grigoryan ]
