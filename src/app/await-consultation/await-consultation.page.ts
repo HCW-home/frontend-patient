@@ -25,7 +25,6 @@ export class AwaitConsultationPage implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.subscriptions.push(this.consultationService.getTranslatorOrGuestConsultation().subscribe(consultation => {
-      console.log('got consultation ', consultation)
       if (consultation) {
 
         this.consultation = consultation

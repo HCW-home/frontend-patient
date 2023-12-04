@@ -17,6 +17,7 @@ export class OverlayComponent implements OnInit {
 
   @Input() consultation: any;
   @Output() close = new EventEmitter();
+  @Output() updateFeedback = new EventEmitter();
 
 
   ngOnInit() {
@@ -45,6 +46,10 @@ export class OverlayComponent implements OnInit {
   resumeConsultation() {
     this.close.emit(null);
     this.router.navigate(['/consultation/' + this.consultation._id]);
+  }
+
+  updateConsultation() {
+    this.updateFeedback.emit(true)
   }
 
 }

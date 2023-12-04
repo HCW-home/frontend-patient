@@ -116,50 +116,27 @@ export class DashboardPage implements OnDestroy {
 
     listenToCallEvents() {
         this.subscriptions.push(
-            this._socketEventsService.onRejectCall().subscribe((event) => {
-                console.log("Event onRejectCall");
-                // const message = this.chatMessages.find(
-                //     (msg) => msg.id === event.data.message.id
-                // );
-                // console.log("video message ", message);
-                // if (message) {
-                //     message.closedAt = new Date();
-                // }
-            })
+            this._socketEventsService.onRejectCall().subscribe((event) => {})
         );
         this.subscriptions.push(
-            this._socketEventsService.onAcceptCall().subscribe((event) => {
-                console.log("Event onAcceptCall");
-                // const message = this.chatMessages.find(
-                //     (msg) => msg.id === event.data.message.id
-                // );
-                // if (message) {
-                //     message.acceptedAt = new Date();
-                // }
-            })
+            this._socketEventsService.onAcceptCall().subscribe((event) => {})
         );
         this.subscriptions.push(
             this._socketEventsService.onCall().subscribe((e) => {
-                console.log("Calll ", e, "e");
-
                 this.ringing();
                 this.zone.run(() => {
-                    console.log("get call 1", e);
                     this.callRunning = true;
                     this.ongoingCall = e.data.msg;
                     this.ringingConsultation = e.data.consultation;
                     this.callingDoctor = e.data.user;
-                    console.log(this.ringingConsultation, "ringingConsultation");
                     this.shouldJoinCall = false;
                 });
             })
         );
         this.subscriptions.push(
             this._socketEventsService.onEndCall().subscribe((e) => {
-                console.log("End Calll ", e);
 
                 this.zone.run(() => {
-                    console.log("get call 2", e);
                     this.callRunning = false;
                     this.ongoingCall = null;
                     this.shouldJoinCall = false;
@@ -174,7 +151,6 @@ export class DashboardPage implements OnDestroy {
         this.platformService
             .ready()
             .then(() => {
-                console.log("RINGING NOW", NativeAudio.loop);
                 NativeAudio.play({assetId: "ringSound", time: 0});
                 return NativeAudio.loop({assetId: "ringSound"});
             })
@@ -207,6 +183,10 @@ export class DashboardPage implements OnDestroy {
         if (event) {
             this.getConsultations();
         }
+    }
+
+    onUpdateFeedback() {
+        this.getConsultations();
     }
 
     onSelectConsultation(consultation) {

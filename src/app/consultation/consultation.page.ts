@@ -95,19 +95,8 @@ export class ConsultationPage
         this.listenToNewMessages();
     }
 
-
-    // ionViewDidEnter() {
-    //   document.addEventListener("backbutton", function (e) {
-    //     console.log("disable back button")
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //     e.stopImmediatePropagation()
-    //   }, false);
-    // }
-
     @HostListener("document:ionBackButton", ["$event"])
     overrideHardwareBackAction(event: any) {
-        console.log("back button");
         event.stopImmediatePropagation();
         event.stopPropagation();
         event.preventDefault();
@@ -121,7 +110,6 @@ export class ConsultationPage
     listenToNewMessages() {
         this.subscriptions.push(
             this._socketEventsService.onMessage().subscribe((msg) => {
-                console.log("got message ", msg);
                 if (msg.data.consultation !== this.consultationId) {
                     return;
                 }
@@ -145,7 +133,6 @@ export class ConsultationPage
                 const message = this.chatMessages.find(
                     (msg) => msg.id === event.data.message.id
                 );
-                console.log("video message ", message);
                 if (message) {
                     message.closedAt = new Date();
                 }
@@ -163,13 +150,10 @@ export class ConsultationPage
         );
         this.subscriptions.push(
             this._socketEventsService.onCall().subscribe((e) => {
-                console.log("Calll ", e, this.consultation);
-
                 this.hideKeyboard();
                 this.ringing();
 
                 this.zone.run(() => {
-                    console.log("get call 1", e);
                     this.callRunning = true;
                     this.ongoingCall = e.data.msg;
                     this.shouldJoinCall = false;
@@ -178,10 +162,7 @@ export class ConsultationPage
         );
         this.subscriptions.push(
             this._socketEventsService.onEndCall().subscribe((e) => {
-                console.log("End Calll ", e);
-
                 this.zone.run(() => {
-                    console.log("get call 2", e);
                     this.callRunning = false;
                     this.ongoingCall = null;
                     this.shouldJoinCall = false;
@@ -261,7 +242,6 @@ export class ConsultationPage
         this.consultationSubscription = this.conServ
             .getConsultation(this.consultationId)
             .subscribe(async (consultation) => {
-                console.log("CURRENT CONSULTATION >>>>>>>>>>>>>>>>", consultation);
                 if (!consultation || !consultation.consultation) {
                     if (this.consultationSubscription) {
                         this.consultationSubscription.unsubscribe();
@@ -314,7 +294,6 @@ export class ConsultationPage
     }
 
     closeConsultation(consultation) {
-        console.log("no consultation.consultation or closed .......");
         if (this.consultationSubscription) {
             this.consultationSubscription.unsubscribe();
             this.consultationSubscription = null;
@@ -360,7 +339,6 @@ export class ConsultationPage
     scrollToBottom(after?) {
         setTimeout(() => {
             if (this.contentArea) {
-                console.log("content area scroll to bottom", this.contentArea);
                 this.contentArea.scrollToBottom();
             }
         }, after || 1);
@@ -381,9 +359,6 @@ export class ConsultationPage
         });
         await modal.present();
         const {data} = await modal.onDidDismiss();
-
-        console.log("modal dismissed ", data);
-
 
         if (data.filePath) {
             if (typeof data.filePath === "object") {
@@ -407,12 +382,9 @@ export class ConsultationPage
             .then((entry) => {
                 if (entry) {
                     const fileEntry = entry as FileEntry;
-                    console.log("file entry ", fileEntry);
                     fileEntry.file(
                         (success) => {
                             const mimeType = success.type;
-                            console.log("type ", mimeType);
-
                             const reader = new FileReader();
                             const self = this;
                             reader.onloadend = function () {
@@ -588,7 +560,6 @@ export class ConsultationPage
 
     hangup() {
         this.zone.run(() => {
-            console.log("leave call", this.platform.is("cordova"));
             NativeAudio.stop({assetId: "ringSound"});
             this.callRunning = false;
             this.shouldJoinCall = false;
@@ -599,7 +570,6 @@ export class ConsultationPage
         this.subscriptions.push(
             this.callService.getCurrentCall(this.consultationId).subscribe(
                 (call) => {
-                    console.log("JOIN CALL ", call);
                     this.shouldJoinCall = true;
                     this.ongoingCall = call;
                 },
@@ -611,17 +581,11 @@ export class ConsultationPage
     }
 
     ringing() {
-        console.log("CURRENT PLATFORM", this.platform);
         this.platform
             .ready()
             .then(() => {
-                console.log("RINGING NOW", NativeAudio.loop);
                 NativeAudio.play({assetId: "ringSound", time: 0});
                 return NativeAudio.loop({assetId: "ringSound"});
-                // if (this.platform.is("capacitor")) {
-                //   console.log("RINGING NOW", this.nativeAudio.loop);
-                //   return this.nativeAudio.loop("ringSound");
-                // }
             })
             .then(
                 (res) => {

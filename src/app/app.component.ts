@@ -64,7 +64,6 @@ export class AppComponent {
     public globalVariableService: GlobalVariableService
   ) {
     const parsedUrl = new URL(window.location.href);
-    console.log("PARSED URL", parsedUrl);
     this.inviteToken = parsedUrl.searchParams.get("invite");
     if (!this.inviteToken && window.location.href.match(/invite=([^&]*)/)) {
       // parse invite from url using regex
@@ -78,9 +77,7 @@ export class AppComponent {
 
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event) => {
-        console.log("Router event", event);
-      });
+      .subscribe((event) => {});
   }
 
 
@@ -143,7 +140,6 @@ export class AppComponent {
       const token = url.searchParams.get('invite')
 
       if (/attachment/.test(data.url)) {
-        console.log("This is going to open link")
         return;
       }
 
@@ -168,7 +164,6 @@ export class AppComponent {
 
     if (this.inviteToken) {
       if (localStorage.getItem("inviteToken") !== this.inviteToken) {
-        console.log("New invite token .");
         localStorage.clear();
         await this.authService.logout();
         localStorage.setItem("inviteToken", this.inviteToken);
@@ -187,7 +182,6 @@ export class AppComponent {
         this.platform.is("cordova") &&
         this.isNativeApp()
       ) {
-        console.log("Initializing iosrtc");
         try {
           cordova.plugins.iosrtc.registerGlobals();
         } catch (error) {
@@ -195,8 +189,6 @@ export class AppComponent {
         }
       }
 
-      console.log("router ", this.router, this.router.url);
-      console.log(this.currentUser, 'currentuser');
       if (!this.testRoute) {
         this.redirectToLogin();
       }
@@ -251,8 +243,6 @@ export class AppComponent {
     this.consultationService.init(r);
 
     this.callService.getCall().subscribe((e) => {
-      console.log("get call ", e);
-
       this.consultation = e;
       this.consultation.id = e._id;
       this.callRunning = true;

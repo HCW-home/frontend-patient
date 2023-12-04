@@ -50,7 +50,6 @@ export class AuthService {
   }
 
   public setInviteToken(inviteToken) {
-    console.log('SET invite token')
     localStorage.setItem('inviteToken', inviteToken);
     this.inviteToken.next(inviteToken);
   }
@@ -69,7 +68,6 @@ export class AuthService {
     const opts = { withCredentials: true };
 
     return this.http.post<any>(`${this.globalVariableService.getApiPath()}/login-invite`, { inviteToken, phoneNumber, translator, ...options }, opts).pipe(map(res => {
-      console.log('logged in and got user data ', res);
       // login successful if there's a jwt token in the response
       if (res.user && res.user.token) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -81,41 +79,10 @@ export class AuthService {
 
 
       if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
-        console.log('Flush cookies ');
-        //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
       }
       return res.user;
     }));
   }
-  // //
-  // login() {
-  //   return this.http.get<any>(`${this.globalVariableService.getApiPath()}/login-cert`, {}).pipe(map(res => {
-  //     console.log('got user data ', res);
-  //     // login successful if there's a jwt token in the response
-  //     if (res.user && res.user.token) {
-  //       // store user details and jwt token in local storage to keep user logged in between page refreshes
-  //       localStorage.setItem('currentUser', JSON.stringify(res.user));
-  //       this.currentUserSubject.next(res.user);
-  //     }
-  //     this._socketEventsService.init(res.user);
-  //     this.consultationService.init(res.user);
-  //     this.loggedIn.next(res.user);
-
-  //     return res.user;
-  //   }));
-  // }
-
-  //  logout() {
-  //     // sessionStorage.removeItem('currentUser');
-  //     this.currentUserSubject.next(null);
-  //     this.socketEventsService.disconnect()
-  //     this.http.get(`${environment.api}/logout`).subscribe(r => {
-  //       console.log(r, "res");
-  //       this.router.navigate(["/login"]);
-  //     }, err => {
-  //       this.router.navigate(["/login"]);
-  //     })
-  //   }
 
   refreshTokens() {
     const currentUser = this.currentUserValue;
@@ -148,7 +115,6 @@ export class AuthService {
 
   logout() {
     // remove user from local storage to log user out
-    console.log('LOGOUT')
     localStorage.removeItem('inviteToken');
     localStorage.removeItem('currentConsultation');
     localStorage.removeItem('birthDate');
@@ -156,7 +122,6 @@ export class AuthService {
     this.currentUserSubject.next(null);
     this._socketEventsService.disconnect()
 
-    console.log("COOOKIIIES", document.cookie)
 
     if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
       //(<any>window).cordova.plugins.CookieManagementPlugin.flush();

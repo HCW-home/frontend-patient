@@ -49,7 +49,7 @@
 
             </ion-card>
 
-            <app-feedback [consultation]="consultation" *ngIf="consultation.consultation.status === 'closed'"></app-feedback>
+            <app-feedback [consultation]="consultation" (updatedConsultation)="updateConsultation()"  *ngIf="consultation.consultation.status === 'closed'"></app-feedback>
             <div class="info-items">
                 <div class="info-item">
                     <span class="title-wrapper"> Patient name</span>

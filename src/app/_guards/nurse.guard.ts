@@ -13,7 +13,6 @@ export class NurseGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authService.currentUserValue;
-        console.log('current user nurse ', currentUser)
         if (currentUser && currentUser.role === 'nurse') {
             // logged in so return true
             return true;

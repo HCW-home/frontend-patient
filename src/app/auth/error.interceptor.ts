@@ -14,7 +14,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
-            console.log("error with request ...............................", err);
 
             if (err.statusText === "Unknown Error") {
                 this._socketEventsService.updateConnectionStatus("connect_failed");

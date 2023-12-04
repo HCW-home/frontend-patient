@@ -199,6 +199,7 @@
     </div>
     <app-overlay
             (close)="onCloseConsultation($event)"
+            (updateFeedback)="onUpdateFeedback()"
             *ngIf="currentConsultation"
             [consultation]="currentConsultation"
     >

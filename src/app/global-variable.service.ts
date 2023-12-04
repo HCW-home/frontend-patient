@@ -6,7 +6,6 @@ import { Platform } from '@ionic/angular';
   providedIn: 'root'
 })
 
-//manage variable that are used in differents views
 export class GlobalVariableService {
   private hostBehaviorSubject: BehaviorSubject<string>;
 
@@ -15,7 +14,6 @@ export class GlobalVariableService {
   constructor(public platform: Platform) {
     if(!this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'))){
       this.resetHost()
-      console.log("reset host url");
     }
     let host = this.getHost();
     if (this.hostBehaviorSubject && this.hostBehaviorSubject.getValue() != host) {
@@ -47,24 +45,10 @@ export class GlobalVariableService {
         host = environment.host
       }
 
-      console.log("HOST IN INIT" + host)
       return host;
-
-    
-
-  }
-  public getHostObservable() {
-    return this.hostBehaviorSubject.asObservable();
-  }
-
-  public updateHost(host) {
-    console.log("updateHost host ", host)
-    localStorage.setItem('host', host);
-    this.hostBehaviorSubject.next(host);
   }
 
   public getHostValue() {
-    console.log("getting host value", this.hostBehaviorSubject.getValue())
     return this.hostBehaviorSubject.getValue();
   }
 
@@ -72,7 +56,6 @@ export class GlobalVariableService {
     //prevent double slash -> https://app.hug-at-home.ch//api/v1 ->  https://app.hug-at-home.ch/api/v1
     let apiUrl = (this.hostBehaviorSubject.getValue() + environment.api).replace(/([^:]\/)\/+/g, "$1")
     apiUrl = apiUrl.replace(/(\:)\:/, "$1")
-    console.log("getting api path value", apiUrl);
     return apiUrl ;
   }
 }

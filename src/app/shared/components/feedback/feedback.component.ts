@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Platform} from "@ionic/angular";
 import {ConsultationService} from "../../../consultation.service";
 import {AuthService} from "../../../auth/auth.service";
@@ -11,6 +11,7 @@ import {ConfigService} from "../../../config.service";
 })
 export class FeedbackComponent implements OnInit {
     @Input() consultation;
+    @Output() updatedConsultation = new EventEmitter<FileList>();
     private consultationId;
     public feedbackSubmitted: boolean = false;
     public feedbackSaved: boolean = false;
@@ -49,6 +50,7 @@ export class FeedbackComponent implements OnInit {
             return;
         }
         this.feedbackSubmitted = true;
+
         this.consultationService
             .saveConsultationFeedback(
                 this.consultationId,
@@ -58,6 +60,9 @@ export class FeedbackComponent implements OnInit {
             .subscribe(
                 (res) => {
                     this.feedbackSaved = true;
+                    if (this.userRating || this.userComment) {
+                        this.updatedConsultation.emit();
+                    }
                 },
                 (err) => {
                     this.feedbackSubmitted = false;

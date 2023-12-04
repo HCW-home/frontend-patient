@@ -58,25 +58,6 @@ export class ChooseAttachmentComponent implements OnInit {
 
 
   async takePicture() {
-
-    // const options: CameraOptions = {
-    //   quality: 40,
-    //   destinationType: this.camera.DestinationType.FILE_URI,
-    //   encodingType: this.camera.EncodingType.JPEG,
-    //   mediaType: this.camera.MediaType.PICTURE,
-    //   //targetWidth: 720
-    // };
-
-    // this.camera.getPicture(options).then((imageData) => {
-
-    //   this.dismiss(imageData, 'image');
-    // }, (err) => {
-    //   console.log('error choosing image', err);
-    //   // if (err && .includes('No Image Selected')) {
-    //   //   return
-    //   // }
-    //   alert('Error choosing image ' + err);
-    // });
     const image =  await Camera.getPhoto({
       quality: 90,
       allowEditing: false,

@@ -36,8 +36,6 @@ export class SocketEventsService {
   ) { }
 
   async init(currentUser, cb) {
-    console.log('init socket ', currentUser)
-
     // Don't need to reset the socket if the user is still the same...
     if (this.socket && currentUser && this.user) {
       if (currentUser.id === this.user.id) {
@@ -75,8 +73,6 @@ export class SocketEventsService {
       id: currentUser.id,
       'x-access-token': currentUser.token,
     }
-    console.log('WEBSOCKET CONNECT', sailsIo.sails.headers)
-
     this.socket = sailsIo.sails.connect(this.globalVariableService.getHostValue(), {
       reconnection: true,
       reconnectionDelay: 1000,
@@ -128,10 +124,6 @@ export class SocketEventsService {
       this.connection.next('connect_failed')
       console.info('connect_error')
     })
-
-    // this.localNotifications.on('click').subscribe((e) => {
-    //   console.log('notification event,  ', e)
-    // })
   }
 
   reconnect(cb) {
@@ -169,23 +161,8 @@ export class SocketEventsService {
   }
 
   listenToEvents() {
-    // this.socket.on('newMessage', (e) => {
-    //   if (e.data.type !== 'videoCall' && e.data.type !== 'audioCall') {
-    //     console.log('The message', e.data)
-    //     this.localNotifications.schedule({
-    //       id: 1,
-    //       title: e.data.text ? e.data.text : 'New message',
-    //       sound:  'file://sound.mp3',
-    //       text: '',
-    //       foreground: true
-    //     })
-    //   }
-
-    //   this.messageSubj.next(e)
-    // })
     this.socket.on('newMessage', (e) => {
       if (e.data.type !== 'videoCall' && e.data.type !== 'audioCall') {
-        console.log('The message', e.data)
         LocalNotifications.schedule({
           notifications:[{
             title: e.data.text ? e.data.text : 'New message',

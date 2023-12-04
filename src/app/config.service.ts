@@ -21,15 +21,10 @@ export class ConfigService {
 
   getConfig() {
     this.globalVariableService.host.subscribe(() => {
-      console.log(
-        "host updated config service",
-        this.globalVariableService.getApiPath()
-      );
       return this.http
         .get<any>(`${this.globalVariableService.getApiPath()}/config`)
         .toPromise()
         .then((config) => {
-          console.log("got config", config);
           this.config = config;
           this.configSub.next(config);
             if (config.matomoUrl && config.matomoId) {

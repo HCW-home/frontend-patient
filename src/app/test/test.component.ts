@@ -73,7 +73,6 @@ export class TestComponent implements OnInit, OnDestroy {
   ) {
     this.testButton = this.translate.instant("test.testMyEquipment");
     // Subscription to info updated event raised by InfoService
-    console.log("testButton ", this.testButton);
     this.subscriptions.push(
       this.infoService.newInfo$.subscribe((info) => {
         this.info.push(info);
@@ -99,13 +98,11 @@ export class TestComponent implements OnInit, OnDestroy {
     navigator.mediaDevices
       .getUserMedia({ audio: true, video: true })
       .then((stream) => {
-        console.log("Got stren", stream);
         stream.getTracks().forEach((track) => track.stop());
 
         this.initAudioPublisher();
       })
       .catch((error) => {
-        console.log("EROOOOOR", error);
         navigator.mediaDevices
           .getUserMedia({ video: true })
           .then((stream) => {
@@ -142,8 +139,6 @@ export class TestComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("ng on destroy ..........");
-    // On component destroyed leave test session and close info websocket
     this.endTestVideo();
 
     this.subscriptions.forEach((subscription) => {
@@ -186,8 +181,6 @@ export class TestComponent implements OnInit, OnDestroy {
     const inviteToken = localStorage.getItem("inviteToken");
 
     const user = this.authService.currentUserValue;
-    console.log("proceed to consultation ", user);
-
     if (inviteToken) {
       this.loading = true;
       this.conServ
@@ -216,36 +209,6 @@ export class TestComponent implements OnInit, OnDestroy {
             this.loading = false;
           }, 2000);
         });
-      // this.authService
-      //   .loginWithInvite(inviteToken, '')
-      //   .toPromise()
-      //   .then((user) => {
-      //     this.conServ
-      //       .createConsultation({
-      //         queue: 'covid19',
-      //         gender: 'unknown',
-      //         IMADTeam: 'none',
-      //         invitationToken: inviteToken,
-      //       })
-      //       .toPromise()
-      //       .then((consultation) => {
-      //         localStorage.setItem('currentConsultation', consultation.id)
-      //         this.router.navigate(['consultation', consultation.id])
-      //         //
-      //       })
-      //       .catch((err) => {
-      //         console.log(err)
-      //       })
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //     this.loading = false
-      //   })
-      //   .finally(() => {
-      //     setTimeout(() => {
-      //       this.loading = false
-      //     }, 2000)
-      //   })
     }
   }
 
@@ -304,24 +267,11 @@ export class TestComponent implements OnInit, OnDestroy {
       this.connectWebCam();
     });
 
-    // return this.session
-    //   .connect(token)
-    //   .then(() => {
-    //     this.connectWebCam()
-    //   })
-    //   .catch((error) => {
-    //     this.msgChain.push({
-    //       success: false,
-    //       msg: 'Error connecting to session: ' + error,
-    //     })
-    //   })
   }
   connectToSession(token: string) {
     this.msgChain = [];
 
     this.session = true;
-    console.log("OV session", this.session);
-    console.log("Session token", token);
     this.testStatus = "CONNECTING";
     this.testButton = this.translate.instant("test.stopTheTest");
     this.accessHardwareGranted = null;
@@ -329,7 +279,6 @@ export class TestComponent implements OnInit, OnDestroy {
     if (this.platform.is("android") && this.platform.is("hybrid")) {
       this.checkAndroidPermissions()
         .then(() => {
-          console.log("Permissions ok !");
           this.initSession(token);
         })
         .catch((err) => {
@@ -343,7 +292,6 @@ export class TestComponent implements OnInit, OnDestroy {
   connectWebCam() {
     // this.msgChain.push({ success: true, msg: 'Connected to session' });
 
-    console.log("Start connection webcam");
     this.testStatus = "CONNECTED";
     this.initAudioPublisher();
     // this.initHardwareDevices()
@@ -391,31 +339,9 @@ export class TestComponent implements OnInit, OnDestroy {
     //   this.msgChain.push({ success: true, msg: this.translate.instant('test.streamCreated') })
     // })
 
-    // publisherRemote.on('streamPlaying', (video) => {
-    //   this.msgChain.push({ success: true, msg: this.translate.instant('test.connectionWithServer') })
-    //   console.log('mesgchaing ', this.msgChain)
-    //   this.testButton = this.translate.instant('test.stopTheTest')
-    //   this.testStatus = 'PLAYING'
-    //   this.globalMessage =
-    //     this.translate.instant('test.yourDeviceSeems')
-    //   this.showSpinner = false
-    // })
-
-    // this.msgChain.push({
-    //   success: true,
-    //   msg: this.translate.instant('test.testStarting'),
-    // })
-
-    // console.log('Will subscribe')
-    // publisherRemote.subscribeToRemote()
-    // console.log('subscribed')
-    // this.session.publish(publisherRemote)
-    // console.log('published')
   }
 
   endTestVideo() {
-    console.log("End TEST>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-
     if (this.session) {
       this.roomService.close();
       this.session = null;
@@ -447,13 +373,10 @@ export class TestComponent implements OnInit, OnDestroy {
   }
 
   ionViewWillLeave() {
-    console.log("ion view will leave ..........");
-
     this.endTestVideo();
   }
 
   private checkAndroidPermissions(): Promise<any> {
-    console.log("Requesting Android Permissions");
     return new Promise((resolve, reject) => {
       this.platform.ready().then(() => {
         this.androidPermissions
@@ -462,24 +385,16 @@ export class TestComponent implements OnInit, OnDestroy {
             this.androidPermissions
               .checkPermission(this.androidPermissions.PERMISSION.CAMERA)
               .then((camera) => {
-                console.log("permissions camera", camera);
                 this.androidPermissions
                   .checkPermission(
                     this.androidPermissions.PERMISSION.RECORD_AUDIO
                   )
                   .then((audio) => {
-                    console.log("permissions audio", audio);
                     this.androidPermissions
                       .checkPermission(
                         this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS
                       )
                       .then((modifyAudio) => {
-                        console.log(
-                          "check permission final request",
-                          camera.hasPermission,
-                          audio.hasPermission,
-                          modifyAudio.hasPermission
-                        );
                         if (
                           camera.hasPermission &&
                           audio.hasPermission &&

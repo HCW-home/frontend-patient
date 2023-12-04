@@ -101,7 +101,6 @@ export class LoginPage implements OnInit {
   }
 
   ngAfterContentInit() {
-    console.log("ngAfterContentInit");
     const token = localStorage.getItem('inviteToken') || '';
     const inviteToken = token;
     if (this.inviteToken !== inviteToken || this.inviteKey !== inviteToken) {
@@ -130,7 +129,6 @@ export class LoginPage implements OnInit {
   }
 
   async init() {
-    console.log("init login");
 
     this.inviteToken = this.inviteToken || localStorage.getItem("inviteToken");
     this.currentUser = this.authService.currentUserValue;
@@ -138,30 +136,23 @@ export class LoginPage implements OnInit {
     if (this.inviteToken && this.inviteToken.length) {
       this.handleToken(this.inviteToken);
     } else if (this.platform.is("mobile")) {
-      console.log("No invite ...");
       this.noInviteError = true;
       this.noTokenProvided = true;
       if (this.authService.currentUserValue) {
-        console.log(
-          "Logout because there is a user and no invite token on init"
-        );
         await this.authService.logout();
       }
     }
 
-    console.log("[LOGIN] Invite token: " + this.inviteToken);
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || "";
 
     this.subscriptions.push(
       this.authService.observeInviteToken().subscribe((inviteToken) => {
-        console.log("GOT inviteToken in login ");
         this.inviteToken = inviteToken;
         this.handleToken(this.inviteToken);
       })
     );
   }
   handleUser(user) {
-    console.log("HANDLE user>>>>>>>>>>>>>", user);
     this.currentUser = user;
     // Check if the client was in a consultation
     const consultationId = localStorage.getItem("currentConsultation");
@@ -181,7 +172,6 @@ export class LoginPage implements OnInit {
           })
           .toPromise()
           .then((consultation) => {
-            console.log("Consultation created ", consultation);
             if (!consultation) {
               return this.router.navigate(["await-consultation"]);
             }
@@ -189,7 +179,6 @@ export class LoginPage implements OnInit {
             this.handleConsultation(consultation.id);
           })
           .catch((err) => {
-            console.log("Error creating consultation", err);
             this.handleTokenError(err);
           })
           .finally(() => {
@@ -197,14 +186,12 @@ export class LoginPage implements OnInit {
             this.loading = false;
           });
       } else {
-        console.log("Naviage to test");
         return this.router.navigate(["test-call"]);
       }
     }
   }
 
   handleConsultation(consultationId) {
-    console.log("Handle consultation ", consultationId);
     const videoCallTested = localStorage.getItem("videoCallTested");
     if (videoCallTested) {
       return this.router.navigate(["consultation", consultationId]);
@@ -214,7 +201,6 @@ export class LoginPage implements OnInit {
   }
 
   handleToken(inviteToken, accept = false) {
-    console.log("HAndle token .........", this.inviteToken);
     this.zone.run(() => {
       this.noTokenProvided = false;
     });
@@ -237,8 +223,6 @@ export class LoginPage implements OnInit {
   }
 
   async handleInvite(invite, accept?) {
-    console.log("handle invite.................", invite, invite.status);
-    console.log("current user ", this.currentUser);
     this.invite = invite;
     this.isExpert = !!invite.isExpert;
     this.expertToken = invite.expertToken;
@@ -254,9 +238,6 @@ export class LoginPage implements OnInit {
 
         return this.handleUser(this.currentUser);
       } else {
-        console.log(
-          "Logout because there is a user and invite token don't match"
-        );
         await this.authService.logout();
         localStorage.setItem("inviteToken", this.inviteToken);
         this.noInviteError = null;
@@ -271,16 +252,11 @@ export class LoginPage implements OnInit {
     } else {
       this.noInviteError = false;
       this.zone.run(() => {
-        console.log("No error ");
-
         this.noInviteError = false;
       });
       setTimeout(() => {
-        console.log("No error ");
-
         this.noInviteError = false;
       }, 100);
-      console.log("DISCONNECT WEBSOCKET IF CONNECTED");
       this.socketService.disconnect();
     }
 
@@ -325,7 +301,6 @@ export class LoginPage implements OnInit {
       this.noInviteError = true;
     }, 100);
 
-    console.log("Logout because of token error ", err);
     this.authService.logout();
     // localStorage.clear()
   }
@@ -350,22 +325,10 @@ export class LoginPage implements OnInit {
     this.loading = true;
 
     const inviteToken = this.inviteToken ? this.inviteToken : this.isExpert ? this.expertToken : this.inviteKey;
-    console.log(inviteToken);
     localStorage.setItem("inviteToken", inviteToken);
 
     this.loading = false;
     this.submitted = false;
-
-    //console.log("SET LOADING FALSE AVEC");
-    // Prevent loading issue not reverted when coming back to this page
-    /*setTimeout(() => {
-      this.zone.run(() => {
-        console.log("SET LOADING FALSE AVEC 5s");
-        this.loading = false;
-        this.submitted = false;
-      });
-    }, 3000);
-    */
 
     this.handleToken(inviteToken, true);
   }
