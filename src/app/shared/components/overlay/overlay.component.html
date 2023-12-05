@@ -2,7 +2,7 @@
     <div class="chat-cont">
         <div class="header">
             <ion-text>
-                <h3>General Information</h3>
+                <h3>{{'consultation.general_information' | translate}}</h3>
             </ion-text>
         </div>
 
@@ -52,34 +52,34 @@
             <app-feedback [consultation]="consultation" (updatedConsultation)="updateConsultation()"  *ngIf="consultation.consultation.status === 'closed'"></app-feedback>
             <div class="info-items">
                 <div class="info-item">
-                    <span class="title-wrapper"> Patient name</span>
+                    <span class="title-wrapper"> {{'consultation.patient_name' | translate}}</span>
                     <span class="content">{{consultation.consultation.firstName }} {{consultation.consultation.lastName}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title-wrapper"> Handled By </span>
+                    <span class="title-wrapper"> {{'consultation.handled_by' | translate}} </span>
                     <span class="content" *ngIf="consultation.doctor; else requesting">{{consultation.doctor?.firstName }} {{consultation.doctor?.lastName}}</span>
                     <ng-template #requesting>
-                        <span class="content">requesting</span>
+                        <span class="content">{{'consultation.requesting' | translate}}</span>
                     </ng-template>
                 </div>
                 <div class="info-item">
-                    <span class="title-wrapper"> Country </span>
+                    <span class="title-wrapper"> {{'consultation.country' | translate}} </span>
                     <span class="content">{{consultation.consultation?.metadata?.Country || '-'}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title-wrapper"> Sex </span>
+                    <span class="title-wrapper"> {{'consultation.sex' | translate}} </span>
                     <span class="content">{{consultation.consultation.gender}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title-wrapper"> Area </span>
+                    <span class="title-wrapper"> {{'consultation.area' | translate}} </span>
                     <span class="content">{{consultation.queue.name}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title-wrapper"> Requested at </span>
+                    <span class="title-wrapper"> {{'consultation.requested_at' | translate}} </span>
                     <span class="content">{{consultation.consultation.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                 </div>
                 <div class="info-item">
-                    <span class="title-wrapper">Hospital/facility</span>
+                    <span class="title-wrapper">{{'consultation.hospital' | translate}}</span>
                     <span class="content">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
                 </div>
             </div>
@@ -90,12 +90,12 @@
         </div>
     </div>
     <div *ngIf="consultation.consultation.status === 'active'" class="resume-c-btn" (click)="resumeConsultation()">
-        {{ 'Resume' | translate }}
+        {{ 'consultation.resume' | translate }}
     </div>
 
     <div *ngIf="consultation.consultation.status === 'pending'" class="buttons-wrapper" >
-        <div (click)="showCancelModal($event)">{{ 'Cancel Request' | translate }}</div>
-        <div (click)="resumeConsultation()">{{ 'Resume' | translate }}</div>
+        <div (click)="showCancelModal($event)">  {{ 'consultation.cancel_request' | translate }}</div>
+        <div (click)="resumeConsultation()">{{ 'consultation.resume' | translate }}</div>
     </div>
 </div>
 

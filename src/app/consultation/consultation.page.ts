@@ -1,7 +1,6 @@
 import {NativeAudio} from "@capacitor-community/native-audio";
-import {Component, AfterViewChecked, ViewChild, OnInit, NgZone, AfterViewInit, HostListener} from "@angular/core";
+import {Component, ViewChild, OnInit, NgZone, AfterViewInit, HostListener} from "@angular/core";
 import {IonContent, Platform} from "@ionic/angular";
-import {AlertController} from "@ionic/angular";
 
 import {ConsultationService} from "../consultation.service";
 import {Router, ActivatedRoute} from "@angular/router";
@@ -32,8 +31,7 @@ import {LanguageService} from "../shared/services/language.service";
     templateUrl: "./consultation.page.html",
     styleUrls: ["./consultation.page.scss"],
 })
-export class ConsultationPage
-    implements OnInit, AfterViewChecked, AfterViewInit {
+export class ConsultationPage implements OnInit,  AfterViewInit {
     @ViewChild(IonContent) contentArea: IonContent;
     @ViewChild("txtArea") textArea;
     @ViewChild(IonModal) modal: IonModal;
@@ -76,13 +74,11 @@ export class ConsultationPage
         public modalController: ModalController,
         private file: File,
         private media: Media,
-        public alertController: AlertController,
         private globalVariableService: GlobalVariableService,
         public platform: Platform,
         private translate: TranslateService,
         private languageService: LanguageService,
         private _sanitizer: DomSanitizer,
-        // private nativeAudio: NativeAudio,
     ) {
     }
 
@@ -186,6 +182,7 @@ export class ConsultationPage
         this.chatMessages.push({
             direction: "outgoing",
             text: this.chatText,
+            type: 'text',
             createdAt: Date.now(),
             fromUserDetail: {
                 role: this.currentUser.role,
@@ -213,12 +210,6 @@ export class ConsultationPage
                 )
         );
         this.chatText = "";
-    }
-
-    ngAfterViewChecked() {
-        //  this.contentArea.scrollToBottom();
-        // this.scrollToBottom();
-        // this.contentArea.scrollToBottom();
     }
 
     ngAfterViewInit() {
