@@ -1,3 +1,11 @@
+hcw-athome-patient (0.4.4.53) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs #6244, Feedback is still requested even if already filled, #6152 Call hangup after 30 minutes
+  * update hcw-stream-lib
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 05 Dec 2023 10:44:54 +0100
+
 hcw-athome-patient (0.4.4.52) focal; urgency=medium
 
   [ Gor Grigoryan ]
