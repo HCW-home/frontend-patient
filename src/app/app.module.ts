@@ -53,10 +53,8 @@ import { RequestConsultationComponent } from './shared/components/request-consul
 import { CloseConsultationComponent } from './shared/components/close-consultation/close-consultation.component';
 import { ChooseAttachmentComponent } from './shared/components/choose-attachment/choose-attachment.component';
 import { ConfigService } from './config.service';
-
 import { HugAngularLibModule } from 'hcw-stream-lib';
 import {CountrySelectPageModule} from "./register/country-select/country-select.module";
-import {HeaderComponent} from "./shared/components/header/header.component";
 
 
 @NgModule({
