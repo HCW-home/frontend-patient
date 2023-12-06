@@ -110,13 +110,13 @@
  
       </ng-container>
       <ng-container *ngIf="!noInviteError">
-        <p *ngIf="!inviteToken">
+        <p *ngIf="inviteToken">
           {{ 'login.ifYouReceivedThisInvitation' | translate }}
         </p>
 
         <div class="text-white">
-        <markdown [src]="'assets/home.md'">
-        </markdown>
+          <markdown [src]="'assets/home.md'">
+          </markdown>
 
         </div>
 
