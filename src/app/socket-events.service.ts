@@ -1,18 +1,16 @@
-import { Injectable } from '@angular/core'
-import { Observable, Subject } from 'rxjs'
-import { environment } from '../environments/environment'
-// import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx'
+import {Injectable, Injector} from "@angular/core";
+import {AuthService} from "./auth/auth.service";
+import { Subject } from 'rxjs'
 import { LocalNotifications } from '@capacitor/local-notifications'
-
-
 import { GlobalVariableService } from './global-variable.service'
 
-// declare var io: any
 declare var socket: any;
 import io from 'socket.io-client';
 import sailsIOClient from 'sails.io.js'
 const sailsIo = sailsIOClient(io);
 sailsIo.sails.autoConnect = false;
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -31,8 +29,8 @@ export class SocketEventsService {
   private connection: Subject<String> = new Subject()
 
   constructor(
-    // private localNotifications: LocalNotifications,
-    private globalVariableService: GlobalVariableService,
+      private injector: Injector,
+      private globalVariableService: GlobalVariableService,
   ) { }
 
   async init(currentUser, cb) {
@@ -131,11 +129,12 @@ export class SocketEventsService {
       return cb()
     }
     this.disconnect()
+    const currentUser = this.injector.get(AuthService).currentUserValue;
 
-    sailsIo.sails.query = `token=${this.user.token}`
+    sailsIo.sails.query = `token=${currentUser.token}`
     sailsIo.sails.headers = {
-      id: this.user.id,
-      'x-access-token': this.user.token,
+      id: currentUser.id,
+      'x-access-token': currentUser.token,
     }
 
     this.socket = sailsIo.sails.connect(this.globalVariableService.getHostValue(), {

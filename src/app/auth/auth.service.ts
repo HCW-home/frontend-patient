@@ -1,16 +1,14 @@
 import { Platform } from '@ionic/angular';
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
 import { SocketEventsService } from '../socket-events.service';
 import { ConsultationService } from '../consultation.service';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { GlobalVariableService } from '../global-variable.service';
-import { CapacitorCookies } from '@capacitor/core';
 import {ConfigService} from "../config.service";
 
 declare let window: any;
@@ -31,15 +29,14 @@ export class AuthService {
     private platform: Platform,
     public configService: ConfigService,
 
-  ) {
-
-  }
+  ) {}
 
   init() {
     this.currentUserSubject = new BehaviorSubject<User>(null);
     this.currentUser = this.currentUserSubject.asObservable();
     return this.getCurrentUser().toPromise()
   }
+
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
@@ -127,9 +124,6 @@ export class AuthService {
       //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
     }
     return this.http.get(`${this.globalVariableService.getApiPath()}/logout`).toPromise()
-  }
-  getToken() {
-    return this.currentUserSubject.value.token;
   }
 
   getCurrentUser():Observable<any> {
