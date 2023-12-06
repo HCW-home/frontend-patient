@@ -89,7 +89,7 @@
                                         <div class="flex-item ion-align-items-start">
                                             <span class="value">{{consultation.consultation?.metadata?.Country || '-'}}</span>
                                             <span class="value">{{consultation.consultation.gender}}</span>
-                                            <span class="value">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
+                                            <span class="value">{{consultation.consultation?.metadata?.['Hospital name / facility'] || '-'}}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -180,7 +180,7 @@
                                         <div class="flex-item ion-align-items-start">
                                             <span class="value">{{consultation.consultation?.closedAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                                             <span class="value">{{consultation.consultation?.gender}}</span>
-                                            <span class="value">{{consultation.consultation?.metadata?.['Hospital/facility'] || '-'}}</span>
+                                            <span class="value">{{consultation.consultation?.metadata?.['Hospital name / facility'] || '-'}}</span>
                                         </div>
                                     </div>
                                 </td>

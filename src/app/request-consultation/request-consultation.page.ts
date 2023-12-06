@@ -91,7 +91,7 @@ export class RequestConsultationPage implements OnInit {
             metadata: {
                 "Age": value.age,
                 "Country": value.country,
-                "Hospital/facility": value.organization
+                "Hospital name / facility": value.organization
             }
         }).pipe(
             switchMap(res => {

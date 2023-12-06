@@ -48,7 +48,7 @@
     "sex": "Sex",
     "area": "Area",
     "requested_at": "Requested at",
-    "hospital": "Hospital/facility:"
+    "hospital": "Hospital name / Facility:"
   },
   "consultations": {
     "openedConsultations": "Open consultations",
@@ -260,7 +260,7 @@
     "area": "Area:",
     "country": "Country:",
     "sex": "Sex:",
-    "hospital": "Hospital/facility:",
+    "hospital": "Hospital name / facility:",
     "resume": "Resume",
     "requesting": "requesting",
     "canceled": "canceled",
@@ -287,8 +287,8 @@
     "enter_age": "Enter Age",
     "country": "Country",
     "select_country": "Select Country",
-    "patient_hospitality": "Patient hospital/facility",
-    "enter_patient_hospitality": "Enter Patient hospital/facility",
+    "patient_hospitality": "Patient Hospital name / facility",
+    "enter_patient_hospitality": "Enter Patient Hospital name / facility",
     "message_optional": "Message (Optional)",
     "enter_text": "Enter text",
     "upload_document": "Upload Document",
