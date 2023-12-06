@@ -395,8 +395,10 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
                     );
                 }
             })
-            .catch((err) => {
-                console.log("error uploading ", err);
+            .catch(async (err) => {
+                const message =  err.error?.message || err.error ||  err.message || err.statusText || err;
+                this.isUploading = false;
+                await this.presentErrorModal(message)
             });
     }
 
@@ -414,6 +416,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
                 });
             }, async (err) => {
                 const message =  err.error?.message || err.error ||  err.message || err.statusText || err;
+                this.isUploading = false;
                 await this.presentErrorModal(message)
             });
     }
