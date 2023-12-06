@@ -1,3 +1,14 @@
+hcw-athome-patient (0.4.4.54) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * chat fixes, add some missing translations
+
+  [ Olivier Bitsch ]
+  * Update default upload size to 20M
+  * Rename Hospital name / facility for more clarity
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 06 Dec 2023 12:07:52 +0100
+
 hcw-athome-patient (0.4.4.53) focal; urgency=medium
 
   [ Gor Grigoryan ]
