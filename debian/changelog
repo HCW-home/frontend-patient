@@ -1,3 +1,12 @@
+hcw-athome-patient (0.4.4.55) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs #6243, Token not refreshed if expired and websocket disconnects
+  * refs #6267, uploading error issue
+  * login page issue
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 07 Dec 2023 13:05:48 +0100
+
 hcw-athome-patient (0.4.4.54) focal; urgency=medium
 
   [ Gor Grigoryan ]
