@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { I18nModule } from '../i18n/i18n.module';
 import { RequestPage } from './request.page';
 import {SharedModule} from "../shared/shared.module";
+import {MarkdownModule} from "ngx-markdown";
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         I18nModule,
-        SharedModule
+        SharedModule,
+        MarkdownModule.forRoot()
     ],
   declarations: [RequestPage]
 })

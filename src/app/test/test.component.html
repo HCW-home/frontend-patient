@@ -1,5 +1,6 @@
 <ion-content padding>
-  <div class="wrap">
+    <div class='center'>
+     <div class="custom-card">
     <div class="container">
       <div
         id="dashboard-div"
@@ -22,7 +23,7 @@
 
         <div fxFlex="33%" fxFlex.xs="auto" fxFlexOrder="2" fxFlexOrder.xs="1">
           <button
-            class="btn green big proceed-btn"
+            class="btn green proceed-btn"
             mat-button
             type="button"
             [disabled]="loading"
@@ -36,10 +37,10 @@
             }}
           </button>
 
-          <p class="text-white text-center" *ngIf="inviteToken">
+          <p class="text-center" *ngIf="inviteToken">
             {{ "test.ifThisIsTheFirst" | translate }}
           </p>
-          <p class="text-white text-center" *ngIf="!inviteToken">
+          <p class="text-center" *ngIf="!inviteToken">
             {{ "test.welcomeToTheHome" | translate: configService.config }}
           </p>
           <button
@@ -159,4 +160,5 @@
       </div>
     </div>
   </div>
+    </div>
 </ion-content>

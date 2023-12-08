@@ -19,12 +19,12 @@ ul {
 }
 
 .test-btn {
-  background: white;
+  background: var(--ion-color-primary);
 }
 
 mat-card-title button.blue {
   color: #ffffff;
-  background-color: #0088aa;
+  background: var(--ion-color-primary);
 }
 
 mat-card-title button.yellow {

@@ -18,7 +18,7 @@ ion-content {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding:  7rem 10rem;
+    padding:  3rem 10rem;
     flex-wrap: nowrap;
     @media (max-width: 768px) {
       padding: 2rem;
@@ -28,7 +28,7 @@ ion-content {
   .authenticate {
     color: rgba(0, 0, 0, 1);
     font-style: normal;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 1.2;
     margin: 0;
@@ -56,6 +56,38 @@ ion-content {
   .login-btn {
     color: #FFFFFF;
     text-decoration: none;
+  }
+
+  p {
+    font-weight: 500;
+    //color: #fff;
+  }
+
+
+  .container {
+    padding: 24px;
+    //text-align: center;
+  }
+
+
+
+  .left-side {
+    width: 50%;
+    background: var(--ion-color-primary);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .right-side {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
   }
 
 }
