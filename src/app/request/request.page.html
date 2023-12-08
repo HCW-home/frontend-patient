@@ -1,18 +1,50 @@
 <ion-content>
-    <div class="auth-wrapper">
-        <div class="card">
-            <ion-text>
-                <h1 class="authenticate">{{ 'authenticate.authenticate' | translate }}</h1>
-            </ion-text>
-            <a [href]="openIdLoginUrl" class="login-btn btn green">
-                {{'authenticate.login_with' | translate}}
-            </a>
-            <div class="label-wrapper" (click)="register()">
+<!--    <div class="auth-wrapper">-->
+<!--        <div class="card">-->
+<!--            -->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class='center'>
+
+        <div class="custom-card"  style="display: flex; width: 80%">
+            <div class="left-side">
+                <div class="container">
+<!--                    <p>-->
+<!--                        {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config }}-->
+<!--                    </p>-->
+
+                    <div>
+                        <markdown [src]="'assets/home.md'">
+                        </markdown>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-side">
+                <div class="container">
+                    <img class="logo mb-3"
+                         *ngIf="configService.config.logo"
+                         [src]="configService.config.logo"
+                         [alt]="configService.config.branding"
+                    />
+                    <ion-text>
+                        <h5 class="authenticate">{{ 'Welcome back!' | translate }}</h5>
+                        <h5 class="authenticate">{{ 'Login with your single sign-on credentials' | translate }}</h5>
+                    </ion-text>
+                    <a [href]="openIdLoginUrl" class="login-btn btn green big">
+                        {{'authenticate.login_with' | translate}}
+                    </a>
+                    <div class="label-wrapper" (click)="register()">
                  <span class="label">
                     {{'authenticate.no_account' | translate}}
                 </span>
+                    </div>
+                    <app-select-language></app-select-language>
+
+                </div>
             </div>
+
         </div>
     </div>
-    <app-select-language></app-select-language>
 </ion-content>

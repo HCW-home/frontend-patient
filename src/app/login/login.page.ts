@@ -152,6 +152,7 @@ export class LoginPage implements OnInit {
       })
     );
   }
+
   handleUser(user) {
     this.currentUser = user;
     // Check if the client was in a consultation

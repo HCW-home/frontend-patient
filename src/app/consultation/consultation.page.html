@@ -257,39 +257,59 @@
 <ng-container
         *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'expert'"
 >
-    <div
-            slot="fixed"
-            vertical="bottom"
-            *ngIf="consultation && consultation.consultation && consultation.consultation.status !== 'closed'"
-            class="input"
-            id="chatInputContainer"
-    >
-        <ion-grid>
-            <ion-row>
-                <ion-col size="2" class="ico ico-left">
-                    <ion-button (click)="showAttachmentModal()">
-                        <ion-icon slot="icon-only" name="attach"></ion-icon>
-                    </ion-button>
-                </ion-col>
-                <ion-col
-                >
-                    <ion-textarea
-                        #txtArea
-                        (keypress)="sendMsg($event)"
-                        (click)="readMessages()"
-                        [(ngModel)]="chatText"
-                        placeholder="{{'consultation.enterYourMessage'|translate}}"
-                        (ionFocus)="adjustScroll()"
-                    ></ion-textarea
-                    >
-                </ion-col>
+<!--    <div-->
+<!--            slot="fixed"-->
+<!--            *ngIf="consultation && consultation.consultation && consultation.consultation.status !== 'closed'"-->
+<!--            class="input"-->
+<!--    >-->
+<!--        <ion-grid>-->
+<!--            <ion-row>-->
+<!--                <ion-col size="2" class="ico ico-left">-->
+<!--                    <ion-button (click)="showAttachmentModal()">-->
+<!--                        <ion-icon slot="icon-only" name="attach"></ion-icon>-->
+<!--                    </ion-button>-->
+<!--                </ion-col>-->
+<!--                <ion-col>-->
+<!--                    <ion-textarea-->
+<!--                        #txtArea-->
+<!--                        (keypress)="sendMsg($event)"-->
+<!--                        (click)="readMessages()"-->
+<!--                        [(ngModel)]="chatText"-->
+<!--                        placeholder="{{'consultation.enterYourMessage'|translate}}"-->
+<!--                        (ionFocus)="adjustScroll()"-->
+<!--                    ></ion-textarea>-->
+<!--                </ion-col>-->
 
-                <ion-col size="2" class="ico ico-right">
-                    <ion-button (click)="send()">
-                        <ion-icon slot="icon-only" name="send"></ion-icon>
-                    </ion-button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+<!--                <ion-col size="2" class="ico ico-right">-->
+<!--                    <ion-button (click)="send()">-->
+<!--                        <ion-icon slot="icon-only" name="send"></ion-icon>-->
+<!--                    </ion-button>-->
+<!--                </ion-col>-->
+<!--            </ion-row>-->
+<!--        </ion-grid>-->
+<!--    </div>-->
+
+    <div class="input">
+        <div class="attachment-wrapper">
+                <ion-icon slot="icon-only" name="attach" (click)="showAttachmentModal()"></ion-icon>
+        </div>
+            <ion-textarea
+                #txtArea
+                (keypress)="sendMsg($event)"
+                (click)="readMessages()"
+                [(ngModel)]="chatText"
+                placeholder="{{'consultation.enterYourMessage'|translate}}"
+                (ionFocus)="adjustScroll()"
+            ></ion-textarea>
+
+        <div class="send-button-wrapper">
+            <ion-button (click)="send()" class="send-button">
+                <ion-icon slot="icon-only" name="send"></ion-icon>
+            </ion-button>
+        </div>
+
+
     </div>
+
+
 </ng-container>

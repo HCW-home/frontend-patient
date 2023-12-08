@@ -7,7 +7,8 @@ $font-path: "../assets/fonts";
 
 :root {
   /** primary **/
-  --ion-color-primary: #266eb7;
+  --blue-bg-color: #f8f8f8;
+  --ion-color-primary: #de0031;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -79,5 +80,4 @@ $font-path: "../assets/fonts";
   // --fc:#CCCCCC;
   --ion-color-light-tint: #f5f6f9;
 
-  --blue-bg-color: #0072bb;
 }

@@ -1,16 +1,5 @@
 @import "src/theme/variables.scss";
 
-.wrap {
-  width: 100%;
-  min-height: 100%;
-  background-color: var(--ion-color-primary) !important;
-  background-size: 100%;
-  background-position: center;
-  background-attachment: fixed;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 ::ng-deep {
   html[data-theme="accessibility"] {
     .wrap {
@@ -22,7 +11,6 @@
   display: block;
   margin: 30px auto;
   width: 70%;
-  color: #ffffff;
 }
 
 li {
@@ -64,8 +52,7 @@ markdown ::ng-deep {
 }
 
 .back-link {
-  background: #fff;
-  color: #006eb5;
+  color: var(--ion-color-primary);
   text-decoration: none;
   border-radius: 60px;
   padding: 5px 15px 5px 15px;
@@ -73,17 +60,19 @@ markdown ::ng-deep {
 }
 
 a {
-  color: #fff;
+  color: var(--ion-color-primary);
 }
+
 h3 {
   margin: 40px 0 20px;
 }
+
 table {
   border-collapse: collapse;
   margin-bottom: 40px;
 
   tr {
-    border-bottom: 1px solid #2a99e6;
+    border-bottom: 1px solid var(--ion-color-primary);
   }
   td {
     padding: 10px;
@@ -129,11 +118,7 @@ table {
 }
 
 .lang {
-  background-color: var(--ion-color-primary);
+  background-color: #FFFFFF;
   outline: none;
   border: 0;
-}
-
-ion-icon {
-  color: white;
 }

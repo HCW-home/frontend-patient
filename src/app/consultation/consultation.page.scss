@@ -2,10 +2,10 @@
 
 .jumbotron {
   color: #ffffff;
-  height: 240px;
+  //height: 240px;
   background-color: var(--ion-color-primary) !important;
   background-position: center;
-  border-radius: 0px;
+  border-radius: 0;
   text-align: center;
 }
 ::ng-deep {
@@ -15,13 +15,9 @@
     }
   }
 }
-.jumbotron.await {
-  height: 283px;
-}
 
 .closedWrapper {
   background-color: var(--ion-color-primary) !important;
-
 }
 
 ion-card-title {
@@ -70,11 +66,6 @@ ion-card-content {
 .bubble {
   border-radius: 10px;
   word-break: break-word;
-  // min-width:270px;
-  // display: flex;
-  // flex: 1 1 300px;
-  // max-width: 80%;
-  // min-width: 0;
 }
 
 .incoming > ion-row > ion-col > .bubble a{
@@ -123,64 +114,32 @@ row.msg-time {
 }
 
 div.input {
-  // position: fixed;
-  bottom: 0px;
+  bottom: 0;
+  align-items: center;
   width: 100%;
-  // height: 60px;
   display: flex;
   background-color: #ffffff;
 }
 
-div.input > ion-grid > ion-row > ion-col.ico {
-  height: 60px;
-  padding: 0px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  vertical-align: middle;
-}
-.ico-left,
-.ico-right {
-  justify-content: center;
-  height: 100%;
-  ion-button {
-    width: 100%;
-    height: 100%;
-  }
-}
-div.input > ion-grid > ion-row > ion-col.ico-left {
-  border-right: 1px solid #e4e4e4;
+.attachment-wrapper {
+  border-right: 1px solid #e0eafd;
+  padding-right: 10px;
+  padding-left: 10px
 }
 
-div.input > ion-grid > ion-row > ion-col.ico-left > ion-button {
-  --background: #ffffff;
-  color: black;
-  border: none;
-  -border-style: none;
-  --border-radius: none;
-  --border-width: 0;
-  --box-shadow: none;
-  margin: 0px;
-  padding-top: 0px;
-  max-width: 100%;
-}
-
-div.input > ion-grid > ion-row > ion-col.ico-right > ion-button {
-  color: #ffffff;
-  --background: black;
-  border: none;
-  -border-style: none;
-  --border-radius: 40px;
+.attachment-wrapper ion-icon {
   height: 40px;
   width: 40px;
-  --border-width: 0;
-  --box-shadow: none;
-  margin: 0px;
-  padding-top: 0px;
-  font-size: 10px;
-  // transition: all .2s ease-out;
+}
 
-  margin: auto;
+.send-button-wrapper {
+  padding-right: 10px;
+}
+
+.send-button {
+  --border-radius: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .mic-recording {
@@ -204,24 +163,11 @@ div.input > ion-grid > ion-row > ion-col.ico-right > ion-button {
   position: absolute;
 }
 
-div.input > ion-grid > ion-row > ion-col {
-  // height: 60px;
-  padding: 0px;
-  padding-top: 8px;
-}
 
-div.input > ion-grid > ion-row > ion-col > ion-textarea {
-  padding: 0;
-}
-
-div.input > ion-grid > ion-row > ion-col > ion-icon {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 24px;
-}
 
 .cancel-btn {
   margin-top: 15px;
+  margin-bottom: 15px;
   --border-radius: 30px;
   --background: white;
   color: var(--ion-color-primary);
