@@ -112,7 +112,9 @@ export class SocketEventsService {
       console.info('Reconnecting to server', number)
       this.injector.get(AuthService).verifyRefreshToken().subscribe({
         next: (res) => {}, error: (err) => {
-          this.injector.get(AuthService).logOutNurse();
+          if (err.status === 401) {
+            this.injector.get(AuthService).logOutNurse();
+          }
         }
       })
       if (number > 9) {
