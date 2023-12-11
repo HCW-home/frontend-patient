@@ -1,3 +1,9 @@
+hcw-athome-patient (0.4.4.57) focal; urgency=medium
+
+  * Add terms into config folder with symbolic links
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 11 Dec 2023 13:36:15 +0100
+
 hcw-athome-patient (0.4.4.56) focal; urgency=medium
 
   [ Olivier Bitsch ]

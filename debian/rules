@@ -27,3 +27,8 @@
 override_dh_auto_install:
 	install -d -m0755 debian/hcw-athome-patient/usr/share/hcw-athome/patient/
 	cp -r www/* debian/hcw-athome-patient/usr/share/hcw-athome/patient/
+	mkdir -p debian/hcw-athome-patient/etc/hcw-athome/
+	mv debian/hcw-athome-patient/usr/share/hcw-athome/patient/assets/home.md.sample debian/hcw-athome-patient/etc/hcw-athome/home.md
+	mv debian/hcw-athome-patient/usr/share/hcw-athome/patient/assets/terms.md.sample debian/hcw-athome-patient/etc/hcw-athome/terms.md
+	ln -sf /etc/hcw-athome/home.md debian/hcw-athome-patient/usr/share/hcw-athome/patient/assets/home.md
+	ln -sf /etc/hcw-athome/terms.md debian/hcw-athome-patient/usr/share/hcw-athome/patient/assets/terms.md
