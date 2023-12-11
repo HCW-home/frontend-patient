@@ -165,7 +165,7 @@ export class AppComponent {
     if (this.inviteToken) {
       if (localStorage.getItem("inviteToken") !== this.inviteToken) {
         localStorage.clear();
-        await this.authService.logout();
+        await this.authService.logOutNurse();
         localStorage.setItem("inviteToken", this.inviteToken);
         // document.location.reload()
       }
