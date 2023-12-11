@@ -1,3 +1,13 @@
+hcw-athome-patient (0.4.4.58) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * ui updates in login screen
+
+  [ Olivier Bitsch ]
+  * Remove default message
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 11 Dec 2023 13:45:02 +0100
+
 hcw-athome-patient (0.4.4.57) focal; urgency=medium
 
   * Add terms into config folder with symbolic links
