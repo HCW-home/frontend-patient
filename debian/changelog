@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.60) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * verify refresh token fix
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 11 Dec 2023 17:30:56 +0100
+
 hcw-athome-patient (0.4.4.59) focal; urgency=medium
 
   [ Olivier Bitsch ]
