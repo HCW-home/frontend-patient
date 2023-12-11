@@ -16,7 +16,7 @@ server {
     add_header Strict-Transport-Security "max-age=31536000;";
     add_header Content-Security-Policy "default-src 'self'; script-src 'self'; object-src 'self'; font-src 'self'";
 
-    location ~* ^.+\.(svg|svgz|otf|woff|ttf|css|js|jpg|jpeg|gif|png|ico|gz|woff2)$ {
+    location ~* ^.+\.(svg|svgz|otf|woff|ttf|css|js|jpg|jpeg|gif|png|ico|gz|woff2|md)$ {
         access_log off;
         log_not_found off;
         add_header Cache-Control "public, max-age=31536000";
