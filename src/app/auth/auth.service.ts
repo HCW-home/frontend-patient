@@ -87,6 +87,12 @@ export class AuthService {
     return this.http.post<any>(`${this.globalVariableService.getApiPath()}/refresh-token`,{ refreshToken });
   }
 
+  verifyRefreshToken() {
+    const currentUser = this.currentUserValue;
+    const refreshToken = currentUser?.refreshToken;
+    return this.http.post<any>(`${this.globalVariableService.getApiPath()}/verify-refresh-token`,{ refreshToken });
+  }
+
   logOutNurse(hard = false) {
     localStorage.clear();
     sessionStorage.clear();

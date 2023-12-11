@@ -110,6 +110,14 @@ export class SocketEventsService {
 
     this.socket.on('reconnecting', (number) => {
       console.info('Reconnecting to server', number)
+      this.injector.get(AuthService).verifyRefreshToken().subscribe({
+        next: (res) => {}, error: (err) => {
+          this.injector.get(AuthService).logOutNurse();
+        }
+      })
+      if (number > 9) {
+        this.injector.get(AuthService).logOutNurse();
+      }
     })
 
     this.socket.on('reconnect_error', (err) => {

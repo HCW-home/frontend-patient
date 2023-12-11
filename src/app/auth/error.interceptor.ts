@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this._socketEventsService.updateConnectionStatus("connect_failed");
             }
 
-            const refreshTokenEndpoint = "refresh-token";
+            const refreshTokenEndpoint = "/refresh-token";
 
             if (err.status === 401 && request.url.includes(refreshTokenEndpoint)) {
                 this.authService.logOutNurse();
