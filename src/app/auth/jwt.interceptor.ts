@@ -3,13 +3,15 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse
 import { Observable, throwError, BehaviorSubject } from "rxjs";
 import {catchError, switchMap, filter, take, finalize} from "rxjs/operators";
 import { AuthService } from "./auth.service";
+import {SocketEventsService} from "../socket-events.service";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
     private isRefreshing = false;
     private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService,
+                private socketEventsService: SocketEventsService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const headersConfig = {
@@ -63,6 +65,8 @@ export class JwtInterceptor implements HttpInterceptor {
                     user.token = tokens.token;
                     user.refreshToken = tokens.refreshToken;
                     this.authService.currentUserSubject.next(user);
+                    this.socketEventsService.init(user, () => {
+                    });
 
                     return next.handle(this.addAuthenticationToken(request, tokens.token));
                 }),
@@ -70,7 +74,7 @@ export class JwtInterceptor implements HttpInterceptor {
                     this.isRefreshing = false;
                     this.refreshTokenSubject.error(refreshError);
                     if (refreshError.status === 401) {
-                        this.authService.logout();
+                        this.authService.logOutNurse();
                     }
                     return throwError(refreshError);
                 })

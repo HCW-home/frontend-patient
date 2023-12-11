@@ -1,4 +1,3 @@
-## This is  FRANCE placeholder
-
+## This is FRANCE placeholder
 
 Please update this file

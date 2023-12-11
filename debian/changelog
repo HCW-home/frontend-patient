@@ -1,3 +1,23 @@
+hcw-athome-patient (0.4.4.56) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Rename markdown file to sample preventing to show unwanted message by default
+  * Update language
+
+  [ Gor Grigoryan ]
+  * refs #6243, Token not refreshed if expired and websocket disconnects
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 11 Dec 2023 10:03:35 +0100
+
+hcw-athome-patient (0.4.4.55) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs #6243, Token not refreshed if expired and websocket disconnects
+  * refs #6267, uploading error issue
+  * login page issue
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 07 Dec 2023 13:05:48 +0100
+
 hcw-athome-patient (0.4.4.54) focal; urgency=medium
 
   [ Gor Grigoryan ]

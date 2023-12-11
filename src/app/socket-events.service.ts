@@ -36,6 +36,10 @@ export class SocketEventsService {
   async init(currentUser, cb) {
     // Don't need to reset the socket if the user is still the same...
     if (this.socket && currentUser && this.user) {
+    if (currentUser.token === this.user.token) {
+      this.reconnect(() => {});
+      return
+    }
       if (currentUser.id === this.user.id) {
         return
       }
@@ -65,7 +69,7 @@ export class SocketEventsService {
       this.disconnect()
       return
     }
-    this.user = currentUser
+    this.user = currentUser;
     sailsIo.sails.query = `token=${currentUser.token}`
     sailsIo.sails.headers = {
       id: currentUser.id,

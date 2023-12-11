@@ -243,7 +243,7 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit {
             }
             localStorage.removeItem("currentConsultation");
             this._socketEventsService.disconnect();
-            return this.authService.logout();
+            return this.authService.logOutNurse();
             // return this.router.navigate(['login']);
           }
           // if (
@@ -290,7 +290,7 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit {
         this.currentUser.role === "guest" ||
         this.currentUser.role === "translator"
     ) {
-      this.authService.logout();
+      this.authService.logOutNurse();
     }
     return this.router.navigate([
       "closing-screen",

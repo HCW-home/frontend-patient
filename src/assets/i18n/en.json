@@ -301,7 +301,7 @@
   "common": {
     "back_to_dashboard": "Back To Dashboard",
     "reconnected": "You are reconnected",
-    "connectionFailed": "The connection to the server is not functioning properly, and you can no longer receive consultation requests. If the issue persists, please contact your support."
+    "connectionFailed": "The connection to the server is not functioning properly, and you can no longer receive consultation requests. If the issue persists, refresh the page."
   },
   "fr": "Français",
   "en": "English",
