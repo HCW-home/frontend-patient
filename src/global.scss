@@ -254,4 +254,11 @@ ion-select {
   justify-content: center;
   height: 100%;
   width: 100%;
+
+  //@media (max-width: 598px) {
+  //  width: 300px;
+  //}
+  //@media (max-width: 350px) {
+  //  height: unset;
+  //}
 }

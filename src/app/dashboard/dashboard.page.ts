@@ -2,7 +2,7 @@ import {Component, NgZone, OnDestroy} from "@angular/core";
 import {Router} from "@angular/router";
 import {ConsultationService} from "../shared/services/consultation.service";
 import {CloseConsultationComponent} from "../shared/components/close-consultation/close-consultation.component";
-import {ModalController, Platform} from "@ionic/angular";
+import {MenuController, ModalController, Platform} from "@ionic/angular";
 import {Subscription} from "rxjs";
 import {SocketEventsService} from "../socket-events.service";
 import {NativeAudio} from "@capacitor-community/native-audio";
@@ -26,6 +26,7 @@ export class DashboardPage implements OnDestroy {
     closedCount: number = 0;
     consultations: any[] = [];
     closedConsultations: any[] = [];
+    wide: boolean = false;
 
     callRunning = false;
     ongoingCall = null;
@@ -40,7 +41,10 @@ export class DashboardPage implements OnDestroy {
         private _socketEventsService: SocketEventsService,
         private translate: TranslateService,
         private zone: NgZone,
-        private authService: AuthService
+        private authService: AuthService,
+        private platform: Platform,
+        private menuController: MenuController
+
     ) {
     }
 
@@ -51,6 +55,24 @@ export class DashboardPage implements OnDestroy {
         this.getConsultations();
         this.listenToNewMessages();
         this.listenToCallEvents();
+        this.setWidth();
+        this.listenToEvents();
+    }
+
+    setWidth() {
+        if (this.platform.width() > 767) {
+            this.wide = true;
+            this.menuController.open();
+        } else {
+            this.wide = false;
+            this.menuController.close();
+        }
+    };
+
+    listenToEvents() {
+        window.addEventListener('resize', () => {
+            this.setWidth();
+        });
     }
 
     getConsultations() {
