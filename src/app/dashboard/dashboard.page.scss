@@ -1,6 +1,6 @@
 ion-content {
   background-color: var(--blue-bg-color);
-  scrollbar-track-color: #f1f1f1;
+  //scrollbar-track-color: #f1f1f1;
 
   .card {
     max-width: 90%;
@@ -24,6 +24,18 @@ ion-content {
     }
   }
 
+  .dashboard-wrapper {
+    margin-top: 2rem;
+    padding: 24px;x
+
+    .btn {
+      display: initial;
+    }
+  }
+
+
+
+
   ion-text {
     text-align: center;
   }
@@ -44,9 +56,11 @@ ion-content {
 
   .board {
     overflow: auto;
-    width: calc(100% + 10px);
+    width: 100%;
     margin-top: 1rem;
+    border-radius: 4px;
   }
+
 
   @media screen and (max-width: 768px) {
     table, thead, tbody, th, td, tr {
@@ -88,23 +102,27 @@ ion-content {
 
 
   table {
+    background: #FFFFFF;
+    width: 100%;
     td {
       padding: 1rem;
     }
 
     tr {
-      border-left: 2px solid transparent;
-      transition: transform 0.3s ease-in-out;
+      border: 2px solid transparent;
     }
 
 
     .border:not(:last-child) {
-      border-bottom: 1px solid rgba(189, 189, 189, 1);
+      border-bottom: 1px solid rgba(177,177,177,.568627451);
+
+      border-top: 1px solid rgba(177,177,177,.568627451);
+      //border-left: 2px solid #fff;
     }
 
     .border:hover {
       cursor: pointer;
-      border-left: 2px solid var(--blue-bg-color);
+      border-left: 2px solid var(--ion-color-primary);
     }
 
     .avatar-container {
@@ -212,9 +230,9 @@ ion-content {
     }
 
     .buttons-wrapper {
-
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 4px;
     }
 
@@ -262,3 +280,46 @@ ion-content {
 .mt-2 {
   margin-top: 2rem;
 }
+
+
+@media (min-width: 768px) {
+  .ion-page{
+    margin-left: 20%;
+    width:80%;
+  }
+  ion-menu{
+    width: 20%;
+    display:block;
+    border: 1px solid black;
+    ion-content {
+    --backgroun: #FFFFFF;
+
+    }
+  }
+
+  .bar-button-menutoggle {
+    display: none;
+  }
+
+  ion-menu ion-backdrop {
+    display:none;
+  }
+  ion-content {
+    border-left: none;
+  }
+  ion-menu[type=overlay] .menu-inner {
+    -webkit-transform: translateX(0px)!important;
+    transform: translateX(0px)!important;
+    box-shadow: none;
+    width:100%;
+  }
+
+  .menu-content-open {
+    pointer-events: initial;
+  }
+}
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: black
+}
+

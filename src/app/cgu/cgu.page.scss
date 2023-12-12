@@ -13,6 +13,14 @@
   width: 70%;
 }
 
+.custom-card {
+  width: 80%;
+  @media (max-width: 598px) {
+    width: 100%;
+  }
+}
+
+
 li {
   margin-top: 21.5339;
   margin-bottom: 21.5339;
@@ -122,3 +130,4 @@ table {
   outline: none;
   border: 0;
 }
+

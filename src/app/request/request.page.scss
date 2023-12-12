@@ -69,7 +69,21 @@ ion-content {
     //text-align: center;
   }
 
+  .center {
+    @media (max-width: 598px) {
+      height: unset
+    }
+  }
 
+  .custom-card {
+    width: 80%;
+    display: flex;
+    @media (max-width: 598px) {
+      width: 100%;
+      flex-direction: column;
+    }
+
+  }
 
   .left-side {
     width: 50%;
@@ -79,6 +93,9 @@ ion-content {
     align-items: center;
     justify-content: center;
     text-align: center;
+    @media (max-width: 598px) {
+      width: 100%;
+    }
   }
 
   .right-side {
@@ -87,7 +104,9 @@ ion-content {
     align-items: center;
     justify-content: center;
     text-align: center;
-
+    @media (max-width: 598px) {
+      width: 100%;
+    }
   }
 
 }
