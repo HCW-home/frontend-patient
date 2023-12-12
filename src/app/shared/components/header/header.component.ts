@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import {Component, NgZone, OnInit} from "@angular/core";
 import { AuthService } from '../../../auth/auth.service';
 import {Router} from "@angular/router";
 
@@ -9,10 +9,12 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
   currentUser: any;
+  logoutToggle = false;
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private zone: NgZone
   ) { }
 
   ngOnInit() {
@@ -25,6 +27,12 @@ export class HeaderComponent implements OnInit {
 
   goToProfile() {
     this.router.navigate([`profile`]);
+  }
+
+  toggleLogout() {
+    this.zone.run(() => {
+      this.logoutToggle = !this.logoutToggle;
+    });
   }
 
 }
