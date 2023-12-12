@@ -77,6 +77,10 @@
           <ion-icon slot="start" name="mic"></ion-icon> &nbsp;&nbsp; laisser un
           message audio
         </ion-button> -->
+
+
+        <p class="backToDashboard" (click)="backToDashboard()" *ngIf="currentUser.role === 'nurse'">{{ 'Back to Dashboard' | translate }}</p>
+
         <ion-button
                 *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'"
                 (click)="showCancelModal()"
@@ -84,9 +88,6 @@
                 i18n>
             {{ 'consultation.cancel' | translate }}
         </ion-button>
-
-        <p class="backToDashboard" (click)="backToDashboard()" *ngIf="currentUser.role === 'nurse'">{{ 'Back to Dashboard' | translate }}</p>
-
     </ion-card>
 
     <ion-grid class="chat">

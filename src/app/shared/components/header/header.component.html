@@ -1,8 +1,21 @@
 <div class="header-wrapper">
-    <div class="card">
-        <div>
-            <ion-button class="logout" (click)="goToProfile()">{{ 'header.profile' | translate}}</ion-button>
-            <ion-button class="logout" (click)="logOut(true)">{{ 'header.logOut' | translate}} ({{currentUser?.firstName}} {{currentUser?.lastName}}) </ion-button>
+    <div
+            style="vertical-align: middle; cursor: pointer;    min-width: 200px;"
+            (click)="toggleLogout()"
+    >
+        <div [ngClass]="{ 'doc-btn': logoutToggle }" id="user">
+            <ion-icon name="person-outline"></ion-icon>
+            {{ currentUser.firstName + " " + currentUser.lastName }}
+            <div class="items" *ngIf="logoutToggle">
+                <div  (click)="goToProfile()">
+                    <ion-icon name="person-outline"></ion-icon>
+                    {{ 'header.profile' | translate }}
+                </div>
+                <div class="logout" (click)="logOut()">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    {{ 'header.logOut' | translate }}
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -17,7 +17,13 @@
                     </div>
                 </div>
                 <div class="back">
-                    <a (click)="goBack()" class="back-link">{{ 'cgu.backToHome' | translate }}</a>
+                    <button
+                            class="btn big"
+                            type="button"
+                            (click)="goBack()"
+                    >
+                        {{ 'cgu.backToHome' | translate }}
+                    </button>
                 </div>
 
                 <h2>{{ 'cgu.termsAndConditions' | translate }}</h2>
@@ -27,7 +33,14 @@
                 </markdown>
 
                 <div class="back">
-                    <a (click)="goBack()" class="back-link">{{ 'cgu.backToHome' | translate }}</a>
+                    <button
+                            class="btn big"
+                            type="button"
+                            (click)="goBack()"
+                    >
+                        {{ 'cgu.backToHome' | translate }}
+                    </button>
+<!--                    <a (click)="goBack()" class="back-link">{{ 'cgu.backToHome' | translate }}</a>-->
                 </div>
             </div>
         </div>
