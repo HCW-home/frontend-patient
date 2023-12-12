@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.62) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * design updates for nurse dashboard
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 12 Dec 2023 15:17:14 +0100
+
 hcw-athome-patient (0.4.4.61) focal; urgency=medium
 
   [ Gor Grigoryan ]
