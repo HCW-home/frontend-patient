@@ -27,6 +27,9 @@ export class ConfigService {
         .then((config) => {
           this.config = config;
           this.configSub.next(config);
+          if (config.patientAppPrimaryColor) {
+              this.updatePrimaryColor(config.patientAppPrimaryColor);
+          }
             if (config.matomoUrl && config.matomoId) {
                 this.initializeMatomo(config.matomoUrl, config.matomoId);
             }
@@ -46,6 +49,11 @@ export class ConfigService {
         });
     });
   }
+
+    updatePrimaryColor(color: string) {
+        document.documentElement.style.setProperty('--ion-color-primary', color);
+    }
+
 
     //Matomo
     initializeMatomo(url: string, siteId: string): void {

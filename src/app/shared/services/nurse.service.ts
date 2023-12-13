@@ -10,6 +10,10 @@ export class NurseService {
                 private globalVariableService: GlobalVariableService
     ) {}
 
+    checkMarkdownExists(markdownUrl: string) {
+        return this.http.get(markdownUrl, { responseType: 'text' })
+    }
+
     registerNurse(body) {
         return this.http.post<any>(this.globalVariableService.getApiPath() + "/register-nurse", body);
     }

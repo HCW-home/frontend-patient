@@ -10,12 +10,12 @@
         <div class="custom-card">
             <div class="left-side">
                 <div class="container">
-<!--                    <p>-->
-<!--                        {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config }}-->
-<!--                    </p>-->
+                    <p *ngIf="!markdownExists">
+                        {{ 'authenticate.access_permits' | translate:configService.config }}
+                    </p>
 
-                    <div>
-                        <markdown [src]="'assets/home.md'">
+                    <div  *ngIf="markdownExists">
+                        <markdown [src]="markdownUrl">
                         </markdown>
                     </div>
                 </div>
@@ -29,8 +29,8 @@
                          [alt]="configService?.config?.branding"
                     />
                     <ion-text>
-                        <h5 class="authenticate">{{ 'Welcome back!' | translate }}</h5>
-                        <h5 class="authenticate">{{ 'Login with your single sign-on credentials' | translate }}</h5>
+                        <h5 class="authenticate"> {{'authenticate.welcome_back' | translate}}</h5>
+                        <h5 class="authenticate"> {{'authenticate.sso_text' | translate}}</h5>
                     </ion-text>
                     <a [href]="openIdLoginUrl" class="login-btn btn green big">
                         {{'authenticate.login_with' | translate}}

@@ -215,7 +215,10 @@
   "authenticate": {
     "authenticate": "Authenticate",
     "login_with": "Institutional Connection",
-    "no_account": "No account ? Request account here"
+    "no_account": "No account ? Request account here",
+    "welcome_back": "Welcome back!",
+    "sso_text": "Login with your single sign-on credentials",
+    "access_permits": "This access permits to request consultation on {{branding}}."
   },
   "register": {
     "account_request": "Account request",
