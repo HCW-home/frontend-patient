@@ -5,6 +5,10 @@ ion-content {
   background-color: var(--blue-bg-color);
   scrollbar-track-color: #f1f1f1;
 }
+ion-toolbar {
+  --background: #FFFFFF;
+}
+
 .jumbotron {
   color: #ffffff;
   //height: 240px;
@@ -129,7 +133,8 @@ div.input {
 .attachment-wrapper {
   border-right: 1px solid #e0eafd;
   padding-right: 10px;
-  padding-left: 10px
+  padding-left: 10px;
+  cursor: pointer;
 }
 
 .attachment-wrapper ion-icon {
@@ -249,6 +254,7 @@ ion-icon[name="attach"] {
     #chatHeader {
       text-align: left;
       font-size: 1em;
+
     }
     .msg-time {
       font-size: 0.8em !important;

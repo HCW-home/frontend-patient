@@ -2,16 +2,15 @@
     <div class='center'>
         <div
                 *ngIf="configService.config && roomService.deviceInfo().flag !== 'unknown'"
-                class="custom-card"
-        >
+                class="custom-card">
             <div class="left-side">
                 <div class="container">
-                    <p>
+                    <p *ngIf="!markdownExists">
                         {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config }}
                     </p>
 
-                    <div>
-                        <markdown [src]="'assets/home.md'">
+                    <div *ngIf="markdownExists">
+                        <markdown [src]="markdownUrl">
                         </markdown>
                     </div>
                 </div>

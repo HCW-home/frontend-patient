@@ -93,10 +93,9 @@
         </ion-button> -->
 
 
-        <p class="backToDashboard" (click)="showCancelModal()" *ngIf="currentUser.role === 'nurse'">{{ 'consultation.cancel' | translate }}</p>
+        <p class="backToDashboard" *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'" (click)="showCancelModal()">{{ 'consultation.cancel' | translate }}</p>
 
-        <ion-button
-                *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'"
+        <ion-button  *ngIf="currentUser.role === 'nurse'"
                 (click)="backToDashboard()"
                 class="cancel-btn"
                 i18n>

@@ -2,7 +2,7 @@ ion-content {
   background-color: var(--blue-bg-color);
   scrollbar-track-color: #f1f1f1;
 
-  .title {
+  .page-title {
     text-transform: uppercase;
   }
 
@@ -192,6 +192,10 @@ ion-content {
 
       .rounded-badge {
         background-color: #E3393A;
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
+        line-height: unset;
       }
     }
 
@@ -267,6 +271,10 @@ ion-content {
   top: -5px;
   background-color: #E3393A;
   text-align: center;
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  line-height: unset;
 }
 
 .position-relative {

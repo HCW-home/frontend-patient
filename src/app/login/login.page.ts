@@ -20,6 +20,7 @@ import { ConfigService } from "../config.service";
 import { SocketEventsService } from "../socket-events.service";
 import { App } from '@capacitor/app';
 import {LanguageService} from "../shared/services/language.service";
+import {NurseService} from "../shared/services/nurse.service";
 
 const coeff = 1000 * 60 * 5;
 
@@ -77,6 +78,8 @@ export class LoginPage implements OnInit {
   showNativeAppSuggestionIOS = environment.showNativeAppSuggestionIOS;
 
   translatorAcceptError;
+  markdownExists: boolean = false;
+  markdownUrl: string = 'assets/home.md';
 
   constructor(
     private authService: AuthService,
@@ -93,7 +96,8 @@ export class LoginPage implements OnInit {
     public configService: ConfigService,
     private socketService: SocketEventsService,
     public roomService: RoomService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private nurseService: NurseService,
   ) {
     this.connectionErrorMessage = translate.instant(
       "login.theRemoteServerIsNotReachable"
@@ -109,6 +113,7 @@ export class LoginPage implements OnInit {
     }
   }
   ngOnInit() {
+    this.checkMarkdown();
     const showNativeAppSuggestion =
       (this.platform.is("ios") && environment.showNativeAppSuggestionIOS) ||
       (this.platform.is("android") &&
@@ -126,6 +131,17 @@ export class LoginPage implements OnInit {
         this.currentUser = user;
       })
     );
+  }
+
+
+  checkMarkdown() {
+    this.nurseService.checkMarkdownExists(this.markdownUrl).subscribe({
+      next: (res) => {
+        this.markdownExists = true;
+      }, error: (err) => {
+        this.markdownExists = false;
+      }
+    })
   }
 
   async init() {
