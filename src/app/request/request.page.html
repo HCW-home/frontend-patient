@@ -24,9 +24,9 @@
             <div class="right-side">
                 <div class="container">
                     <img class="logo mb-3"
-                         *ngIf="configService.config.logo"
-                         [src]="configService.config.logo"
-                         [alt]="configService.config.branding"
+                         *ngIf="configService?.config?.logo"
+                         [src]="configService?.config?.logo"
+                         [alt]="configService?.config?.branding"
                     />
                     <ion-text>
                         <h5 class="authenticate">{{ 'Welcome back!' | translate }}</h5>
