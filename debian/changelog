@@ -3,7 +3,7 @@ hcw-athome-patient (0.4.4.65) focal; urgency=medium
   [ Gor Grigoryan ]
   * requester login page fixes
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 13 Dec 2023 14:53:28 +0100
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 13 Dec 2023 14:53:45 +0100
 
 hcw-athome-patient (0.4.4.64) focal; urgency=medium
 
