@@ -29,6 +29,7 @@
   "consultation.joinCall": "Rejoindre la téléconsultation en cours",
   "consultation.enterYourMessage": "Saisissez votre message",
   "consultation.audioMessage": "message audio",
+  "consultation.resume": "REPRENDRE",
   "consultation.videoCallRefused": "Appel vidéo refusé",
   "consultations.openedConsultations": "Consultations ouvertes",
   "consultations.browserNotSupported": "Votre navigateur n'est pas supporté pour une téléconsultation. Essayez d'ouvrir le lien dans Safari (IOS) ou Chrome. Si vous ouvrez ce lien depuis Outlook (IOS), vous devriez avoir une option pour ouvrir cette page dans un autre navigateur depuis le menu (...) en bas de cette page.",
