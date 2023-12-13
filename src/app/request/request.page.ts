@@ -25,6 +25,7 @@ export class RequestPage {
         const token = this.route.snapshot.queryParams.tk;
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/dashboard";
         if (this.authService.currentUserValue) {
+            console.log('stexs');
             this.router.navigateByUrl(this.returnUrl);
         }
         if (token) {

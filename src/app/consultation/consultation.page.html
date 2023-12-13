@@ -49,7 +49,14 @@
                 >{{ consultation.doctor.phoneNumber }}</a
                 >
             </p>
-            <p class="backToDashboard" *ngIf="currentUser.role ==='nurse'" (click)="backToDashboard()">{{ 'Back to Dashboard' | translate }}</p>
+            <ion-button
+                    *ngIf="currentUser.role ==='nurse'"
+                    (click)="backToDashboard()"
+                    class="cancel-btn"
+                    i18n>
+                {{ 'common.back_to_dashboard' | translate }}
+            </ion-button>
+
         </ion-card-content>
     </ion-card>
     <ion-card
@@ -57,7 +64,14 @@
             class="closedWrapper ion-no-padding ion-no-margin">
 
         <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
-            <p class="backToDashboard" *ngIf="currentUser.role ==='nurse'" (click)="backToDashboard()">{{ 'Back to Dashboard' | translate }}</p>
+            <ion-button
+                    *ngIf="currentUser.role ==='nurse'"
+                    (click)="backToDashboard()"
+                    class="cancel-btn"
+                    i18n>
+                {{ 'common.back_to_dashboard' | translate }}
+            </ion-button>
+
         </ion-card-content>
     </ion-card>
 
@@ -79,14 +93,14 @@
         </ion-button> -->
 
 
-        <p class="backToDashboard" (click)="backToDashboard()" *ngIf="currentUser.role === 'nurse'">{{ 'Back to Dashboard' | translate }}</p>
+        <p class="backToDashboard" (click)="showCancelModal()" *ngIf="currentUser.role === 'nurse'">{{ 'consultation.cancel' | translate }}</p>
 
         <ion-button
                 *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'"
-                (click)="showCancelModal()"
+                (click)="backToDashboard()"
                 class="cancel-btn"
                 i18n>
-            {{ 'consultation.cancel' | translate }}
+            {{ 'common.back_to_dashboard' | translate }}
         </ion-button>
     </ion-card>
 

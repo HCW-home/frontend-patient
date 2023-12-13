@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile() {
-    this.router.navigate([`profile`]);
+    this.router.navigate([`/profile`]);
   }
 
   toggleLogout() {

@@ -1,5 +1,4 @@
 import { Component, OnInit  } from '@angular/core';
-import { ConfigService } from '../config.service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
@@ -34,7 +33,7 @@ export class ProfilePage implements OnInit {
       private modalController: ModalController,
       private translate: TranslateService,
       public validationService: ValidationService,
-      public configService: ConfigService) {
+  ) {
     this.form.valueChanges.subscribe(() => {
       this.errorMessage = '';
     })
@@ -59,8 +58,8 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  goToLogin() {
-    this.router.navigate(["/requester"])
+  backToDashboard() {
+    this.router.navigate(['/dashboard'])
   }
 
   async openCountrySelect() {

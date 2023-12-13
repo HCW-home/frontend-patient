@@ -1,5 +1,10 @@
 @import "src/theme/variables.scss";
 
+
+ion-content {
+  background-color: var(--blue-bg-color);
+  scrollbar-track-color: #f1f1f1;
+}
 .jumbotron {
   color: #ffffff;
   //height: 240px;
