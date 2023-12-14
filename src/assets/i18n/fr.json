@@ -2,6 +2,7 @@
   "awaitingConsultation.awaitingConsultation": "Veuillez patienter pendant que la téléconsultation démarre. Merci de garder cette fenêtre ouverte.",
   "cgu.termsAndConditions": "Conditions Générales d'Utilisation et politique de confidentialité (CGU)",
   "cgu.backToHome": "J'ai compris",
+  "cgu.selectCountry": "Ces conditions s'appliquent au pays :",
   "closingScreen.theConsultationIsNowOver": "La téléconsultation est terminée",
   "closingScreen.thankYouForUsing": "Merci d'avoir utilisé l'application {{branding}}.",
   "closingScreen.areYouSatisfied": "Donnez-nous votre avis sur l’application {{branding}} ?",
@@ -29,8 +30,18 @@
   "consultation.joinCall": "Rejoindre la téléconsultation en cours",
   "consultation.enterYourMessage": "Saisissez votre message",
   "consultation.audioMessage": "message audio",
-  "consultation.resume": "REPRENDRE",
   "consultation.videoCallRefused": "Appel vidéo refusé",
+  "consultation.cancel_request": "Annuler la demande",
+  "consultation.resume": "REPRENDRE",
+  "consultation.general_information": "Informations générales",
+  "consultation.patient_name": "Nom de famille du patient",
+  "consultation.handled_by": "Pris en charge par",
+  "consultation.requesting": "en attente",
+  "consultation.country": "Pays",
+  "consultation.sex": "Genre",
+  "consultation.area": "Domaine d'expertise",
+  "consultation.requested_at": "Demandé à",
+  "consultation.hospital": "Nom de l'hôpital/établissement :",
   "consultations.openedConsultations": "Consultations ouvertes",
   "consultations.browserNotSupported": "Votre navigateur n'est pas supporté pour une téléconsultation. Essayez d'ouvrir le lien dans Safari (IOS) ou Chrome. Si vous ouvrez ce lien depuis Outlook (IOS), vous devriez avoir une option pour ouvrir cette page dans un autre navigateur depuis le menu (...) en bas de cette page.",
   "consultations.yourBrowserIsNotCompatible": "Votre navigateur n'est pas compatible avec notre application, veuillez le mettre à jour ou utiliser un appareil plus récent. Pour cette télécommunication, vous avez besoin :",
@@ -72,6 +83,8 @@
   "login.translationRequestAccepted": "Merci pour la confirmation, vous allez recevoir très prochainement les informations par mail.",
   "login.translationRequestRefused": "Merci pour votre retour, nous allons informer le soignant de cette indisponibilité.",
   "login.homeIsAHUGTeleconsultation": "{{branding}} est un système de téléconsultation. Vous êtes sur le point de rejoindre votre consultation, veuillez ne pas quitter cette page.",
+  "login.termsText": "Vous devez accepter les",
+  "login.termsSecondText": "avant de pouvoir utiliser {{branding}}",
   "login.warning": "Attention",
   "login.thisApplicationIsIntented": "Cette application est prévue pour fonctionner via un lien d'invitation reçu par SMS ou par email. Cliquez sur ce lien au préalable afin d'ouvrir une consultation.",
   "login.closeTheApplication": "Fermer l'application",
@@ -97,6 +110,8 @@
   "login.pleaseEnterYourInvitationKey": "Merci d'entrer votre clé d'invitation",
   "login.youAlreadyOwnTheApplication": "Vous avez déjà l'application ?",
   "login.unsupportedBrowser": "Votre navigateur n'est pas supporté pour une téléconsultation. Essayez d'ouvrir le lien dans Safari (IOS) ou Chrome. Si vous ouvrez ce lien depuis Outlook (IOS), vous devriez avoir une option pour ouvrir cette page dans un autre navigateur depuis le menu (...) en bas de cette page.",
+  "login.firstName": "Prénom",
+  "login.lastName": "Nom de famille",
   "translatorForm.youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} est un système de téléconsultation. Vous êtes sur le point d'accepter un rendez-vous en ligne avec un patient et le soignant.",
   "translatorForm.caregiverName": "Nom du soignant",
   "translatorForm.pleaseFillYourInfo": " Merci de remplir les informations ci-dessous afin que nous puissions communiquer avec vous les accès à la téléconsultation.",
@@ -135,6 +150,8 @@
   "test.testStarting": "Démarrage du test",
   "test.theConnectionIs": "La connexion s'est effectuée avec succès",
   "videoRoom.call": "Appel",
+  "videoRoom.audioCall": "Appel audio",
+  "videoRoom.videoCall": "Appel vidéo",
   "videoRoom.audio": "audio",
   "videoRoom.video": "vidéo",
   "videoRoom.accept": "Accepter",
@@ -165,6 +182,9 @@
   "authenticate.authenticate": "Authentification",
   "authenticate.login_with": "Connexion institutionnelle",
   "authenticate.no_account": "Pas encore de compte ? Demandez en un ici",
+  "authenticate.welcome_back": "Bienvenue !",
+  "authenticate.sso_text": "Connectez-vous avec vos identifiants d'authentification unique",
+  "authenticate.access_permits": "Cet accès permet de demander une consultation sur {{branding}}.",
   "register.account_request": "Demande de compte",
   "register.email": "Email",
   "register.enter_email": "Saisir votre email",
@@ -246,35 +266,5 @@
   "fa": "فارسی",
   "ti": "ትግርኛ",
   "ru": "Русский",
-  "it": "italiano",
-  "consultation": {
-    "cancel_request": "Annuler la demande",
-    "hospital": "Nom de l'hôpital/établissement :",
-    "requested_at": "Demandé à",
-    "area": "Domaine d'expertise",
-    "sex": "Genre",
-    "country": "Pays",
-    "requesting": "en attente",
-    "handled_by": "Pris en charge par",
-    "patient_name": "Nom de famille du patient",
-    "general_information": "Informations générales"
-  },
-  "authenticate": {
-    "access_permits": "Cet accès permet de demander une consultation sur {{branding}}.",
-    "sso_text": "Connectez-vous avec vos identifiants d'authentification unique",
-    "welcome_back": "Bienvenue !"
-  },
-  "videoRoom": {
-    "videoCall": "Appel vidéo",
-    "audioCall": "Appel audio"
-  },
-  "login": {
-    "lastName": "Nom de famille",
-    "firstName": "Prénom",
-    "termsSecondText": "avant de pouvoir utiliser {{branding}}",
-    "termsText": "Vous devez accepter les"
-  },
-  "cgu": {
-    "selectCountry": "Ces conditions s'appliquent au pays :"
-  }
+  "it": "italiano"
 }
