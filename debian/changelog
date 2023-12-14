@@ -1,3 +1,10 @@
+hcw-athome-patient (0.4.4.68) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * fix input widths in register nurs screen
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 14 Dec 2023 14:32:51 +0100
+
 hcw-athome-patient (0.4.4.67) focal; urgency=medium
 
   [ Olivier Bitsch ]
