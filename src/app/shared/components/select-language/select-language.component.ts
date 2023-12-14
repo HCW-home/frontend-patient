@@ -8,9 +8,11 @@ import {LanguageService} from "../../services/language.service";
   styleUrls: ["./select-language.component.scss"],
 })
 export class SelectLanguageComponent {
-  selectedLanguage: string
+  selectedLanguage: string;
+
   constructor(public translate: TranslateService,
-              private languageService: LanguageService) {
+              private languageService: LanguageService
+  ) {
     this.selectedLanguage = this.languageService.getCurrentLanguage();
   }
 

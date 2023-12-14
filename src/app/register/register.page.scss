@@ -69,7 +69,12 @@ ion-content {
     flex-direction: column;
     ion-item {
       width: 440px;
-      @media (max-width: 598px) {
+
+      @media (max-width: 960px) {
+        width: 350px;
+      }
+
+      @media (max-width: 770px) {
         width: 300px;
       }
       @media (max-width: 350px) {
@@ -104,11 +109,6 @@ ion-content {
     margin-top: 2rem;
 
     .label {
-      //color: black;
-      //font-style: normal;
-      //font-size: 14px;
-      //font-weight: 500;
-      //line-height: 1.2;
       text-decoration: underline;
       cursor: pointer;
     }
