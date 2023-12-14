@@ -90,6 +90,11 @@ ion-content {
   .checkbox-wrapper {
     display: flex;
     gap: 10px;
+
+    ion-checkbox {
+      min-width: fit-content;
+    }
+
   }
 
 

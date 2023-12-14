@@ -44,11 +44,11 @@ export class RegisterPage implements OnInit {
   }
 
   goToLogin() {
-    this.router.navigate(["/requester"])
+    this.router.navigate(["/requester"]);
   }
 
   goToTerms() {
-    this.router.navigate(["/cgu"])
+    this.router.navigate(["/cgu"]);
   }
 
   async openCountrySelect() {

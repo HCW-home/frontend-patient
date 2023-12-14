@@ -104,15 +104,15 @@
                                     </ion-select>
                                 </ion-item>
                             </ion-list>
-
-                        </div>
-
-                        <div class="checkbox-wrapper">
-                            <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
-                            <span>{{ 'register.by_checking_box' | translate }} <span class="terms"
-                                                                                     (click)="goToTerms()">{{ 'register.terms' | translate }}</span>
+                            <div class="checkbox-wrapper">
+                                <ion-checkbox slot="start" formControlName="terms"></ion-checkbox>
+                                <span>{{ 'register.by_checking_box' | translate }} <span class="terms"
+                                                                                         (click)="goToTerms()">{{ 'register.terms' | translate }}</span>
                         </span>
+                            </div>
                         </div>
+
+
                         <ion-note slot="error" class="error-text"
                                   *ngIf="errorMessage">{{ errorMessage }}
                         </ion-note>
