@@ -201,7 +201,7 @@
   "dashboard.area": "Domaine d'expertise :",
   "dashboard.country": "Pays :",
   "dashboard.sex": "Genre :",
-  "dashboard.hospital": "Hôpital/établissement :",
+  "dashboard.hospital": "Hôpital / établissement :",
   "dashboard.resume": "Reprendre",
   "dashboard.requesting": "en attente",
   "dashboard.canceled": "annulé",
@@ -226,8 +226,8 @@
   "request_consultation.enter_age": "Saisir l'age",
   "request_consultation.country": "Pays",
   "request_consultation.select_country": "Choisissez le pays",
-  "request_consultation.patient_hospitality": "Hôpital/établissement du patient",
-  "request_consultation.enter_patient_hospitality": "Saisir l'hôpital/l'établissement du patient",
+  "request_consultation.patient_hospitality": "Hôpital / établissement du patient",
+  "request_consultation.enter_patient_hospitality": "Saisir l'hôpital / l'établissement du patient",
   "request_consultation.message_optional": "Message (optionnel)",
   "request_consultation.enter_text": "Saisir du texte",
   "request_consultation.upload_document": "Téléverser un document",
@@ -246,5 +246,35 @@
   "fa": "فارسی",
   "ti": "ትግርኛ",
   "ru": "Русский",
-  "it": "italiano"
+  "it": "italiano",
+  "consultation": {
+    "cancel_request": "Annuler la demande",
+    "hospital": "Nom de l'hôpital/établissement :",
+    "requested_at": "Demandé à",
+    "area": "Domaine d'expertise",
+    "sex": "Genre",
+    "country": "Pays",
+    "requesting": "en attente",
+    "handled_by": "Pris en charge par",
+    "patient_name": "Nom de famille du patient",
+    "general_information": "Informations générales"
+  },
+  "authenticate": {
+    "access_permits": "Cet accès permet de demander une consultation sur {{branding}}.",
+    "sso_text": "Connectez-vous avec vos identifiants d'authentification unique",
+    "welcome_back": "Bienvenue !"
+  },
+  "videoRoom": {
+    "videoCall": "Appel vidéo",
+    "audioCall": "Appel audio"
+  },
+  "login": {
+    "lastName": "Nom de famille",
+    "firstName": "Prénom",
+    "termsSecondText": "avant de pouvoir utiliser {{branding}}",
+    "termsText": "Vous devez accepter les"
+  },
+  "cgu": {
+    "selectCountry": "Ces conditions s'appliquent au pays :"
+  }
 }
