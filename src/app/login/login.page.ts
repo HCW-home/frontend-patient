@@ -15,7 +15,6 @@ declare let cordova: any;
 declare let window: any;
 import { AuthService } from "../auth/auth.service";
 import { ConsultationService } from "../consultation.service";
-import { access } from "fs";
 import { ConfigService } from "../config.service";
 import { SocketEventsService } from "../socket-events.service";
 import { App } from '@capacitor/app';

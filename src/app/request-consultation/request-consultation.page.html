@@ -6,134 +6,142 @@
             <div class="container">
 
 
+                <ion-text><h1
+                        class="authenticate"> {{ 'request_consultation.consultation_request_form' | translate }}</h1>
+                </ion-text>
 
-
-
-            <ion-text><h1 class="authenticate"> {{'request_consultation.consultation_request_form' | translate}}</h1>
-            </ion-text>
-
-            <div class="request-text">
-                {{'request_consultation.request_form_title' | translate}}
-            </div>
-
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-                <ion-list>
-                    <ion-item fill="solid" class="mb-3">
-                        <ion-select interface="popover"
-                                    placeholder="{{ 'request_consultation.select_expert_area' | translate }}"
-                                    formControlName="queue">
-                            <ion-select-option [value]="option.id"
-                                               *ngFor="let option of queues">{{option.name}}</ion-select-option>
-                        </ion-select>
-                        <ion-note slot="error"
-                                  *ngIf="validationService.showError(form, 'queue')">{{getErrorMessage('queue')}}</ion-note>
-                    </ion-item>
-                </ion-list>
-
-
-                <ion-item fill="solid" class="mb-3">
-                    <ion-label
-                            position="floating">{{ 'request_consultation.patient_firstname' | translate }}</ion-label>
-                    <ion-input
-                            (ionBlur)="validationService.clearSpace(form, 'firstName')"
-                            (ionFocus)="validationService.resetInputValidation(form, 'firstName')"
-                            (ionChange)="validationService.ltrim(form, 'firstName')"
-                            placeholder="{{ 'request_consultation.enter_patient_firstname' | translate }}"
-                            formControlName="firstName"
-                    ></ion-input>
-                    <ion-note slot="error"
-                              *ngIf="validationService.showError(form, 'firstName')">{{getErrorMessage('firstName')}}</ion-note>
-                </ion-item>
-
-                <ion-item fill="solid" class="mb-3">
-                    <ion-label position="floating">{{ 'request_consultation.patient_lastname' | translate }}</ion-label>
-                    <ion-input
-                            (ionBlur)="validationService.clearSpace(form, 'lastName')"
-                            (ionFocus)="validationService.resetInputValidation(form, 'lastName')"
-                            (ionChange)="validationService.ltrim(form, 'lastName')"
-                            placeholder="{{ 'request_consultation.enter_patient_lastname' | translate }}"
-                            formControlName="lastName"
-                    ></ion-input>
-                    <ion-note slot="error"
-                              *ngIf="validationService.showError(form, 'lastName')">{{getErrorMessage('lastName')}}</ion-note>
-                </ion-item>
-
-                <ion-list>
-                    <ion-item fill="solid" class="mb-3">
-                        <ion-select interface="popover"
-                                    placeholder="{{ 'request_consultation.select_gender' | translate }}"
-                                    formControlName="sex">
-                            <ion-select-option [value]="option.id"
-                                               *ngFor="let option of genders">{{option.name}}</ion-select-option>
-                        </ion-select>
-                        <ion-note slot="error"
-                                  *ngIf="validationService.showError(form, 'sex')">{{getErrorMessage('sex')}}</ion-note>
-
-                    </ion-item>
-                </ion-list>
-
-
-                <ion-item fill="solid" class="mb-3">
-                    <ion-label position="floating">{{ 'request_consultation.age' | translate }}</ion-label>
-                    <ion-input placeholder="{{ 'request_consultation.enter_age' | translate }}" type="number"
-                               formControlName="age"
-                    ></ion-input>
-                </ion-item>
-
-                <ion-item (click)="openCountrySelect()" fill="solid" class="mb-3">
-                    <ion-label position="floating">{{ 'request_consultation.country' | translate }}</ion-label>
-                    <ion-input readonly="true" placeholder="{{ 'request_consultation.select_country' | translate }}"
-                               formControlName="country"
-                    ></ion-input>
-                </ion-item>
-
-                <ion-item fill="solid" class="mb-3">
-                    <ion-label
-                            position="floating">{{ 'request_consultation.patient_hospitality' | translate }}</ion-label>
-                    <ion-input placeholder="{{ 'request_consultation.enter_patient_hospitality' | translate }}"
-                               formControlName="organization"
-                    ></ion-input>
-                </ion-item>
-
-                <ion-item fill="solid" class="mt-3 mb-3">
-                    <ion-label position="floating">{{ 'request_consultation.message_optional' | translate }}</ion-label>
-                    <ion-textarea label="Solid textarea" labelPlacement="floating" fill="solid"
-                                  formControlName="message"
-                                  placeholder="{{ 'request_consultation.enter_text' | translate }}"></ion-textarea>
-                </ion-item>
-
-
-                <div class="attachment-wrapper" (click)="fileInput.value = null;fileInput.click()"
-                     fileDrop
-                     (fileDropped)="onFileDropped($event)">
-                    <input type="file" #fileInput class="d-none" style="display: none"
-                           (change)="onFileListener($event)">
-                    <div class="uploader-wrapper">
-                        <ion-img src="assets/icons/upload.svg"></ion-img>
-                        <span class="upload-text"
-                              *ngIf="!file">{{ 'request_consultation.upload_document' | translate }}</span>
-
-                        <div class="upload-success-wrapper" *ngIf="file">
-                            <ion-img src="assets/icons/checkmark.svg"></ion-img>
-                            <span class="upload-success-text">{{ 'request_consultation.upload_document' | translate }}</span>
-                            <ion-img src="assets/icons/remove.svg" (click)="removeFile($event)"></ion-img>
-                        </div>
-
-                    </div>
+                <div class="request-text">
+                    {{ 'request_consultation.request_form_title' | translate }}
                 </div>
 
-                <button class="btn green mt-2 big" type="submit" [disabled]="!form.valid">
-                    {{ 'request_consultation.request_consultation' | translate }}
-                </button>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-                <div class="label-wrapper" (click)="backToDashboard()">
+                    <ion-list>
+                        <ion-item fill="solid" class="mb-3">
+                            <ion-select interface="popover"
+                                        placeholder="{{ 'request_consultation.select_expert_area' | translate }}"
+                                        formControlName="queue">
+                                <ion-select-option [value]="option.id"
+                                                   *ngFor="let option of queues">{{ option.name }}
+                                </ion-select-option>
+                            </ion-select>
+                            <ion-note slot="error"
+                                      *ngIf="validationService.showError(form, 'queue')">{{ getErrorMessage('queue') }}
+                            </ion-note>
+                        </ion-item>
+                    </ion-list>
+
+
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label
+                                position="floating">{{ 'request_consultation.patient_firstname' | translate }}
+                        </ion-label>
+                        <ion-input
+                                (ionBlur)="validationService.clearSpace(form, 'firstName')"
+                                (ionFocus)="validationService.resetInputValidation(form, 'firstName')"
+                                (ionChange)="validationService.ltrim(form, 'firstName')"
+                                placeholder="{{ 'request_consultation.enter_patient_firstname' | translate }}"
+                                formControlName="firstName"
+                        ></ion-input>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'firstName')">{{ getErrorMessage('firstName') }}
+                        </ion-note>
+                    </ion-item>
+
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label position="floating">{{ 'request_consultation.patient_lastname' | translate }}
+                        </ion-label>
+                        <ion-input
+                                (ionBlur)="validationService.clearSpace(form, 'lastName')"
+                                (ionFocus)="validationService.resetInputValidation(form, 'lastName')"
+                                (ionChange)="validationService.ltrim(form, 'lastName')"
+                                placeholder="{{ 'request_consultation.enter_patient_lastname' | translate }}"
+                                formControlName="lastName"
+                        ></ion-input>
+                        <ion-note slot="error"
+                                  *ngIf="validationService.showError(form, 'lastName')">{{ getErrorMessage('lastName') }}
+                        </ion-note>
+                    </ion-item>
+
+                    <ion-list>
+                        <ion-item fill="solid" class="mb-3">
+                            <ion-select interface="popover"
+                                        placeholder="{{ 'request_consultation.select_gender' | translate }}"
+                                        formControlName="sex">
+                                <ion-select-option [value]="option.id"
+                                                   *ngFor="let option of genders">{{ option.name }}
+                                </ion-select-option>
+                            </ion-select>
+                            <ion-note slot="error"
+                                      *ngIf="validationService.showError(form, 'sex')">{{ getErrorMessage('sex') }}
+                            </ion-note>
+
+                        </ion-item>
+                    </ion-list>
+
+
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label position="floating">{{ 'request_consultation.age' | translate }}</ion-label>
+                        <ion-input placeholder="{{ 'request_consultation.enter_age' | translate }}" type="number"
+                                   formControlName="age"
+                        ></ion-input>
+                    </ion-item>
+
+                    <ion-item (click)="openCountrySelect()" fill="solid" class="mb-3">
+                        <ion-label position="floating">{{ 'request_consultation.country' | translate }}</ion-label>
+                        <ion-input readonly="true" placeholder="{{ 'request_consultation.select_country' | translate }}"
+                                   formControlName="country"
+                        ></ion-input>
+                    </ion-item>
+
+                    <ion-item fill="solid" class="mb-3">
+                        <ion-label
+                                position="floating">{{ 'request_consultation.patient_hospitality' | translate }}
+                        </ion-label>
+                        <ion-input placeholder="{{ 'request_consultation.enter_patient_hospitality' | translate }}"
+                                   formControlName="organization"
+                        ></ion-input>
+                    </ion-item>
+
+                    <ion-item fill="solid" class="mt-3 mb-3">
+                        <ion-label position="floating">{{ 'request_consultation.message_optional' | translate }}
+                        </ion-label>
+                        <ion-textarea label="Solid textarea" labelPlacement="floating" fill="solid"
+                                      formControlName="message"
+                                      placeholder="{{ 'request_consultation.enter_text' | translate }}"></ion-textarea>
+                    </ion-item>
+
+
+                    <div class="attachment-wrapper" (click)="fileInput.value = null;fileInput.click()"
+                         fileDrop
+                         (fileDropped)="onFileDropped($event)">
+                        <input type="file" #fileInput class="d-none" style="display: none"
+                               (change)="onFileListener($event)">
+                        <div class="uploader-wrapper">
+                            <ion-img src="assets/icons/upload.svg"></ion-img>
+                            <span class="upload-text"
+                                  *ngIf="!file">{{ 'request_consultation.upload_document' | translate }}</span>
+
+                            <div class="upload-success-wrapper" *ngIf="file">
+                                <ion-img src="assets/icons/checkmark.svg"></ion-img>
+                                <span class="upload-success-text">{{ 'request_consultation.upload_document' | translate }}</span>
+                                <ion-img src="assets/icons/remove.svg" (click)="removeFile($event)"></ion-img>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="btn green mt-2 big" type="submit" [disabled]="!form.valid">
+                        {{ 'request_consultation.request_consultation' | translate }}
+                    </button>
+
+                    <div class="label-wrapper" (click)="backToDashboard()">
                  <span class="label">
                     {{ 'common.back_to_dashboard' | translate }}
                 </span>
-                </div>
+                    </div>
 
-            </form>
+                </form>
 
 
             </div>

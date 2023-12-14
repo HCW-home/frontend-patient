@@ -15,9 +15,9 @@ import {AuthService} from "../auth/auth.service";
     styleUrls: ["./dashboard.page.scss"],
 })
 export class DashboardPage implements OnDestroy {
+    private subscriptions: Array<Subscription> = [];
     currentUser: any;
     noMessageText: string;
-    private subscriptions: Array<Subscription> = [];
     loading: boolean = true;
     ringingConsultation: any;
     callingDoctor: any;

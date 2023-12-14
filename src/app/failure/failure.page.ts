@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-success',
+  selector: 'app-failure',
   templateUrl: './failure.page.html',
   styleUrls: ['./failure.page.scss'],
 })
