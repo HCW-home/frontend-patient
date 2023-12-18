@@ -228,7 +228,7 @@ export class ConsultationService {
 
         } else {
 
-            const rawFile = new File([file], file.name, {
+            const rawFile = new File([file.blob], file.name, {
                 type: file.mimeType,
             });
 
