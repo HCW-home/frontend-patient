@@ -37,6 +37,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
     @ViewChild(IonModal) modal: IonModal;
 
     currentUser;
+    callingDoctor;
     consultationId;
     consultation;
     chatMessages = [];
@@ -152,6 +153,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
                 this.zone.run(() => {
                     this.callRunning = true;
                     this.ongoingCall = e.data.msg;
+                    this.callingDoctor = e.data.user;
                     this.shouldJoinCall = false;
                 });
             })
@@ -162,6 +164,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
                     this.callRunning = false;
                     this.ongoingCall = null;
                     this.shouldJoinCall = false;
+                    this.callingDoctor = null;
                 });
             })
         );
@@ -557,6 +560,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
             NativeAudio.stop({assetId: "ringSound"});
             this.callRunning = false;
             this.shouldJoinCall = false;
+            this.callingDoctor = null;
         });
     }
 
