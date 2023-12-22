@@ -1,3 +1,12 @@
+hcw-athome-patient (5.0.1) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * pdf upload fix
+  * refs #6294, Patient doesn't see doctor name + kind of call when doctor calling
+  * add Access as Doctor button
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 22 Dec 2023 13:23:22 +0100
+
 hcw-athome-patient (5.0.0) focal; urgency=medium
 
   * Release 5.0.0
