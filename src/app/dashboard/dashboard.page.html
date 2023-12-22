@@ -242,16 +242,11 @@
 
 <ion-content>
     <app-header></app-header>
-    <div class="dashboard-wrapper">
-        <div class="text-end">
-            <button class="btn green big" (click)="requestConsultation()">
-                {{'dashboard.request_new_consultation' | translate}}
-            </button>
-        </div>
+    <div class="dashboard-wrapper ">
         <div class="position-relative ">
-            <h1 class="page-title">{{'dashboard.consultations' | translate}}
+            <h2 class="page-title">{{'dashboard.consultations' | translate}}
                 <ion-badge class="badge">{{activeCount}}</ion-badge>
-            </h1>
+            </h2>
         </div>
 
 
@@ -339,9 +334,9 @@
         </ng-template>
 
         <div class="position-relative mt-4">
-            <h1 class="page-title mt-5">{{'dashboard.history' | translate}}
+            <h2 class="page-title mt-5">{{'dashboard.history' | translate}}
                 <ion-badge class="badge">{{closedCount}}</ion-badge>
-            </h1>
+            </h2>
         </div>
 
         <app-loader *ngIf="loading; else loaded"></app-loader>

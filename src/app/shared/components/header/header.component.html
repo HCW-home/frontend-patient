@@ -7,7 +7,7 @@
             <ion-icon name="person-outline"></ion-icon>
             {{ currentUser.firstName + " " + currentUser.lastName }}
             <div class="items" *ngIf="logoutToggle">
-                <div  (click)="goToProfile()">
+                <div (click)="goToProfile()">
                     <ion-icon name="person-outline"></ion-icon>
                     {{ 'header.profile' | translate }}
                 </div>
@@ -16,7 +16,20 @@
                     {{ 'header.logOut' | translate }}
                 </div>
             </div>
+
+
+        </div>
+
+    </div>
+    <div class="new-consultation">
+        <div *ngIf="configService?.config?.doctorExternalLink" (click)="toDoctor()" class="new-consultation-button">
+            {{'header.accessAsDoctor' | translate}}
+            <img src="assets/icons/in-new-tab.svg" alt="">
+        </div>
+        <div class="request-new">
+            {{ 'dashboard.request_new_consultation' | translate }}
         </div>
     </div>
+
 </div>
 

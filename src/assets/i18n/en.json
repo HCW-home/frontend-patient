@@ -249,7 +249,8 @@
   },
   "header": {
     "profile": "Profile",
-    "logOut": "Logout"
+    "logOut": "Logout",
+    "accessAsDoctor": "Access as Doctor"
   },
   "profile": {
     "profile": "Profile"

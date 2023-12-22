@@ -1,6 +1,7 @@
 import {Component, NgZone, OnInit} from "@angular/core";
 import { AuthService } from '../../../auth/auth.service';
 import {Router} from "@angular/router";
+import {ConfigService} from "../../../config.service";
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private zone: NgZone
+    private zone: NgZone,
+    public configService: ConfigService,
   ) { }
 
   ngOnInit() {
@@ -28,6 +30,17 @@ export class HeaderComponent implements OnInit {
   goToProfile() {
     this.router.navigate([`/profile`]);
   }
+
+  toDoctor() {
+    if (this.configService.config?.doctorExternalLink) {
+      window.open(this.configService.config.doctorExternalLink, 'blank')
+    }
+  }
+
+  requestConsultation() {
+    this.router.navigate(["/request-consultation"]);
+  }
+
 
   toggleLogout() {
     this.zone.run(() => {
