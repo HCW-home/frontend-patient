@@ -5,10 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MarkdownModule } from "ngx-markdown";
 
 import { IonicModule } from '@ionic/angular';
-
-// translate
 import { I18nModule } from '../i18n/i18n.module';
-
 import { CguPage } from './cgu.page';
 
 const routes: Routes = [

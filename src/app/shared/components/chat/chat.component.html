@@ -44,11 +44,9 @@
     <ion-item>
       <ion-input
         required
-        #chat_input
         placeholder="Send a message"
         [(ngModel)]="message"
         (keyup.enter)="sendMessage()"
-        (ionFocus)="onFocus()"
       ></ion-input>
     </ion-item>
   </div>

@@ -25,7 +25,6 @@
 }
 
 .terms-btn {
-  //background: #fff;
   font-size: 0.8em;
 }
 
@@ -33,7 +32,6 @@
   margin: 16px;
   font-size: 37px;
   text-align: center;
-  //color: #ffff;
   font-weight: 500;
 }
 
@@ -58,11 +56,6 @@ p {
 
 .container {
   padding: 24px;
-  //text-align: center;
-}
-
-ion-label {
-  //color: #ffff;
 }
 
 .left-side {
@@ -88,19 +81,7 @@ ion-label {
   }
 }
 
-ion-item {
-  //--color: #fff;
-  //--border-color: white; // default underline color
-  //--highlight-color-valid: white; // valid underline color
-
-  ion-input,
-  ion-datetime {
-    //--placeholder-color: #ceecff;
-  }
-}
-
 a {
-  //color: #fff;
   text-decoration: none;
 }
 
@@ -125,7 +106,6 @@ ion-card {
 }
 
 .title {
-  //color: #ffffff;
   text-align: center;
   margin: 80px auto 40px;
 }
@@ -153,21 +133,15 @@ ion-content {
 .checkbox-wrapper {
   display: flex;
   gap: 10px;
-  //color: white;
   justify-content: center;
   margin-top: 3rem;
 
   ion-checkbox {
     min-width: fit-content;
-    //--border-color: #fff;
-    //--background-checked: #fff;
-    //--checkmark-color: var(--blue-bg-color);
-    //--border-color-checked: var(--blue-bg-color);
   }
 
   .terms {
     text-decoration: underline;
-    //text-decoration-color: #FFFFFF;
     cursor: pointer;
   }
 
@@ -177,7 +151,6 @@ footer {
   display: flex;
   align-items: center;
   align-content: center;
-  //color: white;
   justify-content: center;
 
   div {
@@ -217,7 +190,7 @@ footer {
 
     .title {
       text-align: left;
-      margin-left: 0px;
+      margin-left: 0;
     }
   }
 }

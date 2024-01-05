@@ -8,6 +8,7 @@ import {SocketEventsService} from "../socket-events.service";
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../auth/auth.service";
+import {NurseService} from "../shared/services/nurse.service";
 
 @Component({
     selector: "app-dashboard",
@@ -15,9 +16,9 @@ import {AuthService} from "../auth/auth.service";
     styleUrls: ["./dashboard.page.scss"],
 })
 export class DashboardPage implements OnDestroy {
+    private subscriptions: Array<Subscription> = [];
     currentUser: any;
     noMessageText: string;
-    private subscriptions: Array<Subscription> = [];
     loading: boolean = true;
     ringingConsultation: any;
     callingDoctor: any;
@@ -27,7 +28,8 @@ export class DashboardPage implements OnDestroy {
     consultations: any[] = [];
     closedConsultations: any[] = [];
     wide: boolean = false;
-
+    markdownExists: boolean = false;
+    markdownUrl: string = 'assets/footer.md';
     callRunning = false;
     ongoingCall = null;
     shouldJoinCall = false;
@@ -43,7 +45,8 @@ export class DashboardPage implements OnDestroy {
         private zone: NgZone,
         private authService: AuthService,
         private platform: Platform,
-        private menuController: MenuController
+        private menuController: MenuController,
+        private nurseService: NurseService
 
     ) {
     }
@@ -57,6 +60,7 @@ export class DashboardPage implements OnDestroy {
         this.listenToCallEvents();
         this.setWidth();
         this.listenToEvents();
+        this.checkMarkdown();
     }
 
     setWidth() {
@@ -235,6 +239,16 @@ export class DashboardPage implements OnDestroy {
             await this._socketEventsService.init(this.currentUser, () => {
             });
         }
+    }
+
+    checkMarkdown() {
+        this.nurseService.checkMarkdownExists(this.markdownUrl).subscribe({
+            next: (res) => {
+                this.markdownExists = true;
+            }, error: (err) => {
+                this.markdownExists = false;
+            }
+        })
     }
 
 }

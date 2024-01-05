@@ -13,22 +13,11 @@ import { App } from '@capacitor/app';
   styleUrls: ["./closing-screen.page.scss"],
 })
 export class ClosingScreenPage implements OnInit {
-  // The ID of the consultation that just has been closed
   private consultationId;
-
-  // Whether or not the feedback has been submitted (i.e. the request is ongoing)
   public feedbackSubmitted: boolean = false;
-
-  // Whether or not the feedback form has been saved
   public feedbackSaved: boolean = false;
-
-  // The current rating selected by the user () or null if none selected
   public userRating: string = null;
-
-  // The feedback comment written by the user
   public userComment: string = "";
-
-  // The list of rating values
   public ratings: string[] = ["good", "ok", "bad"];
 
   currentUser;
@@ -43,7 +32,6 @@ export class ClosingScreenPage implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
-    // Get the consultation ID from the route
     this.consultationId = this.activeRoute.snapshot.params.id;
   }
 
