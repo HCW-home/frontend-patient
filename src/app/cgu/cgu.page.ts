@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LocationStrategy } from "@angular/common";
 import { ConfigService } from '../config.service';
 
-
 @Component({
   selector: 'app-cgu',
   templateUrl: './cgu.page.html',

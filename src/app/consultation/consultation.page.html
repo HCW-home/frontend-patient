@@ -88,12 +88,6 @@
         </ion-title>
         <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
 
-        <!--
-        <ion-button class="video-btn">
-          <ion-icon slot="start" name="mic"></ion-icon> &nbsp;&nbsp; laisser un
-          message audio
-        </ion-button> -->
-
 
         <p class="backToDashboard" *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'" (click)="showCancelModal()">{{ 'consultation.cancel' | translate }}</p>
 
@@ -106,16 +100,12 @@
     </ion-card>
 
     <ion-grid class="chat">
-        <ion-grid
-                *ngFor="let msg of chatMessages"
+        <ion-grid *ngFor="let msg of chatMessages"
                 [ngClass]="{
-        outgoing: msg.direction === 'outgoing',
-        incoming: msg.direction === 'incoming'
-      }"
-                class="ion-margin"
-        >
-
-
+                    outgoing: msg.direction === 'outgoing',
+                    incoming: msg.direction === 'incoming'
+                 }"
+                class="ion-margin">
             <ion-row *ngIf="msg.isFile" class="ion-no-padding ion-no-margin">
                 <ion-col class="chat-text-container">
                     <ion-row class="bubble ion-padding">
@@ -140,11 +130,9 @@
                 {{ 'consultation.yourBrowserDoesNotSupport' | translate }}
             </audio>
 
-            <ion-row
-                    [ngClass]="{
-        'right-img': msg.direction === 'outgoing',
-        'left-img': msg.direction === 'incoming'  }"
-            >
+            <ion-row [ngClass]="{
+                    'right-img': msg.direction === 'outgoing',
+                    'left-img': msg.direction === 'incoming'  }">
                 <img
                         *ngIf="msg.isImage"
                         style="width: 60%; height: 60%; display: block"

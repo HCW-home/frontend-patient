@@ -9,8 +9,7 @@ import { ModalController } from '@ionic/angular';
     styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit {
-    @Input()
-    user;
+    @Input() user;
 
     @Output()
     messageReceived = new EventEmitter<any>();
@@ -24,12 +23,6 @@ export class ChatComponent implements OnInit {
     constructor(public modalController: ModalController) { }
 
     ngOnInit() { }
-
-    eventKeyPress(event) {
-        if (event && event.keyCode === 13) {
-            this.sendMessage();
-        }
-    }
 
     sendMessage(): void {
         if (this.user && this.message) {

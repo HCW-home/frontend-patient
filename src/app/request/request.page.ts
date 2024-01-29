@@ -38,8 +38,9 @@ export class RequestPage implements OnInit {
     ionViewWillEnter() {
         const token = this.route.snapshot.queryParams.tk;
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/dashboard";
-        if (this.authService.currentUserValue) {
-            this.router.navigateByUrl(this.returnUrl);
+        const currentUser = this.authService.currentUserValue;
+        if (currentUser) {
+            this.router.navigate([this.returnUrl]);
         }
         if (token) {
             this.authService

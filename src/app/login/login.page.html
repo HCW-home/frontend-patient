@@ -1,8 +1,7 @@
 <ion-content>
     <div class='center'>
-        <div
-                *ngIf="configService.config && roomService.deviceInfo().flag !== 'unknown'"
-                class="custom-card">
+        <div *ngIf="configService.config && roomService.deviceInfo().flag !== 'unknown'"
+             class="custom-card">
             <div class="left-side">
                 <div class="container">
                     <p *ngIf="!markdownExists">
@@ -120,7 +119,7 @@
                                 class="login-form"
                         >
                             <ion-item lines="full" *ngIf="!isProduction()">
-                                <ion-label  position="floating" text-wrap>
+                                <ion-label position="floating" text-wrap>
                                     {{ 'login.invitationKey' | translate }}
                                 </ion-label>
                                 <ion-input
@@ -148,7 +147,7 @@
                                         placeholder="{{'login.firstName'|translate}}"
                                 ></ion-input>
                             </ion-item>
-                            <ion-item  fill="solid" *ngIf="isExpert">
+                            <ion-item fill="solid" *ngIf="isExpert">
                                 <ion-label position="floating" text-wrap>
                                     {{ 'login.lastName' | translate }}
                                 </ion-label>
@@ -161,7 +160,7 @@
                             </ion-item>
 
                             <div class="checkbox-wrapper">
-                                <ion-checkbox  [(ngModel)]="termsChecked"></ion-checkbox>
+                                <ion-checkbox [(ngModel)]="termsChecked"></ion-checkbox>
                                 <span> {{ 'login.termsText' | translate:configService.config }} <span class="terms"
                                                                                                       (click)="goToTerms()">{{ 'register.terms' | translate }}</span>  {{ 'login.termsSecondText' | translate:configService.config }} </span>
                             </div>

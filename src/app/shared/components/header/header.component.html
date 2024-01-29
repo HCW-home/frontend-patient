@@ -22,7 +22,7 @@
 
     </div>
     <div class="new-consultation">
-        <div *ngIf="configService?.config?.doctorExternalLink" (click)="toDoctor()" class="new-consultation-button">
+        <div *ngIf="configService?.config?.nurseExternalLink" (click)="toDoctor()" class="new-consultation-button">
             {{'header.accessAsDoctor' | translate}}
             <img src="assets/icons/in-new-tab.svg" alt="">
         </div>

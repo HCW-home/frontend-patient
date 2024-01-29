@@ -1,23 +1,18 @@
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {Component, ViewChild, OnInit, NgZone, AfterViewInit, HostListener} from "@angular/core";
 import {IonContent, Platform} from "@ionic/angular";
-
 import {ConsultationService} from "../consultation.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {MessageService} from "../message.service";
 import {AuthService} from "../auth/auth.service";
 import {SocketEventsService} from "../socket-events.service";
 import {CallService} from "../call.service";
-
 import {ModalController} from "@ionic/angular";
 import {CloseConsultationComponent} from "../shared/components/close-consultation/close-consultation.component";
 import {ChooseAttachmentComponent} from "../shared/components/choose-attachment/choose-attachment.component";
 import {Subscription} from "rxjs";
 import {first} from "rxjs/operators";
-
 import {File, FileEntry} from "@awesome-cordova-plugins/file/ngx";
-
-
 import {Media, MediaObject} from "@awesome-cordova-plugins/media/ngx";
 import {GlobalVariableService} from "../global-variable.service";
 import {TranslateService} from "@ngx-translate/core";

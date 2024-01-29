@@ -32,8 +32,8 @@ export class HeaderComponent implements OnInit {
   }
 
   toDoctor() {
-    if (this.configService.config?.doctorExternalLink) {
-      window.open(this.configService.config.doctorExternalLink, 'blank')
+    if (this.configService.config?.nurseExternalLink) {
+      window.open(this.configService.config.nurseExternalLink, '_blank')
     }
   }
 
