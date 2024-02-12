@@ -132,12 +132,27 @@ ion-content {
 
 .checkbox-wrapper {
   display: flex;
+  align-items: center;
+  cursor: pointer;
   gap: 10px;
   justify-content: center;
   margin-top: 3rem;
 
+  .custom-checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .checkbox-text {
+    margin-left: 8px;
+  }
+
   ion-checkbox {
     min-width: fit-content;
+    @media (max-width: 598px) {
+      height: 30px;
+    }
   }
 
   .terms {

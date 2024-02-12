@@ -533,8 +533,13 @@ export class LoginPage implements OnInit {
     App.exitApp();
   }
 
-  goToTerms() {
+  goToTerms(event: MouseEvent) {
+    event.stopPropagation();
     this.router.navigate(["/cgu"]);
+  }
+
+  toggleCheckbox() {
+    this.termsChecked = !this.termsChecked;
   }
 
   /**

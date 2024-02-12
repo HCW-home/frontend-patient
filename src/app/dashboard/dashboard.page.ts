@@ -47,9 +47,7 @@ export class DashboardPage implements OnDestroy {
         private platform: Platform,
         private menuController: MenuController,
         private nurseService: NurseService
-
-    ) {
-    }
+    ) {}
 
     ionViewDidEnter() {
         this.checkAndReinitializeSocket();
