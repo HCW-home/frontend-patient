@@ -1,3 +1,16 @@
+hcw-athome-patient (5.0.4) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * add label for checkbox in login screen
+
+  [ Weblate Admin ]
+  * Translated using Weblate (Russian)
+
+  [ Gor Grigoryan ]
+  * refs #6484, Link in colored markdown is same color than background
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 01 Mar 2024 11:04:53 +0100
+
 hcw-athome-patient (5.0.3) focal; urgency=medium
 
   [ Gor Grigoryan ]
