@@ -1,3 +1,10 @@
+hcw-athome-patient (5.0.5) UNRELEASED; urgency=medium
+
+  [ Gor Grigoryan ]
+  * login page checkbox fix
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 05 Mar 2024 16:57:19 +0100
+
 hcw-athome-patient (5.0.4) focal; urgency=medium
 
   [ Gor Grigoryan ]
