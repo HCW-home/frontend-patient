@@ -160,9 +160,9 @@
                             </ion-item>
 
                             <div class="checkbox-wrapper">
-                                <label (click)="toggleCheckbox()" class="custom-checkbox-label">
+                                <label class="custom-checkbox-label">
                                     <ion-checkbox [(ngModel)]="termsChecked"></ion-checkbox>
-                                    <span class="checkbox-text">
+                                    <span class="checkbox-text" (click)="toggleCheckbox()">
                                         <span> {{ 'login.termsText' | translate:configService.config }} </span>
                                         <span class="terms"
                                               (click)="goToTerms($event)">{{ 'register.terms' | translate }}</span>
