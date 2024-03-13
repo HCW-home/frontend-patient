@@ -220,7 +220,7 @@ ion-icon[name="attach"] {
 
 .outgoing {
   .chat-text-container {
-    flex-direction: row-reverse !important;
+    flex-direction: row-reverse;
   }
   .msg-time {
     text-align: end;
@@ -242,6 +242,15 @@ ion-icon[name="attach"] {
       text-align: left;
       font-size: 1em;
 
+    }
+
+    .outgoing {
+      .chat-text-container {
+        flex-direction: row !important;
+      }
+      .msg-time {
+        text-align: start !important;
+      }
     }
     .msg-time {
       font-size: 0.8em !important;

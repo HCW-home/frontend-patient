@@ -351,14 +351,7 @@ ion-content {
   color: red;
 }
 
-::ng-deep {
-  html[data-theme="accessibility"] {
-    .proceed-btn,
-    p {
-      text-align: left;
-    }
-  }
-}
+
 
 .page-wrapper {
   display: flex;
@@ -427,14 +420,24 @@ ion-content {
   position: relative;
 }
 
-.mt-10 {
-  margin-top: 10px;
-}
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .proceed-btn,
+    p {
+      text-align: left;
+    }
 
-.w-100 {
-  width: 100%;
-}
+    .outgoing {
+      .chat-text-container {
+        flex-direction: row !important;
+      }
+      .msg-time {
+        text-align: start !important;
+      }
+    }
 
-.mb-1 {
-  margin-bottom: 1rem
+    .messages {
+      font-size: 1.2rem !important;
+    }
+  }
 }

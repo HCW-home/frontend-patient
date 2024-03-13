@@ -192,7 +192,7 @@ footer {
     }
 
     #hhpMultiLang {
-      align-items: center !important;
+      align-items: flex-start !important;
     }
 
     .token-error-title {
@@ -206,6 +206,10 @@ footer {
     .title {
       text-align: left;
       margin-left: 0;
+    }
+
+    .btn {
+      margin: 20px 0 ;
     }
   }
 }

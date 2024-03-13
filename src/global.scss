@@ -10,6 +10,7 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 @import "src/theme/variables.scss";
+@import "src/assets/fonts/fonts.scss";
 
 
 :root {
@@ -182,9 +183,6 @@ html[data-theme="accessibility"] {
     font-size: 1.02em;
   }
 
-  .btn {
-    padding: 10px 20px 10px;
-  }
 }
 ::ng-deep {
   html[data-theme="accessibility"] {

@@ -389,12 +389,7 @@ export class TestComponent implements OnInit, OnDestroy {
     }
 
     handleConsultation(consultationId) {
-        const videoCallTested = localStorage.getItem("videoCallTested");
-        if (videoCallTested) {
-            return this.router.navigate(["consultation", consultationId]);
-        } else {
-            return this.router.navigate(["test-call"]);
-        }
+        this.router.navigate(["consultation", consultationId]);
     }
 
     handleTokenError(err?) {
