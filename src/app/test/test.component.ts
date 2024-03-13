@@ -106,29 +106,36 @@ export class TestComponent implements OnInit, OnDestroy {
         const videoResult = await this.mediaService.getMedia("video");
 
 
-        const cameraStatus = await navigator.permissions.query(<any>{name: "camera"});
-        cameraStatus.addEventListener("change", (evt) => {
-            navigator.mediaDevices.getUserMedia({video: true})
-                .then((res) => {
-                    this.showRetryButton = true;
-                })
-                .catch((err) => {
-                    this.showRetryButton = true;
-                });
-        }, {once: true});
+        try {
+            const cameraStatus = await navigator.permissions.query(<any>{name: "camera"});
+            cameraStatus.addEventListener("change", (evt) => {
+                navigator.mediaDevices.getUserMedia({video: true})
+                    .then((res) => {
+                        this.showRetryButton = true;
+                    })
+                    .catch((err) => {
+                        this.showRetryButton = true;
+                    });
+            }, {once: true});
+        } catch (error) {
+            console.log('camera','(not supported) ');
+        }
 
-        const audioStatus = await navigator.permissions.query(<any>{name: "microphone"});
+        try {
+            const audioStatus = await navigator.permissions.query(<any>{name: "microphone"});
 
-        audioStatus.addEventListener("change", (evt) => {
-            navigator.mediaDevices.getUserMedia({audio: true})
-                .then((res) => {
-                    this.showRetryButton = true;
-                })
-                .catch((err) => {
-                    this.showRetryButton = true;
-                });
-        }, {once: true});
-
+            audioStatus.addEventListener("change", (evt) => {
+                navigator.mediaDevices.getUserMedia({audio: true})
+                    .then((res) => {
+                        this.showRetryButton = true;
+                    })
+                    .catch((err) => {
+                        this.showRetryButton = true;
+                    });
+            }, {once: true});
+        } catch (error) {
+            console.log('microphone','(not supported) ');
+        }
 
         this.permissionDenied = audioResult === "denied" || videoResult === "denied";
         this.permissionError = audioResult === "error" || videoResult === "error";
