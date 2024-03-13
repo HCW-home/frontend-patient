@@ -22,8 +22,21 @@
 }
 
 
-ul {
-  margin: 0;
+.msg-chain {
+  .messages {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 500;
+
+    ion-icon {
+      width: 25px;
+      height: 25px;
+      flex-shrink: 0;
+    }
+  }
 }
 
 .test-btn {
@@ -101,6 +114,7 @@ video {
   margin: 30px;
   width: 100%;
 }
+
 @media screen and (max-width: 599px) {
   mat-card-title {
     font-size: 20px;
@@ -268,10 +282,10 @@ video {
 
   border: 1px solid #eaeaea;
   background: linear-gradient(
-    180deg,
-    rgba(194, 0, 0, 1) 0%,
-    rgba(252, 220, 1, 1) 35%,
-    rgba(41, 218, 0, 1) 70%
+                  180deg,
+                  rgba(194, 0, 0, 1) 0%,
+                  rgba(252, 220, 1, 1) 35%,
+                  rgba(41, 218, 0, 1) 70%
   );
 
   #volume-slider {
@@ -299,24 +313,26 @@ video {
   margin-top: 1rem;
   border-radius: 1rem;
   display: flex;
+  position: relative;
+
   #test-video-container {
     max-width: 100% !important;
     display: block !important;
     justify-content: center;
   }
+
   #video-audio-container {
     display: flex;
-
     flex-direction: column;
-
     overflow: hidden;
     position: relative;
     z-index: 100;
     width: 100%;
   }
-  #msg-chain {
-    flex: 1;
-  }
+
+  //#msg-chain {
+  //  flex: 1;
+  //}
 }
 
 // #msg-chain {
@@ -330,9 +346,11 @@ video {
 ion-content {
   background: transparent;
 }
+
 .error {
   color: red;
 }
+
 ::ng-deep {
   html[data-theme="accessibility"] {
     .proceed-btn,
@@ -340,4 +358,83 @@ ion-content {
       text-align: left;
     }
   }
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
+}
+
+.helper-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+  img {
+    width: 100%;
+    height: 200px
+  }
+
+}
+
+.messages-wrapper {
+  //height: 400px;
+  width: 50%;
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+}
+
+.video-loop {
+  min-width: 300px;
+  min-height: 400px;
+  width: 50%;
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+}
+
+.test-block-container {
+  img {
+    width: 100%;
+  }
+}
+
+.video-actions-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+}
+
+.controller {
+  --background: #FFFFFF;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.position-relative {
+  position: relative;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.mb-1 {
+  margin-bottom: 1rem
 }

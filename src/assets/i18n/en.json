@@ -172,7 +172,16 @@
     "stopTheTest": "Stop the test",
     "yourDeviceSeems": "Your device seems to be perfectly compatible with the teleconsultation system. If the video preview is not of sufficient quality or is choppy, please check that your equipment signal is sufficient.",
     "testStarting": "Starting the test",
-    "theConnectionIs": "The connection was successful"
+    "theConnectionIs": "The connection was successful",
+
+    "youCanStillJoin": "You can still join consultation but video/audio call might fails.",
+    "micDenied": "Access to camera seems working but access to the microphone is denied.",
+    "cameraDenied": "Access to microphone seems working but access to the camera is denied.",
+    "bothDenied": "Access to camera and microphone is denied.",
+    "askForPermission": "Ask for permission",
+    "connectivityIssue": "We have connectivity issue",
+    "micAndCamRequesting": "HCW@Home needs to have access to your camera and microphone to work properly. Please ensure to accept permission request.",
+    "permissionError": "We have encountered a problem for accessing to your camera or your microphone. Please ensure the devices are properly connected."
   },
   "videoRoom": {
     "call": "Call",

@@ -175,12 +175,6 @@ div.input {
   display: inline-block;
 }
 
-@media screen and (max-width: 640px) {
-  .jumbotron,
-  .jumbotron.await {
-    height: 300px;
-  }
-}
 
 .join-call-btn-container {
   display: flex;

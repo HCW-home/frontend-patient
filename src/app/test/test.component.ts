@@ -1,453 +1,546 @@
-import { RoomService, LogService, Stream } from "hcw-stream-lib";
-import { SocketEventsService } from "./../socket-events.service";
-import { ConsultationService } from "./../consultation.service";
-import { AndroidPermissions } from "@awesome-cordova-plugins/android-permissions/ngx";
-import { Platform } from "@ionic/angular";
-import { Router } from "@angular/router";
-import { OpenViduService } from "./../shared/services/openvidu.service";
-import { Component, OnInit, ViewChild, ElementRef, HostListener, OnDestroy, NgZone, Directive } from "@angular/core";
-
-import { Subscription } from "rxjs";
-// translate
-import { TranslateService } from "@ngx-translate/core";
-
-import { InfoService } from "../info.service";
-
-import { AuthService } from "../auth/auth.service";
-import { ConfigService } from "../config.service";
+import {RoomService, Stream} from "hcw-stream-lib";
+import {SocketEventsService} from "../socket-events.service";
+import {ConsultationService} from "../consultation.service";
+import {AndroidPermissions} from "@awesome-cordova-plugins/android-permissions/ngx";
+import {Platform} from "@ionic/angular";
+import {Router} from "@angular/router";
+import {OpenViduService} from "../shared/services/openvidu.service";
+import {Component, OnInit, HostListener, OnDestroy, NgZone} from "@angular/core";
+import {Subscription} from "rxjs";
+import {TranslateService} from "@ngx-translate/core";
+import {AuthService} from "../auth/auth.service";
+import {ConfigService} from "../config.service";
+import {InviteService} from "../invite.service";
+import {LanguageService} from "../shared/services/language.service";
+import {MediaService} from "../shared/services/media.service";
 
 @Component({
-  selector: "app-test-call",
-  templateUrl: "./test.component.html",
-  styleUrls: ["./test.component.scss"],
+    selector: "app-test-call",
+    templateUrl: "./test.component.html",
+    styleUrls: ["./test.component.scss"],
 })
 export class TestComponent implements OnInit, OnDestroy {
-  // Constants
-  ANDROID_PERMISSIONS = [
-    "android.permission.CAMERA",
-    "android.permission.RECORD_AUDIO",
-    "android.permission.MODIFY_AUDIO_SETTINGS",
-  ];
-  websocket: WebSocket;
+    ANDROID_PERMISSIONS = [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+    ];
+    session;
+    websocket: WebSocket;
+    testStatus = "DISCONNECTED";
+    showSpinner = false;
+    msgChain = [];
+    volumeLevel = 0;
+    accessHardwareGranted = null;
+    testStarted: Boolean = false;
+    loading: Boolean = false;
+    globalMessage = "";
+    globalWarning = "";
+    inviteToken = "";
+    subscriptions: Subscription[] = [];
+    peerId;
+    myCamStream: Stream;
 
-  @ViewChild("scrollMe") private myScrollContainer: ElementRef;
-  lockScroll = false;
+    muteStatus: "on" | "off" = "on";
+    camStatus = "on";
+    permissionDenied = false;
+    permissionError = false;
+    showRetryButton = false;
+    denied = true;
 
-  info = [];
 
-  session;
+    currentUser;
+    submitted = false;
+    error = "";
+    email: string;
+    password: string;
+    inviteKey = "";
+    firstName = "";
+    lastName = "";
+    inviteKeyError = "";
+    birthDate = "";
+    birthError = "";
+    invite = null;
+    isExpert = false;
+    expertToken = "";
 
-  testStatus = "DISCONNECTED";
-  testButton = "Tester mon matériel";
-  tickClass = "trigger";
-  showSpinner = false;
-  msgChain = [];
+    translator;
+    scheduledFor;
+    noInviteError = false;
+    noTokenProvided = false;
+    translationRequestRefused = false;
 
-  volumeLevel = 0;
-
-  accessHardwareGranted: Boolean = null;
-  testStarted: Boolean = null;
-  loading: Boolean = false;
-
-  globalMessage = "";
-  inviteToken = "";
-
-  subscriptions: Subscription[] = [];
-  peerId;
-  myCamStream: Stream;
-
-  constructor(
-    private infoService: InfoService,
-    private openviduSev: OpenViduService,
-    private router: Router,
-    public platform: Platform,
-    private androidPermissions: AndroidPermissions,
-    private conServ: ConsultationService,
-    private socketService: SocketEventsService,
-    private authService: AuthService,
-    private zone: NgZone,
-    private translate: TranslateService,
-    public configService: ConfigService,
-    private roomService: RoomService,
-    private logger: LogService
-  ) {
-    this.testButton = this.translate.instant("test.testMyEquipment");
-    // Subscription to info updated event raised by InfoService
-    this.subscriptions.push(
-      this.infoService.newInfo$.subscribe((info) => {
-        this.info.push(info);
-        this.scrollToBottom();
-      })
-    );
-  }
-
-  ngOnInit() {
-    this.logger.debug("Test component on init");
-
-    this.subscriptions.push(
-      this.translate
-        .get("test.testMyEquipment")
-        .subscribe((translated: string) => {
-          this.testButton = this.translate.instant("test.testMyEquipment");
-        })
-    );
-    this.inviteToken = localStorage.getItem("inviteToken");
-  }
-
-  initHardwareDevices() {
-    navigator.mediaDevices
-      .getUserMedia({ audio: true, video: true })
-      .then((stream) => {
-        stream.getTracks().forEach((track) => track.stop());
-
-        this.initAudioPublisher();
-      })
-      .catch((error) => {
-        navigator.mediaDevices
-          .getUserMedia({ video: true })
-          .then((stream) => {
-            stream.getTracks().forEach((track) => track.stop());
-
-            this.initAudioPublisher();
-          })
-          .catch(() => {});
-        navigator.mediaDevices
-          .getUserMedia({ audio: true })
-          .then((stream) => {
-            stream.getTracks().forEach((track) => track.stop());
-
-            this.initAudioPublisher();
-          })
-          .catch(() => {});
-      });
-  }
-
-  startTest() {
-    if (this.testStarted) {
-      this.globalMessage = "";
-      this.testStatus = "DISCONNECTED";
+    constructor(
+        private zone: NgZone,
+        private router: Router,
+        public platform: Platform,
+        private authService: AuthService,
+        private roomService: RoomService,
+        private mediaService: MediaService,
+        public configService: ConfigService,
+        private translate: TranslateService,
+        private inviteService: InviteService,
+        private conServ: ConsultationService,
+        private openviduSev: OpenViduService,
+        private languageService: LanguageService,
+        private socketService: SocketEventsService,
+        private androidPermissions: AndroidPermissions,
+    ) {
     }
 
-    this.showSpinner = true;
-    return this.toggleTestVideo();
-  }
-
-  @HostListener("window:beforeunload")
-  beforeunloadHandler() {
-    // On window closed leave test session and close info websocket
-    this.endTestVideo();
-  }
-
-  ngOnDestroy() {
-    this.endTestVideo();
-
-    this.subscriptions.forEach((subscription) => {
-      subscription.unsubscribe();
-    });
-  }
-
-  toggleTestVideo() {
-    this.testStarted = !this.testStarted;
-    if (!this.session) {
-      this.testVideo();
-    } else {
-      this.endTestVideo();
+    @HostListener("window:beforeunload")
+    beforeunloadHandler() {
+        this.endTestVideo();
     }
-  }
 
-  testVideo() {
-    this.openviduSev
-      .getTestToken()
-      .then(({ token, peerId }) => {
-        this.peerId = peerId;
-        this.connectToSession(token);
-      })
-      .catch((error) => {
-        if (error === 401) {
-          // User unauthorized error. OpenVidu security is active
-          this.testVideo();
+    ngOnInit() {
+        this.showSpinner = true;
+        this.testStarted = true;
+        this.inviteToken = localStorage.getItem("inviteToken");
+        this.requestMedia();
+    }
+
+    async requestMedia(): Promise<void> {
+
+        const audioResult = await this.mediaService.getMedia("audio");
+        const videoResult = await this.mediaService.getMedia("video");
+
+
+        const cameraStatus = await navigator.permissions.query(<any>{name: "camera"});
+        cameraStatus.addEventListener("change", (evt) => {
+            navigator.mediaDevices.getUserMedia({video: true})
+                .then((res) => {
+                    this.showRetryButton = true;
+                })
+                .catch((err) => {
+                    this.showRetryButton = true;
+                });
+        }, {once: true});
+
+        const audioStatus = await navigator.permissions.query(<any>{name: "microphone"});
+
+        audioStatus.addEventListener("change", (evt) => {
+            navigator.mediaDevices.getUserMedia({audio: true})
+                .then((res) => {
+                    this.showRetryButton = true;
+                })
+                .catch((err) => {
+                    this.showRetryButton = true;
+                });
+        }, {once: true});
+
+
+        this.permissionDenied = audioResult === "denied" || videoResult === "denied";
+        this.permissionError = audioResult === "error" || videoResult === "error";
+
+        if (audioResult === "denied" || videoResult === "denied") {
+            this.denied = true;
         } else {
-          console.error(error);
-          this.msgChain.push({
-            success: false,
-            msg: "Error connecting to session: " + error,
-          });
+            this.denied = false;
+
         }
-      });
-  }
 
-  proceedToConsultation() {
-    this.endTestVideo();
-    const inviteToken = localStorage.getItem("inviteToken");
+        if (this.permissionDenied || this.permissionError) {
+            if (audioResult === "denied" && videoResult !== "denied" && videoResult !== "error") {
+                this.msgChain.push({
+                    success: false,
+                    msg: this.translate.instant("test.micDenied"),
+                });
+                this.globalMessage = this.translate.instant("test.youCanStillJoin");
+            }
+            if (videoResult === "denied" && audioResult !== "denied" && audioResult !== "error") {
+                this.msgChain.push({
+                    success: false,
+                    msg: this.translate.instant("test.cameraDenied"),
+                });
+                this.globalMessage = this.translate.instant("test.youCanStillJoin");
+            }
+            if (videoResult === "denied" && audioResult === "denied") {
+                this.msgChain.push({
+                    success: false,
+                    msg: this.translate.instant("test.bothDenied"),
+                });
+                this.globalMessage = this.translate.instant("test.youCanStillJoin");
+            }
+            if (audioResult === "error" || videoResult === "error") {
+                this.msgChain.push({
+                    success: false,
+                    msg: this.translate.instant("test.permissionError"),
+                });
+                this.globalMessage = this.translate.instant("test.youCanStillJoin");
+            }
+            this.startTest();
+        } else {
+            this.globalWarning = this.translate.instant("test.yourDeviceSeems");
+            this.startTest();
+        }
+    }
 
-    const user = this.authService.currentUserValue;
-    if (inviteToken) {
-      this.loading = true;
-      this.conServ
-        .createConsultation({
-          queue: "covid19",
-          gender: "unknown",
-          IMADTeam: "none",
-          invitationToken: inviteToken,
-        })
-        .toPromise()
-        .then((consultation) => {
-          if (!consultation) {
-            return this.router.navigate(["await-consultation"]);
-          }
+    startTest() {
+        this.testVideo();
+    }
 
-          localStorage.setItem("currentConsultation", consultation.id);
-          // localStorage.removeItem('inviteToken');
-          this.router.navigate(["consultation", consultation.id]);
-          //
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setTimeout(() => {
-            this.loading = false;
-          }, 2000);
+    testVideo() {
+        this.openviduSev
+            .getTestToken()
+            .then(({token, peerId}) => {
+                this.peerId = peerId;
+                this.connectToSession(token);
+            })
+            .catch((error) => {
+                this.msgChain.push({
+                    success: false,
+                    msg: "Error connecting to session: " + error,
+                });
+            });
+    }
+
+    connectToSession(token: string) {
+        // this.msgChain = [];
+        this.session = true;
+        this.testStatus = "CONNECTING";
+        this.accessHardwareGranted = null;
+
+        if (this.platform.is("android") && this.platform.is("hybrid")) {
+            this.checkAndroidPermissions()
+                .then((res) => {
+                    this.initSession(token);
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        } else {
+            this.initSession(token);
+        }
+    }
+
+    initSession(token: string) {
+        this.accessHardwareGranted = true;
+        this.session = true;
+        this.roomService.init({peerId: this.peerId});
+        this.roomService.join({
+            roomId: this.peerId,
+            joinVideo: true,
+            joinAudio: true,
+            token: token,
+        });
+
+        this.roomService.onCamProducing.subscribe((stream) => {
+            this.myCamStream = stream;
+            this.testStatus = "PLAYING";
+            this.showSpinner = false;
+
+            this.connectWebCam();
+        }, (error) => {
+            this.msgChain.push({success: false, msg: this.translate.instant("test.connectivityIssue")});
+        });
+
+    }
+
+    retryPermission() {
+        this.msgChain = [];
+        this.globalWarning = "";
+        this.globalMessage = "";
+        this.roomService.close();
+        this.showRetryButton = false;
+        this.requestMedia();
+    }
+
+    onSubmit() {
+        if (this.submitted) {
+            return;
+        }
+        if (!this.inviteToken && !this.inviteKey) {
+            this.inviteKeyError = this.translate.instant(
+                "login.pleaseEnterYourInvitationKey"
+            );
+        } else {
+            this.inviteKeyError = "";
+        }
+
+        if (this.inviteKeyError || this.birthError) {
+            return;
+        }
+
+        this.submitted = true;
+        this.loading = true;
+
+        const inviteToken = this.inviteToken ? this.inviteToken : this.isExpert ? this.expertToken : this.inviteKey;
+        localStorage.setItem("inviteToken", inviteToken);
+
+        this.loading = false;
+        this.submitted = false;
+
+        this.router.navigate([`/test-call`]);
+
+        this.handleToken(inviteToken, true);
+    }
+
+    handleToken(inviteToken, accept = false) {
+        this.zone.run(() => {
+            this.noTokenProvided = false;
+        });
+        const token = this.inviteToken ? this.inviteToken : this.isExpert ? this.expertToken : this.inviteKey;
+
+        this.inviteToken = token;
+        this.inviteKey = token;
+
+        // get invite
+        this.subscriptions.push(
+            this.inviteService.getInviteFromToken(this.inviteToken).subscribe(
+                (invite) => {
+                    this.invite = invite;
+
+                    this.handleInvite(invite, accept);
+                },
+                (err) => this.handleTokenError(err)
+            )
+        );
+    }
+
+    async handleInvite(invite, accept?) {
+        this.invite = invite;
+        this.isExpert = !!invite.isExpert;
+        this.expertToken = invite.expertToken;
+
+        const lang = this.languageService.getCurrentLanguage();
+        this.translate.use(lang);
+
+        if (this.currentUser) {
+            if (this.currentUser.inviteToken === this.invite.id) {
+                if (invite.type === "TRANSLATOR_REQUEST") {
+                    return;
+                }
+
+                return this.handleUser(this.currentUser);
+            } else {
+                await this.authService.logout();
+                localStorage.setItem("inviteToken", this.inviteToken);
+                this.noInviteError = null;
+            }
+        } else if (
+            // invite.status === "ACCEPTED" ||
+            invite.status === "REFUSED" ||
+            invite.status === "CANCELED"
+        ) {
+            this.handleTokenError("Invite status " + invite.status);
+            return;
+        } else {
+            this.noInviteError = false;
+            this.zone.run(() => {
+                this.noInviteError = false;
+            });
+            setTimeout(() => {
+                this.noInviteError = false;
+            }, 100);
+            this.socketService.disconnect();
+        }
+
+        if (accept) {
+            this.acceptInvite(invite);
+        }
+    }
+
+    acceptInvite(invite) {
+        if (invite.type === "TRANSLATOR_REQUEST") {
+            return;
+        }
+        const firstName = localStorage.getItem("firstName");
+        const lastName = localStorage.getItem("lastName");
+        const data: any = this.isExpert ?
+            [this.expertToken, undefined, undefined, {firstName, lastName}] :
+            [this.inviteToken, this.birthDate, this.translator];
+        this.authService
+            // @ts-ignore
+            .loginWithInvite(...data)
+            .toPromise()
+            .then((user) => {
+                return this.handleUser(user);
+            })
+            .catch((err) => {
+                this.handleTokenError(err);
+            });
+    }
+
+    handleUser(user) {
+        this.currentUser = user;
+        this.conServ
+            .createConsultation({
+                queue: "covid19",
+                gender: "unknown",
+                IMADTeam: "none",
+                invitationToken: this.inviteToken,
+            })
+            .toPromise()
+            .then((consultation) => {
+                if (!consultation) {
+                    return this.router.navigate(["await-consultation"]);
+                }
+                localStorage.setItem("currentConsultation", consultation.id);
+                this.handleConsultation(consultation.id);
+            })
+            .catch((err) => {
+                this.handleTokenError(err);
+            })
+            .finally(() => {
+                this.submitted = false;
+                this.loading = false;
+            });
+    }
+
+    handleConsultation(consultationId) {
+        const videoCallTested = localStorage.getItem("videoCallTested");
+        if (videoCallTested) {
+            return this.router.navigate(["consultation", consultationId]);
+        } else {
+            return this.router.navigate(["test-call"]);
+        }
+    }
+
+    handleTokenError(err?) {
+        console.error("Handle token error ", err);
+        setTimeout(() => {
+            this.noInviteError = true;
+        }, 100);
+
+        this.authService.logout();
+    }
+
+    proceedToConsultation() {
+        this.onSubmit();
+    }
+
+    initAudioPublisher() {
+        this.roomService.onVolumeChange.subscribe((change) => {
+            this.zone.run(() => {
+                this.volumeLevel = change.volume * 1000;
+            });
         });
     }
-  }
 
-  initAudioPublisher() {
-    this.roomService.onVolumeChange.subscribe((change) => {
-      this.zone.run(() => {
-        this.volumeLevel = change.volume * 1000;
-      });
-    });
-    // if (this.audioPublisher) {
-    //   this.audioPublisher.stream.disposeMediaStream()
-    //   this.audioPublisher.off('streamAudioVolumeChange')
-    //   this.audioPublisher = null
-    // }
-
-    // this.OV.initPublisherAsync(undefined, {
-    //   audioSource: this.audioDeviceId,
-    //   videoSource: null,
-    //   publishAudio: true,
-    //   publishVideo: false,
-    // })
-    //   .then((publisher) => {
-    //     this.audioPublisher = publisher
-    //     this.audioPublisher.on('streamAudioVolumeChange', (event: any) => {
-    //       this.volumeLevel = event.value.newValue + 100
-    //     })
-    //   })
-    //   .catch((error) => {
-    //     console.error(error)
-    //   })
-  }
-
-  initSession(token: string) {
-    this.accessHardwareGranted = true;
-    this.session = true;
-    this.roomService.init({ peerId: this.peerId });
-    this.msgChain.push({
-      success: true,
-      msg: "Accès au micro et à la caméra",
-    });
-    this.roomService.join({
-      roomId: this.peerId,
-      joinVideo: true,
-      joinAudio: true,
-      token: token,
-    });
-
-    this.roomService.onCamProducing.subscribe((stream) => {
-      this.msgChain.push({ success: true, msg: "Connected to session" });
-      this.logger.debug("Cam producing ", stream);
-      this.myCamStream = stream;
-      this.testButton = this.translate.instant("test.stopTheTest");
-      this.testStatus = "PLAYING";
-      this.globalMessage = this.translate.instant("test.yourDeviceSeems");
-      this.showSpinner = false;
-      this.connectWebCam();
-    });
-
-  }
-  connectToSession(token: string) {
-    this.msgChain = [];
-
-    this.session = true;
-    this.testStatus = "CONNECTING";
-    this.testButton = this.translate.instant("test.stopTheTest");
-    this.accessHardwareGranted = null;
-
-    if (this.platform.is("android") && this.platform.is("hybrid")) {
-      this.checkAndroidPermissions()
-        .then(() => {
-          this.initSession(token);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    } else {
-      this.initSession(token);
+    connectWebCam() {
+        this.testStatus = "CONNECTED";
+        this.initAudioPublisher();
     }
-  }
 
-  connectWebCam() {
-    // this.msgChain.push({ success: true, msg: 'Connected to session' });
+    endTestVideo() {
+        if (this.session) {
+            this.roomService.close();
+            this.session = null;
+        }
+        this.testStatus = "DISCONNECTED";
+        this.showSpinner = false;
+        this.msgChain = [];
 
-    this.testStatus = "CONNECTED";
-    this.initAudioPublisher();
-    // this.initHardwareDevices()
-
-    // const publisherRemote = this.OV.initPublisher(
-    //   'mirrored-video',
-    //   {
-    //     publishAudio: true,
-    //     publishVideo: true,
-    //     resolution: '640x480',
-    //   },
-    //   (e) => {
-    //     if (!!e) {
-    //       console.error(e)
-    //     }
-    //   },
-    // )
-
-    // publisherRemote.on('accessAllowed', () => {
-    //   this.accessHardwareGranted = true
-    //   this.msgChain.push({
-    //     success: true,
-    //     msg: 'Accès au micro et à la caméra',
-    //   })
-    // })
-
-    // publisherRemote.on('accessDenied', () => {
-    //   // this.endTestVideo();
-    //   this.accessHardwareGranted = false
-    //   this.msgChain.push({
-    //     success: false,
-    //     msg: 'Accès au micro et à la caméra',
-    //   })
-
-    //   this.globalMessage =
-    //     this.translate.instant('test.yourDeviceAppears');
-    // })
-
-    // publisherRemote.on('videoElementCreated', (video) => {
-    //   this.showSpinner = true
-    //   this.msgChain.push({ success: true, msg: this.translate.instant('test.videoElementCreated') })
-    // })
-
-    // publisherRemote.on('streamCreated', (video) => {
-    //   this.msgChain.push({ success: true, msg: this.translate.instant('test.streamCreated') })
-    // })
-
-  }
-
-  endTestVideo() {
-    if (this.session) {
-      this.roomService.close();
-      this.session = null;
+        if (this.myCamStream) {
+            this.myCamStream.mediaStream.getTracks().forEach(function (track) {
+                track.stop();
+            });
+            this.myCamStream = null;
+        }
+        localStorage.setItem("videoCallTested", "true");
     }
-    this.testStatus = "DISCONNECTED";
-    this.testButton = this.translate.instant("test.testMyEquipment");
-    this.showSpinner = false;
-    this.info = [];
-    this.msgChain = [];
 
-    if (this.myCamStream) {
-      this.myCamStream.mediaStream.getTracks().forEach(function (track) {
-        track.stop();
-      });
-      this.myCamStream = null;
+    muteStatusChanged() {
+        if (this.muteStatus === "on") {
+            this.roomService.muteMic();
+            this.muteStatus = "off";
+        } else {
+            this.roomService.unmuteMic();
+            this.muteStatus = "on";
+        }
     }
-    localStorage.setItem("videoCallTested", "true");
-  }
 
-  scrollToBottom(): void {
-    try {
-      if (!this.lockScroll) {
-        this.myScrollContainer.nativeElement.scrollTop =
-          this.myScrollContainer.nativeElement.scrollHeight;
-      }
-    } catch (err) {
-      console.error("[Error]:" + err.toString());
+    camStatusChanged() {
+        if (this.camStatus === "on") {
+            this.roomService.disableWebcam();
+            this.camStatus = "off";
+        } else {
+            this.roomService.updateWebcam({start: true});
+            this.camStatus = "on";
+        }
     }
-  }
 
-  ionViewWillLeave() {
-    this.endTestVideo();
-  }
-
-  private checkAndroidPermissions(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.platform.ready().then(() => {
-        this.androidPermissions
-          .requestPermissions(this.ANDROID_PERMISSIONS)
-          .then(() => {
-            this.androidPermissions
-              .checkPermission(this.androidPermissions.PERMISSION.CAMERA)
-              .then((camera) => {
+    private checkAndroidPermissions(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.platform.ready().then(() => {
                 this.androidPermissions
-                  .checkPermission(
-                    this.androidPermissions.PERMISSION.RECORD_AUDIO
-                  )
-                  .then((audio) => {
-                    this.androidPermissions
-                      .checkPermission(
-                        this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS
-                      )
-                      .then((modifyAudio) => {
-                        if (
-                          camera.hasPermission &&
-                          audio.hasPermission &&
-                          modifyAudio.hasPermission
-                        ) {
-                          resolve(null);
-                        } else {
-                          reject(
-                            new Error(
-                              "Permissions denied: " +
-                                "\n" +
-                                " CAMERA = " +
-                                camera.hasPermission +
-                                "\n" +
-                                " AUDIO = " +
-                                audio.hasPermission +
-                                "\n" +
-                                " AUDIO_SETTINGS = " +
-                                modifyAudio.hasPermission
-                            )
-                          );
-                        }
-                      })
-                      .catch((err) => {
-                        console.error(
-                          "Checking permission " +
-                            this.androidPermissions.PERMISSION
-                              .MODIFY_AUDIO_SETTINGS +
-                            " failed"
-                        );
-                        reject(err);
-                      });
-                  })
-                  .catch((err) => {
-                    console.error(
-                      "Checking permission " +
-                        this.androidPermissions.PERMISSION.RECORD_AUDIO +
-                        " failed"
-                    );
-                    reject(err);
-                  });
-              })
-              .catch((err) => {
-                console.error(
-                  "Checking permission " +
-                    this.androidPermissions.PERMISSION.CAMERA +
-                    " failed"
-                );
-                reject(err);
-              });
-          })
-          .catch((err) => console.error("Error requesting permissions: ", err));
-      });
-    });
-  }
+                    .requestPermissions(this.ANDROID_PERMISSIONS)
+                    .then(() => {
+                        this.androidPermissions
+                            .checkPermission(this.androidPermissions.PERMISSION.CAMERA)
+                            .then((camera) => {
+                                this.androidPermissions
+                                    .checkPermission(
+                                        this.androidPermissions.PERMISSION.RECORD_AUDIO
+                                    )
+                                    .then((audio) => {
+                                        this.androidPermissions
+                                            .checkPermission(
+                                                this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS
+                                            )
+                                            .then((modifyAudio) => {
+                                                if (
+                                                    camera.hasPermission &&
+                                                    audio.hasPermission &&
+                                                    modifyAudio.hasPermission
+                                                ) {
+                                                    resolve(null);
+                                                } else {
+                                                    reject(
+                                                        new Error(
+                                                            "Permissions denied: " +
+                                                            "\n" +
+                                                            " CAMERA = " +
+                                                            camera.hasPermission +
+                                                            "\n" +
+                                                            " AUDIO = " +
+                                                            audio.hasPermission +
+                                                            "\n" +
+                                                            " AUDIO_SETTINGS = " +
+                                                            modifyAudio.hasPermission
+                                                        )
+                                                    );
+                                                }
+                                            })
+                                            .catch((err) => {
+                                                console.error(
+                                                    "Checking permission " +
+                                                    this.androidPermissions.PERMISSION
+                                                        .MODIFY_AUDIO_SETTINGS +
+                                                    " failed"
+                                                );
+                                                reject(err);
+                                            });
+                                    })
+                                    .catch((err) => {
+                                        console.error(
+                                            "Checking permission " +
+                                            this.androidPermissions.PERMISSION.RECORD_AUDIO +
+                                            " failed"
+                                        );
+                                        reject(err);
+                                    });
+                            })
+                            .catch((err) => {
+                                console.error(
+                                    "Checking permission " +
+                                    this.androidPermissions.PERMISSION.CAMERA +
+                                    " failed"
+                                );
+                                reject(err);
+                            });
+                    })
+                    .catch((err) => console.error("Error requesting permissions: ", err));
+            });
+        });
+    }
+
+    ngOnDestroy() {
+        this.endTestVideo();
+
+        this.subscriptions.forEach((subscription) => {
+            subscription.unsubscribe();
+        });
+    }
 }

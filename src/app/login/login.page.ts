@@ -73,10 +73,8 @@ export class LoginPage implements OnInit {
   noInviteError = false;
   noTokenProvided = false;
   translationRequestRefused = false;
-  showNativeAppSuggestionAndroid = environment.showNativeAppSuggestionAndroid;
-  showNativeAppSuggestionIOS = environment.showNativeAppSuggestionIOS;
-
   translatorAcceptError;
+
   markdownExists: boolean = false;
   markdownUrl: string = 'assets/home.md';
 
@@ -259,7 +257,7 @@ export class LoginPage implements OnInit {
         this.noInviteError = null;
       }
     } else if (
-      // invite.status === "ACCEPTED" ||
+      invite.status === "ACCEPTED" ||
       invite.status === "REFUSED" ||
       invite.status === "CANCELED"
     ) {
@@ -279,7 +277,6 @@ export class LoginPage implements OnInit {
     if (accept) {
       this.acceptInvite(invite);
     }
-    // handle user
   }
 
   acceptInvite(invite) {
@@ -296,21 +293,29 @@ export class LoginPage implements OnInit {
       this.icsBlob = this.generateIcsBlob(this.scheduledFor);
       this.setAllowConsultationTimer(invite);
     } else {
-      const data: any = this.isExpert ?
-          [this.expertToken, undefined, undefined, {firstName: this.firstName, lastName: this.lastName}] :
-          [this.inviteToken, this.birthDate, this.translator]
-      this.authService
-        // @ts-ignore
-        .loginWithInvite(...data)
-        .toPromise()
-        .then((user) => {
-          return this.handleUser(user)
-        })
-        .catch((err) => {
-          this.handleTokenError(err);
-        });
+      if (this.isExpert) {
+        localStorage.setItem('firstName',this.firstName);
+        localStorage.setItem('lastName',this.lastName);
+      }
+
+      this.router.navigate([`/test-call`]);
+
+      // const data: any = this.isExpert ?
+      //     [this.expertToken, undefined, undefined, {firstName: this.firstName, lastName: this.lastName}] :
+      //     [this.inviteToken, this.birthDate, this.translator]
+      // this.authService
+      //   // @ts-ignore
+      //   .loginWithInvite(...data)
+      //   .toPromise()
+      //   .then((user) => {
+      //     return this.handleUser(user)
+      //   })
+      //   .catch((err) => {
+      //     this.handleTokenError(err);
+      //   });
     }
   }
+
   handleTokenError(err?) {
     console.error("Handle token error ", err);
     setTimeout(() => {
@@ -345,6 +350,7 @@ export class LoginPage implements OnInit {
 
     this.loading = false;
     this.submitted = false;
+
 
     this.handleToken(inviteToken, true);
   }
@@ -406,6 +412,7 @@ export class LoginPage implements OnInit {
       })
     );
   }
+
   setAllowConsultationTimer(invite) {
     const inviteToken = this.inviteToken ? this.inviteToken : this.inviteKey;
     this.allowConsultationTimer = setTimeout(() => {
@@ -464,6 +471,7 @@ export class LoginPage implements OnInit {
         });
     }
   }
+
   ngOnDestroy() {
     if (this.subInviteToken) {
       this.subInviteToken.unsubscribe();
