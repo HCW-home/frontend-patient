@@ -17,7 +17,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "16.2.12",
-    "@angular/cdk": "^15.2.9",
+    "@angular/cdk": "^16.2.12",
     "@angular/common": "16.2.12",
     "@angular/core": "16.2.12",
     "@angular/forms": "16.2.12",
@@ -38,7 +38,7 @@
     "@awesome-cordova-plugins/push": "5.45.0",
     "@awesome-cordova-plugins/splash-screen": "5.45.0",
     "@awesome-cordova-plugins/status-bar": "5.45.0",
-    "@capacitor-community/native-audio": "^3.0.4",
+    "@capacitor-community/native-audio": "^4.0.0",
     "@capacitor/android": "4.3.0",
     "@capacitor/app": "^4.0.1",
     "@capacitor/browser": "^4.0.1",
@@ -61,13 +61,14 @@
     "@ionic/pwa-elements": "^3.1.1",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
-    "angular2-draggable": "^2.2.2",
+    "@types/node": "^20.11.27",
+    "angular2-draggable": "^16.0.0",
     "clovelced-plugin-audiomanagement": "1.0.2",
     "cordova": "^11.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-nativeaudio": "^3.0.9",
     "hcw-stream-lib": "0.0.15",
-    "ngx-markdown": "^15.0.1",
+    "ngx-markdown": "^16.0.0",
     "patch-package": "^6.2.2",
     "rxjs": "^6.4.0",
     "sails.io.js": "^1.2.1",
@@ -84,12 +85,10 @@
     "@angular/compiler": "16.2.12",
     "@angular/compiler-cli": "^16.2.12",
     "@angular/language-service": "16.2.12",
-    "@biesbjerg/ngx-translate-extract": "^7.0.2",
     "@capacitor/cli": "4.3.0",
     "@ionic/lab": "^3.2.13",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "^2.0.10",
-    "@types/node": "11.9.4",
     "cordova-res": "0.15.4",
     "cordova.plugins.diagnostic": "7.1.0",
     "install": "^0.13.0",
@@ -105,9 +104,6 @@
     "tslib": "^2.0.0",
     "tslint": "~6.1.0",
     "typescript": "^5.1.6"
-  },
-  "optionalDependencies": {
-    "ios-deploy": "^1.9.4"
   },
   "description": "@HOME"
 }

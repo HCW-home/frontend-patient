@@ -12,6 +12,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "mediasoup-client",
+              "socket.io-client",
+              "sails.io.js",
+              "bowser",
+              "hark"
+            ],
             "preserveSymlinks": true,
             "progress": false,
             "outputPath": "www",
