@@ -1,33 +1,27 @@
-import { TranslatorService } from "./../translator.service";
-import { environment } from "./../../environments/environment";
-import { InviteService } from "./../invite.service";
-import { Subscription } from "rxjs";
+import {TranslatorService} from "./../translator.service";
+import {environment} from "./../../environments/environment";
+import {InviteService} from "./../invite.service";
+import {Subscription} from "rxjs";
 
-import { Component, OnInit, NgZone, Directive } from "@angular/core";
-import { Platform } from "@ionic/angular";
-import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
-import { DatePipe } from "@angular/common";
+import {Component, NgZone, OnInit} from "@angular/core";
+import {Platform} from "@ionic/angular";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {DatePipe} from "@angular/common";
 
-import { TranslateService } from "@ngx-translate/core";
-import { RoomService } from "hcw-stream-lib";
-import { Router, ActivatedRoute } from "@angular/router";
-declare let cordova: any;
-declare let window: any;
-import { AuthService } from "../auth/auth.service";
-import { ConsultationService } from "../consultation.service";
-import { ConfigService } from "../config.service";
-import { SocketEventsService } from "../socket-events.service";
-import { App } from '@capacitor/app';
+import {TranslateService} from "@ngx-translate/core";
+import {RoomService} from "hcw-stream-lib";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../auth/auth.service";
+import {ConsultationService} from "../consultation.service";
+import {ConfigService} from "../config.service";
+import {SocketEventsService} from "../socket-events.service";
+import {App} from "@capacitor/app";
 import {LanguageService} from "../shared/services/language.service";
 import {NurseService} from "../shared/services/nurse.service";
 
-const coeff = 1000 * 60 * 5;
+declare let window: any;
 
-// get token from url or input or observable
-// get invite
-// if invite is shcedueled and it's for patient show time
-// login invite
-// handle user
+const coeff = 1000 * 60 * 5;
 
 @Component({
   providers: [DatePipe],
@@ -63,7 +57,6 @@ export class LoginPage implements OnInit {
   isScheduled = false;
   icsBlob: SafeUrl;
   scheduledFor;
-  // Whether or not to display the mobile landing screen
   mobileLandScreen = false;
   subscriptions: Subscription[] = [];
   allowConsultationTimer;
@@ -79,22 +72,22 @@ export class LoginPage implements OnInit {
   markdownUrl: string = 'assets/home.md';
 
   constructor(
-    private authService: AuthService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private conServ: ConsultationService,
-    public platform: Platform,
-    private inviteService: InviteService,
-    private sanitizer: DomSanitizer,
-    private datePipe: DatePipe,
     private zone: NgZone,
-    private translate: TranslateService,
-    private translatorServ: TranslatorService,
-    public configService: ConfigService,
-    private socketService: SocketEventsService,
+    private router: Router,
+    public platform: Platform,
+    private datePipe: DatePipe,
+    private route: ActivatedRoute,
     public roomService: RoomService,
-    private languageService: LanguageService,
+    private sanitizer: DomSanitizer,
+    private authService: AuthService,
     private nurseService: NurseService,
+    public configService: ConfigService,
+    private translate: TranslateService,
+    private inviteService: InviteService,
+    private conServ: ConsultationService,
+    private languageService: LanguageService,
+    private translatorServ: TranslatorService,
+    private socketService: SocketEventsService,
   ) {
     this.connectionErrorMessage = translate.instant(
       "login.theRemoteServerIsNotReachable"
@@ -102,8 +95,7 @@ export class LoginPage implements OnInit {
   }
 
   ngAfterContentInit() {
-    const token = localStorage.getItem('inviteToken') || '';
-    const inviteToken = token;
+    const inviteToken = localStorage.getItem('inviteToken') || '';
     if (this.inviteToken !== inviteToken || this.inviteKey !== inviteToken) {
       this.inviteToken = inviteToken;
       this.inviteKey = this.inviteToken;
@@ -129,7 +121,6 @@ export class LoginPage implements OnInit {
       })
     );
   }
-
 
   checkMarkdown() {
     this.nurseService.checkMarkdownExists(this.markdownUrl).subscribe({
@@ -164,45 +155,6 @@ export class LoginPage implements OnInit {
         this.handleToken(this.inviteToken);
       })
     );
-  }
-
-  handleUser(user) {
-    this.currentUser = user;
-    // Check if the client was in a consultation
-    const consultationId = localStorage.getItem("currentConsultation");
-    const videoCallTested = localStorage.getItem("videoCallTested");
-
-    if (consultationId) {
-      return this.handleConsultation(consultationId);
-    } else {
-      if (videoCallTested) {
-        // create consultation
-        this.conServ
-          .createConsultation({
-            queue: "covid19",
-            gender: "unknown",
-            IMADTeam: "none",
-            invitationToken: this.inviteToken,
-          })
-          .toPromise()
-          .then((consultation) => {
-            if (!consultation) {
-              return this.router.navigate(["await-consultation"]);
-            }
-            localStorage.setItem("currentConsultation", consultation.id);
-            this.handleConsultation(consultation.id);
-          })
-          .catch((err) => {
-            this.handleTokenError(err);
-          })
-          .finally(() => {
-            this.submitted = false;
-            this.loading = false;
-          });
-      } else {
-        return this.router.navigate(["test-call"]);
-      }
-    }
   }
 
   handleConsultation(consultationId) {
@@ -245,12 +197,37 @@ export class LoginPage implements OnInit {
     this.translate.use(lang);
 
     if (this.currentUser) {
+
       if (this.currentUser.inviteToken === this.invite.id) {
         if (invite.type === "TRANSLATOR_REQUEST") {
           return;
         }
+        if (accept) {
+          this.conServ
+              .createConsultation({
+                queue: "covid19",
+                gender: "unknown",
+                IMADTeam: "none",
+                invitationToken: this.inviteToken,
+              })
+              .toPromise()
+              .then((consultation) => {
+                if (!consultation) {
+                  return this.router.navigate(["await-consultation"]);
+                }
+                localStorage.setItem("currentConsultation", consultation.id);
+                this.handleConsultation(consultation.id);
+              })
+              .catch((err) => {
+                this.handleTokenError(err);
+              })
+              .finally(() => {
+                this.submitted = false;
+                this.loading = false;
+              });
+        }
 
-        return this.handleUser(this.currentUser);
+
       } else {
         await this.authService.logout();
         localStorage.setItem("inviteToken", this.inviteToken);
@@ -299,20 +276,6 @@ export class LoginPage implements OnInit {
       }
 
       this.router.navigate([`/test-call`]);
-
-      // const data: any = this.isExpert ?
-      //     [this.expertToken, undefined, undefined, {firstName: this.firstName, lastName: this.lastName}] :
-      //     [this.inviteToken, this.birthDate, this.translator]
-      // this.authService
-      //   // @ts-ignore
-      //   .loginWithInvite(...data)
-      //   .toPromise()
-      //   .then((user) => {
-      //     return this.handleUser(user)
-      //   })
-      //   .catch((err) => {
-      //     this.handleTokenError(err);
-      //   });
     }
   }
 
@@ -482,15 +445,6 @@ export class LoginPage implements OnInit {
     clearInterval(this.allowConsultationTimer);
   }
 
-  openApp() {
-    if (this.platform.is("android")) {
-      this.openAndroidApp();
-    } else {
-      const url = this.getCurrentUrl();
-      console.log("Trying to open ", url);
-      window.location.href = url;
-    }
-  }
   openAndroidApp() {
     const inviteToken = this.inviteToken ? this.inviteToken : this.inviteKey;
 
@@ -550,17 +504,6 @@ export class LoginPage implements OnInit {
     this.termsChecked = !this.termsChecked;
   }
 
-  /**
-   * Check if the user is running on mobile (either web or native app).
-   */
-  isMobileUser() {
-    return this.platform.is('ios') || this.platform.is('android');
-  }
-
-  /**
-   * Check if the user is running an installed app.
-   */
-
   isNativeApp() {
     return !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'));
   }
@@ -573,41 +516,41 @@ export class LoginPage implements OnInit {
     const url = this.getCurrentUrl();
 
     const event = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:HUGatHOME
-CALSCALE:GREGORIAN
-BEGIN:VTIMEZONE
-TZID:Europe/Zurich
-TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Zurich
-X-LIC-LOCATION:Europe/Zurich
-BEGIN:DAYLIGHT
-TZOFFSETFROM:+0100
-TZOFFSETTO:+0200
-TZNAME:CEST
-DTSTART:19700329T020000
-RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
-END:DAYLIGHT
-BEGIN:STANDARD
-TZOFFSETFROM:+0200
-TZOFFSETTO:+0100
-TZNAME:CET
-DTSTART:19701025T030000
-RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
-END:STANDARD
-END:VTIMEZONE
-BEGIN:VEVENT
-DTSTAMP:${this.datePipe.transform(new Date(), "yyyyMMddTHHmmss")}
-UID:${Math.random().toString(36).substr(2, 9)}
-DTSTART;TZID=Europe/Berlin:${this.datePipe.transform(date, "yyyyMMddTHHmmss")}
-SUMMARY:Téléconsultation
-URL:${encodeURI(url)}
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:Téléconsultation
-TRIGGER:-PT1H
-END:VALARM
-END:VEVENT
-END:VCALENDAR`;
+      VERSION:2.0
+      PRODID:HUGatHOME
+      CALSCALE:GREGORIAN
+      BEGIN:VTIMEZONE
+      TZID:Europe/Zurich
+      TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Zurich
+      X-LIC-LOCATION:Europe/Zurich
+      BEGIN:DAYLIGHT
+      TZOFFSETFROM:+0100
+      TZOFFSETTO:+0200
+      TZNAME:CEST
+      DTSTART:19700329T020000
+      RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+      END:DAYLIGHT
+      BEGIN:STANDARD
+      TZOFFSETFROM:+0200
+      TZOFFSETTO:+0100
+      TZNAME:CET
+      DTSTART:19701025T030000
+      RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+      END:STANDARD
+      END:VTIMEZONE
+      BEGIN:VEVENT
+      DTSTAMP:${this.datePipe.transform(new Date(), "yyyyMMddTHHmmss")}
+      UID:${Math.random().toString(36).substr(2, 9)}
+      DTSTART;TZID=Europe/Berlin:${this.datePipe.transform(date, "yyyyMMddTHHmmss")}
+      SUMMARY:Téléconsultation
+      URL:${encodeURI(url)}
+      BEGIN:VALARM
+      ACTION:DISPLAY
+      DESCRIPTION:Téléconsultation
+      TRIGGER:-PT1H
+      END:VALARM
+      END:VEVENT
+      END:VCALENDAR`;
     const blob = new Blob([event], { type: "text/calendar" });
     return this.sanitizer.bypassSecurityTrustUrl(
       window.URL.createObjectURL(blob)
