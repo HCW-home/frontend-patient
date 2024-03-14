@@ -67,15 +67,13 @@
     "cordova-browser": "^6.0.0",
     "cordova-plugin-nativeaudio": "^3.0.9",
     "hcw-stream-lib": "0.0.14",
-    "i": "^0.3.6",
     "ngx-markdown": "^14.0.1",
-    "normal": "^0.1.1",
     "patch-package": "^6.2.2",
     "rxjs": "^6.4.0",
     "sails.io.js": "^1.2.1",
     "socket.io-client": "^2.4.0",
     "xcode": "1.0.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.13.3"
   },
   "devDependencies": {
     "@angular-devkit/architect": "^0.1502.10",
