@@ -41,8 +41,9 @@ export class TestComponent implements OnInit, OnDestroy {
     peerId;
     myCamStream: Stream;
 
-    muteStatus: "on" | "off" = "on";
-    camStatus = "on";
+    muteStatus: "on" | "off" = "off";
+    camStatus: "on" | "off" = "off";
+
     permissionDenied = false;
     permissionError = false;
     showRetryButton = false;
@@ -101,38 +102,37 @@ export class TestComponent implements OnInit, OnDestroy {
     }
 
     async requestMedia(): Promise<void> {
-
         const audioResult = await this.mediaService.getMedia("audio");
         const videoResult = await this.mediaService.getMedia("video");
 
-
         try {
-            const cameraStatus = await navigator.permissions.query(<any>{name: "camera"});
+            const cameraStatus = await navigator.permissions.query({ name: "camera" as any });
             cameraStatus.addEventListener("change", (evt) => {
-                navigator.mediaDevices.getUserMedia({video: true})
+                navigator.mediaDevices.getUserMedia({ video: true })
                     .then((res) => {
                         this.showRetryButton = true;
                     })
                     .catch((err) => {
+                        this.camStatus = "off";
                         this.showRetryButton = true;
                     });
-            }, {once: true});
+            }, { once: true });
         } catch (error) {
             console.log('camera','(not supported) ');
         }
 
         try {
-            const audioStatus = await navigator.permissions.query(<any>{name: "microphone"});
-
+            const audioStatus = await navigator.permissions.query({ name: "microphone" as any });
             audioStatus.addEventListener("change", (evt) => {
-                navigator.mediaDevices.getUserMedia({audio: true})
+                navigator.mediaDevices.getUserMedia({ audio: true })
                     .then((res) => {
                         this.showRetryButton = true;
                     })
                     .catch((err) => {
+                        this.muteStatus = "off";
                         this.showRetryButton = true;
                     });
-            }, {once: true});
+            }, { once: true });
         } catch (error) {
             console.log('microphone','(not supported) ');
         }
@@ -142,9 +142,10 @@ export class TestComponent implements OnInit, OnDestroy {
 
         if (audioResult === "denied" || videoResult === "denied") {
             this.denied = true;
+            this.muteStatus = audioResult === "denied" ? "off" : "on";
+            this.camStatus = videoResult === "denied" ? "off" : "on";
         } else {
             this.denied = false;
-
         }
 
         if (this.permissionDenied || this.permissionError) {
@@ -178,6 +179,8 @@ export class TestComponent implements OnInit, OnDestroy {
             }
             this.startTest();
         } else {
+            this.muteStatus = "on";
+            this.camStatus = "on";
             this.globalWarning = this.translate.instant("test.yourDeviceSeems");
             this.startTest();
         }

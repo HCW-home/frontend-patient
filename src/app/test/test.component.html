@@ -37,7 +37,7 @@
                                 </ng-container>
 
                                 <div *ngIf="showRetryButton" class="mb-1">
-                                    <button  class="btn" (click)="retryPermission()">{{ 'test.askForPermission' | translate }}</button>
+                                    <button class="btn" (click)="retryPermission()">{{ 'test.askForPermission' | translate }}</button>
                                 </div>
                                 <div class="messages" *ngIf="globalMessage">
                                     <ion-icon name="checkmark-circle-outline" class="success"></ion-icon>
@@ -70,8 +70,7 @@
                             </div>
                             <div id="test-video-container" [hidden]="!testStarted">
                                 <div id="video-audio-container">
-                                    <div [hidden]="!accessHardwareGranted"
-                                                style="display: flex">
+                                    <div class="d-flex">
                                             <div *ngIf="session" id="volume-container">
                                                 <div
                                                         id="volume-slider"
@@ -99,7 +98,7 @@
                                             </div>
                                         </div>
                                 </div>
-                                <div class="video-actions-wrapper" *ngIf="myCamStream">
+                                <div class="video-actions-wrapper" [hidden]="!accessHardwareGranted">
                                     <ion-fab-button class="controller" (click)="camStatusChanged()">
                                         <img
                                                 *ngIf="camStatus === 'on'"
