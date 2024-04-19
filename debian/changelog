@@ -1,3 +1,18 @@
+hcw-athome-patient (0.5.0.7) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * update core to 15
+  * update cdk
+  * remove unused packages
+  * update to 16
+  * update hcw-stream-lib
+  * build fix
+  * fix refresh on login page after canceling consultation
+  * camera and mic status fix
+  * add scroll on terms page
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 19 Apr 2024 15:53:20 +0200
+
 hcw-athome-patient (0.5.0.6) focal; urgency=medium
 
   [ Gor Grigoryan ]
