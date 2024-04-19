@@ -1,6 +1,6 @@
 Summary: Front end for @Home web application patient side
 Name: hcw-athome-patient
-Version: 5.0.1
+Version: 0.5.0.9
 Release: 1
 Group: Web Application
 License: HUG
