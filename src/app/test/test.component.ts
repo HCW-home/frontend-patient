@@ -257,6 +257,7 @@ export class TestComponent implements OnInit, OnDestroy {
     }
 
     onSubmit() {
+        this.endTestVideo();
         if (this.submitted) {
             return;
         }
@@ -426,6 +427,10 @@ export class TestComponent implements OnInit, OnDestroy {
     connectWebCam() {
         this.testStatus = "CONNECTED";
         this.initAudioPublisher();
+    }
+
+    ionViewWillLeave() {
+        this.endTestVideo();
     }
 
     endTestVideo() {

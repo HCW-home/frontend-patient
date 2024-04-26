@@ -101,6 +101,7 @@ export class LoginPage implements OnInit {
       this.inviteKey = this.inviteToken;
     }
   }
+
   ngOnInit() {
     this.checkMarkdown();
     const showNativeAppSuggestion =

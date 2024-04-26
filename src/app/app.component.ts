@@ -80,8 +80,6 @@ export class AppComponent {
       .subscribe((event) => {});
   }
 
-
-
   ngOnInit() {
     this.authService
       .init()
@@ -116,20 +114,18 @@ export class AppComponent {
         if (this.currentUser && this.currentUser.role === 'nurse') {
           this.router.navigate([`/dashboard`]);
         } else {
-          this.router.navigate(["/login"]);
+          const currentConsultation = localStorage.getItem('currentConsultation')
+          if (currentConsultation) {
+              this.router.navigate(['consultation', currentConsultation])
+          } else {
+            this.router.navigate(["/login"]);
+        }
         }
       }
     }
     this.redirected = true;
   }
-  redirectToTestPage() {
-    this.router.navigate(["/test-call"]);
-    this.redirected = true;
-  }
-  redirectToAwaitConsultation() {
-    this.router.navigate(["/await-consultation"]);
-    this.redirected = true;
-  }
+
   isNativeApp() {
     return !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'));
   }
@@ -200,8 +196,8 @@ export class AppComponent {
         }
 
         NativeAudio.preload({
-          assetId:'ringSound', 
-          assetPath: notificationFile, 
+          assetId:'ringSound',
+          assetPath: notificationFile,
           // volume: 1,
           audioChannelNum: 1,
           isUrl: false
@@ -211,7 +207,7 @@ export class AppComponent {
             console.log("audio loaded ", r);
           },
           (err) => {
-            console.log("error loading sample here", err);            
+            console.log("error loading sample here", err);
           }
           );
     });
