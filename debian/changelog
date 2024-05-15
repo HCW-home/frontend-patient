@@ -1,9 +1,18 @@
+hcw-athome-patient (5.0.11) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs #6638, Links are white on white in terms
+  * fix checkbox in safari mobile
+  * fix nurse markdwon link
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 07 May 2024 09:14:24 +0200
+
 hcw-athome-patient (5.0.10) focal; urgency=medium
 
   [ Gor Grigoryan ]
   * fix consultation page refresh
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 26 Apr 2024 10:58:43 +0200
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 07 May 2024 09:14:06 +0200
 
 hcw-athome-patient (5.0.9) focal; urgency=medium
 
