@@ -1,3 +1,14 @@
+hcw-athome-patient (5.0.12) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * New release 5.0.11
+  * Translated using Weblate (French)
+
+  [ Gor Grigoryan ]
+  * fix markdown link color in home page
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 15 May 2024 13:36:36 +0200
+
 hcw-athome-patient (5.0.11) focal; urgency=medium
 
   [ Gor Grigoryan ]
