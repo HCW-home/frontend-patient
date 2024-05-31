@@ -3,8 +3,7 @@
         "awaitingConsultation": "Bitte warten Sie, während die Telekonsultation beginnt. Bitte lassen Sie dieses Fenster geöffnet."
     },
     "cgu": {
-        "termsAndConditions": "Allgemeine Geschäftsbedingungen (AGB)",
-        "backToHome": "Nach Hause zurückkehren"
+        "selectCountry": "Diese AGB gelten für das Land:"
     },
     "closingScreen": {
         "theConsultationIsNowOver": "Die Telekonsultation ist nun beendet",
@@ -15,28 +14,17 @@
         "thankYouForYourFeedback": "Vielen Dank für dein Feedback."
     },
     "consultation": {
-        "inProgress": "In Bearbeitung",
-        "plsKeepThisOpenPage": "Bitte lassen Sie diese Seite geöffnet, die Telekonsultation beginnt in wenigen Minuten.",
-        "consultation": "BERATUNG",
-        "capInProgress": "IN BEARBEITUNG",
-        "youAreNowInConsultation": "Sie befinden sich jetzt in der Telekonsultation mit",
-        "phone": "Tel.:",
-        "requestForConsultation": "ANTRAG AUF TELEKONSULTATION",
-        "youAreInWaiting": "Sie werden gehalten, bitte warten Sie.",
-        "cancel": "ABBRECHEN",
-        "download": "Herunterladen",
-        "yourBrowserDoesNotSupport": "Ihr Browser unterstützt das Audio-Element nicht.",
-        "videoCallStarted": "Videoanruf gestartet",
-        "videoCallRequested": "Videoanruf erbeten",
-        "videoCallEnded": "Videoanruf beendet",
-        "audioCallStarted": "Audioanruf hat begonnen",
-        "audioCallRefused": "Audioanruf abgelehnt",
-        "audioCallRequested": "Videoanruf erbeten",
-        "audioCallEnded": "Audioanruf beendet",
-        "joinCall": "Nehmen Sie an der laufenden Telekonsultation teil",
-        "enterYourMessage": "Gib deine Nachricht ein",
-        "audioMessage": "Nachrichten-Audio",
-        "videoCallRefused": "Audioanruf abgelehnt"
+        "hospital": "Name des Krankenhauses / der Einrichtung:",
+        "requested_at": "Angefordert bei",
+        "area": "Bereich",
+        "sex": "Sex",
+        "country": "Land",
+        "requesting": "anfordern",
+        "handled_by": "Bearbeitet von",
+        "patient_name": "Patientenname",
+        "general_information": "Allgemeine Informationen",
+        "resume": "VERTRETEN",
+        "cancel_request": "Anfrage abbrechen"
     },
     "consultations": {
         "openedConsultations": "Offene Konsultationen",
@@ -83,35 +71,11 @@
         "information": "INFORMATION"
     },
     "login": {
-        "back": "Back",
-        "home": "Zuhause",
-        "translationRequestAccepted": "Vielen Dank für die Bestätigung, Sie erhalten die Informationen in Kürze per E-Mail.",
-        "translationRequestRefused": "Vielen Dank für Ihr Feedback, wir werden den Betreuer über die Nichtverfügbarkeit informieren.",
-        "homeIsAHUGTeleconsultation": "{{branding}} ist ein Telekonsultationssystem. Sie sind dabei, an einer Konsultation mit einem Arzt teilzunehmen. Bitte verlassen Sie diese Seite nicht, wenn die Beratungsanfrage bearbeitet wird. Mit der Annahme der Beratung akzeptieren Sie die AGB.",
-        "warning": "Warnung",
-        "thisApplicationIsIntented": "Diese Anwendung soll über einen Einladungslink funktionieren, der per SMS oder E-Mail empfangen wird. Klicken Sie vorher auf diesen Link, um eine Beratung zu eröffnen.",
-        "closeTheApplication": "Schließen Sie die Anwendung",
-        "anErrorHasOccurred": "Link abgelaufen",
-        "theInvitationIsNotOrNoLongerValide": "Dieser Einladungslink ist nicht mehr gültig oder wurde bereits verwendet. Der Arzt oder die Pflegekraft schickt Ihnen eine weitere Einladung.",
-        "installOurApp": "Installieren Sie unsere Anwendung",
-        "donwloadHomeOnTheAppStore": "Laden Sie {{branding}} im App Store herunter",
-        "openTheConsultation": "Öffnen Sie die Beratung in der Anwendung",
-        "youDoNotWantToInstall": "Sie möchten die Anwendung nicht installieren?",
-        "loading": "Wird geladen...",
-        "joinViaBrowser": "Per Browser beitreten",
-        "ifYouHaveReceivedThisInvitation": "Wenn Sie diese Einladung erhalten haben, kopieren Sie den erhaltenen Link und fügen Sie ihn in Ihren Browser ein.",
-        "ifYouReceivedThisInvitation": "Wenn Sie diese Einladung erhalten haben, kopieren Sie den erhaltenen Link und fügen Sie ihn in Ihren Browser ein oder kopieren Sie den Einladungsschlüssel hierher:",
-        "thisAppOnlyWorksByInivitation": "Diese Anwendung funktioniert nur auf Einladung. Bitte verwenden Sie den Telekonsultationslink, den Ihnen Ihre Pflegekraft per SMS oder E-Mail zugesandt hat.",
-        "invitationKey": "Einladungsschlüssel",
-        "joinTheConsultation": "Nehmen Sie an der Beratung teil",
-        "pleaseWaitWhileYourRequest": "Bitte warten Sie, während Ihre Anfrage bearbeitet wird.",
-        "yourConsultationIsPlannedFor": "Ihre Telekonsultation ist geplant",
-        "addTheEventToYourCalendar": "Fügen Sie die Veranstaltung Ihrem Kalender hinzu",
-        "termsOfService": "Allgemeine Geschäftsbedingungen (AGB)",
-        "supportedByThePrivateFunction": "Gefördert durch die Privatstiftung",
-        "theRemoteServerIsNotReachable": "Der Remote-Server kann nicht erreicht werden, bitte überprüfen Sie Ihre Konnektivität",
-        "pleaseEnterYourInvitationKey": "Bitte geben Sie Ihren Einladungsschlüssel ein",
-        "youAlreadyOwnTheApplication": "Haben Sie die Anwendung bereits?"
+        "lastName": "Nachname",
+        "firstName": "Vorname",
+        "unsupportedBrowser": "Ihr Browser unterstützt keine Telekonsultation. Versuchen Sie, den Link in Safari (iOS) oder Chrome zu öffnen. Wenn Sie diesen Link von Outlook (iOS) aus öffnen, sollten Sie über das Menü (...) unten auf dieser Seite die Möglichkeit haben, diese Seite in einem anderen Browser zu öffnen.",
+        "termsSecondText": "bevor man {{branding}} verwenden kann",
+        "termsText": "Sie müssen akzeptieren,"
     },
     "translatorForm": {
         "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} ist ein Telekonsultationssystem. Sie sind dabei, einen Online-Termin mit einem Patienten und einer Pflegekraft anzunehmen.",
@@ -141,28 +105,18 @@
         "refuse": "Keine Verfügbarkeit"
     },
     "test": {
-        "loading": "Wird geladen...",
-        "joinTheConsultation": "Nehmen Sie an der Beratung teil",
-        "ifThisIsTheFirst": "Wenn Sie zum ersten Mal an einer Telekonsultation teilnehmen, empfehlen wir Ihnen, Ihre Konfiguration mit der Schaltfläche unten zu testen.",
-        "welcomeToTheHome": "Willkommen auf der {{branding}} Telekonsultationsplattform. Diese Seite hilft sicherzustellen, dass Ihr Gerät am Tag der Konsultation wie erwartet funktioniert. Klicken Sie auf die Schaltfläche unten, um die Kompatibilität zu überprüfen. Sie müssen Anfragen für den Zugriff auf Ihre Kamera und Ihr Mikrofon akzeptieren.",
-        "testMyEquipment": "Testen Sie meine Hardware",
-        "testInProgress": "Test läuft",
-        "yourDeviceAppears": "Ihr Gerät scheint Probleme mit dem Telekonsultationssystem zu haben. Wir empfehlen Ihnen, nach Möglichkeit einen anderen Browser zu verwenden, um Ihre Updates zu überprüfen, oder es auf einem anderen Gerät zu versuchen.",
-        "videoElementCreated": "Videoelement erstellt",
-        "streamCreated": "Ablauf erstellt",
-        "connectionWithServer": "Verbindung mit dem Server",
-        "stopTheTest": "Stoppen Sie die Prüfung",
-        "yourDeviceSeems": "Ihr Gerät scheint perfekt mit dem Telekonsultationssystem kompatibel zu sein. Wenn die Videovorschau nicht in ausreichender Qualität oder abgehackt ist, überprüfen Sie bitte, ob das Signal Ihres Geräts ausreicht.",
-        "testStarting": "Test starten",
-        "theConnectionIs": "Die Verbindung war erfolgreich"
+        "permissionError": "Beim Zugriff auf Ihre Kamera oder Ihr Mikrofon ist ein Problem aufgetreten. Bitte stellen Sie sicher, dass die Geräte richtig angeschlossen sind.",
+        "micAndCamRequesting": "HCW@Home muss Zugriff auf Ihre Kamera und Ihr Mikrofon haben, um ordnungsgemäß zu funktionieren. Bitte stellen Sie sicher, dass Sie die Berechtigungsanfrage akzeptieren.",
+        "connectivityIssue": "Wir haben ein Verbindungsproblem",
+        "askForPermission": "Um Erlaubnis fragen",
+        "bothDenied": "Der Zugriff auf Kamera und Mikrofon ist verweigert.",
+        "cameraDenied": "Der Zugriff auf das Mikrofon scheint zu funktionieren, aber der Zugriff auf die Kamera wird verweigert.",
+        "micDenied": "Der Zugriff auf die Kamera scheint zu funktionieren, aber der Zugriff auf das Mikrofon wird verweigert.",
+        "youCanStillJoin": "Sie können weiterhin an der Beratung teilnehmen, aber der Video-/Audioanruf schlägt möglicherweise fehl."
     },
     "videoRoom": {
-        "call": "Anruf",
-        "audio": "Audio",
-        "video": "Video",
-        "accept": "Annehmen",
-        "refuse": "Ablehnen",
-        "callInProgress": "Anruf in Arbeit"
+        "videoCall": "Videoanruf",
+        "audioCall": "Audioanruf"
     },
     "chooseAttachement": {
         "send": "SCHICKEN",
@@ -201,5 +155,21 @@
     "fa": "فارسی",
     "ti": "ትግርኛ",
     "ru": "Русский",
-    "it": "italiano"
+    "it": "italiano",
+    "register": {
+        "lastname": "Nachname",
+        "enter_firstName": "Vornamen eingeben",
+        "firstName": "Vorname",
+        "enter_email": "E-Mail eingeben",
+        "email": "Email",
+        "account_request": "Account-Anfrage"
+    },
+    "authenticate": {
+        "access_permits": "Über diesen Zugang kann eine Konsultation zu {{branding}} beantragt werden.",
+        "sso_text": "Melden Sie sich mit Ihren Single Sign-On-Anmeldeinformationen an",
+        "welcome_back": "Hallo, willkommen zurück!",
+        "no_account": "Noch kein Konto ? Hier Konto beantragen",
+        "login_with": "Institutionelle Verbindung",
+        "authenticate": "Authentifizieren"
+    }
 }
