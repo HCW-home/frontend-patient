@@ -3,7 +3,9 @@
         "awaitingConsultation": "Bitte warten Sie, während die Telekonsultation beginnt. Bitte lassen Sie dieses Fenster geöffnet."
     },
     "cgu": {
-        "selectCountry": "Diese AGB gelten für das Land:"
+        "selectCountry": "Diese AGB gelten für das Land:",
+        "backToHome": "Zurück zur Hauptseite",
+        "termsAndConditions": "Allgemeine Geschäftsbedingungen (AGB)"
     },
     "closingScreen": {
         "theConsultationIsNowOver": "Die Telekonsultation ist nun beendet",
@@ -24,11 +26,33 @@
         "patient_name": "Patientenname",
         "general_information": "Allgemeine Informationen",
         "resume": "VERTRETEN",
-        "cancel_request": "Anfrage abbrechen"
+        "cancel_request": "Anfrage abbrechen",
+        "videoCallRefused": "Audioanruf abgelehnt",
+        "audioMessage": "Audio Nachrichten",
+        "enterYourMessage": "Gib deine Nachricht ein",
+        "joinCall": "Nehmen Sie an der laufenden Telekonsultation teil",
+        "audioCallEnded": "Audioanruf beendet",
+        "audioCallRequested": "Videoanruf angefragt",
+        "audioCallRefused": "Audioanruf abgelehnt",
+        "audioCallStarted": "Audioanruf hat begonnen",
+        "videoCallEnded": "Videoanruf beendet",
+        "videoCallRequested": "Videoanruf angefragt",
+        "videoCallStarted": "Videoanruf gestartet",
+        "yourBrowserDoesNotSupport": "Ihr Browser unterstützt das Audio-Element nicht.",
+        "download": "Herunterladen",
+        "cancel": "ABBRECHEN",
+        "youAreInWaiting": "Sie befinden sie in der Warteschleife, bitte haben Sie ein Moment Geduld.",
+        "requestForConsultation": "ANTRAG AUF TELEKONSULTATION",
+        "phone": "Tel.:",
+        "youAreNowInConsultation": "Sie befinden sich jetzt in der Telekonsultation mit",
+        "capInProgress": "IN BEARBEITUNG",
+        "consultation": "BERATUNG",
+        "plsKeepThisOpenPage": "Bitte lassen Sie diese Seite geöffnet, die Telekonsultation beginnt in wenigen Minuten.",
+        "inProgress": "In Bearbeitung"
     },
     "consultations": {
         "openedConsultations": "Offene Konsultationen",
-        "browserNotSupported": "Browser nicht unterstützt",
+        "browserNotSupported": "Ihren Browser erlaubt keine Telekonsultation. Versuchen Sie den Link auf Safari (IOS) oder Chrome zu eröffnen. Falls Sie diesen Link from Outlook (IOS) eröffnen, sollte eine Option dieser Seite in ein anderen Browser zu eröffnen, aus den (...) Menu am Fuss der Seite",
         "yourBrowserIsNotCompatible": "Ihr Browser ist nicht mit unserer Anwendung kompatibel, bitte aktualisieren Sie ihn oder verwenden Sie ein neueres Gerät. Für diese Telekommunikation benötigen Sie:",
         "aCamera": "eine Kamera;",
         "aMicrophone": "ein Mikrofon;",
@@ -41,7 +65,7 @@
         "forLinuxComputers": "Für Windows-Computer: Chrome, Firefox"
     },
     "history": {
-        "historyOfConsultations": "Geschichte der Konsultationen"
+        "historyOfConsultations": "Suche Historie?"
     },
     "incomingCall": {
         "videoCall": "Videoanruf",
@@ -75,7 +99,13 @@
         "firstName": "Vorname",
         "unsupportedBrowser": "Ihr Browser unterstützt keine Telekonsultation. Versuchen Sie, den Link in Safari (iOS) oder Chrome zu öffnen. Wenn Sie diesen Link von Outlook (iOS) aus öffnen, sollten Sie über das Menü (...) unten auf dieser Seite die Möglichkeit haben, diese Seite in einem anderen Browser zu öffnen.",
         "termsSecondText": "bevor man {{branding}} verwenden kann",
-        "termsText": "Sie müssen akzeptieren,"
+        "termsText": "Sie müssen akzeptieren,",
+        "warning": "Warnung",
+        "homeIsAHUGTeleconsultation": "{{branding}} ist ein System für Telekonsultationen. Sie werden bald eine Konsultation mit einen Arzt antreten. Bitte verlassen Sie diese Seite nicht sobald den Antrag auf eine Konsultation begonnen hat.",
+        "translationRequestRefused": "Vielen Dank für Ihr Feedback, wir werden den Interessierten über die Nichtverfügbarkeit informieren.",
+        "translationRequestAccepted": "Vielen Dank für die Bestätigung, Sie erhalten die Informationen in Kürze per E-Mail.",
+        "home": "Hauptseite",
+        "back": "zurück"
     },
     "translatorForm": {
         "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} ist ein Telekonsultationssystem. Sie sind dabei, einen Online-Termin mit einem Patienten und einer Pflegekraft anzunehmen.",
