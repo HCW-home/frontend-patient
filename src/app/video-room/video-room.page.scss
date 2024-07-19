@@ -656,8 +656,8 @@
 }
 
 .OT_fit-mode-cover .OT_video-element {
-  -o-object-fit: cover;
-  object-fit: cover;
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 /* Workaround for iOS freezing issue when cropping videos */
@@ -897,9 +897,9 @@ ion-fab-button.controller {
 //OT_root OT_publisher OT_remote custom-class ng-tns-c1-1 ng-star-inserted OV_big
 
 .halfScreen {
-  position: fixed;
+  position: sticky;
   top: 56px;
-  height: 40%;
+  height: 250px;
   width: 100%;
   z-index: 100;
 }
@@ -1014,14 +1014,12 @@ img.logo {
 }
 
 .ios--main-video {
-  display: relative;
   z-index: 1000;
   background-color: transparent;
 }
 
 .none-ios--main-video {
   background-color: var(--ion-color-primary) !important;
-  display: relative;
   z-index: 1000;
 }
 

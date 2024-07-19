@@ -1,13 +1,4 @@
 <app-video-room
-        *ngIf="ongoingCall && shouldJoinCall"
-        [sessionId]="consultation.id"
-        (hangup)="hangup()"
-        [accepted]="true"
-        [message]="ongoingCall"
-        [token]="ongoingCall.token"
-        [user]="callingDoctor"
-></app-video-room>
-<app-video-room
         *ngIf="callRunning"
         [sessionId]="consultation.id"
         [message]="ongoingCall"
@@ -28,20 +19,29 @@
         #scrollMe
         id="chatContainer"
 >
+    <app-video-room
+            *ngIf="ongoingCall && shouldJoinCall"
+            [sessionId]="consultation.id"
+            (hangup)="hangup()"
+            [accepted]="true"
+            [message]="ongoingCall"
+            [token]="ongoingCall.token"
+            [user]="callingDoctor"
+    ></app-video-room>
     <p class="keep-open" *ngIf="consultation.consultation.status !== 'active' && consultation.consultation.status !== 'closed'">
         {{ 'consultation.plsKeepThisOpenPage' | translate }}
     </p>
     <ion-card
             *ngIf="consultation.consultation.status === 'active'"
             class="jumbotron ion-no-padding ion-no-margin">
-        <ion-card-header>
+        <ion-card-header *ngIf="!ongoingCall">
             <ion-card-title class="title">
                 {{ 'consultation.consultation' | translate }}
                 <br/>
                 <strong>{{ 'consultation.capInProgress' | translate }}</strong>
             </ion-card-title>
         </ion-card-header>
-        <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
+        <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor && !ongoingCall">
             <p class="subtitle">
                 {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
             </p>
