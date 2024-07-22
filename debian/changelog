@@ -1,4 +1,17 @@
-hcw-athome-patient (5.0.15) focal; urgency=medium
+hcw-athome-patient (5.1.1) focal; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Remove hard coded name from image
+
+  [ Linda Habib ]
+  * Translated using Weblate (German)
+
+  [ Gor Grigoryan ]
+  * make chat usable when on call
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 22 Jul 2024 09:51:07 +0200
+
+hcw-athome-patient (5.1.0) focal; urgency=medium
 
   * New release 5.0.14
   * Translated using Weblate (French)
