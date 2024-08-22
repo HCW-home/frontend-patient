@@ -65,7 +65,7 @@
         "forLinuxComputers": "Für Windows-Computer: Chrome, Firefox"
     },
     "history": {
-        "historyOfConsultations": "Suche Historie?"
+        "historyOfConsultations": "Beratungsgeschichte"
     },
     "incomingCall": {
         "videoCall": "Videoanruf",
@@ -105,7 +105,30 @@
         "translationRequestRefused": "Vielen Dank für Ihr Feedback, wir werden den Interessierten über die Nichtverfügbarkeit informieren.",
         "translationRequestAccepted": "Vielen Dank für die Bestätigung, Sie erhalten die Informationen in Kürze per E-Mail.",
         "home": "Hauptseite",
-        "back": "zurück"
+        "back": "zurück",
+        "youAlreadyOwnTheApplication": "Haben Sie die Anwendung bereits?",
+        "pleaseEnterYourInvitationKey": "Bitte geben Sie Ihren Einladungscode ein",
+        "theRemoteServerIsNotReachable": "Der entfernte Server kann nicht erreicht werden, bitte überprüfen Sie Ihre Verbindung",
+        "supportedByThePrivateFunction": "Unterstützt von der privaten Stiftung",
+        "termsOfService": "Allgemeine Geschäftsbedingungen",
+        "addTheEventToYourCalendar": "Fügen Sie das Ereignis Ihrem Kalender hinzu",
+        "yourConsultationIsPlannedFor": "Ihre Telekonsultation ist für den [Datum/Zeit] geplant.",
+        "pleaseWaitWhileYourRequest": "Bitte warten Sie, während Ihre Anfrage bearbeitet wird.",
+        "joinTheConsultation": "Treten Sie der Konsultation bei",
+        "invitationKey": "Einladungscode",
+        "thisAppOnlyWorksByInivitation": "Diese Anwendung funktioniert nur mit einer Einladung. Bitte verwenden Sie den Telekonsultationslink, den Ihnen Ihre Pflegekraft per SMS oder E-Mail gesendet hat.",
+        "ifYouReceivedThisInvitation": "Wenn Sie diese Einladung erhalten haben, kopieren Sie den erhaltenen Link und fügen Sie ihn in Ihren Browser ein oder kopieren Sie den Einladungscode hier.",
+        "ifYouHaveReceivedThisInvitation": "Wenn Sie diese Einladung erhalten haben, kopieren Sie den erhaltenen Link und fügen Sie ihn in Ihren Browser ein.",
+        "joinViaBrowser": "Über den Browser beitreten",
+        "loading": "Laden...",
+        "youDoNotWantToInstall": "Sie möchten die Anwendung nicht installieren?",
+        "openTheConsultation": "Öffnen Sie die Konsultation in der Anwendung",
+        "donwloadHomeOnTheAppStore": "Laden Sie {{branding}} im App Store herunter",
+        "installOurApp": "Installieren Sie unsere Anwendung",
+        "theInvitationIsNotOrNoLongerValide": "Dieser Einladung-Link ist nicht mehr gültig oder wurde bereits verwendet. Der Arzt oder Pflegekraft wird Ihnen eine weitere Einladung senden.",
+        "anErrorHasOccurred": "Link abgelaufen",
+        "closeTheApplication": "Schließen Sie die Anwendung",
+        "thisApplicationIsIntented": "Diese Anwendung ist dafür vorgesehen, über einen Einladung-Link zu funktionieren, der per SMS oder E-Mail empfangen wurde. Klicken Sie vorher auf diesen Link, um eine Konsultation zu öffnen."
     },
     "translatorForm": {
         "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} ist ein Telekonsultationssystem. Sie sind dabei, einen Online-Termin mit einem Patienten und einer Pflegekraft anzunehmen.",
@@ -142,11 +165,31 @@
         "bothDenied": "Der Zugriff auf Kamera und Mikrofon ist verweigert.",
         "cameraDenied": "Der Zugriff auf das Mikrofon scheint zu funktionieren, aber der Zugriff auf die Kamera wird verweigert.",
         "micDenied": "Der Zugriff auf die Kamera scheint zu funktionieren, aber der Zugriff auf das Mikrofon wird verweigert.",
-        "youCanStillJoin": "Sie können weiterhin an der Beratung teilnehmen, aber der Video-/Audioanruf schlägt möglicherweise fehl."
+        "youCanStillJoin": "Sie können weiterhin an der Beratung teilnehmen, aber der Video-/Audioanruf schlägt möglicherweise fehl.",
+        "theConnectionIs": "Die Verbindung war erfolgreich",
+        "testStarting": "Test wird gestartet",
+        "yourDeviceSeems": "Ihr Gerät scheint perfekt mit dem Telekonsultationssystem kompatibel zu sein. Wenn die Video-Vorschau nicht von ausreichender Qualität ist oder ruckelt, überprüfen Sie bitte, ob das Signal Ihrer Ausrüstung ausreichend ist.",
+        "stopTheTest": "Test stoppen",
+        "connectionWithServer": "Verbindung zum Server",
+        "streamCreated": "Flow erstellt",
+        "videoElementCreated": "Videoelement erstellt",
+        "yourDeviceAppears": "Ihr Gerät scheint Probleme mit dem Telekonsultationssystem zu haben. Wir empfehlen Ihnen, wenn möglich, einen anderen Browser zu verwenden, Ihre Updates zu überprüfen oder es auf einem anderen Gerät zu versuchen.",
+        "testInProgress": "Test wird durchgeführt.",
+        "testMyEquipment": "Testen Sie meine Hardware.",
+        "welcomeToTheHome": "Willkommen auf der Telekonsultationsplattform von {{branding}}. Diese Seite hilft sicherzustellen, dass Ihr Gerät am Tag der Konsultation wie erwartet funktioniert. Klicken Sie auf den Button unten, um die Kompatibilität zu überprüfen. Sie müssen Anfragen zum Zugriff auf Ihre Kamera und Ihr Mikrofon akzeptieren.",
+        "ifThisIsTheFirst": "Wenn dies das erste Mal ist, dass Sie an einer Telekonsultation teilnehmen, empfehlen wir Ihnen, Ihre Konfiguration mit dem untenstehenden Button zu testen.",
+        "joinTheConsultation": "Treten Sie der Konsultation bei",
+        "loading": "Laden..."
     },
     "videoRoom": {
         "videoCall": "Videoanruf",
-        "audioCall": "Audioanruf"
+        "audioCall": "Audioanruf",
+        "callInProgress": "Anruf in Bearbeitung",
+        "refuse": "Ablehnen",
+        "accept": "Akzeptieren",
+        "video": "Video",
+        "audio": "Audio",
+        "call": "Anruf"
     },
     "chooseAttachement": {
         "send": "SCHICKEN",
@@ -192,7 +235,11 @@
         "firstName": "Vorname",
         "enter_email": "E-Mail eingeben",
         "email": "Email",
-        "account_request": "Account-Anfrage"
+        "account_request": "Account-Anfrage",
+        "organization": "Organisation",
+        "enter_phone_number": "Telefonnummer eingeben",
+        "phone_number": "Telefonnummer",
+        "enter_lastname": "Nachnamen eingeben"
     },
     "authenticate": {
         "access_permits": "Über diesen Zugang kann eine Konsultation zu {{branding}} beantragt werden.",
