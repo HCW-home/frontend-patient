@@ -165,7 +165,8 @@
         "bothDenied": "Les accès à la caméra et au microphone sont refusés.",
         "cameraDenied": "L'accès au microphone semble fonctionner mais l'accès à la caméra est refusé.",
         "micDenied": "L'accès à la caméra semble fonctionner mais l'accès au microphone est refusé.",
-        "youCanStillJoin": "Vous pouvez néanmoins rejoindre la consultation, mais l'appel vidéo/audio risque d'échouer."
+        "youCanStillJoin": "Vous pouvez néanmoins rejoindre la consultation, mais l'appel vidéo/audio risque d'échouer.",
+        "loading": "Chargement..."
     },
     "videoRoom": {
         "call": "Appel",
