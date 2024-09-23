@@ -187,8 +187,8 @@
         </ng-template>
 
     </div>
-        <ng-container *ngIf="markdownExists">
-            <app-footer></app-footer>
+        <ng-container *ngIf="markdownExists && markdownUrl">
+            <app-footer [markdownUrl]="markdownUrl"></app-footer>
         </ng-container>
     </div>
     <app-overlay

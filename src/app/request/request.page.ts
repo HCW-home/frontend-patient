@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {AuthService} from "../auth/auth.service";
 import {first} from "rxjs/operators";
 import {NurseService} from "../shared/services/nurse.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: "app-request",
@@ -16,23 +17,42 @@ export class RequestPage implements OnInit {
     returnUrl: string;
     markdownExists: boolean = false;
     markdownUrl: string = 'assets/requester.md';
+    currentLang: string = 'en';
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
         private nurseService: NurseService,
+        private translate: TranslateService,
         private authService: AuthService,
         public configService: ConfigService) {
+        this.currentLang = this.translate.currentLang || 'en';
     }
 
     ngOnInit() {
-        this.nurseService.checkMarkdownExists(this.markdownUrl).subscribe({
-         next: (res) => {
-             this.markdownExists = true;
-         }, error: (err) => {
-                this.markdownExists = false;
+        this.checkMarkdown();
+    }
+
+    checkMarkdown() {
+        const langSpecificMarkdownUrl = `assets/requester.${this.currentLang}.md`;
+
+        this.nurseService.checkMarkdownExists(langSpecificMarkdownUrl).subscribe({
+            next: (res) => {
+                this.markdownUrl = langSpecificMarkdownUrl;
+                this.markdownExists = true;
+            },
+            error: (err) => {
+                this.nurseService.checkMarkdownExists('assets/requester.md').subscribe({
+                    next: (res) => {
+                        this.markdownUrl = 'assets/requester.md';
+                        this.markdownExists = true;
+                    },
+                    error: (err) => {
+                        this.markdownExists = false;
+                    }
+                });
             }
-        })
+        });
     }
 
     ionViewWillEnter() {

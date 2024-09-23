@@ -28,11 +28,12 @@ export class DashboardPage implements OnDestroy {
     consultations: any[] = [];
     closedConsultations: any[] = [];
     wide: boolean = false;
-    markdownExists: boolean = false;
-    markdownUrl: string = 'assets/footer.md';
     callRunning = false;
     ongoingCall = null;
     shouldJoinCall = false;
+    markdownExists: boolean = false;
+    markdownUrl: string = 'assets/footer.md';
+    currentLang: string = 'en';
 
 
     constructor(
@@ -47,7 +48,9 @@ export class DashboardPage implements OnDestroy {
         private platform: Platform,
         private menuController: MenuController,
         private nurseService: NurseService
-    ) {}
+    ) {
+        this.currentLang = this.translate.currentLang || 'en';
+    }
 
     ionViewDidEnter() {
         this.checkAndReinitializeSocket();
@@ -240,13 +243,25 @@ export class DashboardPage implements OnDestroy {
     }
 
     checkMarkdown() {
-        this.nurseService.checkMarkdownExists(this.markdownUrl).subscribe({
+        const langSpecificMarkdownUrl = `assets/footer.${this.currentLang}.md`;
+
+        this.nurseService.checkMarkdownExists(langSpecificMarkdownUrl).subscribe({
             next: (res) => {
+                this.markdownUrl = langSpecificMarkdownUrl;
                 this.markdownExists = true;
-            }, error: (err) => {
-                this.markdownExists = false;
+            },
+            error: (err) => {
+                this.nurseService.checkMarkdownExists('assets/footer.md').subscribe({
+                    next: (res) => {
+                        this.markdownUrl = 'assets/footer.md';
+                        this.markdownExists = true;
+                    },
+                    error: (err) => {
+                        this.markdownExists = false;
+                    }
+                });
             }
-        })
+        });
     }
 
 }

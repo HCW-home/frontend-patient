@@ -70,6 +70,7 @@ export class LoginPage implements OnInit {
 
   markdownExists: boolean = false;
   markdownUrl: string = 'assets/home.md';
+  currentLang: string = 'en';
 
   constructor(
     private zone: NgZone,
@@ -89,6 +90,7 @@ export class LoginPage implements OnInit {
     private translatorServ: TranslatorService,
     private socketService: SocketEventsService,
   ) {
+    this.currentLang = this.translate.currentLang || 'en';
     this.connectionErrorMessage = translate.instant(
       "login.theRemoteServerIsNotReachable"
     );
@@ -124,13 +126,25 @@ export class LoginPage implements OnInit {
   }
 
   checkMarkdown() {
-    this.nurseService.checkMarkdownExists(this.markdownUrl).subscribe({
+    const langSpecificMarkdownUrl = `assets/home.${this.currentLang}.md`;
+
+    this.nurseService.checkMarkdownExists(langSpecificMarkdownUrl).subscribe({
       next: (res) => {
+        this.markdownUrl = langSpecificMarkdownUrl;
         this.markdownExists = true;
-      }, error: (err) => {
-        this.markdownExists = false;
+      },
+      error: (err) => {
+        this.nurseService.checkMarkdownExists('assets/home.md').subscribe({
+          next: (res) => {
+            this.markdownUrl = 'assets/home.md';
+            this.markdownExists = true;
+          },
+          error: (err) => {
+            this.markdownExists = false;
+          }
+        });
       }
-    })
+    });
   }
 
   async init() {
