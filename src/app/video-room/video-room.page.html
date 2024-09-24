@@ -39,7 +39,6 @@
 </div>
 <div
   class="video--main"
-  [ngDraggable]="!isFullScreen"
   [lockAxis]="'x'"
   [inBounds]="true"
   [ngClass]="{'fullScreen': isFullScreen , 'halfScreen':!isFullScreen, 'audioOnly': audioOnly, 'ios--main-video':this.platform.is('ios'), 'none-ios--main-video':!this.platform.is('ios')}"
