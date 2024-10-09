@@ -7,8 +7,8 @@ VERSION ?= $(shell head -n 1 debian/changelog| cut -d' ' -f2 | sed 's/[\(\)]*//g
 .PHONY: install build archive test clean web
 
 node_modules:
-#	@ npx yarn install
-	@ npm install
+	@ npx yarn install
+	@# npm install
 
 build: web
 
