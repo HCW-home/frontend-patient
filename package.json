@@ -67,7 +67,7 @@
     "cordova": "^11.0.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-nativeaudio": "^3.0.9",
-    "hcw-stream-lib": "0.0.15",
+    "hcw-stream-lib": "0.0.16",
     "ngx-markdown": "^16.0.0",
     "patch-package": "^6.2.2",
     "rxjs": "^6.4.0",
