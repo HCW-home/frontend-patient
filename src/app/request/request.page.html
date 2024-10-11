@@ -34,7 +34,7 @@
                     {{ 'authenticate.no_account' | translate }}
                 </span>
                     </div>
-                    <app-select-language></app-select-language>
+                    <app-select-language (selectedLanguageChange)="onLanguageChange($event)"></app-select-language>
 
                 </div>
             </div>

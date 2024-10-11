@@ -527,7 +527,12 @@ export class LoginPage implements OnInit {
     return environment.production;
   }
 
-  generateIcsBlob(date) {
+  onLanguageChange(language: string): void {
+    this.currentLang = language;
+    this.checkMarkdown();
+  }
+
+    generateIcsBlob(date) {
     const url = this.getCurrentUrl();
 
     const event = `BEGIN:VCALENDAR

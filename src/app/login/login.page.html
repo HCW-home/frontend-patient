@@ -210,7 +210,7 @@
                         </p>
                     </ng-container>
 
-                    <app-select-language></app-select-language>
+                    <app-select-language (selectedLanguageChange)="onLanguageChange($event)"></app-select-language>
                 </div>
             </div>
 

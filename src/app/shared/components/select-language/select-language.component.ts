@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {LanguageService} from "../../services/language.service";
 
@@ -8,6 +8,7 @@ import {LanguageService} from "../../services/language.service";
   styleUrls: ["./select-language.component.scss"],
 })
 export class SelectLanguageComponent {
+  @Output() selectedLanguageChange = new EventEmitter();
   selectedLanguage: string;
 
   constructor(public translate: TranslateService,
@@ -20,5 +21,6 @@ export class SelectLanguageComponent {
     this.selectedLanguage  = lang;
     localStorage.setItem("hhp-lang", lang);
     this.translate.use(lang);
+    this.selectedLanguageChange.emit(lang);
   }
 }

@@ -55,6 +55,11 @@ export class RequestPage implements OnInit {
         });
     }
 
+    onLanguageChange(language: string): void {
+        this.currentLang = language;
+        this.checkMarkdown();
+    }
+
     ionViewWillEnter() {
         const token = this.route.snapshot.queryParams.tk;
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || "/dashboard";
