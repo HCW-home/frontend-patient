@@ -1,9 +1,21 @@
-hcw-athome-patient (5.2.1) focal; urgency=medium
+hcw-athome-patient (5.2.2) focal; urgency=medium
 
   [ Gor Grigoryan ]
   * refs  #7618, Terms based on browser langage
 
  -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 02 Oct 2024 13:54:12 +0200
+ 
+hcw-athome-patient (0.5.2.2) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs  #7618, Terms based on browser langage
+  * update zone.js
+  * update angular-devkit
+  * add package-lock
+  * update angular
+  * build fix
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Wed, 09 Oct 2024 16:42:46 +0200
 
 hcw-athome-patient (5.2.0) focal; urgency=medium
 
