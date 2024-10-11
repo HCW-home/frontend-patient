@@ -1,3 +1,18 @@
+hcw-athome-patient (5.2.4) focal; urgency=medium
+
+  [ Gor Grigoryan ]
+  * update hcw
+  * change npm install command
+
+  [ Olivier Bitsch ]
+  * Rebuild
+  * Fix Docker with node 20
+
+  [ Gor Grigoryan ]
+  * check markdown exists on language change for login page
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 11 Oct 2024 18:26:00 +0200
+
 hcw-athome-patient (5.2.3) focal; urgency=medium
 
   [ Gor Grigoryan ]
