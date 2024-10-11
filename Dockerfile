@@ -1,7 +1,7 @@
-FROM node:18.18 AS builder
+FROM node:20 AS builder
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm i
+RUN yarn
 COPY . .
 RUN npx ionic cap build browser --prod --no-open
 
