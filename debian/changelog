@@ -1,8 +1,10 @@
-hcw-athome-patient (0.5.2.5) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.2.6) UNRELEASED; urgency=medium
 
   * refs #7700, List in Markdown is broken
+  * fix Hang up button not working for Expert
+  * Add PDF download history from Requester
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 15 Oct 2024 07:39:11 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 15 Oct 2024 15:04:16 +0000
 
 hcw-athome-patient (5.2.4) focal; urgency=medium
 
