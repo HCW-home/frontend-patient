@@ -22,6 +22,13 @@ export class MessageService {
       }));
   }
 
+  getAllConsultationMessages(id): Observable<any> {
+    const messagesURL = this.globalVariableService.getApiPath() + `/message?where={"consultation":"${id}"}&sort=createdAt DESC&limit=200000`
+    return this.http.get<any>(messagesURL).pipe(map((message) => {
+          return new Observable(message.reverse());
+        }));
+  }
+
   sendMessage(consultationId, text): Observable<any> {
     return this.http.post<any[]>(this.globalVariableService.getApiPath() + `/message`, {
       text,

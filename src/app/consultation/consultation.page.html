@@ -51,7 +51,7 @@
                 >
             </p>
             <ion-button
-                    *ngIf="currentUser.role ==='nurse'"
+                    *ngIf="currentUser.role ==='nurse' || currentUser.role ==='admin'"
                     (click)="backToDashboard()"
                     class="cancel-btn"
                     i18n>
@@ -66,7 +66,7 @@
 
         <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
             <ion-button
-                    *ngIf="currentUser.role ==='nurse'"
+                    *ngIf="currentUser.role ==='nurse' || currentUser.role ==='admin'"
                     (click)="backToDashboard()"
                     class="cancel-btn"
                     i18n>
@@ -88,9 +88,9 @@
         <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
 
 
-        <p class="backToDashboard" *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse'" (click)="showCancelModal()">{{ 'consultation.cancel' | translate }}</p>
+        <p class="backToDashboard" *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin'" (click)="showCancelModal()">{{ 'consultation.cancel' | translate }}</p>
 
-        <ion-button  *ngIf="currentUser.role === 'nurse'"
+        <ion-button  *ngIf="currentUser.role === 'nurse' || currentUser.role === 'admin'"
                 (click)="backToDashboard()"
                 class="cancel-btn"
                 i18n>
@@ -258,7 +258,7 @@
 </ion-modal>
 
 <ng-container
-        *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'expert'"
+        *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin' || currentUser.role === 'expert'"
 >
 
 

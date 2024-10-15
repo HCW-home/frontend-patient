@@ -35,7 +35,7 @@ export class CloseConsultationComponent implements OnInit {
             .deleteConsultation(this.consultationId)
             .subscribe((res) => {
                 localStorage.removeItem("currentConsultation");
-                if (currentUser.role === "nurse") {
+                if (currentUser.role === "nurse" || currentUser.role === 'admin') {
                     this.router.navigate(["/dashboard"]);
 
                 } else {

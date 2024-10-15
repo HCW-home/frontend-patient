@@ -9,11 +9,18 @@ import {NativeAudio} from "@capacitor-community/native-audio";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../auth/auth.service";
 import {NurseService} from "../shared/services/nurse.service";
+import {MessageService} from "../message.service";
+import {ConfigService} from "../config.service";
+import {DatePipe} from "@angular/common";
+import {DurationPipe} from "../shared/pipes/duration.pipe";
+import { jsPDF } from 'jspdf';
+import {first} from "rxjs/operators";
 
 @Component({
     selector: "app-dashboard",
     templateUrl: "./dashboard.page.html",
     styleUrls: ["./dashboard.page.scss"],
+    providers: [DatePipe, DurationPipe]
 })
 export class DashboardPage implements OnDestroy {
     private subscriptions: Array<Subscription> = [];
@@ -37,17 +44,21 @@ export class DashboardPage implements OnDestroy {
 
 
     constructor(
-        private consultationService: ConsultationService,
-        private router: Router,
-        public modalController: ModalController,
-        private platformService: Platform,
-        private _socketEventsService: SocketEventsService,
-        private translate: TranslateService,
         private zone: NgZone,
-        private authService: AuthService,
+        private router: Router,
+        private datePipe: DatePipe,
         private platform: Platform,
+        private authService: AuthService,
+        private platformService: Platform,
+        private durationPipe: DurationPipe,
+        private nurseService: NurseService,
+        private translate: TranslateService,
+        private configService: ConfigService,
+        private messageService: MessageService,
         private menuController: MenuController,
-        private nurseService: NurseService
+        public modalController: ModalController,
+        private consultationService: ConsultationService,
+        private _socketEventsService: SocketEventsService,
     ) {
         this.currentLang = this.translate.currentLang || 'en';
     }
@@ -263,5 +274,164 @@ export class DashboardPage implements OnDestroy {
             }
         });
     }
+
+    exportPDF(event, consultation) {
+        event.stopPropagation();
+        this.generatePDF(consultation.consultation, consultation.nurse);
+    }
+
+    generatePDF(data, nurse) {
+        this.messageService
+            .getAllConsultationMessages(data._id || data.id)
+            .subscribe(messages => {
+                const doc = new jsPDF();
+
+                const pageWidth =
+                    doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+                const imageUrl = this.configService.config?.logo;
+                if (imageUrl) {
+                    doc.addImage(
+                        imageUrl,
+                        'JPEG',
+                        pageWidth / 2 - 25,
+                        10,
+                        50,
+                        20,
+                        'Logo',
+                        'FAST'
+                    );
+                }
+
+                const getLabelWidth = (text: string) => doc.getTextWidth(text) + 2;
+
+                doc.setFont('Helvetica', 'normal', 400);
+                doc.setFontSize(22);
+                doc.text('Consultation report', 15, 40);
+
+                doc.setFontSize(14);
+                doc.setTextColor('#464F60');
+                doc.text('Patient information', 15, 50);
+                if (nurse?.firstName) {
+                    doc.text('Requester information', 108, 50);
+                }
+                if (data.experts?.length) {
+                    doc.text('Expert information', 108, 75);
+                }
+
+                doc.setFontSize(10);
+                doc.setTextColor('#000');
+                doc.setFont('Helvetica', 'normal', 700);
+                doc.text('Firstname:', 15, 55);
+                doc.text('Lastname:', 15, 60);
+                doc.text('Gender:', 15, 65);
+
+                doc.setFont('Helvetica', 'normal', 400);
+                doc.text(`${data.firstName}`, 34, 55);
+                doc.text(`${data.lastName}`, 34, 60);
+                doc.text(`${data.gender}`, 30, 65);
+
+                if (nurse?.firstName) {
+                    // Requester Information Column
+                    doc.setFont('Helvetica', 'normal', 700);
+                    doc.text(`Firstname:`, 108, 55);
+                    doc.text(`Lastname:`, 108, 60);
+                    doc.setFont('Helvetica', 'normal', 400);
+                    doc.text(`${nurse.firstName}`, 127, 55);
+                    doc.text(`${nurse.lastName}`, 127, 60);
+                }
+
+                if (data.experts?.length) {
+                    let currentExpertPosition = 80;
+                    data.experts.forEach(expert => {
+                        doc.setFont('Helvetica', 'normal', 700);
+                        doc.text(`Firstname:`, 108, currentExpertPosition);
+                        doc.text(`Lastname:`, 108, currentExpertPosition + 5);
+                        doc.setFont('Helvetica', 'normal', 400);
+                        doc.text(`${expert.firstName}`, 127, currentExpertPosition);
+                        doc.text(`${expert.lastName}`, 127, currentExpertPosition + 5);
+                        currentExpertPosition += 10;
+                    });
+                }
+
+                doc.setFontSize(14);
+                doc.setTextColor('#464F60');
+                doc.text('Consultation information', 15, 75);
+
+                doc.setFontSize(10);
+                doc.setTextColor('#000');
+                doc.setFont('Helvetica', 'normal', 700);
+                doc.text(`Start date/time:`, 15, 80);
+                doc.text(`End date/time:`, 15, 85);
+                doc.text(`Duration:`, 15, 90);
+
+                doc.setFont('Helvetica', 'normal', 400);
+                doc.text(
+                    `${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm')}`,
+                    15 + getLabelWidth(`Start date/time:`),
+                    80
+                );
+                doc.text(
+                    `${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm')}`,
+                    15 + getLabelWidth(`End date/time:`),
+                    85
+                );
+                doc.text(
+                    `${this.durationPipe.transform(data.closedAt - data.createdAt)}`,
+                    15 + getLabelWidth(`Duration:`),
+                    90
+                );
+
+                const currentYPosition = 95;
+                if (data.metadata && Object.keys(data.metadata).length) {
+                    Object.keys(data.metadata).forEach((key, index) => {
+                        doc.setFont('Helvetica', 'normal', 700);
+                        doc.text(`${key}:`, 15, currentYPosition + index * 5);
+
+                        const metadataX = 15 + getLabelWidth(`${key}:`);
+                        doc.setFont('Helvetica', 'normal', 400);
+                        doc.text(`${data.metadata[key]}`, metadataX, currentYPosition + index * 5);
+                    });
+                }
+
+                doc.setFontSize(14);
+                doc.setTextColor('#464F60');
+                doc.text('Chat history', 15, currentYPosition + 30);
+
+                let chatYPosition = currentYPosition + 40;
+                messages.forEach(message => {
+                    doc.setFontSize(10);
+                    doc.setTextColor('#000');
+                    doc.setFont('Helvetica', 'normal', 700);
+                    const firstName =
+                        message.fromUserDetail.role === 'patient'
+                            ? data?.firstName
+                            : message.fromUserDetail.firstName || '';
+                    const lastName =
+                        message.fromUserDetail.role === 'patient'
+                            ? data?.lastName
+                            : message.fromUserDetail.lastName || '';
+                    const { role } = message.fromUserDetail;
+                    const date = this.datePipe.transform(
+                        message.createdAt,
+                        'dd LLL HH:mm'
+                    );
+                    doc.text(
+                        `${firstName} ${lastName} (${role}) - ${date}:`,
+                        15,
+                        chatYPosition
+                    );
+
+                    doc.setFont('Helvetica', 'normal', 400);
+                    doc.setTextColor('#464F60');
+                    chatYPosition += 5;
+                    doc.text(message.text, 15, chatYPosition);
+
+                    chatYPosition += 5;
+                });
+
+                doc.save('consultation-report.pdf');
+            });
+    }
+
 
 }

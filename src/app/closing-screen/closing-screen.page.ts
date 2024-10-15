@@ -77,7 +77,7 @@ export class ClosingScreenPage implements OnInit {
       )
       .subscribe(
         (res) => {
-          if (this.currentUser.role === 'nurse') {
+          if (this.currentUser.role === 'nurse' || this.currentUser.role === 'admin') {
             this.router.navigate([`/dashboard`]);
           } else {
             this.feedbackSaved = true;

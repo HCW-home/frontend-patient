@@ -10,10 +10,11 @@ import {I18nModule} from "../i18n/i18n.module";
 import {ErrorModalComponent} from "./components/error-modal/error-modal.component";
 import {FooterComponent} from "./components/footer/footer.component";
 import {MarkdownModule} from "ngx-markdown";
+import {DurationPipe} from "./pipes/duration.pipe";
 
 
 @NgModule({
-    declarations: [PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent,FooterComponent, ErrorModalComponent],
+    declarations: [PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent,FooterComponent, ErrorModalComponent, DurationPipe],
     imports: [
         CommonModule,
         IonicModule,
@@ -21,7 +22,7 @@ import {MarkdownModule} from "ngx-markdown";
         MarkdownModule.forRoot()
     ],
     exports: [
-        PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent, ErrorModalComponent, FooterComponent
+        PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent, ErrorModalComponent, FooterComponent, DurationPipe
     ]
 
 
