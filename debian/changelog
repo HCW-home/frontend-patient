@@ -1,3 +1,9 @@
+hcw-athome-patient (0.5.2.5) UNRELEASED; urgency=medium
+
+  * refs #7700, List in Markdown is broken
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 15 Oct 2024 07:39:11 +0000
+
 hcw-athome-patient (5.2.4) focal; urgency=medium
 
   [ Gor Grigoryan ]
