@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.2.5) UNRELEASED; urgency=medium
+hcw-athome-patient (5.2.5) focal; urgency=medium
 
   * refs #7700, List in Markdown is broken
 
