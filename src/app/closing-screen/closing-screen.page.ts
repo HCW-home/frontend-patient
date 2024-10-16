@@ -1,4 +1,4 @@
-import { AuthService } from "./../auth/auth.service";
+import { AuthService } from "../auth/auth.service";
 import { Component, OnInit  } from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -15,24 +15,41 @@ import { App } from '@capacitor/app';
 export class ClosingScreenPage implements OnInit {
   private consultationId;
   public feedbackSubmitted: boolean = false;
+  public loading: boolean = true;
   public feedbackSaved: boolean = false;
+  public feedbackEmpty: boolean = false;
   public userRating: string = null;
   public userComment: string = "";
   public ratings: string[] = ["good", "ok", "bad"];
 
   currentUser;
   constructor(
-    private activeRoute: ActivatedRoute,
     private router: Router,
-    private consultationService: ConsultationService,
+    public platform: Platform,
     private authService: AuthService,
+    private activeRoute: ActivatedRoute,
     public configService: ConfigService,
-    public platform: Platform
+    private consultationService: ConsultationService,
   ) {}
 
   ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
     this.consultationId = this.activeRoute.snapshot.params.id;
+    this.getConsultation();
+  }
+
+  getConsultation() {
+    this.consultationService
+        .getConsultation(this.consultationId).subscribe({
+      next: (res) => {
+        this.feedbackSaved = !!res.queue?.disableFeedback;
+        this.feedbackEmpty = !!res.queue?.disableFeedback;
+        this.loading = false;
+      }, error: () =>{
+
+      }
+    })
+
   }
 
   /**
@@ -80,6 +97,7 @@ export class ClosingScreenPage implements OnInit {
           if (this.currentUser.role === 'nurse' || this.currentUser.role === 'admin') {
             this.router.navigate([`/dashboard`]);
           } else {
+            this.feedbackEmpty = !this.userRating && !this.userComment;
             this.feedbackSaved = true;
           }
         },
