@@ -12,7 +12,7 @@ export class NurseGuard  {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authService.currentUserValue;
-        if (currentUser && currentUser.role === 'nurse') {
+        if (currentUser && (currentUser.role === 'nurse' || currentUser.role === 'admin')) {
             return true;
         }
 

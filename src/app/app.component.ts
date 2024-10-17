@@ -111,7 +111,7 @@ export class AppComponent {
           queryParams: { invite: this.inviteToken },
         });
       } else {
-        if (this.currentUser && this.currentUser.role === 'nurse') {
+        if (this.currentUser && (this.currentUser.role === 'nurse' || this.currentUser.role === 'admin')) {
           this.router.navigate([`/dashboard`]);
         } else {
           const currentConsultation = localStorage.getItem('currentConsultation')
