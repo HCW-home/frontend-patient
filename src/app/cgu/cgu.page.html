@@ -2,10 +2,10 @@
     <div class='center'>
         <div class="custom-card">
             <div class="container">
-                <div class="title" *ngIf="!error">
+                <div class="title">
                     {{ 'cgu.selectCountry' | translate }}
                     <div id="hhpCountrySelect">
-                        <div class="sl-container">
+                        <div class="sl-container" *ngIf="!countryError">
                             <ion-icon name="globe"></ion-icon>
                             <select class="lang" #langSelect (change)="changeCountry(langSelect.value)">
                                 <option *ngFor="let country of countries"
@@ -14,6 +14,9 @@
                                 </option>
                             </select>
                         </div>
+                        <app-select-language [hideIcon]="true"
+                                             (selectedLanguageChange)="onLanguageChange($event)"></app-select-language>
+
                     </div>
                 </div>
                 <div class="back">

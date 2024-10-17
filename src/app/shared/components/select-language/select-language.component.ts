@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {LanguageService} from "../../services/language.service";
 
@@ -8,6 +8,7 @@ import {LanguageService} from "../../services/language.service";
   styleUrls: ["./select-language.component.scss"],
 })
 export class SelectLanguageComponent {
+  @Input('hideIcon') hideIcon = false;
   @Output() selectedLanguageChange = new EventEmitter();
   selectedLanguage: string;
 

@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable, Subject } from "rxjs";
+import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 import { GlobalVariableService } from "./global-variable.service";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -68,6 +69,13 @@ export class ConfigService {
             var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
             g.async = true; g.src = u+'matomo.js'; s.parentNode.insertBefore(g, s);
         })();
+    }
+
+    checkTermsFileExists(fileName: string) {
+        return this.http.get(`assets/terms/${fileName}`, { responseType: 'text' }).pipe(
+            map(() => new Observable()),
+            catchError(() => of(false))
+        );
     }
 
 }
