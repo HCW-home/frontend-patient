@@ -299,6 +299,12 @@
         "reconnected": "Vous êtes reconnecté",
         "connectionFailed": "La connexion avec le serveur ne fonctionne pas correctement, vous ne recevrez plus les demandes de consultation. Si le problème persiste, veuillez raffraichir la page."
     },
+    "metadata": {
+        "Age": "Age",
+        "Country": "Pays",
+        "Custom Id": "ID personnalisé",
+        "Facility": "Facilité"
+    },
     "fr": "Français",
     "en": "English",
     "es": "Español",

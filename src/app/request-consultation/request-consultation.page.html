@@ -94,14 +94,18 @@
                         ></ion-input>
                     </ion-item>
 
-                    <ion-item fill="solid" class="mb-3">
-                        <ion-label
-                                position="floating">{{ 'request_consultation.patient_hospitality' | translate }}
-                        </ion-label>
-                        <ion-input placeholder="{{ 'request_consultation.enter_patient_hospitality' | translate }}"
-                                   formControlName="organization"
-                        ></ion-input>
-                    </ion-item>
+
+                    @if (configService.config?.formMeta?.length) {
+                            @for (field of configService.config.formMeta; track field) {
+                                <ion-item fill="solid" class="mb-3" *ngIf="form.get(field)">
+                                    <ion-label position="floating">{{ 'metadata.' + field | translate }}
+                                    </ion-label>
+                                    <ion-input placeholder="{{ 'metadata.' + field | translate }}"
+                                               [formControlName]="field"
+                                    ></ion-input>
+                                </ion-item>
+                            }
+                    }
 
                     <ion-item fill="solid" class="mt-3 mb-3">
                         <ion-label position="floating">{{ 'request_consultation.message_optional' | translate }}

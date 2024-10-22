@@ -248,5 +248,11 @@
         "no_account": "Noch kein Konto ? Hier Konto beantragen",
         "login_with": "Institutionelle Verbindung",
         "authenticate": "Authentifizieren"
+    },
+    "metadata": {
+        "Age": "Age",
+        "Country": "Country",
+        "Custom Id": "Benutzerdefinierte ID",
+        "Facility": "Einrichtung"
     }
 }

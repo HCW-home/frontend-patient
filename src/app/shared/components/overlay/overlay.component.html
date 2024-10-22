@@ -78,10 +78,17 @@
                     <span class="title-wrapper"> {{'consultation.requested_at' | translate}} </span>
                     <span class="content">{{consultation.consultation.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
                 </div>
-                <div class="info-item">
-                    <span class="title-wrapper">{{'consultation.hospital' | translate}}</span>
-                    <span class="content">{{consultation.consultation?.metadata?.['Hospital name / facility'] || '-'}}</span>
-                </div>
+                @for (
+                        item of consultation.consultation.metadata | keyvalue;
+                    track item.key
+                        ) {
+                    @if (item.value) {
+                        <div class="info-item">
+                            <span class="title-wrapper">{{'metadata.' + item.key | translate}}</span>
+                            <span class="content">{{item.value}}</span>
+                        </div>
+                    }
+                }
             </div>
 
             <div class="consultation-wrapper">

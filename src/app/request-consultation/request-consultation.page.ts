@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ConfigService} from "../config.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
 import {CountrySelectPage} from "../register/country-select/country-select.page";
@@ -50,6 +50,20 @@ export class RequestConsultationPage implements OnInit {
 
     ngOnInit() {
         this.getQueues();
+        this.addDynamicFields();
+    }
+
+    addDynamicFields() {
+        if (this.configService.config?.formMeta?.length) {
+            this.configService.config.formMeta.forEach((field: string) => {
+                if (!this.form.contains(field)) {
+                    this.form.addControl(
+                        field,
+                        new FormControl('')
+                    );
+                }
+            });
+        }
     }
 
     getQueues() {
@@ -82,17 +96,26 @@ export class RequestConsultationPage implements OnInit {
     onSubmit() {
         this.loading = true;
         const { value } = this.form;
+        const metadata = {
+            "Age": value.age,
+            "Country": value.country,
+        }
+        if (this.configService.config?.formMeta?.length) {
+            this.configService.config.formMeta.forEach(field => {
+                const control = this.form.get(field);
+                if (control) {
+                    metadata[field] = control.value;
+                }
+            });
+        }
+
         this.consultationService.createConsultation({
             firstName: value.firstName,
             lastName: value.lastName,
             queue: value.queue,
             gender: value.sex,
             IMADTeam: "none",
-            metadata: {
-                "Age": value.age,
-                "Country": value.country,
-                "Hospital name / facility": value.organization
-            }
+            metadata
         }).pipe(
             switchMap(res => {
                 const actions = [];

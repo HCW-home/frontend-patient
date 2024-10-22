@@ -316,6 +316,12 @@
     "reconnected": "You are reconnected",
     "connectionFailed": "The connection to the server is not functioning properly, and you can no longer receive consultation requests. If the issue persists, refresh the page."
   },
+  "metadata": {
+    "Age": "Age",
+    "Country": "Country",
+    "Custom Id": "Custom Id",
+    "Facility": "Facility"
+  },
   "fr": "Français",
   "en": "English",
   "es": "Español",
