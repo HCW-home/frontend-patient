@@ -1,6 +1,6 @@
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {Component, ViewChild, OnInit, NgZone, AfterViewInit, HostListener} from "@angular/core";
-import {IonContent, Platform} from "@ionic/angular";
+import {AlertController, IonContent, Platform} from "@ionic/angular";
 import {ConsultationService} from "../consultation.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {MessageService} from "../message.service";
@@ -70,6 +70,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
         public modalController: ModalController,
         private file: File,
         private media: Media,
+        private alertController: AlertController,
         private globalVariableService: GlobalVariableService,
         public platform: Platform,
         private translate: TranslateService,
@@ -254,6 +255,9 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
                     this.callService.getCurrentCall(this.consultationId).subscribe(
                         (call) => {
                             this.ongoingCall = call;
+                            if (this.ongoingCall && !this.callRunning) {
+                                this.showJoinModal();
+                            }
                             this.shouldJoinCall = false;
                         },
                         (err) => {
@@ -339,6 +343,29 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
             componentProps: {consultationId: this.consultationId},
         });
         return await modal.present();
+    }
+
+
+    async showJoinModal() {
+        const alert = await this.alertController.create({
+            header: this.translate.instant('consultation.joinCallTitle'),
+            subHeader: this.translate.instant('consultation.joinCallDescription'),
+            buttons: [
+                {
+                    text: this.translate.instant('consultation.joinCallCancel'),
+                    role: 'cancel',
+                },
+                {
+                    text: this.translate.instant('consultation.joinCallSubmit'),
+                    handler: () => {
+                        this.joinCall();
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
+
     }
 
     async showAttachmentModal() {
