@@ -95,12 +95,12 @@
                     </ion-item>
 
 
-                    @if (configService.config?.formMeta?.length) {
-                            @for (field of configService.config.formMeta; track field) {
+                    @if (configService.config?.formRequesterMeta?.length) {
+                            @for (field of configService.config.formRequesterMeta; track field) {
                                 <ion-item fill="solid" class="mb-3" *ngIf="form.get(field)">
-                                    <ion-label position="floating">{{ 'metadata.' + field | translate }}
+                                    <ion-label position="floating">{{ ('metadata.' + field | translate) !== ('metadata.' + field) ? ('metadata.' + field | translate) : field }}
                                     </ion-label>
-                                    <ion-input placeholder="{{ 'metadata.' + field | translate }}"
+                                    <ion-input placeholder="{{ ('metadata.' + field | translate) !== ('metadata.' + field) ? ('metadata.' + field | translate) : field }}"
                                                [formControlName]="field"
                                     ></ion-input>
                                 </ion-item>

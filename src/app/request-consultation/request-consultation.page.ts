@@ -54,8 +54,8 @@ export class RequestConsultationPage implements OnInit {
     }
 
     addDynamicFields() {
-        if (this.configService.config?.formMeta?.length) {
-            this.configService.config.formMeta.forEach((field: string) => {
+        if (this.configService.config?.formRequesterMeta?.length) {
+            this.configService.config.formRequesterMeta.forEach((field: string) => {
                 if (!this.form.contains(field)) {
                     this.form.addControl(
                         field,
@@ -100,8 +100,8 @@ export class RequestConsultationPage implements OnInit {
             "Age": value.age,
             "Country": value.country,
         }
-        if (this.configService.config?.formMeta?.length) {
-            this.configService.config.formMeta.forEach(field => {
+        if (this.configService.config?.formRequesterMeta?.length) {
+            this.configService.config.formRequesterMeta.forEach(field => {
                 const control = this.form.get(field);
                 if (control) {
                     metadata[field] = control.value;
