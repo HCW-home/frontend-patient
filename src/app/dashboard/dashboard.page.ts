@@ -15,6 +15,7 @@ import {DatePipe} from "@angular/common";
 import {DurationPipe} from "../shared/pipes/duration.pipe";
 import { jsPDF } from 'jspdf';
 import {first} from "rxjs/operators";
+import {GlobalVariableService} from "../global-variable.service";
 
 @Component({
     selector: "app-dashboard",
@@ -59,6 +60,7 @@ export class DashboardPage implements OnDestroy {
         public modalController: ModalController,
         private consultationService: ConsultationService,
         private _socketEventsService: SocketEventsService,
+        private globalVariableService: GlobalVariableService,
     ) {
         this.currentLang = this.translate.currentLang || 'en';
     }
@@ -280,15 +282,69 @@ export class DashboardPage implements OnDestroy {
         this.generatePDF(consultation.consultation, consultation.nurse);
     }
 
+    getImageUrl(imageFile: Blob) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = () => {
+                reject(reader.error);
+            };
+            reader.readAsDataURL(imageFile);
+        });
+    }
+
+    adjustMsg(msg, consultationId) {
+        return new Promise(resolve => {
+            if (msg.type === 'attachment') {
+                const requestUrl = `${this.globalVariableService.getApiPath()}/consultation/${consultationId}/attachment/${msg.id}`;
+                const user = this.authService.currentUserValue;
+
+                if (msg.mimeType.endsWith('jpeg') || msg.mimeType.endsWith('png')) {
+                    fetch(requestUrl, {
+                        headers: {
+                            'x-access-token': user.token,
+                        },
+                    })
+                        .then(res => res.blob())
+                        .then(async imageFile => {
+                            msg.isImage = true;
+                            msg.attachmentsURL = await this.getImageUrl(imageFile);
+                            resolve(msg);
+                        })
+                        .catch(err => {
+                            msg.attachmentsURL = null;
+                            resolve(msg);
+                        });
+                } else if (msg.mimeType.startsWith('audio')) {
+                    msg.isAudio = true;
+                    resolve(msg);
+                } else {
+                    msg.attachmentsURL = requestUrl;
+                    msg.isFile = true;
+                    resolve(msg);
+                }
+            } else {
+                resolve(msg);
+            }
+        });
+    }
+
+
     generatePDF(data, nurse) {
         this.messageService
             .getAllConsultationMessages(data._id || data.id)
-            .subscribe(messages => {
+            .subscribe(async res => {
+                res = res.reverse()
+                const messages = await Promise.all(
+                    res.map(m => this.adjustMsg(m, data._id || data.id))
+                );
                 const doc = new jsPDF();
-
                 const pageWidth =
                     doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
                 const imageUrl = this.configService.config?.logo;
+
                 if (imageUrl) {
                     doc.addImage(
                         imageUrl,
@@ -302,15 +358,14 @@ export class DashboardPage implements OnDestroy {
                     );
                 }
 
-                const getLabelWidth = (text: string) => doc.getTextWidth(text) + 2;
-
+                const getLabelWidth = text => doc.getTextWidth(text) + 2;
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.setFontSize(22);
                 doc.text('Consultation report', 15, 40);
-
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
                 doc.text('Patient information', 15, 50);
+
                 if (nurse?.firstName) {
                     doc.text('Requester information', 108, 50);
                 }
@@ -324,14 +379,12 @@ export class DashboardPage implements OnDestroy {
                 doc.text('Firstname:', 15, 55);
                 doc.text('Lastname:', 15, 60);
                 doc.text('Gender:', 15, 65);
-
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.text(`${data.firstName}`, 34, 55);
                 doc.text(`${data.lastName}`, 34, 60);
                 doc.text(`${data.gender}`, 30, 65);
 
                 if (nurse?.firstName) {
-                    // Requester Information Column
                     doc.setFont('Helvetica', 'normal', 700);
                     doc.text(`Firstname:`, 108, 55);
                     doc.text(`Lastname:`, 108, 60);
@@ -356,14 +409,12 @@ export class DashboardPage implements OnDestroy {
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
                 doc.text('Consultation information', 15, 75);
-
                 doc.setFontSize(10);
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
                 doc.text(`Start date/time:`, 15, 80);
                 doc.text(`End date/time:`, 15, 85);
                 doc.text(`Duration:`, 15, 90);
-
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.text(
                     `${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm')}`,
@@ -376,32 +427,36 @@ export class DashboardPage implements OnDestroy {
                     85
                 );
                 doc.text(
-                    `${this.durationPipe.transform(data.closedAt - data.createdAt)}`,
+                    `${this.durationPipe.transform(data.createdAt - data.closedAt)}`,
                     15 + getLabelWidth(`Duration:`),
                     90
                 );
 
-                const currentYPosition = 95;
+                let chatYPosition = 125;
                 if (data.metadata && Object.keys(data.metadata).length) {
                     Object.keys(data.metadata).forEach((key, index) => {
                         doc.setFont('Helvetica', 'normal', 700);
-                        doc.text(`${key}:`, 15, currentYPosition + index * 5);
-
+                        doc.text(`${key}:`, 15, chatYPosition + index * 5);
                         const metadataX = 15 + getLabelWidth(`${key}:`);
                         doc.setFont('Helvetica', 'normal', 400);
-                        doc.text(`${data.metadata[key]}`, metadataX, currentYPosition + index * 5);
+                        doc.text(
+                            `${data.metadata[key]}`,
+                            metadataX,
+                            chatYPosition + index * 5
+                        );
                     });
                 }
 
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
-                doc.text('Chat history', 15, currentYPosition + 30);
+                doc.text('Chat history', 15, chatYPosition + 30);
+                chatYPosition += 40;
 
-                let chatYPosition = currentYPosition + 40;
-                messages.forEach(message => {
+                for (const message of messages) {
                     doc.setFontSize(10);
                     doc.setTextColor('#000');
                     doc.setFont('Helvetica', 'normal', 700);
+
                     const firstName =
                         message.fromUserDetail.role === 'patient'
                             ? data?.firstName
@@ -410,13 +465,12 @@ export class DashboardPage implements OnDestroy {
                         message.fromUserDetail.role === 'patient'
                             ? data?.lastName
                             : message.fromUserDetail.lastName || '';
-                    const { role } = message.fromUserDetail;
                     const date = this.datePipe.transform(
                         message.createdAt,
                         'dd LLL HH:mm'
                     );
                     doc.text(
-                        `${firstName} ${lastName} (${role}) - ${date}:`,
+                        `${firstName} ${lastName} (${message.fromUserDetail?.role}) - ${date}:`,
                         15,
                         chatYPosition
                     );
@@ -424,10 +478,46 @@ export class DashboardPage implements OnDestroy {
                     doc.setFont('Helvetica', 'normal', 400);
                     doc.setTextColor('#464F60');
                     chatYPosition += 5;
-                    doc.text(message.text, 15, chatYPosition);
 
-                    chatYPosition += 5;
-                });
+                    if (message.text) {
+                        doc.text(message.text, 15, chatYPosition);
+                        chatYPosition += 5;
+                    }
+
+                    let image = null;
+                    if (message.isImage && message.attachmentsURL) {
+                        await new Promise<void>(resolve => {
+                            image = new Image();
+                            image.src = message.attachmentsURL;
+                            image.onload = () => {
+                                const imgWidth = 50;
+                                const imgHeight = (image.height / image.width) * imgWidth;
+                                if (
+                                    chatYPosition + imgHeight >
+                                    doc.internal.pageSize.height - 10
+                                ) {
+                                    doc.addPage();
+                                    chatYPosition = 10;
+                                }
+                                doc.addImage(
+                                    message.attachmentsURL,
+                                    'JPEG',
+                                    15,
+                                    chatYPosition,
+                                    imgWidth,
+                                    imgHeight,
+                                    `${Math.random()}`,
+                                    'FAST'
+                                );
+                                chatYPosition += imgHeight + 5;
+                                resolve();
+                            };
+                            image.onerror = () => {
+                                resolve();
+                            };
+                        });
+                    }
+                }
 
                 doc.save('consultation-report.pdf');
             });
