@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.2.8) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.2.8) focal; urgency=medium
 
   [ Olivier Bitsch ]
   * New release 5.2.7
@@ -6,8 +6,11 @@ hcw-athome-patient (0.5.2.8) UNRELEASED; urgency=medium
   [ Gor Grigoryan ]
   * add language selector for terms
   * use form meta for createing requester invite
+  * add alert when there is ongoing call to join
+  * handle missing translation for requester form meta
+  * handle images in pdf
 
- -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 22 Oct 2024 09:58:26 +0000
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 25 Oct 2024 15:31:46 +0200
 
 hcw-athome-patient (5.2.7) focal; urgency=medium
 
