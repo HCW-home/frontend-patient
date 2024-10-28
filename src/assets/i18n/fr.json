@@ -48,7 +48,11 @@
         "sex": "Genre",
         "area": "Domaine d'expertise",
         "requested_at": "Demandé à",
-        "hospital": "Nom de l'hôpital/établissement :"
+        "hospital": "Nom de l'hôpital/établissement :",
+        "joinCallSubmit": "Rejoindre",
+        "joinCallCancel": "Annuler",
+        "joinCallDescription": "L'appel pour cette consultation est déjà en cours, souhaitez-vous rejoindre l'appel maintenant ?",
+        "joinCallTitle": "Rejoindre l'appel"
     },
     "consultations": {
         "openedConsultations": "Consultations ouvertes",
@@ -166,7 +170,20 @@
         "cameraDenied": "L'accès au microphone semble fonctionner mais l'accès à la caméra est refusé.",
         "micDenied": "L'accès à la caméra semble fonctionner mais l'accès au microphone est refusé.",
         "youCanStillJoin": "Vous pouvez néanmoins rejoindre la consultation, mais l'appel vidéo/audio risque d'échouer.",
-        "loading": "Chargement..."
+        "loading": "Chargement...",
+        "theConnectionIs": "La connexion s'est effectuée avec succès",
+        "testStarting": "Démarrage du test",
+        "yourDeviceSeems": "Votre appareil semble parfaitement compatible avec le système de téléconsultation. Si l'aperçu vidéo n'est pas de qualité suffisante ou est saccadé, veuillez vérifier que le signal de votre équipement est suffisant.",
+        "stopTheTest": "Arrêter le test",
+        "connectionWithServer": "Connexion avec le serveur",
+        "streamCreated": "Flux créé",
+        "videoElementCreated": "Element vidéo créé",
+        "yourDeviceAppears": "Votre appareil semble rencontrer des problèmes avec le système de téléconsultation. Nous vous conseillons de tester si possible avec un autre navigateur, de vérifier vos mises à jour ou d'essayer sur un autre appareil.",
+        "testInProgress": "Test en cours",
+        "testMyEquipment": "Tester mon matériel",
+        "welcomeToTheHome": "Bienvenue sur la plateforme de téléconsultation {{branding}}. Cette page permet d'assurer que votre appareil fonctionnera comme il faut le jour de la consultation. Appuyez sur le bouton ci-dessous afin de vérifier la compatibilité. Vous devrez accepter les demandes d'accès à votre caméra ainsi qu'à votre microphone.",
+        "ifThisIsTheFirst": "Si c'est la première fois que vous rejoindre une consultation, nous vous conseillons de tester votre configuration en utilisant le bouton ci-dessous.",
+        "joinTheConsultation": "Rejoindre la consultation"
     },
     "videoRoom": {
         "call": "Appel",
@@ -242,7 +259,9 @@
         "invalid_email": "L'email est invalide"
     },
     "header": {
-        "accessAsDoctor": "Accès en tant que médecin"
+        "accessAsDoctor": "Accès en tant que médecin",
+        "logOut": "Se déconnecter",
+        "profile": "Profil"
     },
     "profile": {
         "profile": "Profil"
