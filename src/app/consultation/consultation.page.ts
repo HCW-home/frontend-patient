@@ -311,6 +311,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
             return;
         }
 
+        this.textArea.setFocus();
         const lastMsg = this.chatMessages[this.chatMessages.length - 1];
         if (
             this.isFullScreen &&

@@ -257,7 +257,9 @@
                 [(ngModel)]="chatText"
                 aria-label="Chat input"
                 inputmode="text"
-                enterkeyhint="none"
+                autocomplete="off"
+                autocapitalize="none"
+                enterkeyhint="send"
                 type="text"
                 placeholder="{{'consultation.enterYourMessage'|translate}}"
             ></ion-textarea>
