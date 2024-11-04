@@ -8,7 +8,7 @@
 ></app-video-room>
 <ion-header id="chatHeader">
     <ion-toolbar>
-        <ion-title> {{ 'consultation.inProgress' | translate }} </ion-title>
+        <ion-title> {{ 'consultation.inProgress' | translate }}</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content
@@ -27,7 +27,8 @@
             [token]="ongoingCall.token"
             [user]="callingDoctor"
     ></app-video-room>
-    <p class="keep-open" *ngIf="consultation.consultation.status !== 'active' && consultation.consultation.status !== 'closed'">
+    <p class="keep-open"
+       *ngIf="consultation.consultation.status !== 'active' && consultation.consultation.status !== 'closed'">
         {{ 'consultation.plsKeepThisOpenPage' | translate }}
     </p>
     <ion-card
@@ -88,23 +89,25 @@
         <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
 
 
-        <p class="backToDashboard" *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin'" (click)="showCancelModal()">{{ 'consultation.cancel' | translate }}</p>
+        <p class="backToDashboard"
+           *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin'"
+           (click)="showCancelModal()">{{ 'consultation.cancel' | translate }}</p>
 
-        <ion-button  *ngIf="currentUser.role === 'nurse' || currentUser.role === 'admin'"
-                (click)="backToDashboard()"
-                class="cancel-btn"
-                i18n>
+        <ion-button *ngIf="currentUser.role === 'nurse' || currentUser.role === 'admin'"
+                    (click)="backToDashboard()"
+                    class="cancel-btn"
+                    i18n>
             {{ 'common.back_to_dashboard' | translate }}
         </ion-button>
     </ion-card>
 
     <ion-grid class="chat">
         <ion-grid *ngFor="let msg of chatMessages"
-                [ngClass]="{
+                  [ngClass]="{
                     outgoing: msg.direction === 'outgoing',
                     incoming: msg.direction === 'incoming'
                  }"
-                class="ion-margin">
+                  class="ion-margin">
             <ion-row *ngIf="msg.isFile" class="ion-no-padding ion-no-margin">
                 <ion-col class="chat-text-container">
                     <ion-row class="bubble ion-padding">
@@ -112,12 +115,12 @@
                                 style="overflow-wrap: normal"
                                 class="ion-no-padding ion-no-margin"
                         >
-                            {{'consultation.download' | translate}}:
+                            {{ 'consultation.download' | translate }}:
                             <a
                                     *ngIf="msg.isFile"
                                     (click)="downloadPdf(msg.attachmentsURL, msg.fileName)"
                             >
-                                {{msg.fileName}}
+                                {{ msg.fileName }}
                             </a>
                         </p>
                     </ion-row>
@@ -157,23 +160,28 @@
 
 
             <div class="msg-time" *ngIf="msg.fromUserDetail?.role === 'patient' && msg.type === 'text'; else oters ">
-                {{consultation.consultation?.firstName}} {{consultation.consultation?.lastName}} -
-                {{msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
-                }}</div>
+                {{ consultation.consultation?.firstName }} {{ consultation.consultation?.lastName }} -
+                {{
+                    msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
+                }}
+            </div>
 
             <ng-template #oters>
-                <div class="msg-time" *ngIf="(msg.fromUserDetail?.firstName || msg.fromUserDetail?.lastName) && msg.type === 'text'">
-                    {{msg.fromUserDetail?.firstName}} {{msg.fromUserDetail?.lastName}} -
-                    {{msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
-                    }}</div>
+                <div class="msg-time"
+                     *ngIf="(msg.fromUserDetail?.firstName || msg.fromUserDetail?.lastName) && msg.type === 'text'">
+                    {{ msg.fromUserDetail?.firstName }} {{ msg.fromUserDetail?.lastName }} -
+                    {{
+                        msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
+                    }}
+                </div>
             </ng-template>
 
             <ion-row *ngIf="msg.type === 'videoCall'" style="text-align: center">
                 <p style="text-align: center; width: 100%">
                     <ng-container *ngIf="msg.acceptedAt ; else elseBlock">
-                        {{'consultation.videoCallStarted' | translate}}
+                        {{ 'consultation.videoCallStarted' | translate }}
                     </ng-container>
-                    <ng-template #elseBlock>{{'consultation.videoCallRequested' | translate}}</ng-template>
+                    <ng-template #elseBlock>{{ 'consultation.videoCallRequested' | translate }}</ng-template>
                 </p>
                 <span
                         class="msg-time"
@@ -183,7 +191,7 @@
 
                 <ng-container *ngIf="msg.acceptedAt && msg.closedAt">
                     <p style="text-align: center; width: 100%">
-                        {{'consultation.videoCallEnded' | translate}}
+                        {{ 'consultation.videoCallEnded' | translate }}
                     </p>
                     <span
                             class="msg-time"
@@ -196,9 +204,9 @@
             <ion-row *ngIf="msg.type === 'audioCall'" style="text-align: center">
                 <p style="text-align: center; width: 100%">
                     <ng-container *ngIf="msg.acceptedAt ; else elseBlock">
-                        {{'consultation.audioCallStarted' | translate}}
+                        {{ 'consultation.audioCallStarted' | translate }}
                     </ng-container>
-                    <ng-template #elseBlock>{{'consultation.audioCallRequested' | translate}}</ng-template>
+                    <ng-template #elseBlock>{{ 'consultation.audioCallRequested' | translate }}</ng-template>
                 </p>
                 <span
                         class="msg-time"
@@ -208,7 +216,7 @@
 
                 <ng-container *ngIf="msg.acceptedAt && msg.closedAt">
                     <p style="text-align: center; width: 100%">
-                        {{'consultation.audioCallEnded' | translate}}
+                        {{ 'consultation.audioCallEnded' | translate }}
                     </p>
                     <span
                             class="msg-time"
@@ -230,10 +238,33 @@
                     color="success"
                     (click)="joinCall()"
             >
-                {{'consultation.joinCall'|translate}}
+                {{ 'consultation.joinCall'|translate }}
             </ion-button>
         </div>
     </ion-grid>
+
+    @if (currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin' || currentUser.role === 'expert') {
+        <div class="input">
+            <div class="attachment-wrapper">
+                <ion-icon slot="icon-only" name="attach" (click)="showAttachmentModal()"></ion-icon>
+            </div>
+            <ion-textarea
+                #txtArea
+                (keypress)="sendMsg($event)"
+                (click)="readMessages()"
+                [(ngModel)]="chatText"
+                placeholder="{{'consultation.enterYourMessage'|translate}}"
+            ></ion-textarea>
+
+            <div class="send-button-wrapper">
+                <ion-button (click)="send()" class="send-button">
+                    <ion-icon slot="icon-only" name="send"></ion-icon>
+                </ion-button>
+            </div>
+
+
+        </div>
+    }
 </ion-content>
 
 <ion-modal [isOpen]="isImgModalOpen" (willDismiss)="closeImgModal(false)">
@@ -257,31 +288,3 @@
     </ng-template>
 </ion-modal>
 
-<ng-container
-        *ngIf="currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin' || currentUser.role === 'expert'"
->
-
-
-    <div class="input">
-        <div class="attachment-wrapper">
-                <ion-icon slot="icon-only" name="attach" (click)="showAttachmentModal()"></ion-icon>
-        </div>
-            <ion-textarea
-                #txtArea
-                (keypress)="sendMsg($event)"
-                (click)="readMessages()"
-                [(ngModel)]="chatText"
-                placeholder="{{'consultation.enterYourMessage'|translate}}"
-            ></ion-textarea>
-
-        <div class="send-button-wrapper">
-            <ion-button (click)="send()" class="send-button">
-                <ion-icon slot="icon-only" name="send"></ion-icon>
-            </ion-button>
-        </div>
-
-
-    </div>
-
-
-</ng-container>
