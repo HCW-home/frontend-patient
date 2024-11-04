@@ -189,7 +189,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
                 lastName: this.currentUser.role === "patient" ? this.consultation?.consultation?.lastName : this.currentUser?.lastName
             }
         });
-        this.scrollToBottom();
+        this.scrollToBottom(200);
 
         this.subscriptions.push(
             this.msgServ
