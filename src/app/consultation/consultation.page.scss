@@ -10,9 +10,17 @@ ion-toolbar {
   --background: #FFFFFF;
 }
 
-#chatContainer {
-  z-index: 9;
-  height: calc(100% - 81px);
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.chat {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 50px;
 }
 
 .jumbotron {
@@ -122,13 +130,22 @@ row.msg-time {
   text-align: right;
 }
 
-div.input {
+.input-container {
+  left: 0;
+  right: 0;
   bottom: 0;
-  width: 100%;
   display: flex;
+  padding: 10px;
   position: fixed;
   align-items: center;
   background-color: #ffffff;
+  border-top: 1px solid #ccc;
+
+  ion-textarea {
+    --padding-start: 6px;
+    --padding-end: 6px;
+  }
+
 }
 
 .attachment-wrapper {

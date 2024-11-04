@@ -17,6 +17,7 @@
         *ngIf="consultation && consultation.consultation"
         #scrollMe
         id="chatContainer"
+        class="chat-container"
 >
     <app-video-room
             *ngIf="ongoingCall && shouldJoinCall"
@@ -244,7 +245,7 @@
     </ion-grid>
 
     @if (currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin' || currentUser.role === 'expert') {
-        <div class="input">
+        <div class="input-container">
             <div class="attachment-wrapper">
                 <ion-icon slot="icon-only" name="attach" (click)="showAttachmentModal()"></ion-icon>
             </div>
