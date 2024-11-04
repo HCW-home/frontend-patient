@@ -1,3 +1,11 @@
+hcw-athome-patient (5.2.9) focal; urgency=medium
+
+  * Translated using Weblate (English)
+  * Translated using Weblate (French)
+  * New release 5.2.8
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Mon, 28 Oct 2024 11:56:47 +0100
+
 hcw-athome-patient (5.2.8) focal; urgency=medium
 
   [ Olivier Bitsch ]
