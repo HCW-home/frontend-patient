@@ -65,7 +65,7 @@
                             </button>
                         </div>
                         <div class="video-loop position-relative">
-                            <div *ngIf="showSpinner" id="loader"  [hidden]="accessHardwareGranted">
+                            <div *ngIf="showSpinner" class="loader"  [hidden]="accessHardwareGranted">
                                 <div class="loader-1 center"><span></span></div>
                             </div>
                             <div id="test-video-container" [hidden]="!testStarted">
@@ -82,7 +82,7 @@
                                                     *ngIf="myCamStream"
                                                     [stream]="myCamStream"
                                                 ></app-peer-video>
-                                                <div *ngIf="showSpinner" id="loader">
+                                                <div *ngIf="showSpinner" class="loader">
                                                     <div class="loader-1 center"><span></span></div>
                                                 </div>
                                                 <div *ngIf="session && !permissionDenied && !permissionError" id="tick-div">

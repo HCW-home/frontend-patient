@@ -32,7 +32,7 @@ export class TestComponent implements OnInit, OnDestroy {
     msgChain = [];
     volumeLevel = 0;
     accessHardwareGranted = null;
-    testStarted: Boolean = false;
+    testStarted: Boolean = true;
     loading: Boolean = false;
     globalMessage = "";
     globalWarning = "";
@@ -440,6 +440,7 @@ export class TestComponent implements OnInit, OnDestroy {
         }
         this.testStatus = "DISCONNECTED";
         this.showSpinner = false;
+        this.testStarted = false;
         this.msgChain = [];
 
         if (this.myCamStream) {
