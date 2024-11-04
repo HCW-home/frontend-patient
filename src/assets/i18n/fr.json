@@ -84,7 +84,7 @@
         "aimsToStrengthen": "vise à renforcer cette continuité des soins entre les {{branding}} et le domicile notamment durant la période de soins aigus de transition (SAT) en apportant une réponse médicale éclairée par des médecins HUG aux questions des soignants de l’Imad. Ce projet pilote auquel vous participez est un projet coordonné par les HUG en collaboration avec l’imad. Il concerne pour le moment uniquement les patients sortis d’une récente hospitalisation aux HUG (< 1 mois) et suivis à domicile par un soignant du Centre de Maintien à Domicile (CMD) des Eaux-Vives ou pris en charge dans le cadre du projet Cogeria déployé en partenariat avec le CMD la Servette. Ce pilote est déployé de ",
         "mayToTheEnd": "Mai à fin Octobre 2019",
         "itIsFundedBy": "Il est financé par",
-        "theHUGPrivate": "la Fondation Privée des HUG",
+        "theHUGPrivate": "la Fondation Privée des {{branding}}",
         "andTheGeneral": "et la Direction Générale de la Santé de l’état de Genève que nous remercions. Les médecins assurant ce service sont des chefs de clinique expérimentés du",
         "firstAidPhysicians": "Service de Médecins de Premiers Recours",
         "theServiceIsAccessible": "Le service est accessible de",
@@ -152,7 +152,7 @@
     "closeConsultation": {
         "cancel": "ANNULER",
         "theConsultationRequest": "LA DEMANDE DE CONSULTATION",
-        "youAreAboutTo": "  Vous êtes sur le point d'annuler la demande de consultation. Si vous annulez à ce niveau, vous perdrez votre position dans la file d'attente et vous devrez refaire une demande de consultation. Souhaitez-vous vraiment annuler ?",
+        "youAreAboutTo": "  Vous êtes sur le point d'annuler la demande de consultation. Si vous annulez à ce niveau, vous perdrez votre position dans la file d'attente et vous devrez refaire une demande de consultation. Souhaitez-vous vraiment annuler ?",
         "cancelTheRequest": "Annuler la demande de consultation",
         "stayInTheQueue": "Rester dans la file d'attente",
         "pleaseFillUpInformation": "Merci de remplir les informations ci-dessous afin que nous puissions communiquer avec vous les accès de la consultation.",
@@ -221,7 +221,7 @@
         "validateRequest": "VALIDER LA DEMANDE"
     },
     "appComponent": {
-        "serverError": "Something went wrong"
+        "serverError": "Quelque chose s'est mal passé"
     },
     "authenticate": {
         "authenticate": "Authentification",
