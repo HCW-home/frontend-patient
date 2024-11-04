@@ -80,11 +80,11 @@
             *ngIf="consultation.consultation.status === 'pending'"
             class="jumbotron await ion-no-padding ion-no-margin"
     >
-        <ion-title class="title">
+        <span class="title">
             {{ 'consultation.requestForConsultation' | translate }}
             <br/>
             <strong>{{ 'consultation.capInProgress' | translate }}</strong>
-        </ion-title>
+        </span>
         <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
 
 

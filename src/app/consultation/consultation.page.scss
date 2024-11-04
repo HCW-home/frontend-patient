@@ -3,6 +3,7 @@
 ion-content {
   background-color: var(--blue-bg-color);
   scrollbar-track-color: #f1f1f1;
+  --keyboard-offset: bottom;
 }
 
 ion-toolbar {
@@ -15,11 +16,12 @@ ion-toolbar {
 }
 
 .jumbotron {
+  padding: 8px;
   color: #ffffff;
-  background-color: var(--ion-color-primary) !important;
-  background-position: center;
   border-radius: 0;
   text-align: center;
+  background-position: center;
+  background-color: var(--ion-color-primary) !important;
 }
 
 ::ng-deep {
