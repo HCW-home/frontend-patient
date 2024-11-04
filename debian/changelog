@@ -1,10 +1,11 @@
-hcw-athome-patient (0.5.2.11) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.2.12) UNRELEASED; urgency=medium
 
   * fix test call screen control buttons
   * refs #7772, Unable to display the chat when keyboard is opened
   * remove ionFocus on chat input
+  * move chat input inside content
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 04 Nov 2024 12:12:00 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 04 Nov 2024 12:38:13 +0000
 
 hcw-athome-patient (5.2.9) focal; urgency=medium
 
