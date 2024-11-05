@@ -1,0 +1,6 @@
+projectKey=hcw-patient
+serverUrl=https://sonar.iabsis.com
+serverVersion=10.7.0.96327
+dashboardUrl=https://sonar.iabsis.com/dashboard?id=hcw-patient
+ceTaskId=142b44c1-11a3-4659-9e00-b4a68b21744a
+ceTaskUrl=https://sonar.iabsis.com/api/ce/task?id=142b44c1-11a3-4659-9e00-b4a68b21744a

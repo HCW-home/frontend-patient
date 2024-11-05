@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.2.15) UNRELEASED; urgency=medium
+hcw-athome-patient (5.2.15) focal; urgency=medium
 
   * fix test call screen control buttons
   * refs #7772, Unable to display the chat when keyboard is opened
