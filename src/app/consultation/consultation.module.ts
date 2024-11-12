@@ -1,5 +1,4 @@
 import { VideoRoomPageModule } from './../video-room/video-room.module';
-import { VideoRoomPage } from './../video-room/video-room.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +24,7 @@ const routes: Routes = [
         IonicModule,
         RouterModule.forChild(routes),
         I18nModule,
-        VideoRoomPageModule
+        VideoRoomPageModule,
     ],
     declarations: [ConsultationPage]
 })

@@ -147,9 +147,17 @@ export class LoginPage implements OnInit {
     });
   }
 
+  validateInviteToken(token: string | null): string | null {
+    if (!token) return null;
+
+    return /^[a-zA-Z0-9-_]+$/.test(token) ? token : null;
+  }
+
   async init() {
 
-    this.inviteToken = this.inviteToken || localStorage.getItem("inviteToken");
+    const storedToken = localStorage.getItem("inviteToken");
+    this.inviteToken = this.validateInviteToken(this.inviteToken || storedToken);
+
     this.currentUser = this.authService.currentUserValue;
 
     if (this.inviteToken && this.inviteToken.length) {
@@ -460,31 +468,12 @@ export class LoginPage implements OnInit {
     clearInterval(this.allowConsultationTimer);
   }
 
-  openAndroidApp() {
-    const inviteToken = this.inviteToken ? this.inviteToken : this.inviteKey;
-
-    if (inviteToken) {
-      const url =
-        "hugathome" +
-        "://" +
-        window.location.host +
-        (inviteToken ? "?invite=" + inviteToken : "") +
-        "&scheme=" +
-        window.location.protocol;
-
-      console.log("try top open" + url);
-      // debugger;
-      window.location.replace(url);
-    }
-  }
   getCurrentUrl() {
     const inviteToken = this.inviteToken ? this.inviteToken : this.inviteKey;
-    return (
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      (inviteToken ? "?invite=" + inviteToken : "")
-    );
+    const safeInviteToken = inviteToken ? encodeURIComponent(inviteToken) : '';
+    const url = `${window.location.protocol}//${window.location.host}${safeInviteToken ? '?invite=' + safeInviteToken : ''}`;
+
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   clearError() {
@@ -563,7 +552,7 @@ export class LoginPage implements OnInit {
       UID:${Math.random().toString(36).substr(2, 9)}
       DTSTART;TZID=Europe/Berlin:${this.datePipe.transform(date, "yyyyMMddTHHmmss")}
       SUMMARY:Téléconsultation
-      URL:${encodeURI(url)}
+      URL:${encodeURI(url as string)}
       BEGIN:VALARM
       ACTION:DISPLAY
       DESCRIPTION:Téléconsultation
