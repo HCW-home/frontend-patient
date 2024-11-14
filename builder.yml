@@ -1,5 +1,8 @@
 flows:
+- podman
 - deb
+- publish-github
+- sonar
 options:
  distrib: "ubuntu"
  codename: "focal"
