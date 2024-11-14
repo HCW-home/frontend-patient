@@ -3,6 +3,4 @@ flows:
 options:
  distrib: "ubuntu"
  codename: "focal"
-modes:
-- ON_VERSION
-- ON_TAG
+modes: ON_VERSION,ON_TAG
