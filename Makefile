@@ -3,7 +3,6 @@ npm_version:=$(shell npm -v)
 timeStamp:=$(shell date +%Y%m%d%H%M%S)
 VERSION ?= $(shell head -n 1 debian/changelog| cut -d' ' -f2 | sed 's/[\(\)]*//g')
 
-
 .DEFAULT_GOAL := www
 .PHONY: install build archive test clean web
 
