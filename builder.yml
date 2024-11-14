@@ -6,5 +6,5 @@ flows:
 options:
  distrib: "ubuntu"
  codename: "focal"
- external_git_url: "https://github.com/HCW-home/frontend-patient"
+ external_git_url: "git@github.com:HCW-home/frontend-patient.git"
 modes: ON_VERSION,ON_TAG
