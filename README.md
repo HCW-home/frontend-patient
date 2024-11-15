@@ -1,4 +1,5 @@
 This folder contain HCW@patient frontend source code. It must be build and serve by a web server like Nginx.
+Static files are stored into dist folder.
 
 ### How to build
 
