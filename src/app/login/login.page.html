@@ -1,7 +1,6 @@
 <ion-content>
     <div class='center'>
-        <div *ngIf="configService.config && roomService.deviceInfo().flag !== 'unknown'"
-             class="custom-card">
+        <div *ngIf="configService.config" class="custom-card">
             <div class="left-side">
                 <div class="container">
                     <p *ngIf="!markdownExists">

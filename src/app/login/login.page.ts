@@ -154,35 +154,30 @@ export class LoginPage implements OnInit {
   }
 
   async init() {
-    try {
-      const storedToken = localStorage.getItem("inviteToken");
-      this.inviteToken = this.validateInviteToken(this.inviteToken || storedToken);
+    const storedToken = localStorage.getItem("inviteToken");
+    this.inviteToken = this.validateInviteToken(this.inviteToken || storedToken);
 
-      this.currentUser = this.authService.currentUserValue;
+    this.currentUser = this.authService.currentUserValue;
 
-      if (this.inviteToken && this.inviteToken.length) {
-        this.handleToken(this.inviteToken);
-      } else if (this.platform.is("mobile")) {
-        this.noInviteError = true;
-        this.noTokenProvided = true;
-        if (this.authService.currentUserValue) {
-          await this.authService.logout();
-        }
+    if (this.inviteToken && this.inviteToken.length) {
+      this.handleToken(this.inviteToken);
+    } else if (this.platform.is("mobile")) {
+      this.noInviteError = true;
+      this.noTokenProvided = true;
+      if (this.authService.currentUserValue) {
+        await this.authService.logout();
       }
-
-      this.returnUrl = this.route.snapshot.queryParams.returnUrl || "";
-
-      alert(this.roomService.deviceInfo().flag)
-      this.subscriptions.push(
-          this.authService.observeInviteToken().subscribe((inviteToken) => {
-            this.inviteToken = inviteToken;
-            this.handleToken(this.inviteToken);
-
-          })
-      );
-    } catch (e) {
-      alert(e);
     }
+
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "";
+
+    this.subscriptions.push(
+        this.authService.observeInviteToken().subscribe((inviteToken) => {
+          this.inviteToken = inviteToken;
+          this.handleToken(this.inviteToken);
+
+        })
+    );
 
   }
 
@@ -204,13 +199,11 @@ export class LoginPage implements OnInit {
     this.inviteToken = token;
     this.inviteKey = token;
 
-    alert('get invite')
     // get invite
     this.subscriptions.push(
       this.inviteService.getInviteFromToken(this.inviteToken).subscribe(
         (invite) => {
           this.invite = invite;
-          alert(JSON.stringify(invite));
 
           this.handleInvite(invite, accept);
         },
@@ -227,7 +220,6 @@ export class LoginPage implements OnInit {
     const lang = this.languageService.getCurrentLanguage();
     this.translate.use(lang);
 
-    alert('handleInvite')
     if (this.currentUser) {
 
       if (this.currentUser.inviteToken === this.invite.id) {
