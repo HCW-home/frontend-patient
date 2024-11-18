@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.4) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.5) UNRELEASED; urgency=medium
 
   [ Olivier Bitsch ]
   * This is a commit test
@@ -18,8 +18,9 @@ hcw-athome-patient (0.5.4) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * add alerts for testing in samsung browser
+  * more logs for samsung browser debug
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 18 Nov 2024 16:17:06 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 18 Nov 2024 16:33:55 +0000
 
 hcw-athome-patient (0.5.3) focal; urgency=medium
 
