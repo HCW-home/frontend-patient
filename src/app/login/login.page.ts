@@ -150,28 +150,19 @@ export class LoginPage implements OnInit {
   validateInviteToken(token: string | null): string | null {
     if (!token) return null;
 
-    alert(10)
     return /^[a-zA-Z0-9-_]+$/.test(token) ? token : null;
   }
 
   async init() {
     try {
-      alert(1);
       const storedToken = localStorage.getItem("inviteToken");
-      alert(2);
       this.inviteToken = this.validateInviteToken(this.inviteToken || storedToken);
-      alert(3);
 
       this.currentUser = this.authService.currentUserValue;
-      alert(4);
 
       if (this.inviteToken && this.inviteToken.length) {
         this.handleToken(this.inviteToken);
-        alert(5);
-
       } else if (this.platform.is("mobile")) {
-        alert(6);
-
         this.noInviteError = true;
         this.noTokenProvided = true;
         if (this.authService.currentUserValue) {
@@ -180,13 +171,12 @@ export class LoginPage implements OnInit {
       }
 
       this.returnUrl = this.route.snapshot.queryParams.returnUrl || "";
-      alert(7);
 
+      alert(this.roomService.deviceInfo().flag)
       this.subscriptions.push(
           this.authService.observeInviteToken().subscribe((inviteToken) => {
             this.inviteToken = inviteToken;
             this.handleToken(this.inviteToken);
-            alert(8);
 
           })
       );
@@ -214,11 +204,13 @@ export class LoginPage implements OnInit {
     this.inviteToken = token;
     this.inviteKey = token;
 
+    alert('get invite')
     // get invite
     this.subscriptions.push(
       this.inviteService.getInviteFromToken(this.inviteToken).subscribe(
         (invite) => {
           this.invite = invite;
+          alert(JSON.stringify(invite));
 
           this.handleInvite(invite, accept);
         },
@@ -235,6 +227,7 @@ export class LoginPage implements OnInit {
     const lang = this.languageService.getCurrentLanguage();
     this.translate.use(lang);
 
+    alert('handleInvite')
     if (this.currentUser) {
 
       if (this.currentUser.inviteToken === this.invite.id) {
