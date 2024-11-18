@@ -1,3 +1,26 @@
+hcw-athome-patient (0.5.4) UNRELEASED; urgency=medium
+
+  [ Olivier Bitsch ]
+  * This is a commit test
+  * Revert change
+  * Update readme
+  * Update readme
+  * Update readme
+  * Update readme
+  * Update config for new builder
+  * Fix build options
+  * Add more build options
+  * Adding url github
+  * Fix commit url
+  * Fix builder.yml
+  * Update README
+  * Fix builder yml
+
+  [ Gor Grigoryan ]
+  * add alerts for testing in samsung browser
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 18 Nov 2024 16:17:06 +0000
+
 hcw-athome-patient (0.5.3) focal; urgency=medium
 
   [ Gor Grigoryan ]
