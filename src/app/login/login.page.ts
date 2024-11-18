@@ -150,34 +150,50 @@ export class LoginPage implements OnInit {
   validateInviteToken(token: string | null): string | null {
     if (!token) return null;
 
+    alert(10)
     return /^[a-zA-Z0-9-_]+$/.test(token) ? token : null;
   }
 
   async init() {
+    try {
+      alert(1);
+      const storedToken = localStorage.getItem("inviteToken");
+      alert(2);
+      this.inviteToken = this.validateInviteToken(this.inviteToken || storedToken);
+      alert(3);
 
-    const storedToken = localStorage.getItem("inviteToken");
-    this.inviteToken = this.validateInviteToken(this.inviteToken || storedToken);
+      this.currentUser = this.authService.currentUserValue;
+      alert(4);
 
-    this.currentUser = this.authService.currentUserValue;
+      if (this.inviteToken && this.inviteToken.length) {
+        this.handleToken(this.inviteToken);
+        alert(5);
 
-    if (this.inviteToken && this.inviteToken.length) {
-      this.handleToken(this.inviteToken);
-    } else if (this.platform.is("mobile")) {
-      this.noInviteError = true;
-      this.noTokenProvided = true;
-      if (this.authService.currentUserValue) {
-        await this.authService.logout();
+      } else if (this.platform.is("mobile")) {
+        alert(6);
+
+        this.noInviteError = true;
+        this.noTokenProvided = true;
+        if (this.authService.currentUserValue) {
+          await this.authService.logout();
+        }
       }
+
+      this.returnUrl = this.route.snapshot.queryParams.returnUrl || "";
+      alert(7);
+
+      this.subscriptions.push(
+          this.authService.observeInviteToken().subscribe((inviteToken) => {
+            this.inviteToken = inviteToken;
+            this.handleToken(this.inviteToken);
+            alert(8);
+
+          })
+      );
+    } catch (e) {
+      alert(e);
     }
 
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || "";
-
-    this.subscriptions.push(
-      this.authService.observeInviteToken().subscribe((inviteToken) => {
-        this.inviteToken = inviteToken;
-        this.handleToken(this.inviteToken);
-      })
-    );
   }
 
   handleConsultation(consultationId) {
