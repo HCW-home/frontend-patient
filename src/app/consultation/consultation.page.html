@@ -13,7 +13,6 @@
 </ion-header>
 <ion-content
         [fullscreen]="true"
-        [scrollEvents]="true"
         (ionScroll)="handleScroll($event)"
         *ngIf="consultation && consultation.consultation"
         #scrollMe
@@ -245,6 +244,9 @@
         </div>
     </ion-grid>
 
+</ion-content>
+
+<ion-footer>
     @if (currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin' || currentUser.role === 'expert') {
         <div class="input-container">
             <div class="attachment-wrapper">
@@ -255,8 +257,6 @@
                 (keypress)="sendMsg($event)"
                 (click)="readMessages()"
                 [(ngModel)]="chatText"
-                (ionFocus)="focusInput($event)"
-                aria-label="Chat input"
                 inputmode="text"
                 autocapitalize="none"
                 enterkeyhint="Send"
@@ -273,7 +273,8 @@
 
         </div>
     }
-</ion-content>
+
+</ion-footer>
 
 <ion-modal [isOpen]="isImgModalOpen" (willDismiss)="closeImgModal(false)">
     <ng-template>
