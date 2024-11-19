@@ -171,8 +171,6 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
     }
 
     send() {
-        this.textArea.setFocus();
-
         if (!this.chatText) {
             return;
         }
@@ -306,12 +304,21 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
         ]);
     }
 
+    onTextareaFocus() {
+        const content = document.querySelector('#chatContainer');
+        if (content) {
+            content.scrollTo({
+                top: content.scrollHeight,
+                behavior: 'smooth',
+            });
+        }
+    }
+
     readMessages() {
         if (!this.consultation) {
             return;
         }
 
-        this.textArea.setFocus();
         const lastMsg = this.chatMessages[this.chatMessages.length - 1];
         if (
             this.isFullScreen &&

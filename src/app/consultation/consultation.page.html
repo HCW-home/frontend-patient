@@ -13,6 +13,7 @@
 </ion-header>
 <ion-content
         [fullscreen]="true"
+        [scrollEvents]="true"
         (ionScroll)="handleScroll($event)"
         *ngIf="consultation && consultation.consultation"
         #scrollMe
@@ -255,11 +256,13 @@
             <ion-textarea
                 #txtArea
                 (keypress)="sendMsg($event)"
+                (ionFocus)="onTextareaFocus()"
                 (click)="readMessages()"
                 [(ngModel)]="chatText"
                 inputmode="text"
                 autocapitalize="none"
-                enterkeyhint="Send"
+                enterkeyhint="send"
+                [spellcheck]="false"
                 type="text"
                 placeholder="{{'consultation.enterYourMessage'|translate}}"
             ></ion-textarea>

@@ -31,14 +31,6 @@ ion-toolbar {
   background-color: var(--ion-color-primary) !important;
 }
 
-::ng-deep {
-  html[data-theme="accessibility"] {
-    .jumbotron {
-      background-image: unset !important;
-    }
-  }
-}
-
 .closedWrapper {
   background-color: var(--ion-color-primary) !important;
 }
@@ -80,15 +72,6 @@ ion-card-content {
   }
 }
 
-.video-btn {
-  display: block;
-  margin: 30px 15% 12px 15%;
-  --background: #ffffff;
-  color: var(--ion-color-primary);
-  font-size: 0.8em;
-  font-weight: bold;
-  --border-radius: 36px;
-}
 
 .bubble {
   border-radius: 10px;
@@ -165,27 +148,6 @@ row.msg-time {
   height: 50px;
 }
 
-.mic-recording {
-  color: #ffffff;
-  --background: var(--ion-color-primary) !important;
-  border: none;
-  -border-style: none;
-  --border-radius: 60px !important;
-  height: 58px !important;
-  width: 58px !important;
-  --border-width: 0;
-  --box-shadow: none;
-  margin: 0px;
-  padding-top: 0px;
-  font-size: 10px;
-  margin: auto;
-  transition: all 0.2s ease-in;
-  height: 120px !important;
-  width: 120px !important;
-  right: -7px;
-  position: absolute;
-}
-
 .cancel-btn {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -194,7 +156,6 @@ row.msg-time {
   color: var(--ion-color-primary);
   display: inline-block;
 }
-
 
 .join-call-btn-container {
   display: flex;
@@ -283,6 +244,14 @@ ion-icon[name="attach"] {
     }
     .keep-open {
       padding-left: 20px;
+    }
+  }
+}
+
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .jumbotron {
+      background-image: unset !important;
     }
   }
 }
