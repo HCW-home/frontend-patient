@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.9) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.10) UNRELEASED; urgency=medium
 
   [ Olivier Bitsch ]
   * This is a commit test
@@ -22,8 +22,9 @@ hcw-athome-patient (0.5.9) UNRELEASED; urgency=medium
   * refs #7772, unable to display chat when keyboard is opened
   * add ion footer in consultation screen
   * remove unused styles
+  * fix remove unused styles, remove spellcheck from chat input
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 19 Nov 2024 13:32:07 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 19 Nov 2024 14:37:06 +0000
 
 hcw-athome-patient (0.5.3) focal; urgency=medium
 
