@@ -170,6 +170,11 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
         this.callService.requestCall(this.consultation);
     }
 
+    focusInput(event: FocusEvent): void {
+        const inputElement = event.target as HTMLElement;
+        inputElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
     send() {
         this.textArea.setFocus();
 

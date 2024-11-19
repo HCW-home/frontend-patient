@@ -4,6 +4,7 @@ ion-content {
   background-color: var(--blue-bg-color);
   scrollbar-track-color: #f1f1f1;
   --keyboard-offset: bottom;
+  --padding-bottom: 0;
 }
 
 ion-toolbar {

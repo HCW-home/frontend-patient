@@ -255,6 +255,7 @@
                 (keypress)="sendMsg($event)"
                 (click)="readMessages()"
                 [(ngModel)]="chatText"
+                (ionFocus)="focusInput($event)"
                 aria-label="Chat input"
                 inputmode="text"
                 autocapitalize="none"
