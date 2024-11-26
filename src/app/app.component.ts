@@ -2,7 +2,7 @@ import { Observable, Subscription } from "rxjs";
 import { GlobalVariableService } from "./global-variable.service";
 import { Component, OnInit, NgZone, Directive } from "@angular/core";
 
-import {Platform, NavController, ToastController} from "@ionic/angular";
+import {Platform, NavController, ToastController, ToastButton} from "@ionic/angular";
 
 // import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
 import { SplashScreen } from '@capacitor/splash-screen';
@@ -213,24 +213,38 @@ export class AppComponent {
     });
   }
 
-  async presentToast(message: string, className: string) {
+  async presentToast(message: string, className: string, refreshButton: boolean) {
     if (this.toast) {
       await this.toast.dismiss();
     }
+    const refreshButtonText = this.translate.instant('common.refresh');
+    let button: ToastButton = {
+      side: 'end',
+      icon: 'close',
+      role: 'cancel',
+      cssClass: 'close-button',
+    }
+    if (refreshButton) {
+      button = {
+        side: 'end',
+        text: refreshButtonText,
+        role: 'info',
+        handler: () => {
+          window.location.reload();
+        },
+      }
+    }
+
     this.toast = await this.toastController.create({
       message,
       position: 'bottom',
       cssClass: className,
       buttons: [
-        {
-          side: 'end',
-          icon: 'close',
-          role: 'cancel',
-          cssClass: 'close-button',
-        }
+        button
       ]
     });
     this.toast.present();
+
   }
 
   initServices(r?) {
@@ -251,11 +265,11 @@ export class AppComponent {
       ) {
         this.lastConnectionStatus = "connect_failed";
         setTimeout(() => {
-          this.presentToast(this.translate.instant("common.connectionFailed"), 'red-toast');
+          this.presentToast(this.translate.instant("common.connectionFailed"), 'red-toast', true);
         }, 100);
       } else if (status === "connect") {
         if (this.toast && this.lastConnectionStatus === "connect_failed") {
-          this.presentToast(this.translate.instant('common.reconnected'), 'green-toast')
+          this.presentToast(this.translate.instant('common.reconnected'), 'green-toast', false)
         }
         this.lastConnectionStatus = "connect";
       }

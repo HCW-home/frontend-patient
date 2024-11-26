@@ -23,8 +23,9 @@ hcw-athome-patient (0.5.10) focal; urgency=medium
   * add ion footer in consultation screen
   * remove unused styles
   * fix remove unused styles, remove spellcheck from chat input
+  * refs #7879, Add refresh button of websocket disconnects
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 19 Nov 2024 14:37:06 +0000
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 22 Nov 2024 10:55:19 +0100
 
 hcw-athome-patient (0.5.3) focal; urgency=medium
 
