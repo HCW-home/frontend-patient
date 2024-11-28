@@ -48,7 +48,11 @@
         "capInProgress": "IN BEARBEITUNG",
         "consultation": "BERATUNG",
         "plsKeepThisOpenPage": "Bitte lassen Sie diese Seite geöffnet, die Telekonsultation beginnt in wenigen Minuten.",
-        "inProgress": "In Bearbeitung"
+        "inProgress": "In Bearbeitung",
+        "joinCallDescription": "Der Aufruf zu dieser Beratung läuft bereits, möchten Sie sich jetzt dem Anruf anschließen?",
+        "joinCallTitle": "Anruf beitreten",
+        "joinCallCancel": "Abbrechen",
+        "joinCallSubmit": "Beitreten"
     },
     "consultations": {
         "openedConsultations": "Offene Konsultationen",
@@ -239,7 +243,10 @@
         "organization": "Organisation",
         "enter_phone_number": "Telefonnummer eingeben",
         "phone_number": "Telefonnummer",
-        "enter_lastname": "Nachnamen eingeben"
+        "enter_lastname": "Nachnamen eingeben",
+        "enter_organization": "Organisation eingeben",
+        "country": "Land",
+        "select_country": "Land auswählen"
     },
     "authenticate": {
         "access_permits": "Über diesen Zugang kann eine Konsultation zu {{branding}} beantragt werden.",
