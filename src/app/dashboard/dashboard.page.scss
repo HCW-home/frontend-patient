@@ -210,6 +210,19 @@ ion-content {
       font-weight: 500;
     }
 
+    .export-button {
+      display: flex;
+      font-size: 14px;
+      font-weight: 500;
+      --box-shadow: none;
+      --border-width: 1px;
+      --border-style: solid;
+      --border-radius: 20px;
+      --background: var(--ion-color-primary-contrast);
+      --border-color: var(--ion-color-primary);
+      --color: var(--ion-color-primary);
+    }
+
     .cancel-button {
       color: #E3393A;
       text-decoration: underline;

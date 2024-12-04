@@ -283,7 +283,8 @@
         "cancel_consultation": "Cancel consultation",
         "request_new_consultation": "Request new consultation",
         "no_consultation": "You have no consultation yet. Use the button below to open new consultation request.",
-        "no_consultation_history": "You have no consultation in history yet."
+        "no_consultation_history": "You have no consultation in history yet.",
+        "export": "Export"
     },
     "request_consultation": {
         "consultation_request_form": "Consultation request form",

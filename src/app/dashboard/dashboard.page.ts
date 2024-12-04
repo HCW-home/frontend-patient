@@ -301,7 +301,7 @@ export class DashboardPage implements OnDestroy {
                 const requestUrl = `${this.globalVariableService.getApiPath()}/consultation/${consultationId}/attachment/${msg.id}`;
                 const user = this.authService.currentUserValue;
 
-                if (msg.mimeType.endsWith('jpeg') || msg.mimeType.endsWith('png')) {
+                if (msg.mimeType.startsWith('image')) {
                     fetch(requestUrl, {
                         headers: {
                             'x-access-token': user.token,
@@ -517,6 +517,14 @@ export class DashboardPage implements OnDestroy {
                             };
                         });
                     }
+
+                    if (message.isFile && message.fileName) {
+                        doc.setFont('Helvetica', 'normal', 400);
+                        doc.setTextColor('#464F60');
+                        doc.text(`[File]: ${message.fileName}`, 15, chatYPosition);
+                        chatYPosition += 5;
+                    }
+
                 }
 
                 doc.save('consultation-report.pdf');
