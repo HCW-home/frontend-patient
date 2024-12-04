@@ -1,8 +1,16 @@
-hcw-athome-patient (0.5.11) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.12) UNRELEASED; urgency=medium
 
+  [ Gor Grigoryan ]
   * refs #7894, Close app button appear on mobile
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 26 Nov 2024 10:27:19 +0000
+  [ Olivier Bitsch ]
+  * Translated using Weblate (Arabic)
+  * Translated using Weblate (German)
+
+  [ Gor Grigoryan ]
+  * add file name in consultation history report
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 04 Dec 2024 10:17:21 +0000
 
 hcw-athome-patient (0.5.10) focal; urgency=medium
 
