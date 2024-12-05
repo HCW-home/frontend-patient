@@ -100,7 +100,7 @@
     },
     "test": {
         "permissionError": "Nous avons rencontré un problème pour accéder à votre caméra ou à votre microphone. Veuillez vous assurer que les périphériques soient correctement connectés.",
-        "micAndCamRequesting": "HCW@Home doit avoir accès à votre caméra et à votre microphone pour fonctionner correctement. Veuillez vous assurer d'accepter les demandes d'autorisation.",
+        "micAndCamRequesting": " HCW@Home doit avoir accès à votre caméra et à votre microphone pour fonctionner correctement. Veuillez vous assurer d'accepter les demandes d'autorisation.",
         "connectivityIssue": "Nous avons un problème de connectivité",
         "askForPermission": "Demander la permission",
         "bothDenied": "Les accès à la caméra et au microphone sont refusés.",
@@ -189,7 +189,8 @@
         "cancel_consultation": "Annuler la consultation",
         "request_new_consultation": "Demander une nouvelle consultation",
         "no_consultation": "Vous n'avez pas encore de consultation active. Utilisez le bouton ci-dessus pour demander une nouvelle consultation.",
-        "no_consultation_history": "Vous n'avez pas encore de consultation clôturée."
+        "no_consultation_history": "Vous n'avez pas encore de consultation clôturée.",
+        "export": "Exporter"
     },
     "request_consultation": {
         "consultation_request_form": "Formulaire de demande de consultation",
@@ -220,7 +221,8 @@
     "common": {
         "back_to_dashboard": "Retour au tableau de bord",
         "reconnected": "Vous êtes reconnecté",
-        "connectionFailed": "La connexion avec le serveur ne fonctionne pas correctement, vous ne recevrez plus les demandes de consultation. Si le problème persiste, veuillez raffraichir la page."
+        "connectionFailed": "La connexion avec le serveur ne fonctionne pas correctement, vous ne recevrez plus les demandes de consultation. Si le problème persiste, veuillez raffraichir la page.",
+        "refresh": "Rafraîchir"
     },
     "metadata": {
         "Age": "Age",
