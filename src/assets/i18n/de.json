@@ -220,16 +220,6 @@
     "appComponent": {
         "serverError": "Etwas ist schief gelaufen"
     },
-    "fr": "Français",
-    "en": "English",
-    "es": "Español",
-    "de": "Deutsch",
-    "ar": "عربي",
-    "ta": "தமிழ்",
-    "fa": "فارسی",
-    "ti": "ትግርኛ",
-    "ru": "Русский",
-    "it": "italiano",
     "register": {
         "lastname": "Nachname",
         "enter_firstName": "Vornamen eingeben",
@@ -258,5 +248,16 @@
         "Country": "Country",
         "Custom Id": "Benutzerdefinierte ID",
         "Facility": "Einrichtung"
-    }
+    },
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano",
+    "uk": "Украинский"
 }

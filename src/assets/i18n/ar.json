@@ -217,16 +217,6 @@
         "promptLabelPhoto": "من معرض الصور",
         "promptLabelPicture": "من الكاميرا"
     },
-    "fr": "Français",
-    "en": "English",
-    "es": "Español",
-    "de": "Deutsch",
-    "ar": "عربي",
-    "ta": "தமிழ்",
-    "fa": "فارسی",
-    "ti": "ትግርኛ",
-    "ru": "Русский",
-    "it": "italiano",
     "authenticate": {
         "welcome_back": "مرحبًا بعودتك!",
         "sso_text": "قم بتسجيل الدخول باستخدام بيانات تسجيل الدخول الفردية الخاصة بك",
@@ -331,5 +321,16 @@
     "country_select": {
         "select_country": "اختر البلد",
         "search": "يبحث"
-    }
+    },
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano",
+    "uk": "Украинский"
 }
