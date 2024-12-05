@@ -11,7 +11,7 @@
                             <div class="msg-chain">
 
                                 <div class="messages mt-10" *ngIf="!accessHardwareGranted">
-                                    <span>{{ 'test.micAndCamRequesting'  | translate}}</span>
+                                    <span>{{ 'test.micAndCamRequesting'  | translate:configService.config}}</span>
                                 </div>
 
                                 <ng-container *ngIf="accessHardwareGranted">
