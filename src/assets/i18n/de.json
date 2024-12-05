@@ -243,7 +243,12 @@
         "enter_lastname": "Nachnamen eingeben",
         "enter_organization": "Organisation eingeben",
         "country": "Land",
-        "select_country": "Land auswählen"
+        "select_country": "Land auswählen",
+        "terms": "Geschäftsbedingungen",
+        "gender": "Geschlecht",
+        "by_checking_box": "Durch Anklicken des Kontrollkästchens akzeptieren Sie die",
+        "submit_registration": "Registrierung abschicken",
+        "own_account": "Besitzen Sie bereits ein Konto? Hier anmelden"
     },
     "authenticate": {
         "access_permits": "Über diesen Zugang kann eine Konsultation zu {{branding}} beantragt werden.",
