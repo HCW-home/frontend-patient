@@ -1,7 +1,4 @@
 {
-    "awaitingConsultation": {
-        "awaitingConsultation": "Please wait while the teleconsultation starts. Please keep this window open."
-    },
     "cgu": {
         "termsAndConditions": "Terms & Conditions (T&C)",
         "backToHome": "Return to Home",
@@ -39,7 +36,7 @@
         "audioMessage": "message audio",
         "videoCallRefused": "Video call declined",
         "cancel_request": "Cancel Request",
-        "resume": "REPRENDRE",
+        "resume": "RESUME",
         "general_information": "General Information",
         "patient_name": "Patient name",
         "handled_by": "Handled by",
