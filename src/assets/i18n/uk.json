@@ -1,1 +1,83 @@
-{}
+{
+    "closingScreen": {
+        "theConsultationIsNowOver": "Телеконсультація завершена",
+        "sendMyFeedback": "Надіслати мій відгук",
+        "thankYouForUsing": "Дякуємо, що використовуєте додаток для телеконсультацій {{branding}}.",
+        "areYouSatisfied": "Ви задоволені додатком {{branding}}?",
+        "doYouWantTo": "Ви хочете залишити коментар?",
+        "thankYouForYourFeedback": "Дякуємо за відгук."
+    },
+    "consultation": {
+        "inProgress": "В процесі",
+        "capInProgress": "В ПРОЦЕСІ",
+        "phone": "Тел.:",
+        "requestForConsultation": "ЗАПИТ НА ТЕЛЕКОНСУЛЬТАЦІЮ",
+        "youAreInWaiting": "Ви в режимі очікування, будь ласка, зачекайте.",
+        "yourBrowserDoesNotSupport": "Ваш браузер не підтримує звуковий елемент.",
+        "videoCallStarted": "Розпочато відеодзвінок",
+        "videoCallEnded": "Відеодзвінок завершено",
+        "audioCallStarted": "Розпочато аудіодзвінок",
+        "audioCallRefused": "Аудіодзвінок відхилено",
+        "audioCallEnded": "Аудіовиклик завершено",
+        "joinCall": "Приєднуйтесь до телеконсультації, що триває",
+        "enterYourMessage": "Введіть своє повідомлення",
+        "videoCallRefused": "Відеодзвінок відхилено",
+        "cancel_request": "Скасувати запит",
+        "resume": "REPRENDRE",
+        "patient_name": "Ім'я пацієнта",
+        "handled_by": "Обробляється",
+        "requesting": "запитуючи",
+        "country": "Країна",
+        "sex": "секс",
+        "area": "Площа",
+        "requested_at": "Запитано у",
+        "joinCallTitle": "Приєднатися до дзвінка",
+        "joinCallCancel": "Скасувати",
+        "joinCallSubmit": "Приєднуйтесь",
+        "plsKeepThisOpenPage": "Будь ласка, залиште цю сторінку відкритою, телеконсультація почнеться за кілька хвилин.",
+        "consultation": "КОНСУЛЬТАЦІЯ",
+        "youAreNowInConsultation": "Ви зараз на телеконсультації з",
+        "cancel": "СКАСУВАТИ",
+        "download": "Завантажити",
+        "videoCallRequested": "Запит на відеодзвінок",
+        "audioCallRequested": "Запит на аудіодзвінок",
+        "audioMessage": "аудіо повідомлення",
+        "general_information": "Загальна інформація",
+        "hospital": "Назва лікарні/заклад:",
+        "joinCallDescription": "Дзвінок на цю консультацію вже триває, бажаєте приєднатися зараз?"
+    },
+    "consultations": {
+        "openedConsultations": "Відкриті консультації",
+        "yourBrowserIsNotCompatible": "Ваш браузер не сумісний з нашим додатком, будь ласка, оновіть його або використовуйте новіший пристрій. Для цієї телекомунікації вам потрібно:",
+        "aCamera": "фотоапарат;",
+        "aMicrophone": "мікрофон;",
+        "fromARecentBrowser": "останнього браузера.",
+        "theBrowsersCurrentlySupported": "Наразі підтримуються останні версії таких браузерів:",
+        "forIOSPhones": "Для телефонів і планшетів iOS: Safari",
+        "forAndroidPhones": "Для телефонів і планшетів Android: Chrome",
+        "forMacOSComputers": "Для комп’ютерів macOS: Safari, Chrome, Firefox",
+        "forLinuxComputers": "Для комп’ютерів Linux: Chrome, Firefox",
+        "browserNotSupported": "Ваш браузер не підтримує телеконсультації. Спробуйте відкрити посилання в Safari (IOS) або Chrome. Якщо ви відкриваєте це посилання з Outlook (IOS), у вас повинна бути можливість відкрити цю сторінку в іншому браузері з меню (...) внизу цієї сторінки.",
+        "forWindowsComputers": "Для комп’ютерів Windows: Chrome, Firefox"
+    },
+    "history": {
+        "historyOfConsultations": "Історія консультацій"
+    },
+    "incomingCall": {
+        "videoCall": "Відеодзвінок",
+        "accept": "Прийняти",
+        "refuse": "Відхилити"
+    },
+    "info": {
+        "general": "ЗАГАЛЬНІ",
+        "geninformationeral": "Загальна інформація",
+        "home": "{{branding}}",
+        "duringTheTransition": "Під час переходу між лікарнею та домом, який є періодом підвищеної крихкості для пацієнтів, особам, які доглядають вдома, і місцевим лікарям іноді потрібна інформація з Інтегрованої картотеки пацієнтів (DPI) Женевських університетських лікарень (HUG), щоб посилити безперервність догляду та дозволити пацієнта максимально тримати вдома.",
+        "itIsFundedBy": "Це фінансується за рахунок"
+    },
+    "cgu": {
+        "termsAndConditions": "Умови та положення (У&П)",
+        "backToHome": "Повернутися додому",
+        "selectCountry": "Цей термін застосовується до країни:"
+    }
+}
