@@ -180,9 +180,6 @@
         "accessibleTime1": "من 5 بعد الظهر حتى 9 ليلاً من الإثنين إلى الجمعة",
         "geninformationeral": "معلومات عامة"
     },
-    "awaitingConsultation": {
-        "awaitingConsultation": "يرجى الانتظار حتى تبدأ الاستشارة عن بعد. يرجى إبقاء هذه النافذة مفتوحة."
-    },
     "translatorForm": {
         "acceptRequest": "الموافقة على الموعد",
         "directNumberIsRequired": "يرجى إدخال رقم الهاتف المباشر",

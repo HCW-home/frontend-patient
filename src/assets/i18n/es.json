@@ -148,9 +148,6 @@
         "itIsFundedBy": "Está financiado por",
         "accessibleTime1": "De 17 a 21 h, de lunes a viernes"
     },
-    "awaitingConsultation": {
-        "awaitingConsultation": "Espere mientras comienza la teleconsulta. Mantenga esta ventana abierta."
-    },
     "translatorForm": {
         "acceptRequest": "Aceptar la cita",
         "directNumberIsRequired": "Indique un número de teléfono directo",
