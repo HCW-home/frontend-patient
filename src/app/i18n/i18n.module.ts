@@ -32,7 +32,8 @@ export class I18nModule {
     'ti',
     'fa',
     'ru',
-    'it'
+    'it',
+    'uk'
   ]
   constructor(translate: TranslateService) {
     translate.addLangs(this.supportedLanguages);
