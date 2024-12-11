@@ -1,7 +1,4 @@
 {
-    "awaitingConsultation": {
-        "awaitingConsultation": "Attendere l'inizio del teleconsulto. Si prega di tenere aperta questa pagina."
-    },
     "cgu": {
         "termsAndConditions": "Condizioni generali",
         "backToHome": "Torna a Home"
@@ -38,50 +35,6 @@
         "audioMessage": "messaggio audio",
         "videoCallRefused": "Videochiamata rifiutata"
     },
-    "consultations": {
-        "openedConsultations": "Apri i consulti",
-        "browserNotSupported": "Il tuo browser non supporta il teleconsulto. Prova ad aprire il link in Safari (IOS) o Chrome. Se si sta aprendo questo link da Outlook (IOS), dovrebbe essere disponibile un'opzione che consente di aprire questa pagina in un altro browser dal menu (...) in fondo alla pagina.",
-        "yourBrowserIsNotCompatible": "Il tuo browser non è compatibile con la nostra applicazione, si prega di aggiornarlo o di utilizzare un dispositivo più recente. Per questa chiamata sono necessari:",
-        "aCamera": "una telecamera;",
-        "aMicrophone": "un microfono;",
-        "fromARecentBrowser": "di un browser recente.",
-        "theBrowsersCurrentlySupported": "Al momento sono supportate le versioni più recenti dei seguenti browser:",
-        "forIOSPhones": "Per telefoni e tablet iOS: Safari",
-        "forAndroidPhones": "Per telefoni e tablet Android: Chrome",
-        "forMacOSComputers": "Per computer macOS: Safari, Chrome, Firefox",
-        "forWindowsComputers": "Per computer Windows: Chrome, Firefox",
-        "forLinuxComputers": "Per computer Linux: Chrome, Firefox"
-    },
-    "history": {
-        "historyOfConsultations": "Storico dei consulti"
-    },
-    "incomingCall": {
-        "videoCall": "Videochiamata",
-        "accept": "Accetta",
-        "refuse": "Rifiuta"
-    },
-    "info": {
-        "general": "INFORMAZIONI GENERALI",
-        "geninformationeral": "Informazioni generali",
-        "duringTheTransition": "Nel passaggio dall'ospedale al domicilio, che costituisce un periodo di maggiore vulnerabilità dei pazienti, gli operatori domiciliari e i medici di base a volte richiedono informazioni tratte dalla Cartella clinica integrata (DPI) degli HUG (Ospedali Universitari di Ginevra) per potenziare la continuità di cura e consentire al paziente di rimanere a casa il più possibile.",
-        "home": "{{branding}}",
-        "aimsToStrengthen": "mira a rafforzare questa continuità di cura tra {{branding}} e il domicilio del paziente, soprattutto nel periodo di passaggio dalle cure in fase acuta alle cure domiciliari (SAT), fornendo una risposta sanitaria informata da parte dei medici HUG alle domande degli operatori Imad. Il progetto pilota al quale stai partecipando è coordinato da HUG in collaborazione con Imad. Per ora sono coinvolti solo i pazienti dimessi da un recente ricovero presso l'HUG (&lt;1 mese) con cure di follow-up a domicilio da parte di un operatore del Centro di Assistenza Domiciliare (CMD) di Eaux-Vives, o assistiti nell'ambito del progetto Cogeria in collaborazione con il CMD Servette. Questo progetto pilota è stato realizzato da ",
-        "mayToTheEnd": "da maggio a fine ottobre 2019",
-        "itIsFundedBy": "E' finanziato",
-        "theHUGPrivate": "dalla Fondazione Privata {{branding}}",
-        "andTheGeneral": "e dalla Direzione Generale della Sanità del cantone di Ginevra, che ringraziamo. I medici che forniscono questo servizio sono esperti responsabili di centri clinici provenienti da",
-        "firstAidPhysicians": "Servizio di primo soccorso medico",
-        "theServiceIsAccessible": "Il servizio è disponibile dalle",
-        "accessibleTime1": "17 alle 21, da lunedì a venerdì",
-        "andFrom": "e",
-        "accessibleTime2": "dalle 9 alle 17 nel fine settimana e nei giorni festivi.",
-        "theCaregiverImad": "Prima di richiedere il servizio {{branding}} per il paziente, l'operatore Imad deve assicurarsi che siano stati soddisfatti i seguenti prerequisiti: ",
-        "itIsNot": "Non si tratta di un'emergenza con pericolo di vita",
-        "patientHasConstent": "Il paziente ha dato il consenso a questa videochiamata",
-        "theAttendingPhysician": "Il medico curante non è disponibile o ha dato il consenso a questa chiamata",
-        "thePatientWasRecently": "Il paziente è stato recentemente ricoverato presso la struttura {{branding}} (&lt; 1 mese)",
-        "information": "INFORMAZIONI"
-    },
     "login": {
         "back": "Back",
         "home": "Home",
@@ -92,14 +45,6 @@
         "thisApplicationIsIntented": "Questa applicazione funziona tramite un link di invito ricevuto via SMS o e-mail. Clicca su questo link per aprire il consulto.",
         "closeTheApplication": "Chiudi l'applicazione",
         "anErrorHasOccurred": "Link scaduto",
-        "theInvitationIsNotOrNoLongerValide": "Questo link di invito non è più valido o è già stato utilizzato. Il medico o l'operatore sanitario provvederà a inviare un altro invito.",
-        "installOurApp": "Installa la nostra applicazione",
-        "donwloadHomeOnTheAppStore": "Scarica {{branding}} dall'App Store",
-        "openTheConsultation": "Apri il consulto nell'applicazione",
-        "youDoNotWantToInstall": "Non desideri installare l'applicazione?",
-        "loading": "Caricamento…",
-        "joinViaBrowser": "Partecipa tramite browser",
-        "ifYouHaveReceivedThisInvitation": "Se hai ricevuto questo invito, copia e incolla nel tuo browser il link ricevuto.",
         "ifYouReceivedThisInvitation": "Se hai ricevuto questo invito, copia e incolla nel tuo browser il link ricevuto oppure copia qui il codice di invito:",
         "thisAppOnlyWorksByInivitation": "Questa applicazione funziona solo su invito. Si prega di utilizzare il link al teleconsulto inviato dall'operatore sanitario per SMS o e-mail.",
         "invitationKey": "Codice di invito",
@@ -107,12 +52,8 @@
         "pleaseWaitWhileYourRequest": "Si prega di attendere, richiesta in corso di elaborazione.",
         "yourConsultationIsPlannedFor": "Il teleconsulto è previsto per",
         "addTheEventToYourCalendar": "Aggiungi l'evento al tuo calendario",
-        "termsOfService": "Condizioni generali",
-        "supportedByThePrivateFunction": "Con il sostegno della fondazione privata",
         "theRemoteServerIsNotReachable": "Impossibile contattare il server, si prega di controllare la connessione",
-        "pleaseEnterYourInvitationKey": "Inserisci il tuo codice di invito",
-        "youAlreadyOwnTheApplication": "Hai già l'applicazione?",
-        "unsupportedBrowser": "Il tuo browser non supporta il teleconsulto. Prova ad aprire il link in Safari (IOS) o Chrome. Se si sta aprendo questo link da Outlook (IOS), dovrebbe essere disponibile un'opzione che consente di aprire questa pagina in un altro browser dal menu (...) in fondo alla pagina."
+        "pleaseEnterYourInvitationKey": "Inserisci il tuo codice di invito"
     },
     "translatorForm": {
         "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} è un sistema di teleconsulto. Stai per accettare un appuntamento online con un paziente e un operatore sanitario.",
@@ -135,32 +76,14 @@
         "youAreAboutTo": "  Stai per annullare la richiesta di consulto. Se la richiesta viene annullata in questa fase, si perderà la posizione in coda e si dovrà richiedere un nuovo consulto. <br /> <br /> <br /> Sei sicuro di voler annullare?",
         "cancelTheRequest": "Annulla la richiesta",
         "stayInTheQueue": "Resta in attesa",
-        "pleaseFillUpInformation": "Si prega di inserire le informazioni richieste di seguito così da poter essere contattati per l'accesso al teleconsulto.",
-        "youAreGoingToAcceptFutureConsultation": "{{branding}} è un sistema di teleconsulto. Stai per accettare un futuro appuntamento online con un paziente e un operatore sanitario.",
-        "firstnameAndLastname": "Nome e cognome",
-        "direcNumber": "Numero diretto",
         "refuse": "Nessuna disponibilità"
     },
     "test": {
         "loading": "Caricamento…",
         "joinTheConsultation": "Partecipa al consulto",
-        "ifThisIsTheFirst": "Se è la prima volta che si partecipi a un teleconsulto, consigliamo di verificare la tua configurazione utilizzando il pulsante sottostante.",
-        "welcomeToTheHome": "Benvenuto/a nella piattaforma di teleconsulto {{branding}}. Questa pagina aiuta a garantire che il tuo dispositivo funzioni correttamente il giorno del consulto. Clicca sul pulsante qui sotto per verificare la compatibilità. Dovrai accettare le richieste di accesso alla telecamera e al microfono.",
-        "testMyEquipment": "Test dell'hardware",
-        "testInProgress": "Test in corso",
-        "yourDeviceAppears": "Sembra che il tuo dispositivo abbia problemi a utilizzare il sistema di teleconsulto. Ti consigliamo di provare a utilizzare un altro browser, se possibile, di controllare gli aggiornamenti o di riprovare da un altro dispositivo.",
-        "videoElementCreated": "Elemento video creato",
-        "streamCreated": "Flusso creato",
-        "connectionWithServer": "Connessione al server",
-        "stopTheTest": "Interrompi il test",
-        "yourDeviceSeems": "Il tuo dispositivo sembra essere perfettamente compatibile con il sistema di teleconsulto. Se l'anteprima video non è di qualità soddisfacente o risulta frammentata, verifica che il segnale dell'apparecchiatura sia adeguato.",
-        "testStarting": "Avvio del test",
-        "theConnectionIs": "La connessione è riuscita"
+        "yourDeviceSeems": "Il tuo dispositivo sembra essere perfettamente compatibile con il sistema di teleconsulto. Se l'anteprima video non è di qualità soddisfacente o risulta frammentata, verifica che il segnale dell'apparecchiatura sia adeguato."
     },
     "videoRoom": {
-        "call": "Chiamata",
-        "audio": "audio",
-        "video": "video",
         "accept": "Accetta",
         "refuse": "Rifiuta",
         "callInProgress": "Chiamata in corso"
@@ -170,25 +93,9 @@
         "aFile": "UN FILE",
         "takeAPhoto": "Invia o scatta una foto",
         "fromThePhone": "Invia un file PDF",
-        "leaveAudioMessage": "Lascia un messaggio audio",
         "cancel": "ANNULLA",
         "promptLabelPhoto": "Dalla galleria fotografica",
         "promptLabelPicture": "Dalla fotocamera"
-    },
-    "requestConsultation": {
-        "demandeConsultation": "Richiesta di teleconsulto",
-        "requireentsToMakeConsultation": "PREREQUISITI PER LA RICHIESTA DI TELECONSULTO",
-        "theCallIsNotFor": "La chiamata non riguarda un'emergenza con pericolo di vita",
-        "thePatientHas": "Il paziente ha acconsentito alla chiamata",
-        "theAttendingPhysician": "Il medico curante non è disponibile o ha dato il suo consenso",
-        "patientFollowing": "PAZIENTE A SEGUITO DI RICOVERO OSPEDALIERO PRESSO {{branding}}",
-        "patientsLastname": "Cognome del paziente",
-        "patientFirstname": "Nome di battesimo del paziente",
-        "sex": "Sesso",
-        "feminine": "Femmina",
-        "male": "Maschio",
-        "dateOfBirth": "Data di nascita",
-        "validateRequest": "CONVALIDA LA RICHIESTA"
     },
     "appComponent": {
         "serverError": "Qualcosa non ha funzionato"
@@ -200,7 +107,9 @@
     "ar": "عربي",
     "ta": "தமிழ்",
     "fa": "فارسی",
+    "am": "Հայերեն",
     "ti": "ትግርኛ",
     "ru": "Русский",
-    "it": "italiano"
+    "it": "italiano",
+    "uk": "Украинский"
 }

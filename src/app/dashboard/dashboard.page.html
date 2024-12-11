@@ -122,9 +122,7 @@
                         <tbody>
                         <ng-container *ngFor="let consultation of closedConsultations">
                             <tr class="border" (click)="onSelectClosedConsultation(consultation)">
-                                <td (click)="exportPDF($event, consultation)"
-                                        class="pdf">
-                                    <ion-icon name="document-sharp"></ion-icon>                                </td>
+
                                 <td class="no-stack in-row">
                                     <div class="avatar-container">
                                         {{ consultation.consultation.firstName | titlecase | slice: 0: 1 }}{{ consultation.consultation.lastName| titlecase | slice: 0: 1 }}
@@ -175,6 +173,14 @@
                                         </div>
                                     </div>
                                 </td>
+                                <td>
+                                <ion-button class="export-button"
+                                        (click)="exportPDF($event, consultation)">
+                                    <ion-icon name="download-outline" slot="start"></ion-icon>
+                                    {{ 'dashboard.export' | translate }}
+                                </ion-button>
+                                </td>
+
                             </tr>
                         </ng-container>
                         </tbody>

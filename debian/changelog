@@ -1,3 +1,52 @@
+hcw-athome-patient (0.5.13) UNRELEASED; urgency=medium
+
+  [ Gor Grigoryan ]
+  * refs #7894, Close app button appear on mobile
+
+  [ Olivier Bitsch ]
+  * Translated using Weblate (Arabic)
+  * Translated using Weblate (German)
+
+  [ Gor Grigoryan ]
+  * add file name in consultation history report
+
+  [ Olivier Bitsch ]
+  * Added translation using Weblate (Ukrainian)
+  * Deleted translation using Weblate (Ukrainian)
+  * Added translation using Weblate (Ukrainian)
+
+  [ Gor Grigoryan ]
+  * update en translation file
+
+  [ Olivier Bitsch ]
+  * Translated using Weblate (Ukrainian)
+
+  [ Weblate ]
+  * Update translation files
+
+  [ Gor Grigoryan ]
+  * remove unused translation keys
+
+  [ Olivier Bitsch ]
+  * Translated using Weblate (German)
+
+  [ Weblate ]
+  * Update translation files
+
+  [ Gor Grigoryan ]
+  * make uk translations in english
+  * update uk translations
+
+  [ Olivier Bitsch ]
+  * Translated using Weblate (French)
+
+  [ Gor Grigoryan ]
+  * uk translation updates
+  * add uk language in selector
+  * feat: Add Armenian language support 🇦🇲
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 10 Dec 2024 10:59:37 +0000
+
 hcw-athome-patient (0.5.10) focal; urgency=medium
 
   [ Olivier Bitsch ]

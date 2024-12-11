@@ -1,7 +1,4 @@
 {
-    "awaitingConsultation": {
-        "awaitingConsultation": "Bitte warten Sie, während die Telekonsultation beginnt. Bitte lassen Sie dieses Fenster geöffnet."
-    },
     "cgu": {
         "selectCountry": "Diese AGB gelten für das Land:",
         "backToHome": "Zurück zur Hauptseite",
@@ -48,56 +45,15 @@
         "capInProgress": "IN BEARBEITUNG",
         "consultation": "BERATUNG",
         "plsKeepThisOpenPage": "Bitte lassen Sie diese Seite geöffnet, die Telekonsultation beginnt in wenigen Minuten.",
-        "inProgress": "In Bearbeitung"
-    },
-    "consultations": {
-        "openedConsultations": "Offene Konsultationen",
-        "browserNotSupported": "Ihren Browser erlaubt keine Telekonsultation. Versuchen Sie den Link auf Safari (IOS) oder Chrome zu eröffnen. Falls Sie diesen Link from Outlook (IOS) eröffnen, sollte eine Option dieser Seite in ein anderen Browser zu eröffnen, aus den (...) Menu am Fuss der Seite",
-        "yourBrowserIsNotCompatible": "Ihr Browser ist nicht mit unserer Anwendung kompatibel, bitte aktualisieren Sie ihn oder verwenden Sie ein neueres Gerät. Für diese Telekommunikation benötigen Sie:",
-        "aCamera": "eine Kamera;",
-        "aMicrophone": "ein Mikrofon;",
-        "fromARecentBrowser": "eines aktuellen Browsers.",
-        "theBrowsersCurrentlySupported": "Derzeit werden die neuesten Versionen der folgenden Browser unterstützt:",
-        "forIOSPhones": "Für iOS-Telefone und -Tablets: Safari",
-        "forAndroidPhones": "Für Android-Telefone und -Tablets: Chrome",
-        "forMacOSComputers": "Für macOS-Computer: Safari, Chrome, Firefox",
-        "forWindowsComputers": "Für Windows-Computer: Chrome, Firefox",
-        "forLinuxComputers": "Für Windows-Computer: Chrome, Firefox"
-    },
-    "history": {
-        "historyOfConsultations": "Beratungsgeschichte"
-    },
-    "incomingCall": {
-        "videoCall": "Videoanruf",
-        "accept": "Annehmen",
-        "refuse": "Ablehnen"
-    },
-    "info": {
-        "general": "ALLGEMEINES",
-        "geninformationeral": "Allgemeine Information",
-        "duringTheTransition": "Während des Übergangs zwischen Krankenhaus und Zuhause, der für Patienten eine Zeit erhöhter Fragilität darstellt, benötigen häusliche Pflegekräfte und lokale Ärzte manchmal Informationen aus der Integrierten Patientenakte (DPI) der Universitätsspitäler Genf (HUG), um die Kontinuität der Versorgung zu stärken und zu ermöglichen Der Patient soll so weit wie möglich zu Hause bleiben.",
-        "home": "{{branding}}",
-        "aimsToStrengthen": "zielt darauf ab, diese Kontinuität der Versorgung zwischen {{branding}} und dem Zuhause zu stärken, insbesondere während der akuten Übergangszeit (SAT), indem HUG-Ärzte eine fundierte medizinische Antwort auf die Fragen der Imad-Betreuer geben. Dieses Pilotprojekt, an dem Sie teilnehmen, ist ein von HUG in Zusammenarbeit mit imad koordiniertes Projekt. Im Moment handelt es sich nur um Patienten, die aus einem kürzlichen Krankenhausaufenthalt im HUG (&lt; 1 Monat) entlassen wurden und zu Hause von einer Pflegekraft des Eaux-Vives Home Maintenance Center (CMD) nachbehandelt oder im Rahmen des betreut werden Cogeria-Projekt in Partnerschaft mit der CMD Servette. Dieses Pilotprojekt wurde bereitgestellt von ",
-        "mayToTheEnd": "Mai bis Ende Oktober 2019",
-        "itIsFundedBy": "Es wird finanziert durch",
-        "theHUGPrivate": "die Privatstiftung von {{branding}}",
-        "andTheGeneral": "und der Generaldirektion für Gesundheit des Kantons Genf, denen wir danken möchten. Die Ärzte, die diese Leistung erbringen, sind erfahrene Klinikleiter aus",
-        "firstAidPhysicians": "Erste-Hilfe-Dienst des Arztes",
-        "theServiceIsAccessible": "Der Dienst ist erreichbar von",
-        "accessibleTime1": "17 Uhr bis 21 Uhr Montag bis Freitag",
-        "andFrom": "und",
-        "accessibleTime2": "9 bis 17 Uhr an Wochenenden und Feiertagen.",
-        "theCaregiverImad": "Bevor die imad-Pflegekraft den {{branding}}-Service für ihren Patienten anfordert, sollte sie sicherstellen, dass die folgenden Voraussetzungen erfüllt sind: ",
-        "itIsNot": "Dies ist kein lebensbedrohlicher Notfall",
-        "patientHasConstent": "Der Patient hat diesem Videoanruf zugestimmt",
-        "theAttendingPhysician": "Der behandelnde Arzt ist nicht erreichbar oder hat sein Einverständnis zu diesem Anruf gegeben",
-        "thePatientWasRecently": "Der Patient wurde kürzlich bei {{branding}} (&lt; 1 Monat) ins Krankenhaus eingeliefert.",
-        "information": "INFORMATION"
+        "inProgress": "In Bearbeitung",
+        "joinCallDescription": "Der Aufruf zu dieser Beratung läuft bereits, möchten Sie sich jetzt dem Anruf anschließen?",
+        "joinCallTitle": "Anruf beitreten",
+        "joinCallCancel": "Abbrechen",
+        "joinCallSubmit": "Beitreten"
     },
     "login": {
         "lastName": "Nachname",
         "firstName": "Vorname",
-        "unsupportedBrowser": "Ihr Browser unterstützt keine Telekonsultation. Versuchen Sie, den Link in Safari (iOS) oder Chrome zu öffnen. Wenn Sie diesen Link von Outlook (iOS) aus öffnen, sollten Sie über das Menü (...) unten auf dieser Seite die Möglichkeit haben, diese Seite in einem anderen Browser zu öffnen.",
         "termsSecondText": "bevor man {{branding}} verwenden kann",
         "termsText": "Sie müssen akzeptieren,",
         "warning": "Warnung",
@@ -106,11 +62,8 @@
         "translationRequestAccepted": "Vielen Dank für die Bestätigung, Sie erhalten die Informationen in Kürze per E-Mail.",
         "home": "Hauptseite",
         "back": "zurück",
-        "youAlreadyOwnTheApplication": "Haben Sie die Anwendung bereits?",
         "pleaseEnterYourInvitationKey": "Bitte geben Sie Ihren Einladungscode ein",
         "theRemoteServerIsNotReachable": "Der entfernte Server kann nicht erreicht werden, bitte überprüfen Sie Ihre Verbindung",
-        "supportedByThePrivateFunction": "Unterstützt von der privaten Stiftung",
-        "termsOfService": "Allgemeine Geschäftsbedingungen",
         "addTheEventToYourCalendar": "Fügen Sie das Ereignis Ihrem Kalender hinzu",
         "yourConsultationIsPlannedFor": "Ihre Telekonsultation ist für den [Datum/Zeit] geplant.",
         "pleaseWaitWhileYourRequest": "Bitte warten Sie, während Ihre Anfrage bearbeitet wird.",
@@ -118,14 +71,6 @@
         "invitationKey": "Einladungscode",
         "thisAppOnlyWorksByInivitation": "Diese Anwendung funktioniert nur mit einer Einladung. Bitte verwenden Sie den Telekonsultationslink, den Ihnen Ihre Pflegekraft per SMS oder E-Mail gesendet hat.",
         "ifYouReceivedThisInvitation": "Wenn Sie diese Einladung erhalten haben, kopieren Sie den erhaltenen Link und fügen Sie ihn in Ihren Browser ein oder kopieren Sie den Einladungscode hier.",
-        "ifYouHaveReceivedThisInvitation": "Wenn Sie diese Einladung erhalten haben, kopieren Sie den erhaltenen Link und fügen Sie ihn in Ihren Browser ein.",
-        "joinViaBrowser": "Über den Browser beitreten",
-        "loading": "Laden...",
-        "youDoNotWantToInstall": "Sie möchten die Anwendung nicht installieren?",
-        "openTheConsultation": "Öffnen Sie die Konsultation in der Anwendung",
-        "donwloadHomeOnTheAppStore": "Laden Sie {{branding}} im App Store herunter",
-        "installOurApp": "Installieren Sie unsere Anwendung",
-        "theInvitationIsNotOrNoLongerValide": "Dieser Einladung-Link ist nicht mehr gültig oder wurde bereits verwendet. Der Arzt oder Pflegekraft wird Ihnen eine weitere Einladung senden.",
         "anErrorHasOccurred": "Link abgelaufen",
         "closeTheApplication": "Schließen Sie die Anwendung",
         "thisApplicationIsIntented": "Diese Anwendung ist dafür vorgesehen, über einen Einladung-Link zu funktionieren, der per SMS oder E-Mail empfangen wurde. Klicken Sie vorher auf diesen Link, um eine Konsultation zu öffnen."
@@ -151,10 +96,6 @@
         "youAreAboutTo": "  Sie sind dabei, die Beratungsanfrage zu stornieren. Wenn Sie auf dieser Ebene stornieren, verlieren Sie Ihre Position in der Warteschlange und müssen erneut eine Beratung anfordern. <br /> <br /> <br /> Möchten Sie wirklich abbrechen?",
         "cancelTheRequest": "Brechen Sie die Anfrage ab",
         "stayInTheQueue": "Bleiben Sie in der Warteschlange",
-        "pleaseFillUpInformation": "Bitte füllen Sie die folgenden Informationen aus, damit wir Sie kontaktieren können, um Zugang zur Beratung zu erhalten.",
-        "youAreGoingToAcceptFutureConsultation": "{{branding}} ist ein Telekonsultationssystem. Sie sind dabei, einen zukünftigen Online-Termin mit einem Patienten und einer Pflegekraft anzunehmen.",
-        "firstnameAndLastname": "Vor-und Nachname",
-        "direcNumber": "Direkte nummer",
         "refuse": "Keine Verfügbarkeit"
     },
     "test": {
@@ -166,18 +107,7 @@
         "cameraDenied": "Der Zugriff auf das Mikrofon scheint zu funktionieren, aber der Zugriff auf die Kamera wird verweigert.",
         "micDenied": "Der Zugriff auf die Kamera scheint zu funktionieren, aber der Zugriff auf das Mikrofon wird verweigert.",
         "youCanStillJoin": "Sie können weiterhin an der Beratung teilnehmen, aber der Video-/Audioanruf schlägt möglicherweise fehl.",
-        "theConnectionIs": "Die Verbindung war erfolgreich",
-        "testStarting": "Test wird gestartet",
         "yourDeviceSeems": "Ihr Gerät scheint perfekt mit dem Telekonsultationssystem kompatibel zu sein. Wenn die Video-Vorschau nicht von ausreichender Qualität ist oder ruckelt, überprüfen Sie bitte, ob das Signal Ihrer Ausrüstung ausreichend ist.",
-        "stopTheTest": "Test stoppen",
-        "connectionWithServer": "Verbindung zum Server",
-        "streamCreated": "Flow erstellt",
-        "videoElementCreated": "Videoelement erstellt",
-        "yourDeviceAppears": "Ihr Gerät scheint Probleme mit dem Telekonsultationssystem zu haben. Wir empfehlen Ihnen, wenn möglich, einen anderen Browser zu verwenden, Ihre Updates zu überprüfen oder es auf einem anderen Gerät zu versuchen.",
-        "testInProgress": "Test wird durchgeführt.",
-        "testMyEquipment": "Testen Sie meine Hardware.",
-        "welcomeToTheHome": "Willkommen auf der Telekonsultationsplattform von {{branding}}. Diese Seite hilft sicherzustellen, dass Ihr Gerät am Tag der Konsultation wie erwartet funktioniert. Klicken Sie auf den Button unten, um die Kompatibilität zu überprüfen. Sie müssen Anfragen zum Zugriff auf Ihre Kamera und Ihr Mikrofon akzeptieren.",
-        "ifThisIsTheFirst": "Wenn dies das erste Mal ist, dass Sie an einer Telekonsultation teilnehmen, empfehlen wir Ihnen, Ihre Konfiguration mit dem untenstehenden Button zu testen.",
         "joinTheConsultation": "Treten Sie der Konsultation bei",
         "loading": "Laden..."
     },
@@ -186,49 +116,20 @@
         "audioCall": "Audioanruf",
         "callInProgress": "Anruf in Bearbeitung",
         "refuse": "Ablehnen",
-        "accept": "Akzeptieren",
-        "video": "Video",
-        "audio": "Audio",
-        "call": "Anruf"
+        "accept": "Akzeptieren"
     },
     "chooseAttachement": {
         "send": "SCHICKEN",
         "aFile": "EINE DATEI",
         "takeAPhoto": "Senden oder fotografieren",
         "fromThePhone": "Senden Sie eine PDF-Datei",
-        "leaveAudioMessage": "Hinterlassen Sie eine Audionachricht",
         "cancel": "ABBRECHEN",
         "promptLabelPhoto": "Aus Fotogalerie",
         "promptLabelPicture": "Von der Kamera"
     },
-    "requestConsultation": {
-        "demandeConsultation": "Antrag auf Telekonsultation",
-        "requireentsToMakeConsultation": "VORAUSSETZUNGEN FÜR TELEKONSULTATIONSANFRAGE",
-        "theCallIsNotFor": "Dies ist kein lebensbedrohlicher Notfall",
-        "thePatientHas": "Der Patient hat dem Anruf zugestimmt",
-        "theAttendingPhysician": "Der behandelnde Arzt ist nicht erreichbar oder hat sein Einverständnis gegeben",
-        "patientFollowing": "PATIENT NACH EINEM {{branding}} KRANKENHAUSAUFENTHALT",
-        "patientsLastname": "Name des Patienten",
-        "patientFirstname": "Vorname des Patienten",
-        "sex": "Geschlecht",
-        "feminine": "Weiblich",
-        "male": "Männlich",
-        "dateOfBirth": "Geburtsdatum",
-        "validateRequest": "VALIDIEREN SIE DIE ANFRAGE"
-    },
     "appComponent": {
         "serverError": "Etwas ist schief gelaufen"
     },
-    "fr": "Français",
-    "en": "English",
-    "es": "Español",
-    "de": "Deutsch",
-    "ar": "عربي",
-    "ta": "தமிழ்",
-    "fa": "فارسی",
-    "ti": "ትግርኛ",
-    "ru": "Русский",
-    "it": "italiano",
     "register": {
         "lastname": "Nachname",
         "enter_firstName": "Vornamen eingeben",
@@ -239,20 +140,39 @@
         "organization": "Organisation",
         "enter_phone_number": "Telefonnummer eingeben",
         "phone_number": "Telefonnummer",
-        "enter_lastname": "Nachnamen eingeben"
+        "enter_lastname": "Nachnamen eingeben",
+        "enter_organization": "Organisation eingeben",
+        "country": "Land",
+        "select_country": "Land auswählen",
+        "terms": "Geschäftsbedingungen",
+        "gender": "Geschlecht",
+        "by_checking_box": "Durch Anklicken des Kontrollkästchens akzeptieren Sie die",
+        "submit_registration": "Registrierung abschicken",
+        "own_account": "Besitzen Sie bereits ein Konto? Hier anmelden"
     },
     "authenticate": {
         "access_permits": "Über diesen Zugang kann eine Konsultation zu {{branding}} beantragt werden.",
         "sso_text": "Melden Sie sich mit Ihren Single Sign-On-Anmeldeinformationen an",
         "welcome_back": "Hallo, willkommen zurück!",
         "no_account": "Noch kein Konto ? Hier Konto beantragen",
-        "login_with": "Institutionelle Verbindung",
-        "authenticate": "Authentifizieren"
+        "login_with": "Institutionelle Verbindung"
     },
     "metadata": {
         "Age": "Age",
         "Country": "Country",
         "Custom Id": "Benutzerdefinierte ID",
         "Facility": "Einrichtung"
-    }
+    },
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "am": "Հայերեն",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano",
+    "uk": "Украинский"
 }
