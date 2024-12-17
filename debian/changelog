@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.13) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.14) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * refs #7894, Close app button appear on mobile
@@ -44,8 +44,15 @@ hcw-athome-patient (0.5.13) UNRELEASED; urgency=medium
   * uk translation updates
   * add uk language in selector
   * feat: Add Armenian language support 🇦🇲
+  * uk translations update
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 10 Dec 2024 10:59:37 +0000
+  [ Anonymous ]
+  * Translated using Weblate (Amharic)
+
+  [ Gor Grigoryan ]
+  * add uk to supported languages
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 17 Dec 2024 09:34:27 +0000
 
 hcw-athome-patient (0.5.10) focal; urgency=medium
 
