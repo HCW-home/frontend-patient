@@ -18,7 +18,8 @@ export class LanguageService {
         'ti',
         'fa',
         'ru',
-        'it'
+        'it',
+        'uk'
     ]
     constructor(
         private translate: TranslateService,
