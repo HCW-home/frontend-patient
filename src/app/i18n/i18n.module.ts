@@ -2,6 +2,22 @@ import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {ConfigService} from "../config.service";
+
+export let supportedLanguages = [
+  'en',
+  'fr',
+  'es',
+  'ar',
+  'de',
+  'ar',
+  'ta',
+  'ti',
+  'fa',
+  'ru',
+  'it',
+  'uk'
+];
 
 @NgModule({
   imports: [
@@ -20,25 +36,34 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export class I18nModule {
 
-  public defaultLanguage = 'en';
-  public supportedLanguages = [
-    'en',
-    'fr',
-    'es',
-    'ar',
-    'de',
-    'ar',
-    'ta',
-    'ti',
-    'fa',
-    'ru',
-    'it',
-    'uk'
-  ]
-  constructor(translate: TranslateService) {
-    translate.addLangs(this.supportedLanguages);
-    const userLang = window.localStorage.getItem('hhp-lang') || translate.getBrowserLang();
-    translate.use(this.supportedLanguages.includes(userLang) ? userLang : this.defaultLanguage);
+  constructor(translate: TranslateService, config: ConfigService) {
+    config.getConfig().subscribe({
+      next: (appConfig) => {
+        const dynamicLanguages = appConfig.patientLanguages?.length
+            ? appConfig.patientLanguages
+            : supportedLanguages;
+
+        supportedLanguages = dynamicLanguages;
+
+        translate.addLangs(dynamicLanguages);
+
+        const userLang =
+            window.localStorage.getItem('hhp-lang') || translate.getBrowserLang();
+        const defaultLang = dynamicLanguages.includes(userLang)
+            ? userLang
+            : dynamicLanguages[0];
+
+        translate.use(defaultLang);
+
+      },
+      error: () => {
+        translate.addLangs(supportedLanguages);
+
+        translate.use(supportedLanguages[0]);
+      },
+    });
+
+    translate.setDefaultLang(supportedLanguages[0]);
   }
 
 }

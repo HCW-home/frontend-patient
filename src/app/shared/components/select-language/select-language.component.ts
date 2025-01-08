@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
 import {LanguageService} from "../../services/language.service";
+import {supportedLanguages} from "../../../i18n/i18n.module";
 
 @Component({
   selector: "app-select-language",
@@ -24,4 +25,6 @@ export class SelectLanguageComponent {
     this.translate.use(lang);
     this.selectedLanguageChange.emit(lang);
   }
+
+  protected readonly supportedLanguages = supportedLanguages;
 }

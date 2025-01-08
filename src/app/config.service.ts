@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 import { GlobalVariableService } from "./global-variable.service";
-import {catchError, map} from "rxjs/operators";
+import {catchError, map, switchMap, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -20,36 +20,33 @@ export class ConfigService {
         return this.http.get<string[]>('assets/terms/countries.json');
     }
 
-  getConfig() {
-    this.globalVariableService.host.subscribe(() => {
-      return this.http
-        .get<any>(`${this.globalVariableService.getApiPath()}/config`)
-        .toPromise()
-        .then((config) => {
-          this.config = config;
-          this.configSub.next(config);
-          if (config.patientAppPrimaryColor) {
-              this.updatePrimaryColor(config.patientAppPrimaryColor);
-          }
-            if (config.matomoUrl && config.matomoId) {
-                this.initializeMatomo(config.matomoUrl, config.matomoId);
-            }
-          this.globalVariableService.serverError = false;
-          if (
-            config.accessibilityMode &&
-            config.accessibilityMode !== "false"
-          ) {
-            document.documentElement.setAttribute(
-              "data-theme",
-              "accessibility"
-            );
-          }
-        })
-        .catch((err) => {
-          this.globalVariableService.serverError = true;
-        });
-    });
-  }
+
+    getConfig() {
+        return this.http.get<any>(this.globalVariableService.getApiPath() +  '/config').pipe(
+            tap(config => {
+                this.config = config;
+                this.configSub.next(config);
+
+                if (config.patientAppPrimaryColor) {
+                    this.updatePrimaryColor(config.patientAppPrimaryColor);
+                }
+
+                if (config.matomoUrl && config.matomoId) {
+                    this.initializeMatomo(config.matomoUrl, config.matomoId);
+                }
+
+                if (config.accessibilityMode && config.accessibilityMode !== 'false') {
+                    document.documentElement.setAttribute('data-theme', 'accessibility');
+                }
+
+                this.globalVariableService.serverError = false;
+            }),
+            catchError(error => {
+                return of(null);
+            })
+        );
+    }
+
 
     updatePrimaryColor(color: string) {
         document.documentElement.style.setProperty('--ion-color-primary', color);
