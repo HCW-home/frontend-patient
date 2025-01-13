@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 import { GlobalVariableService } from "./global-variable.service";
 import {catchError, map, switchMap, tap} from "rxjs/operators";
+import {Title} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: "root",
@@ -13,6 +14,7 @@ export class ConfigService {
   public api: string;
   constructor(
     private http: HttpClient,
+    private titleService: Title,
     private globalVariableService: GlobalVariableService
   ) {}
 
@@ -26,6 +28,10 @@ export class ConfigService {
             tap(config => {
                 this.config = config;
                 this.configSub.next(config);
+
+                if (config.branding) {
+                    this.titleService.setTitle(config.branding);
+                }
 
                 if (config.patientAppPrimaryColor) {
                     this.updatePrimaryColor(config.patientAppPrimaryColor);
