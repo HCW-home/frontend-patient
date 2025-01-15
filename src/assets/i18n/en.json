@@ -112,6 +112,7 @@
         "permissionError": "We have encountered a problem for accessing to your camera or your microphone. Please ensure the devices are properly connected."
     },
     "videoRoom": {
+        "caller": "HCW",
         "audioCall": "Audio call",
         "videoCall": "Video call",
         "accept": "Accept",

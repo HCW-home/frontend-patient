@@ -1,10 +1,10 @@
-import { AuthService } from "./../auth/auth.service";
-import { OpenViduService } from "./../shared/services/openvidu.service";
+import { AuthService } from "../auth/auth.service";
+import { OpenViduService } from "../shared/services/openvidu.service";
 import {
-  RoomService,
-  LogService,
-  RemotePeersService,
   Stream,
+  LogService,
+  RoomService,
+  RemotePeersService,
 } from "hcw-stream-lib";
 import { OpenViduLayout } from "../shared/layout/openvidu-layout";
 import { Subscription } from "rxjs";
@@ -23,8 +23,8 @@ import {
   transition,
   animate,
 } from "@angular/animations";
+import {ConfigService} from "../config.service";
 
-import { SocketEventsService } from "../socket-events.service";
 declare let window: any;
 
 export interface Device {
@@ -133,15 +133,8 @@ export interface Device {
   ],
 })
 export class VideoRoomPage implements OnInit, OnDestroy {
-  BIG_ELEMENT_CLASS = "OV_big";
 
-  // ANDROID_PERMISSIONS = [
-  //   "android.permission.CAMERA",
-  //   "android.permission.RECORD_AUDIO",
-  //   "android.permission.MODIFY_AUDIO_SETTINGS",
-  // ];
-  localUser;
-  remoteUsers = [];
+   remoteUsers = [];
   resizeTimeout;
   bigElement;
   consultation;
@@ -149,11 +142,8 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   @Output() hangup = new EventEmitter<boolean>();
   isFullScreen = true;
 
-  socketSub;
-
   rejected;
   @Input() message;
-  reconnectTimer;
   @Input() sessionId: string;
   @Input() token: string;
   @Input() patient;
@@ -182,14 +172,14 @@ export class VideoRoomPage implements OnInit, OnDestroy {
 
   videoAspectRatio = 1.777;
 
-  _device: any = "";
   constructor(
-    public platform: Platform,
-    private roomService: RoomService,
-    private logger: LogService,
-    private remotePeersService: RemotePeersService,
-    private openViduSrv: OpenViduService,
-    private authService: AuthService,
+      public platform: Platform,
+      private logger: LogService,
+      private roomService: RoomService,
+      private authService: AuthService,
+      private openViduSrv: OpenViduService,
+      public configService: ConfigService,
+      private remotePeersService: RemotePeersService,
   ) {
     window.platform = platform;
   }
