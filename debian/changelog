@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.15) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.15) focal; urgency=medium
 
   [ Gor Grigoryan ]
   * refs #7894, Close app button appear on mobile
@@ -51,8 +51,13 @@ hcw-athome-patient (0.5.15) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * add uk to supported languages
+  * refs #7972, Replace branding in title page
+  * refs #7973,New setting for hiding name of doctor in backend
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 17 Dec 2024 09:34:27 +0000
+  [ Olivier Bitsch ]
+  * Adding self signed certificate on nginx
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 16 Jan 2025 15:50:03 +0100
 
 hcw-athome-patient (0.5.10) focal; urgency=medium
 
