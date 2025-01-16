@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.15) focal; urgency=medium
+hcw-athome-patient (0.5.16) focal; urgency=medium
 
   [ Gor Grigoryan ]
   * refs #7894, Close app button appear on mobile
