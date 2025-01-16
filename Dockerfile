@@ -1,5 +1,5 @@
 FROM node:20 AS builder
-ENV VERSION=0.5.16
+ENV VERSION=0.5.17
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN yarn
