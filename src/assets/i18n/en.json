@@ -60,6 +60,7 @@
         "termsText": "You must accept the",
         "termsSecondText": "before being able to use {{branding}}",
         "warning": "Warning",
+        "theInvitationIsNotOrNoLongerValide": "This invitation link is no longer valid or has already been used. The doctor or caregiver will send you another invitation.",
         "thisApplicationIsIntented": "This application is intended to work via an invitation link received via SMS or email. Click on this link beforehand to open a consultation.",
         "closeTheApplication": "Close the application",
         "anErrorHasOccurred": "Link expired",
@@ -224,6 +225,10 @@
         "reconnected": "You are reconnected",
         "refresh": "Refresh",
         "connectionFailed": "The connection to the server is not functioning properly, and you can no longer receive consultation requests. If the issue persists, refresh the page."
+    },
+    "acknowledgeInvite": {
+        "testButton": "Test Call",
+        "successMessage": "Success!"
     },
     "metadata": {
         "Age": "Age",

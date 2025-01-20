@@ -1,0 +1,27 @@
+<ion-content>
+    <div class='center'>
+        <div class="custom-card">
+            <div class="container">
+                <div id="dashboard-div">
+                    <div class="page-wrapper">
+                        @if (success) {
+                            <div class="messages-wrapper">
+                                    <div class="messages">
+                                        <ion-icon name="checkmark-circle-outline"></ion-icon>
+                                        <span>{{ 'acknowledgeInvite.successMessage' | translate}}</span>
+                                    </div>
+                                </div>
+
+                                <button
+                                        class="btn green proceed-btn big"
+                                        type="button"
+                                        (click)="testCall()">
+                                    {{ 'acknowledgeInvite.testButton' | translate }}
+                                </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

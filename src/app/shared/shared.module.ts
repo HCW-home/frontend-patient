@@ -14,7 +14,16 @@ import {DurationPipe} from "./pipes/duration.pipe";
 
 
 @NgModule({
-    declarations: [PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent,FooterComponent, ErrorModalComponent, DurationPipe],
+    declarations: [
+        DurationPipe,
+        FooterComponent,
+        HeaderComponent,
+        FileDropDirective,
+        PeerVideoComponent,
+        PeerAudioComponent,
+        ErrorModalComponent,
+        SelectLanguageComponent,
+    ],
     imports: [
         CommonModule,
         IonicModule,
@@ -22,7 +31,14 @@ import {DurationPipe} from "./pipes/duration.pipe";
         MarkdownModule.forRoot()
     ],
     exports: [
-        PeerAudioComponent, PeerVideoComponent, HeaderComponent, FileDropDirective, SelectLanguageComponent, ErrorModalComponent, FooterComponent, DurationPipe
+        DurationPipe,
+        FooterComponent,
+        HeaderComponent,
+        FileDropDirective,
+        PeerVideoComponent,
+        PeerAudioComponent,
+        ErrorModalComponent,
+        SelectLanguageComponent,
     ]
 
 

@@ -1,0 +1,43 @@
+#dashboard-div {
+  height: 100%;
+  padding: 20px;
+}
+
+.custom-card {
+  width: 80%;
+  @media (max-width: 598px) {
+    width: 100%;
+  }
+}
+
+.messages-wrapper {
+    .messages {
+      gap: 10px;
+      display: flex;
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      align-items: center;
+      flex-direction: column;
+
+      ion-icon {
+        width: 50px;
+        color: #06d362;
+        height: 50px;
+      }
+    }
+
+}
+
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .proceed-btn,
+    p {
+      text-align: left;
+    }
+
+    .messages {
+      font-size: 1.2rem !important;
+    }
+  }
+}

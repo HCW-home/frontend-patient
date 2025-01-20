@@ -1,36 +1,21 @@
-import { Observable, Subscription } from "rxjs";
 import { GlobalVariableService } from "./global-variable.service";
-import { Component, OnInit, NgZone, Directive } from "@angular/core";
+import { Component } from "@angular/core";
 
-import {Platform, NavController, ToastController, ToastButton} from "@ionic/angular";
-
-// import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
+import { Platform, ToastController, ToastButton } from "@ionic/angular";
 import { SplashScreen } from '@capacitor/splash-screen';
-
 import { CallService } from "./call.service";
-
 import { SocketEventsService } from "./socket-events.service";
 import { ConsultationService } from "./consultation.service";
-
 import { AuthService } from "./auth/auth.service";
-// import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
 import { NativeAudio } from '@capacitor-community/native-audio'
-
-
 import { NavigationEnd, Router } from "@angular/router";
+import { App } from '@capacitor/app';
+import { filter } from "rxjs/operators";
+import { TranslateService } from "@ngx-translate/core";
+import { LanguageService } from "./shared/services/language.service";
 
 declare var cordova;
 declare let window: any;
-import { File } from "@awesome-cordova-plugins/file/ngx";
-import { App, URLOpenListenerEvent } from '@capacitor/app';
-import { LoginPage } from "./login/login.page";
-import { TestComponent } from "./test/test.component";
-import { filter } from "rxjs/operators";
-import { environment } from "../environments/environment";
-import { Browser } from '@capacitor/browser';
-import {TranslateService} from "@ngx-translate/core";
-import {LanguageService} from "./shared/services/language.service";
-
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -41,7 +26,6 @@ export class AppComponent {
   currentUser;
   redirected = false;
   consultation;
-  callsSub: Subscription;
   inviteToken: string;
   lastConnectionStatus = "";
   private toast: HTMLIonToastElement;
@@ -49,15 +33,11 @@ export class AppComponent {
   testRoute = false;
   constructor(
     private platform: Platform,
-    // private splashScreen: SplashScreen,
     private callService: CallService,
     private authService: AuthService,
     private socketEventsService: SocketEventsService,
     private consultationService: ConsultationService,
-    private zone: NgZone,
     private toastController: ToastController,
-    // private nativeAudio: NativeAudio,
-    private file: File,
     private router: Router,
     public translate: TranslateService,
     private languageService: LanguageService,
@@ -73,7 +53,7 @@ export class AppComponent {
       const lang = this.languageService.getCurrentLanguage();
       localStorage.setItem('hhp-lang',lang);
     }
-    this.testRoute = window.location.href.includes("test-call") || window.location.href.includes("requester") || window.location.href.includes("cgu");
+    this.testRoute = window.location.href.includes("test-call") || window.location.href.includes("acknowledge-invite") || window.location.href.includes("requester") || window.location.href.includes("cgu");
 
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))

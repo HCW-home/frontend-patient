@@ -15,4 +15,12 @@ export class InviteService {
   getInviteFromToken(token) {
     return this.http.get<any>(this.globalVariableService.getApiPath() + '/invite/by-token/' + token);
   }
+
+  getAcknowledgementStatus(token: string) {
+    return this.http.get<{requiresAcknowledgment: boolean}>(this.globalVariableService.getApiPath() + '/invite/status/' + token);
+  }
+
+  acknowledgeInvite(body) {
+    return this.http.post(this.globalVariableService.getApiPath() + '/invite/acknowledge' , body);
+  }
 }

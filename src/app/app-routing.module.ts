@@ -6,6 +6,8 @@ import { NurseGuard } from "./_guards/nurse.guard";
 
 const routes: Routes = [
   { path: 'test-call', loadChildren: () => import('./test/test.module').then(m => m.TestModule) },
+  { path: 'acknowledge-invite/:inviteToken', loadChildren: () => import('./acknowledge-invite/acknowledge-invite.module').then(m => m.AcknowledgeInviteModule) },
+  { path: 'acknowledge-invite', loadChildren: () => import('./acknowledge-invite/acknowledge-invite.module').then(m => m.AcknowledgeInviteModule) },
   { path: 'consultation/:id', loadChildren: () => import('./consultation/consultation.module').then(m => m.ConsultationPageModule), canActivate: [DiagnosticGuard, AuthGuard] },
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule), canActivate: [DiagnosticGuard] },
   { path: 'closing-screen/:id', loadChildren: () => import('./closing-screen/closing-screen.module').then(m => m.ClosingScreenPageModule) },
