@@ -86,7 +86,7 @@
 
                                         <div class="flex-item ion-align-items-start">
                                             <span class="value">{{ consultation.consultation?.metadata?.Country || '-' }}</span>
-                                            <span class="value">{{ consultation.consultation.gender }}</span>
+                                            <span class="value">{{ 'dashboard.' + consultation.consultation.gender | translate }}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -169,7 +169,7 @@
 
                                         <div class="flex-item ion-align-items-start">
                                             <span class="value">{{ consultation.consultation?.closedAt  | date: 'dd/MM/YYYY HH:mm' }}</span>
-                                            <span class="value">{{ consultation.consultation?.gender }}</span>
+                                            <span class="value">{{ 'dashboard.' +  consultation.consultation?.gender | translate}}</span>
                                         </div>
                                     </div>
                                 </td>

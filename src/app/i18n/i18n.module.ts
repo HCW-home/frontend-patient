@@ -39,21 +39,23 @@ export class I18nModule {
   constructor(translate: TranslateService, config: ConfigService) {
     config.getConfig().subscribe({
       next: (appConfig) => {
-        const dynamicLanguages = appConfig.patientLanguages?.length
-            ? appConfig.patientLanguages
-            : supportedLanguages;
+        if (appConfig) {
+          const dynamicLanguages = appConfig?.patientLanguages?.length
+              ? appConfig.patientLanguages
+              : supportedLanguages;
 
-        supportedLanguages = dynamicLanguages;
+          supportedLanguages = dynamicLanguages;
 
-        translate.addLangs(dynamicLanguages);
+          translate.addLangs(dynamicLanguages);
 
-        const userLang =
-            window.localStorage.getItem('hhp-lang') || translate.getBrowserLang();
-        const defaultLang = dynamicLanguages.includes(userLang)
-            ? userLang
-            : dynamicLanguages[0];
+          const userLang =
+              window.localStorage.getItem('hhp-lang') || translate.getBrowserLang();
+          const defaultLang = dynamicLanguages.includes(userLang)
+              ? userLang
+              : dynamicLanguages[0];
 
-        translate.use(defaultLang);
+          translate.use(defaultLang);
+        }
 
       },
       error: () => {
