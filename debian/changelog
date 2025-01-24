@@ -1,3 +1,16 @@
+hcw-athome-patient (0.5.19) UNRELEASED; urgency=medium
+
+  [ Olivier Bitsch ]
+  * Update changelog for 0.5.17 release
+  * Try to fix exclusion
+
+  [ Gor Grigoryan ]
+  * refs #7896, Have invite aknowledgement by the patient
+  * refs #7986, Translation Ukrainian missing
+  * add am to languages
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Fri, 24 Jan 2025 12:31:02 +0000
+
 hcw-athome-patient (0.5.17) focal; urgency=medium
 
   * Fix port number to prevent mistake with doctor interface
