@@ -16,7 +16,8 @@ export let supportedLanguages = [
   'fa',
   'ru',
   'it',
-  'uk'
+  'uk',
+  'am'
 ];
 
 @NgModule({
