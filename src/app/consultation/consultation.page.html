@@ -45,7 +45,12 @@
         </ion-card-header>
         <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor && !ongoingCall">
             <p class="subtitle">
-                {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
+
+                @if (configService?.config?.hideCallerName) {
+                    {{ 'consultation.youAreInConsultation' | translate }}
+                } @else {
+                    {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
+                }
             </p>
             <p class="subtitle doctor" *ngIf="consultation.doctor.phoneNumber">
                 {{ 'consultation.phone' | translate }}
@@ -171,7 +176,10 @@
             <ng-template #oters>
                 <div class="msg-time"
                      *ngIf="(msg.fromUserDetail?.firstName || msg.fromUserDetail?.lastName) && msg.type === 'text'">
-                    {{ msg.fromUserDetail?.firstName }} {{ msg.fromUserDetail?.lastName }} -
+                    @if (!configService?.config?.hideCallerName) {
+                        {{ msg.fromUserDetail?.firstName }} {{ msg.fromUserDetail?.lastName }} -
+                    }
+
                     {{
                         msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
                     }}

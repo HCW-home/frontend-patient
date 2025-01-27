@@ -20,6 +20,7 @@ import {IonModal} from "@ionic/angular";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ErrorModalComponent} from "../shared/components/error-modal/error-modal.component";
 import {LanguageService} from "../shared/services/language.service";
+import {ConfigService} from "../config.service";
 
 @Component({
     selector: "app-consultation",
@@ -58,6 +59,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
     private consultationSubscription: Subscription;
 
     constructor(
+        public configService: ConfigService,
         private callService: CallService,
         private conServ: ConsultationService,
         private activeRoute: ActivatedRoute,

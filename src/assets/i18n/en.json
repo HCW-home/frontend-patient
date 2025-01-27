@@ -18,6 +18,7 @@
         "consultation": "CONSULTATION",
         "capInProgress": "IN PROCESS",
         "youAreNowInConsultation": "You are now in teleconsultation with",
+        "youAreInConsultation": "You are now in teleconsultation",
         "phone": "Tel.:",
         "requestForConsultation": "REQUEST FOR TELECONSULTATION",
         "youAreInWaiting": "You are on hold, please wait.",

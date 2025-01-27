@@ -24,6 +24,11 @@
                 </ion-card-header>
                 <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
                     <p class="subtitle">
+                        @if (configService?.config?.hideCallerName) {
+                            {{ 'consultation.youAreInConsultation' | translate }}
+                        } @else {
+                            {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
+                        }
                         {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
                     </p>
                     <p class="subtitle doctor" *ngIf="consultation.doctor.phoneNumber">
