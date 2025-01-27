@@ -233,7 +233,8 @@
     },
     "acknowledgeInvite": {
         "testButton": "Test Call",
-        "successMessage": "Success!"
+        "successMessage": "Success!",
+        "subTitle": "Thank you for acknowledging this invite! You can now test your browser compatibility.\n"
     },
     "metadata": {
         "Age": "Age",
