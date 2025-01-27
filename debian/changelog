@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.19) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.20) UNRELEASED; urgency=medium
 
   [ Olivier Bitsch ]
   * Update changelog for 0.5.17 release
@@ -8,8 +8,9 @@ hcw-athome-patient (0.5.19) UNRELEASED; urgency=medium
   * refs #7896, Have invite aknowledgement by the patient
   * refs #7986, Translation Ukrainian missing
   * add am to languages
+  * hide caller name improvements
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Fri, 24 Jan 2025 12:31:02 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 27 Jan 2025 10:59:27 +0000
 
 hcw-athome-patient (0.5.17) focal; urgency=medium
 
