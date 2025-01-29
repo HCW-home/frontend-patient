@@ -1,0 +1,260 @@
+ion-content {
+  background-color: var(--blue-bg-color);
+  scrollbar-track-color: #f1f1f1;
+
+  .page-title {
+    text-transform: uppercase;
+  }
+
+
+    .content {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+  .dashboard-wrapper {
+    margin: 6rem;
+
+    .btn {
+      display: inline-block;
+    }
+  }
+
+  .board {
+    overflow: auto;
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 4px;
+  }
+
+  @media screen and (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    th, td {
+      width: 100%;
+    }
+
+    tr {
+      margin-bottom: 0.625rem;
+    }
+
+    td {
+      padding: 0.625rem;
+    }
+
+    .no-stack {
+      display: inline-block;
+      width: auto;
+    }
+
+    thead {
+      display: none;
+    }
+
+    .stacked-cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .in-row {
+      padding: 8px;
+    }
+
+  }
+
+  table {
+    background: #FFFFFF;
+    width: 100%;
+    td {
+      padding: 1rem;
+    }
+
+    tr {
+      border: 2px solid transparent;
+    }
+
+    .border {
+      border: 1px solid rgba(177,177,177,.568627451);
+    }
+
+    .border:hover {
+      cursor: pointer;
+      border-left: 2px solid var(--ion-color-primary);
+    }
+
+    .avatar-container {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 39px;
+      background-color: var(--ion-color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      letter-spacing: 0.01px;
+    }
+
+    .name-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .name {
+        color: rgba(0, 0, 0, 1);
+        font-style: normal;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .message {
+        color: rgba(108, 108, 108, 1);
+        font-style: normal;
+        font-size: 0.7rem;
+        font-weight: 400;
+        max-width: 200px;
+      }
+
+      .attach {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: rgba(108, 108, 108, 1);
+
+        ion-img {
+          width: 15px;
+
+        }
+      }
+    }
+
+    .date-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+
+      .date {
+        color: rgba(108, 108, 108, 1);
+        font-style: normal;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .rounded-badge {
+        background-color: #E3393A;
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
+        line-height: unset;
+      }
+    }
+
+    .closed {
+      color: rgba(2, 2, 2, 1);
+      font-style: normal;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .table-items {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+
+      .flex-item {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+
+        .title {
+          color: rgba(2, 2, 2, 1);
+          font-style: normal;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.2;
+          white-space: nowrap;
+        }
+
+        .value {
+          color: rgba(108, 108, 108, 1);
+          font-style: normal;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 1.2;
+          white-space: nowrap;
+        }
+      }
+    }
+
+    .buttons-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .resume-button {
+      --border-radius: 20px;
+      --background: var(--ion-color-primary);
+      --box-shadow: none;
+      --color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .export-button {
+      display: flex;
+      font-size: 14px;
+      font-weight: 500;
+      --box-shadow: none;
+      --border-width: 1px;
+      --border-style: solid;
+      --border-radius: 20px;
+      --background: var(--ion-color-primary-contrast);
+      --border-color: var(--ion-color-primary);
+      --color: var(--ion-color-primary);
+    }
+
+    .cancel-button {
+      color: #E3393A;
+      text-decoration: underline;
+      text-decoration-color: #E3393A;
+      font-size: 0.7rem;
+      cursor: pointer;
+    }
+
+  }
+
+
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  background-color: #E3393A;
+  text-align: center;
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  line-height: unset;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.empty-text {
+  color: rgba(0, 0, 0, 1);
+  font-style: normal;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+}

@@ -1,13 +1,23 @@
-.subtitle {
-  text-align: center;
-  font-weight: bold;
-  color: white;
-}
-
 .login-full-width {
   width: 100%;
   height: 50px;
-  padding: 0px;
+  padding: 0;
+}
+
+.custom-card {
+  width: 80%;
+  display: flex;
+  height: 80%;
+  @media (max-width: 598px) {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.center {
+  @media (max-width: 598px) {
+    height: unset
+  }
 }
 
 .login-full-width input {
@@ -15,7 +25,6 @@
 }
 
 .terms-btn {
-  background: #fff;
   font-size: 0.8em;
 }
 
@@ -23,16 +32,12 @@
   margin: 16px;
   font-size: 37px;
   text-align: center;
-  color: #ffff;
   font-weight: 500;
 }
 
 .at > span {
   display: block;
   font-size: 12px;
-}
-
-ng-container {
 }
 
 .wrap {
@@ -45,44 +50,40 @@ ng-container {
 }
 
 p {
-  color: #fff;
+  font-weight: 500;
+  //color: #fff;
 }
 
-.buttons {
-  margin-top: 50px;
-}
 
 .container {
-  display: block;
-  margin: 30px auto;
-  width: 70%;
+  padding: 24px;
 }
 
-ion-label {
-  color: #ffff;
-}
-
-ion-item {
-  --color: #fff;
-  --border-color: white; // default underline color
-  --highlight-color-valid: white; // valid underline color
-
-  ion-input,
-  ion-datetime {
-    --placeholder-color: #ceecff;
-  }
-}
-a {
-  color: #fff;
-  text-decoration: none;
-}
-.footer {
+.left-side {
+  width: 50%;
+  background: var(--ion-color-primary);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  color: #7cafd0;
-  margin-top: 40px;
-  a {
-    margin: 0 5px;
+  @media (max-width: 598px) {
+    width: 100%;
   }
+}
+
+.right-side {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 598px) {
+    width: 100%;
+  }
+}
+
+a {
+  text-decoration: none;
 }
 
 .icons {
@@ -92,18 +93,20 @@ a {
     max-height: 60px;
   }
 }
+
 .ics {
   text-align: center;
+
   a {
     display: inline-block;
   }
 }
+
 ion-card {
   margin: 40px auto;
 }
 
 .title {
-  color: #ffffff;
   text-align: center;
   margin: 80px auto 40px;
 }
@@ -123,47 +126,98 @@ ion-card {
   margin-top: 26px;
   padding: 3px;
 }
+
 ion-content {
   background: transparent;
 }
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 3rem;
+
+  .custom-checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .checkbox-text {
+    margin-left: 8px;
+  }
+
+  ion-checkbox {
+    min-width: 18px;
+    @media (max-width: 598px) {
+      height: 30px !important;
+      min-width: 30px !important;
+    }
+  }
+
+  .terms {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+}
+
 footer {
   display: flex;
   align-items: center;
   align-content: center;
-  color: white;
   justify-content: center;
+
   div {
     display: flex;
     align-content: center;
     align-items: center;
   }
 }
+
 ::ng-deep {
   html[data-theme="accessibility"] {
     p {
       text-align: left;
     }
+
     .container {
       margin-left: 20px !important;
       padding-right: 15px;
     }
+
     .footer {
       text-align: left;
       display: flex;
     }
+
     #hhpMultiLang {
-      align-items: center !important;
+      align-items: flex-start !important;
     }
 
     .token-error-title {
       font-size: 1em;
     }
+
     .token-error-content {
       font-size: 0.81em;
     }
+
     .title {
       text-align: left;
-      margin-left: 0px;
+      margin-left: 0;
     }
+
+    .btn {
+      margin: 20px 0 ;
+    }
+  }
+}
+markdown ::ng-deep {
+
+  a {
+    color: #FFFFFF;
   }
 }

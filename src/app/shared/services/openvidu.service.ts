@@ -28,7 +28,6 @@ export class OpenViduService {
           })
         )
         .subscribe(response => {
-          console.log('response >> ', response);
           resolve(response);
         });
     });
@@ -57,7 +56,6 @@ export class OpenViduService {
           })
         )
         .subscribe(response => {
-          console.log('response >> ', response);
           resolve(response);
         });
     });
@@ -78,7 +76,6 @@ export class OpenViduService {
           first()
         )
         .subscribe(response => {
-          console.log('response >> ', response);
           resolve(null);
         });
     });
@@ -100,7 +97,6 @@ export class OpenViduService {
           first()
         )
         .subscribe(response => {
-          console.log('response >> ', response);
           resolve(null);
         });
     });

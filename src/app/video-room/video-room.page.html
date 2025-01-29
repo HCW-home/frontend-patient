@@ -8,12 +8,20 @@
         </ion-row>
         <ion-row>
           <ion-title *ngIf="user" class="doctor-title">
-            {{user.firstName }} {{user.lastName | uppercase }} <br />
-            <strong
-              >{{ 'videoRoom.call' | translate }} {{audioOnly?
-              ('videoRoom.audio' | translate):('videoRoom.video' |
-              translate)}}</strong
-            >
+              @if (configService?.config?.hideCallerName) {
+                  {{'videoRoom.caller' | translate}}
+              } @else {
+                {{user.firstName }} {{user.lastName | uppercase }}
+              }
+            <br />
+            <strong *ngIf="message?.type === 'audioCall'; else videoCall">
+              {{'videoRoom.audioCall' | translate}}
+            </strong>
+            <ng-template #videoCall>
+              <strong >
+                {{'videoRoom.videoCall' | translate}}
+              </strong>
+            </ng-template>
           </ion-title>
         </ion-row>
         <ion-row>
@@ -36,9 +44,6 @@
 </div>
 <div
   class="video--main"
-  [ngDraggable]="!isFullScreen"
-  [lockAxis]="'x'"
-  [inBounds]="true"
   [ngClass]="{'fullScreen': isFullScreen , 'halfScreen':!isFullScreen, 'audioOnly': audioOnly, 'ios--main-video':this.platform.is('ios'), 'none-ios--main-video':!this.platform.is('ios')}"
 >
   <!-- Main video -->
@@ -99,9 +104,6 @@
       position: absolute;
       left: 0;
       right: 0;
-      margin-left: auto;
-      margin-right: auto;
-      width: 280px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -134,7 +136,19 @@
         src="assets/icons/icon-toogle-camera.svg"
       />
     </ion-fab-button>
-    <ion-fab-button class="controller" color="danger" (click)="exitSession()">
+    <ion-fab-button class="controller white-bg" (click)="muteStatusChanged()">
+      <img
+              *ngIf="muteStatus === 'on'"
+              style="float: left; width: 1.2em; height: 1.2em"
+              src="assets/icons/mic-on.svg"
+      />
+      <img
+              *ngIf="muteStatus === 'off'"
+              style="float: left; width: 1.2em; height: 1.2em"
+              src="assets/icons/mic-off.svg"
+      />
+    </ion-fab-button>
+    <ion-fab-button class="controller white-bg" color="danger" (click)="exitSession()">
       <img
         style="float: left; width: 1.2em; height: 1.2em"
         src="assets/icons/icon-hangup.svg"

@@ -1,0 +1,44 @@
+<ion-content>
+    <div class='center'>
+
+        <div class="custom-card">
+            <div class="left-side">
+                <div class="container">
+                    <p *ngIf="!markdownExists">
+                        {{ 'authenticate.access_permits' | translate:configService.config }}
+                    </p>
+
+                    <div *ngIf="markdownExists">
+                        <markdown [src]="markdownUrl">
+                        </markdown>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-side">
+                <div class="container">
+                    <img class="logo mb-3"
+                         *ngIf="configService?.config?.logo"
+                         [src]="configService?.config?.logo"
+                         [alt]="configService?.config?.branding"
+                    />
+                    <ion-text>
+                        <h5 class="authenticate"> {{ 'authenticate.welcome_back' | translate }}</h5>
+                        <h5 class="authenticate"> {{ 'authenticate.sso_text' | translate }}</h5>
+                    </ion-text>
+                    <a [href]="openIdLoginUrl" class="login-btn btn green big">
+                        {{ 'authenticate.login_with' | translate }}
+                    </a>
+                    <div class="label-wrapper" (click)="register()">
+                 <span class="label">
+                    {{ 'authenticate.no_account' | translate }}
+                </span>
+                    </div>
+                    <app-select-language (selectedLanguageChange)="onLanguageChange($event)"></app-select-language>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</ion-content>

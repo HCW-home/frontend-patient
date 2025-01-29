@@ -40,11 +40,9 @@ export class ConsultationService {
 
   init(currentUser) {
 
-    console.log('init consultations');
     this.currentUser = currentUser;
 
     this.socketEventsService.onMessage().subscribe(msg => {
-      console.log('new message ');
       const c = this.consultationsOverview.find(c => c._id === msg.data.consultation);
       c.lastMsg = msg.data;
       c.unreadCount++;
@@ -88,8 +86,6 @@ export class ConsultationService {
 
 
     this.socketEventsService.onNewConsultation().subscribe(event => {
-      console.log('New consultation EVvent ', event)
-      // this.consultationsOverview.find(c=> c.)
       this.consultationsOverview.push(event.data)
       this.consultationsOverviewSub.next(this.consultationsOverview)
 
@@ -99,7 +95,6 @@ export class ConsultationService {
 
   fetchConsultations() {
     return this.http.get<any[]>(this.globalVariableService.getApiPath() + '/consultations-overview').pipe(tap(consultations => {
-      console.log('got consultation overview ', consultations);
       consultations.forEach(consultation => {
         if (consultation._id) {
           consultation.id = consultation._id
@@ -116,7 +111,6 @@ export class ConsultationService {
       retryWhen(errors => errors
         .pipe(
           concatMap((error, count) => {
-            console.log('errro>> ', error, ' retry ', error.status, count);
             if (count < 5 && (error.status === 400 || error.status === 0 || error.status === 503)) {
               return of(error.status);
             }
@@ -145,7 +139,6 @@ export class ConsultationService {
 
     return this.fetchConsultations().pipe(map(() => {
       const consultation = this.consultationsOverview.find(c => c._id === id);
-      console.log('return con ', consultation);
       if (consultation._id) {
         consultation.id = consultation._id
       }
@@ -168,7 +161,6 @@ export class ConsultationService {
   readMessages(consultationId) {
 
     return this.http.post<any[]>(this.globalVariableService.getApiPath() + `/consultation/${consultationId}/read-messages`, {}).subscribe(r => {
-      console.log('response ', r);
       const c = this.consultationsOverview.find(c => c._id === consultationId);
       c.unreadCount = 0;
       this.updateUnreadCount();
@@ -207,62 +199,54 @@ export class ConsultationService {
   }
 
   deleteConsultation(consultationId) {
-    console.log('delete consultation ', consultationId);
     return this.http.delete<any[]>(this.globalVariableService.getApiPath() + `/consultation/${consultationId}`).pipe(tap(res => {
       this.consultationsOverview = this.consultationsOverview.filter(c => c._id !== consultationId);
       this.consultationsOverviewSub.next(this.consultationsOverview);
     }));
   }
 
-  postFile(blob: File, fileName, consultationId): Observable<any> {
-  let file
-    if (!blob.lastModified) {
-      file = this.blobToFile(blob, fileName);
-      console.log('file name:', file);
-      
-    } else {
-      file = blob
-      
-    }
-    const endpoint = this.globalVariableService.getApiPath() + `/consultation/${consultationId}/upload-file`;
-    const formData: FormData = new FormData();
-    if(file.changingThisBreaksApplicationSecurity !== undefined){      
-      formData.append('attachment', this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity), file.name);
-    return this.http
-      .post(endpoint, formData, {
-        headers: {
-          'mime-type': this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity).type,
-          'x-access-token': `${this.currentUser.token}`,
-          fileName: 'image.jpg'
+    postFile(blob: File, fileName, consultationId): Observable<any> {
+        let file;
+        if (!blob.lastModified) {
+            file = this.blobToFile(blob, fileName);
+        } else {
+            file = blob;
+
         }
-      });
-    }else{
-      console.log(file);
-      
-      const rawFile = new File([file], file.name, {
-        type: file.mimeType,
-      });
-  
-      formData.append('attachment', rawFile, file.name);
-    return this.http
-      .post(endpoint, formData, {
-        headers: {
-          'mime-type': file.mimeType,
-          'x-access-token': `${this.currentUser.token}`,
-          fileName: file.name
+        const endpoint = this.globalVariableService.getApiPath() + `/consultation/${consultationId}/upload-file`;
+        const formData: FormData = new FormData();
+        if (file.changingThisBreaksApplicationSecurity !== undefined) {
+        const { blobFile, type} = this.convertBase64ToBlob(file.changingThisBreaksApplicationSecurity) || {};
+            formData.append("attachment", blobFile, file.name ? file.name : `image.${type}`);
+            return this.http
+                .post(endpoint, formData, {
+                    headers: {
+                        "x-access-token": `${this.currentUser.token}`,
+                        fileName: file.name ? file.name : `image.${type}`
+                    }
+                });
+
+        } else {
+
+            const rawFile = new File([file.blob], file.name, {
+                type: file.mimeType,
+            });
+
+            formData.append("attachment", rawFile, file.name);
+            return this.http
+                .post(endpoint, formData, {
+                    headers: {
+                        "x-access-token": `${this.currentUser.token}`,
+                        fileName: file.name
+                    }
+                });
         }
-      }); 
+
+
     }
-
-    
-    
-
-
-   
-  }
 
   //! Convert our file from base64 to blob
-  private convertBase64ToBlob(base64: string) {    
+  private convertBase64ToBlob(base64: string) {
     const info = this.getInfoFromBase64(base64);
     const sliceSize = 512;
     const byteCharacters = window.atob(info.rawBase64);
@@ -279,16 +263,16 @@ export class ConsultationService {
       byteArrays.push(new Uint8Array(byteNumbers));
     }
 
-    
-    return new Blob(byteArrays, { type: info.mime });
+
+    return { blobFile : new Blob(byteArrays, {type: info.mime}), type: info.mime?.split("/")?.pop()};
   }
 
-  private getInfoFromBase64(base64: string) {    
+  private getInfoFromBase64(base64: string) {
     const meta = base64.split(',')[0];
     const rawBase64 = base64.split(',')[1].replace(/\s/g, '');
     const mime = /:([^;]+);/.exec(meta)[1];
     const extension = /\/([^;]+);/.exec(meta)[1];
-    
+
     return {
       mime,
       extension,
@@ -319,11 +303,20 @@ export class ConsultationService {
     return this.fetchConsultations().pipe(map(() => {
       const consultation = this.currentUser.role === 'guest' ? this.consultationsOverview.find(c => c.consultation.guest === this.currentUser.id) :
         this.consultationsOverview.find(c => c.consultation.translator === this.currentUser.id);
-      console.log('return con ', consultation);
       return consultation ? consultation : null;
     }));
 
 
+  }
+
+  downloadPdf(url: string): Observable<Blob> {
+    return this.http.get(url, { responseType: 'blob' }).pipe(
+        tap(
+            data => console.log('PDF downloaded successfully.'),
+            error => console.error('Error downloading the file.'),
+            () => console.info('Download completed.')
+        )
+    );
   }
 
 

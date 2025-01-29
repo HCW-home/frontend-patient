@@ -1,22 +1,21 @@
 import { Platform } from '@ionic/angular';
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
 import { SocketEventsService } from '../socket-events.service';
 import { ConsultationService } from '../consultation.service';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { GlobalVariableService } from '../global-variable.service';
-import { CapacitorCookies } from '@capacitor/core';
+import {ConfigService} from "../config.service";
 
 declare let window: any;
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  public currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   private loggedIn: Subject<User> = new Subject();
   private inviteToken: Subject<string> = new Subject();
   public currentUser: Observable<User>;
@@ -27,16 +26,17 @@ export class AuthService {
     private consultationService: ConsultationService,
     private router: Router,
     private globalVariableService: GlobalVariableService,
-    private platform: Platform
-  ) {
+    private platform: Platform,
+    public configService: ConfigService,
 
-  }
+  ) {}
 
   init() {
     this.currentUserSubject = new BehaviorSubject<User>(null);
     this.currentUser = this.currentUserSubject.asObservable();
     return this.getCurrentUser().toPromise()
   }
+
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
   }
@@ -47,7 +47,6 @@ export class AuthService {
   }
 
   public setInviteToken(inviteToken) {
-    console.log('SET invite token')
     localStorage.setItem('inviteToken', inviteToken);
     this.inviteToken.next(inviteToken);
   }
@@ -62,11 +61,10 @@ export class AuthService {
 
 
   //
-  loginWithInvite(inviteToken, phoneNumber?, translator?) {
+  loginWithInvite(inviteToken, phoneNumber?, translator?, options?: any) {
     const opts = { withCredentials: true };
-    
-    return this.http.post<any>(`${this.globalVariableService.getApiPath()}/login-invite`, { inviteToken, phoneNumber, translator }, opts).pipe(map(res => {
-      console.log('logged in and got user data ', res);
+
+    return this.http.post<any>(`${this.globalVariableService.getApiPath()}/login-invite`, { inviteToken, phoneNumber, translator, ...options }, opts).pipe(map(res => {
       // login successful if there's a jwt token in the response
       if (res.user && res.user.token) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -78,60 +76,69 @@ export class AuthService {
 
 
       if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
-        console.log('Flush cookies ');
-        //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
       }
       return res.user;
     }));
   }
-  // //
-  // login() {
-  //   return this.http.get<any>(`${this.globalVariableService.getApiPath()}/login-cert`, {}).pipe(map(res => {
-  //     console.log('got user data ', res);
-  //     // login successful if there's a jwt token in the response
-  //     if (res.user && res.user.token) {
-  //       // store user details and jwt token in local storage to keep user logged in between page refreshes
-  //       localStorage.setItem('currentUser', JSON.stringify(res.user));
-  //       this.currentUserSubject.next(res.user);
-  //     }
-  //     this._socketEventsService.init(res.user);
-  //     this.consultationService.init(res.user);
-  //     this.loggedIn.next(res.user);
 
-  //     return res.user;
-  //   }));
-  // }
+  refreshTokens() {
+    const currentUser = this.currentUserValue;
+    const refreshToken = currentUser?.refreshToken;
+    return this.http.post<any>(`${this.globalVariableService.getApiPath()}/refresh-token`,{ refreshToken });
+  }
 
-  async logout() {
-    try {
-      // remove user from local storage to log user out
-      console.log('LOGOUT')
-      localStorage.removeItem('inviteToken');
-      localStorage.removeItem('currentConsultation');
-      localStorage.removeItem('birthDate');
+  verifyRefreshToken() {
+    const currentUser = this.currentUserValue;
+    const refreshToken = currentUser?.refreshToken;
+    return this.http.post<any>(`${this.globalVariableService.getApiPath()}/verify-refresh-token`,{ refreshToken });
+  }
 
-      this.currentUserSubject.next(null);
-      this._socketEventsService.disconnect()
+  logOutNurse(hard = false) {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.currentUserSubject.next(null);
+    this._socketEventsService.disconnect();
 
-      console.log("COOOKIIIES", document.cookie)
 
-      if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
-        //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
+
+    this.http.get(`${this.globalVariableService.getApiPath()}/logout`).subscribe(r => {
+      if (hard) {
+        if (this.configService.config.method === "openid") {
+          window.location.href = this.configService.config.openIdLogoutUri;
+        } else {
+          this.router.navigate(["/login"]);
+        }
+      } else {
+        this.router.navigate(["/login"]);
       }
-      const data = await this.http.get(`${this.globalVariableService.getApiPath()}/logout`).toPromise()
-      // alert(JSON.stringify(data, null, 2))
-      return data;
-    }catch (e) {
-      // alert(`error ${e.message}`)
-    }
-  }
-  getToken() {
-    return this.currentUserSubject.value.token;
+    }, err => {
+      this.router.navigate(["/login"]);
+    })
   }
 
-  getCurrentUser(token?):Observable<any> {
-    const opts = { withCredentials: true };
-    
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('inviteToken');
+    localStorage.removeItem('currentConsultation');
+    localStorage.removeItem('birthDate');
+
+    this.currentUserSubject.next(null);
+    this._socketEventsService.disconnect()
+
+
+    if (this.platform.is('cordova') && window.cordova && window.cordova.plugins) {
+      //(<any>window).cordova.plugins.CookieManagementPlugin.flush();
+    }
+    return this.http.get(`${this.globalVariableService.getApiPath()}/logout`).toPromise()
+  }
+
+  getCurrentUser():Observable<any> {
+    const headers = {};
+    const token = sessionStorage.getItem('nurseToken')
+    if (token) {
+      headers['x-access-token'] = token;
+    }
+    const opts = { withCredentials: true, headers };
 
     return this.http.get<any>(`${this.globalVariableService.getApiPath()}/current-user`, opts).pipe(map(res => {
 
@@ -139,5 +146,21 @@ export class AuthService {
 
       return res.user
     }))
+  }
+
+  login(token) {
+    const headers = {};
+    if (token) {
+      headers['x-access-token'] = token;
+    }
+    return this.http.get<any>(`${this.globalVariableService.getApiPath()}/current-user`, { headers })
+        .pipe(map(res => {
+          if (res.user && res.user.token) {
+            sessionStorage.setItem('currentUser', JSON.stringify(res.user));
+            sessionStorage.setItem('nurseToken', res.user.token);
+            this.currentUserSubject.next(res.user);
+            return res.user;
+          }
+        }));
   }
 }

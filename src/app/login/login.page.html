@@ -1,226 +1,218 @@
-<ion-content class="ion-padding">
-  <div
-    *ngIf="configService.config && roomService.deviceInfo().flag === 'unknown'"
-    class="wrap"
-  >
-    <div class="container" *ngIf="showTranslatorConfirmation">
-      <div class="title">
-        <img
-          class="logo"
-          *ngIf="configService.config.logo"
-          [src]="configService.config.logo"
-          [alt]="configService.config.branding"
-          onerror="this.style.opacity='0'"
-        />
-        <p *ngIf="!translationRequestRefused">
-          {{'login.translationRequestAccepted' | translate }}
-        </p>
-        <p *ngIf="translationRequestRefused">
-          {{'login.translationRequestRefused' | translate }}
-        </p>
-      </div>
+<ion-content>
+    <div class='center'>
+        <div *ngIf="configService.config" class="custom-card">
+            <div class="left-side">
+                <div class="container">
+                    <p *ngIf="!markdownExists">
+                        {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config }}
+                    </p>
+
+                    <div *ngIf="markdownExists">
+                        <markdown [src]="markdownUrl">
+                        </markdown>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right-side">
+
+                <div class="container" *ngIf="showTranslatorConfirmation">
+                    <div class="title">
+                        <p *ngIf="!translationRequestRefused">
+                            {{ 'login.translationRequestAccepted' | translate }}
+                        </p>
+                        <p *ngIf="translationRequestRefused">
+                            {{ 'login.translationRequestRefused' | translate }}
+                        </p>
+                    </div>
+                </div>
+
+
+                <div *ngIf="!showTranslatorConfirmation" class="container">
+                    <div class="title">
+                        <img class="logo"
+                             *ngIf="configService.config.logo"
+                             [src]="configService.config.logo"
+                             [alt]="configService.config.branding"
+                             onerror="this.style.opacity='0'"
+                        />
+                    </div>
+
+
+                    <app-translator-form
+                            *ngIf="invite && invite.type === 'TRANSLATOR_REQUEST'  && !this.noInviteError"
+                            (onTranslatorSubmit)="translatorSubmit($event)"
+                            (onTranslatorRefused)="translatorRefused($event)"
+                            [invite]="invite"
+                    ></app-translator-form>
+
+                    <div *ngIf="translatorAcceptError" class="validator-error">
+                        {{ translatorAcceptError.userMessage }}
+                    </div>
+
+                    <ng-container *ngIf="noInviteError">
+                        <ng-container *ngIf="noTokenProvided">
+                            <ion-card>
+                                <ion-card-header>
+                                    <ion-card-title>{{ 'login.warning' | translate }}</ion-card-title>
+                                </ion-card-header>
+
+                                <ion-card-content>
+                                    {{ 'login.thisApplicationIsIntented' | translate }}
+                                </ion-card-content>
+                            </ion-card>
+
+<!--                            <button-->
+<!--                                    class="btn red big"-->
+<!--                                    (click)="closeApp()"-->
+<!--                                    type="button"-->
+<!--                                    *ngIf="isNativeApp()"-->
+<!--                            >-->
+<!--                                {{ 'login.closeTheApplication' | translate }}-->
+<!--                            </button>-->
+                        </ng-container>
+                        <ng-container *ngIf="!noTokenProvided" class="token-error">
+                            <ion-card>
+                                <ion-card-header>
+                                    <ion-card-title class="token-error-title"
+                                    >{{ 'login.anErrorHasOccurred' | translate }}
+                                    </ion-card-title
+                                    >
+                                </ion-card-header>
+                                <ion-card-content class="token-error-content">
+                                    {{ 'login.theInvitationIsNotOrNoLongerValide' | translate }}
+                                </ion-card-content>
+                            </ion-card>
+
+                            <button class="btn big" (click)="clearError()" type="button">
+                                {{ 'login.back' | translate }}
+                            </button>
+
+                            <button class="btn red big" (click)="closeApp()" type="button" *ngIf="isNativeApp()">
+                                {{ 'login.closeTheApplication' | translate }}
+                            </button>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container
+                            *ngIf="!noInviteError && !(invite && invite.type === 'TRANSLATOR_REQUEST')"></ng-container>
+                    <ng-container *ngIf="!noInviteError">
+                        <p *ngIf="invite && !isProduction()">
+                            {{ 'login.ifYouReceivedThisInvitation' | translate }}
+                        </p>
+
+
+                        <ion-card *ngIf="!inviteToken">
+                            <ion-card-header>
+                                <ion-card-title>{{ 'login.warning' | translate }}</ion-card-title>
+                            </ion-card-header>
+
+                            <ion-card-content>
+                                {{ 'login.thisAppOnlyWorksByInivitation' | translate }}
+                            </ion-card-content>
+                        </ion-card>
+
+                        <form
+                                *ngIf="invite"
+                                (submit)="onSubmit()"
+                                class="login-form"
+                        >
+                            <ion-item lines="full" *ngIf="!isProduction()">
+                                <ion-label position="floating" text-wrap>
+                                    {{ 'login.invitationKey' | translate }}
+                                </ion-label>
+                                <ion-input
+                                        [(ngModel)]="inviteKey"
+                                        name="inviteKey"
+                                        type="string"
+                                        placeholder="ae9f049f76e6addbcc8d0858cc229fdf4af1c862"
+                                        pattern="[a-f0-9]{40}"
+                                ></ion-input>
+                            </ion-item>
+
+                            <p *ngIf="isExpert" class="text-center">
+                                {{ 'Please provide your personal information before you can join the teleconsultation.\n' | translate }}
+                            </p>
+
+
+                            <ion-item fill="solid" class="mb-1" *ngIf="isExpert">
+                                <ion-label position="floating" text-wrap>
+                                    {{ 'login.firstName'|translate }}
+                                </ion-label>
+                                <ion-input
+                                        [(ngModel)]="firstName"
+                                        name="firstName"
+                                        type="string"
+                                        placeholder="{{'login.firstName'|translate}}"
+                                ></ion-input>
+                            </ion-item>
+                            <ion-item fill="solid" *ngIf="isExpert">
+                                <ion-label position="floating" text-wrap>
+                                    {{ 'login.lastName' | translate }}
+                                </ion-label>
+                                <ion-input
+                                        [(ngModel)]="lastName"
+                                        name="lastName"
+                                        type="string"
+                                        placeholder=" {{ 'login.lastName' | translate }}"
+                                ></ion-input>
+                            </ion-item>
+
+                            <div class="checkbox-wrapper">
+                                <label class="custom-checkbox-label">
+                                    <ion-checkbox [(ngModel)]="termsChecked"></ion-checkbox>
+                                    <span class="checkbox-text" (click)="toggleCheckbox()">
+                                        <span> {{ 'login.termsText' | translate:configService.config }} </span>
+                                        <span class="terms"
+                                              (click)="goToTerms($event)">{{ 'register.terms' | translate }}</span>
+                                        <span> {{ 'login.termsSecondText' | translate:configService.config }} </span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <div class="buttons">
+                                <button class="btn green big"
+                                        [disabled]="(isExpert && (!firstName || !lastName || !termsChecked)) || !termsChecked"
+                                        type="submit"
+                                        [class.submitted]="submitted"
+                                >
+                                    <ng-container *ngIf="!submitted"
+                                    >{{ 'login.joinTheConsultation' | translate }}
+                                    </ng-container
+                                    >
+                                    <img
+                                            src="/assets/images/three-dots-spinner.svg"
+                                            alt="Chargement en cours"
+                                    />
+                                </button>
+                            </div>
+                            <p *ngIf="submitted">
+                                {{ 'login.pleaseWaitWhileYourRequest' | translate }}
+                            </p>
+                        </form>
+                    </ng-container>
+
+                    <ng-container *ngIf="isScheduled">
+                        <h2 class="title">
+                            {{ 'login.yourConsultationIsPlannedFor' | translate }}
+                            {{ (scheduledFor) | date: "medium":null: invite.patientLanguage }}.
+                        </h2>
+                        <p class="ics">
+                            <a
+                                    [href]="icsBlob"
+                                    class="btn green"
+                                    type="text/calendar"
+                                    download="event.ics"
+                            >
+                                {{ 'login.addTheEventToYourCalendar' | translate }}
+                            </a>
+                        </p>
+                    </ng-container>
+
+                    <app-select-language (selectedLanguageChange)="onLanguageChange($event)"></app-select-language>
+                </div>
+            </div>
+
+        </div>
     </div>
-
-    <div *ngIf="!showTranslatorConfirmation" class="container">
-      <div class="title">
-        <img
-          class="logo"
-          *ngIf="configService.config.logo"
-          [src]="configService.config.logo"
-          [alt]="configService.config.branding"
-          onerror="this.style.opacity='0'"
-        />
-      </div>
-
-      <p>
-        {{ 'login.homeIsAHUGTeleconsultation' | translate:configService.config
-        }}
-      </p>
-
-      <app-translator-form
-        *ngIf="invite && invite.type === 'TRANSLATOR_REQUEST'  && !this.noInviteError"
-        (onTranslatorSubmit)="translatorSubmit($event)"
-        (onTranslatorRefused)="translatorRefused($event)"
-        [invite]="invite"
-      ></app-translator-form>
-
-      <div *ngIf="translatorAcceptError" class="validator-error">
-        {{translatorAcceptError.userMessage}}
-      </div>
-
-      <ng-container *ngIf="noInviteError">
-        <ng-container *ngIf="noTokenProvided">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>{{ 'login.warning' | translate }}</ion-card-title>
-            </ion-card-header>
-
-            <ion-card-content>
-              {{ 'login.thisApplicationIsIntented' | translate }}
-            </ion-card-content>
-          </ion-card>
-
-<!--          <button-->
-<!--            class="btn red big"-->
-<!--            mat-button-->
-<!--            (click)="closeApp()"-->
-<!--            type="button"-->
-<!--            *ngIf="isNativeApp()"-->
-<!--          >-->
-<!--            {{ 'login.closeTheApplication' | translate }}-->
-<!--          </button>-->
-        </ng-container>
-        <ng-container *ngIf="!noTokenProvided" class="token-error">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title class="token-error-title"
-                >{{ 'login.anErrorHasOccurred' | translate }}</ion-card-title
-              >
-            </ion-card-header>
-            <ion-card-content class="token-error-content">
-              {{ 'login.theInvitationIsNotOrNoLongerValide' | translate }}
-            </ion-card-content>
-          </ion-card>
-
-          <button
-            class="btn big"
-            mat-button
-            (click)="clearError()"
-            type="button"
-          >
-            {{ 'login.back' | translate }}
-          </button>
-
-<!--          <button-->
-<!--            class="btn red big"-->
-<!--            mat-button-->
-<!--            (click)="closeApp()"-->
-<!--            type="button"-->
-<!--            *ngIf="isNativeApp()"-->
-<!--          >-->
-<!--            {{ 'login.closeTheApplication' | translate }}-->
-<!--          </button>-->
-        </ng-container>
-      </ng-container>
-
-      <ng-container
-        *ngIf="!noInviteError && !(invite && invite.type === 'TRANSLATOR_REQUEST')"
-      >
-
- 
-      </ng-container>
-      <ng-container *ngIf="!noInviteError">
-        <p *ngIf="!inviteToken">
-          {{ 'login.ifYouReceivedThisInvitation' | translate }}
-        </p>
-
-        <ion-card *ngIf="!inviteToken">
-          <ion-card-header>
-            <ion-card-title>{{ 'login.warning' | translate }}</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            {{ 'login.thisAppOnlyWorksByInivitation' | translate }}
-          </ion-card-content>
-        </ion-card>
-
-        <form
-          (submit)="onSubmit()"
-          class="login-form"
-        >
-          <ion-item lines="full" *ngIf="!isProduction()">
-            <ion-label position="floating" text-wrap>
-              {{ 'login.invitationKey' | translate }}
-            </ion-label>
-            <ion-input
-              [(ngModel)]="inviteKey"
-              name="inviteKey"
-              type="string"
-              placeholder="ae9f049f76e6addbcc8d0858cc229fdf4af1c862"
-              pattern="[a-f0-9]{40}"
-            ></ion-input>
-          </ion-item>
-          <div class="validator-error">
-            {{inviteKeyError}}
-          </div>
-
-          <div
-            class="buttons"
-          >
-            <button
-              class="btn green"
-              mat-button
-              type="submit"
-              [class.submitted]="submitted"
-            >
-              <ng-container *ngIf="!submitted"
-                >{{ 'login.joinTheConsultation' | translate }}</ng-container
-              >
-              <img
-                src="/assets/images/three-dots-spinner.svg"
-                alt="Chargement en cours"
-              />
-            </button>
-          </div>
-          <p *ngIf="submitted">
-            {{ 'login.pleaseWaitWhileYourRequest' | translate }}
-          </p>
-        </form>
-      </ng-container>
-
-      <ng-container *ngIf="isScheduled">
-        <h2 class="title">
-          {{ 'login.yourConsultationIsPlannedFor' | translate }}
-          {{(scheduledFor) | date: "medium":null: invite.patientLanguage }}.
-        </h2>
-        <p class="ics">
-          <a
-            [href]="icsBlob"
-            class="btn green"
-            type="text/calendar"
-            download="event.ics"
-          >
-            {{ 'login.addTheEventToYourCalendar' | translate }}
-          </a>
-        </p>
-      </ng-container>
-
-      <div class="footer">
-        <button
-          type="button"
-          [routerLink]="['/cgu']"
-          title="Lire les CGU"
-          class="btn terms-btn"
-        >
-          {{ 'login.termsOfService' | translate }}
-        </button>
-      </div>
-
-      <app-select-language></app-select-language>
-    </div>
-  </div>
-  <div *ngIf="roomService.deviceInfo().flag !== 'unknown'" class="wrap">
-    <div class="container">
-      <div class="title">
-        <img
-          class="logo"
-          *ngIf="configService.config.logo"
-          [src]="configService.config.logo"
-          [alt]="configService.config.branding"
-          onerror="this.style.opacity='0'"
-        />
-        <p>{{'login.unsupportedBrowser' | translate }}</p>
-      </div>
-    </div>
-  </div>
 </ion-content>
-<footer class="page-footer font-small ion-padding">
-  <div class="text-center py-3">
-    {{ 'login.supportedByThePrivateFunction' | translate }}
-    <img
-      src="/assets/images/logo-fondation-prive.png"
-      style="padding-left: 3px"
-      width="100px"
-    />
-  </div>
-</footer>

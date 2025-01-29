@@ -1,0 +1,29 @@
+<ion-content padding>
+
+    <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+
+        <div class="card">
+    <ion-card-header style="text-align: center">
+      <ion-card-title class="register">Approval requested</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content class="card-content">
+
+        <ion-img src="assets/icons/success.svg" class="success-image"></ion-img>
+        <ion-label class="label">
+            Your account request is now completed and your account will be approved as soon as possible. You will receive an email upon the validation is done.
+        </ion-label>
+        <button
+                (click)="backToLogin()"
+                class="btn green"
+        >
+            <ng-container
+            >{{ 'Back to login'}}</ng-container
+            >
+        </button>
+    </ion-card-content>
+        </div>
+    </div>
+
+
+</ion-content>

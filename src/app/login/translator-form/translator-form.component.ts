@@ -43,7 +43,6 @@ export class TranslatorFormComponent implements OnInit {
     if (!this.myForm.valid ){
       return
     }
-    console.log("Submitted ", this.email, this.name, this.direct, this.myForm)
     const name = this.myForm.get('nameFormControl').value
     const email = this.myForm.get('emailFormControl').value
     const direct = this.myForm.get('directNumberFormControl').value

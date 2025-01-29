@@ -5,11 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MarkdownModule } from "ngx-markdown";
 
 import { IonicModule } from '@ionic/angular';
-
-// translate
 import { I18nModule } from '../i18n/i18n.module';
-
 import { CguPage } from './cgu.page';
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -19,14 +17,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild(routes),
-    I18nModule,
-    MarkdownModule.forRoot()
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes),
+        I18nModule,
+        MarkdownModule.forRoot(),
+        SharedModule
+    ],
   declarations: [CguPage]
 })
 export class CguPageModule {}

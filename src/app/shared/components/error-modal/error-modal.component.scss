@@ -1,0 +1,25 @@
+.wrapper {
+  padding: 20px;
+}
+
+.error-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .error-message {
+    padding: 20px;
+    font-size: 18px;
+    font-style: normal;
+
+  }
+}
+.buttons-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+ion-button {
+  margin: 20px;
+}
+

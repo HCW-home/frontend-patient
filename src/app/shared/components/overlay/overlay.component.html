@@ -1,0 +1,114 @@
+<div (click)="onClose($event)" id="overlay" class="overlay">
+    <div class="chat-cont">
+        <div class="header">
+            <ion-text>
+                <h3>{{'consultation.general_information' | translate}}</h3>
+            </ion-text>
+        </div>
+
+
+        <div class="overlay-content"
+             [style.height]="consultation.consultation.status === 'closed'? 'calc(100% - 70px);':'calc(100% - 150px);'">
+
+            <p class="keep-open" *ngIf="consultation.consultation.status !== 'active' && consultation.consultation.status !== 'closed'">
+                {{ 'consultation.plsKeepThisOpenPage' | translate }}
+            </p>
+            <ion-card *ngIf="consultation.consultation.status === 'active'"
+                      class="jumbotron ion-no-padding ion-no-margin">
+                <ion-card-header>
+                    <ion-card-title class="title">
+                        {{ 'consultation.consultation' | translate }}
+                        <br/>
+                        <strong>{{ 'consultation.capInProgress' | translate }}</strong>
+                    </ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor">
+                    <p class="subtitle">
+                        @if (configService?.config?.hideCallerName) {
+                            {{ 'consultation.youAreInConsultation' | translate }}
+                        } @else {
+                            {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
+                        }
+                        {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
+                    </p>
+                    <p class="subtitle doctor" *ngIf="consultation.doctor.phoneNumber">
+                        {{ 'consultation.phone' | translate }}
+                        <a href="tel:{{ consultation.doctor.phoneNumber }}"
+                        >{{ consultation.doctor.phoneNumber }}</a
+                        >
+                    </p>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card
+                    *ngIf="consultation.consultation.status === 'pending'"
+                    class="jumbotron await ion-no-padding ion-no-margin"
+            >
+                <ion-title class="title">
+                    {{ 'consultation.requestForConsultation' | translate }}
+                    <br/>
+                    <strong>{{ 'consultation.capInProgress' | translate }}</strong>
+                </ion-title>
+                <p class="subtitle">{{ 'consultation.youAreInWaiting' | translate }}</p>
+
+
+            </ion-card>
+
+            <app-feedback [consultation]="consultation" (updatedConsultation)="updateConsultation()"  *ngIf="consultation.consultation.status === 'closed'"></app-feedback>
+            <div class="info-items">
+                <div class="info-item">
+                    <span class="title-wrapper"> {{'consultation.patient_name' | translate}}</span>
+                    <span class="content">{{consultation.consultation.firstName }} {{consultation.consultation.lastName}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title-wrapper"> {{'consultation.handled_by' | translate}} </span>
+                    <span class="content" *ngIf="consultation.doctor; else requesting">{{consultation.doctor?.firstName }} {{consultation.doctor?.lastName}}</span>
+                    <ng-template #requesting>
+                        <span class="content">{{'consultation.requesting' | translate}}</span>
+                    </ng-template>
+                </div>
+                <div class="info-item">
+                    <span class="title-wrapper"> {{'consultation.country' | translate}} </span>
+                    <span class="content">{{consultation.consultation?.metadata?.Country || '-'}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title-wrapper"> {{'consultation.sex' | translate}} </span>
+                    <span class="content">{{ 'dashboard.' + consultation.consultation.gender | translate}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title-wrapper"> {{'consultation.area' | translate}} </span>
+                    <span class="content">{{consultation.queue.name}}</span>
+                </div>
+                <div class="info-item">
+                    <span class="title-wrapper"> {{'consultation.requested_at' | translate}} </span>
+                    <span class="content">{{consultation.consultation.createdAt  | date: 'dd/MM/YYYY HH:mm'}}</span>
+                </div>
+                @for (
+                        item of consultation.consultation.metadata | keyvalue;
+                    track item.key
+                        ) {
+                    @if (item.value) {
+                        <div class="info-item">
+                            <span class="title-wrapper">{{'metadata.' + item.key | translate}}</span>
+                            <span class="content">{{item.value}}</span>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="consultation-wrapper">
+                <app-consultation-chat [consultation]="consultation"></app-consultation-chat>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="consultation.consultation.status === 'active'" class="resume-c-btn" (click)="resumeConsultation()">
+        {{ 'consultation.resume' | translate }}
+    </div>
+
+    <div *ngIf="consultation.consultation.status === 'pending'" class="buttons-wrapper" >
+        <div (click)="showCancelModal($event)">  {{ 'consultation.cancel_request' | translate }}</div>
+        <div (click)="resumeConsultation()">{{ 'consultation.resume' | translate }}</div>
+    </div>
+</div>
+
+

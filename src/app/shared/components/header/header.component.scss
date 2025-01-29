@@ -1,0 +1,114 @@
+.header-wrapper {
+  width: 100%;
+  position: fixed;
+  //z-index: 9;
+  //background-color: #fff;
+  //margin-bottom: 2rem;
+  //-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  //-moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  //box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+
+
+  //position: fixed;
+  //width: 100%;
+  border-bottom: 1px solid rgb(209,209,209);
+  margin: 0;
+  padding: 0;
+  padding-left: 5rem;
+  background-color: #fff;
+  top: 0;
+  height: 70px;
+  z-index: 100;
+  display: flex;
+  line-height: 70px;
+  justify-content: space-between;
+
+  .doc-btn{
+    background-color: #F2F7F7;
+  }
+
+
+  #user {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: left;
+
+    ion-icon {
+      text-align: left;
+      padding-left: 15px;
+      padding-right: 15px;
+      vertical-align: middle;
+      display: inline-flex;
+      height: 28px;
+      padding-bottom: 4px;
+      width: 28px;
+    }
+    .items {
+      position: absolute;
+      bottom: -200%;
+      left: 0;
+      width: 100%;
+      height: 140px;
+
+      div {
+        height: 70px;
+        background: #fff;
+        border: 1px solid #e4e4e4;
+      }
+      .logout {
+        background: #E3393A;
+        color: #fff;
+      }
+    }
+  }
+
+}
+
+.request-new {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  color: #FFFFFF;
+  background-color: var(--ion-color-primary);
+  font-size: 16px;
+  line-height: initial;
+  justify-content: center;
+  padding-left: 10px;
+  @media (max-width: 668px) {
+    font-size: 12px;
+    text-align: center;
+
+  }
+}
+
+.new-consultation {
+  width: calc((100% - 200px) / 17 * 8);
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 1200px) {
+    width: 100% !important;
+  }
+
+
+
+
+  .new-consultation-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 50%;
+    @media (max-width: 668px) {
+      font-size: 12px;
+      line-height: 12px;
+      text-align: center;
+    }
+  }
+
+
+
+}

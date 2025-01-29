@@ -1,8 +1,8 @@
-@import "src/theme/variables.scss";
+@import "theme/variables.scss";
+
 .wrap {
   width: 100%;
   min-height: 100%;
-  @include backgroundMixin($background-image-path);
   background-color: var(--ion-color-primary) !important;
   background-size: 100%;
   background-position: center;
@@ -10,8 +10,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: var(--blue-bg-color);
 }
+
 ::ng-deep {
   html[data-theme="accessibility"] {
     .wrap {
@@ -19,16 +19,19 @@
     }
   }
 }
+
 .container {
   display: block;
   margin: 30px auto;
   width: 70%;
   font-size: 1.1em;
 }
+
 h3 {
   color: #3c3c3c;
   margin: 40px 0 10px;
 }
+
 p {
   font-size: 1.1em;
 }
@@ -51,6 +54,7 @@ p {
     }
   }
 }
+
 ion-item {
   --color: #444;
   --border-color: #ddd;
@@ -60,9 +64,11 @@ ion-item {
   --color-focused: #086baf;
   --highlight-color-valid: #086baf;
 }
+
 ion-textarea {
   --placeholder-color: #ddd;
 }
+
 .feedback-saved {
   color: #00b54a;
   margin-top: 40px;

@@ -1,21 +1,17 @@
-import { AuthService } from "./../auth/auth.service";
-import { OpenViduService } from "./../shared/services/openvidu.service";
+import { AuthService } from "../auth/auth.service";
+import { OpenViduService } from "../shared/services/openvidu.service";
 import {
-  RoomService,
-  LogService,
-  RemotePeersService,
   Stream,
-} from "hug-angular-lib";
-import { CallService } from "./../call.service";
+  LogService,
+  RoomService,
+  RemotePeersService,
+} from "hcw-stream-lib";
 import { OpenViduLayout } from "../shared/layout/openvidu-layout";
 import { Subscription } from "rxjs";
-import { ConsultationService } from "./../consultation.service";
 
-import { environment } from "./../../environments/environment";
-import { Component, OnInit, OnDestroy, HostListener, ViewChild, ElementRef, QueryList, ViewChildren, EventEmitter, Output, Input, NgZone, Directive } from "@angular/core";
+import { Component, OnInit, OnDestroy, HostListener, EventEmitter, Output, Input, NgZone } from "@angular/core";
 
-import { Platform, ModalController, AlertController } from "@ionic/angular";
-// import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
+import { Platform } from "@ionic/angular";
 import { NativeAudio } from '@capacitor-community/native-audio'
 
 
@@ -27,9 +23,8 @@ import {
   transition,
   animate,
 } from "@angular/animations";
+import {ConfigService} from "../config.service";
 
-import { SocketEventsService } from "../socket-events.service";
-// import { AndroidPermissions } from "@awesome-cordova-plugins/android-permissions/ngx";
 declare let window: any;
 
 export interface Device {
@@ -138,15 +133,8 @@ export interface Device {
   ],
 })
 export class VideoRoomPage implements OnInit, OnDestroy {
-  BIG_ELEMENT_CLASS = "OV_big";
 
-  // ANDROID_PERMISSIONS = [
-  //   "android.permission.CAMERA",
-  //   "android.permission.RECORD_AUDIO",
-  //   "android.permission.MODIFY_AUDIO_SETTINGS",
-  // ];
-  localUser;
-  remoteUsers = [];
+   remoteUsers = [];
   resizeTimeout;
   bigElement;
   consultation;
@@ -154,15 +142,13 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   @Output() hangup = new EventEmitter<boolean>();
   isFullScreen = true;
 
-  socketSub;
-
   rejected;
   @Input() message;
-  reconnectTimer;
   @Input() sessionId: string;
   @Input() token: string;
   @Input() patient;
   @Input() audioOnly;
+  @Input() user;
   @Input() videoDeviceId: string;
   @Input() audioDeviceId: string;
   reconnecting = false;
@@ -173,7 +159,6 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   peerId;
   myCamStream: Stream;
 
-  user;
   noWebCam;
   buttonsVisibility;
 
@@ -183,21 +168,18 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   currentVideoDevice;
 
   camStatus = "on";
+  muteStatus: "on" | "off" = "on";
 
   videoAspectRatio = 1.777;
 
-  _device: any = "";
   constructor(
-    public platform: Platform,
-    // private nativeAudio: NativeAudio,
-    private socketSer: SocketEventsService,
-    private roomService: RoomService,
-    private logger: LogService,
-    private remotePeersService: RemotePeersService,
-    private openViduSrv: OpenViduService,
-    private authService: AuthService,
-    // private androidPermissions: AndroidPermissions,
-    private zone: NgZone
+      public platform: Platform,
+      private logger: LogService,
+      private roomService: RoomService,
+      private authService: AuthService,
+      private openViduSrv: OpenViduService,
+      public configService: ConfigService,
+      private remotePeersService: RemotePeersService,
   ) {
     window.platform = platform;
   }
@@ -214,7 +196,6 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log("Initialize video", this.token, this.audioOnly);
     if (this.message.type === "audioCall") {
       this.camStatus = "off";
     }
@@ -243,19 +224,15 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     this.askForPerm()
       .then(() => {
         this.getDevices().then((devices) => {
-          console.log("getDevices", devices);
-          console.log(devices);
           this.videoDevices = devices.filter(
             (device) => device.kind === "videoinput"
           );
-          console.log(this.videoDevices);
 
           if (this.videoDevices.length) {
             this.firstCam = this.videoDevices[0].deviceId;
             this.lastCam =
               this.videoDevices[this.videoDevices.length - 1].deviceId;
             this.currentVideoDevice = this.firstCam;
-            console.log("Switch camera from from", this.currentVideoDevice);
           } else {
             this.currentVideoDevice = null;
           }
@@ -311,10 +288,6 @@ export class VideoRoomPage implements OnInit, OnDestroy {
             })
             .catch(this.logger.error);
 
-          console.log(
-            "layout ",
-            this.platform.is("ios") ? "ios-layout" : "layout"
-          );
           this.openviduLayout.initLayoutContainer(
             document.getElementById("layout"),
             this.openviduLayoutOptions
@@ -361,18 +334,11 @@ export class VideoRoomPage implements OnInit, OnDestroy {
       if (!this.openviduLayout) {
         return;
       }
-      console.log("update layout .....................................");
       this.openviduLayout.updateLayout();
     }, 20);
   }
 
   rejectCall() {
-    console.log(
-      "rejectCall vide -room ",
-      this.sessionId,
-      this.consultation,
-      this.message
-    );
     if (!this.rejected) {
       this.rejected = true;
       if (this.accepted) {
@@ -389,10 +355,8 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     }
     
     this.openViduSrv
-      .rejectCall(this.sessionId || this.consultation._id, this.message.id)
-      .then((r) => {
-        console.log("exit ", this.sessionId);
-      })
+      .rejectCall(this.sessionId || this.consultation?._id || this.consultation?.id, this.message.id)
+      .then((r) => {})
       .catch((err) => {
         console.log("error ", err);
       });
@@ -409,6 +373,17 @@ export class VideoRoomPage implements OnInit, OnDestroy {
       this.camStatus = "on";
     }
   }
+
+  muteStatusChanged() {
+    if (this.muteStatus === "on") {
+      this.roomService.muteMic();
+      this.muteStatus = "off";
+    } else {
+      this.roomService.unmuteMic();
+      this.muteStatus = "on";
+    }
+  }
+
 
   askForPerm() {
     this.logger.debug("Ask for video permissions ");
@@ -453,82 +428,6 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     return navigator.mediaDevices.getUserMedia({ audio: true, video: true });
   }
 
-  // private checkAndroidPermissions(): Promise<any> {
-  //   console.log("Requesting Android Permissions");
-  //   return new Promise((resolve, reject) => {
-  //     this.platform.ready().then(() => {
-  //       this.androidPermissions
-  //         .requestPermissions(this.ANDROID_PERMISSIONS)
-  //         .then(() => {
-  //           this.androidPermissions
-  //             .checkPermission(this.androidPermissions.PERMISSION.CAMERA)
-  //             .then((camera) => {
-  //               this.androidPermissions
-  //                 .checkPermission(
-  //                   this.androidPermissions.PERMISSION.RECORD_AUDIO
-  //                 )
-  //                 .then((audio) => {
-  //                   this.androidPermissions
-  //                     .checkPermission(
-  //                       this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS
-  //                     )
-  //                     .then((modifyAudio) => {
-  //                       if (
-  //                         camera.hasPermission &&
-  //                         audio.hasPermission &&
-  //                         modifyAudio.hasPermission
-  //                       ) {
-  //                         resolve(null);
-  //                       } else {
-  //                         reject(
-  //                           new Error(
-  //                             "Permissions denied: " +
-  //                               "\n" +
-  //                               " CAMERA = " +
-  //                               camera.hasPermission +
-  //                               "\n" +
-  //                               " AUDIO = " +
-  //                               audio.hasPermission +
-  //                               "\n" +
-  //                               " AUDIO_SETTINGS = " +
-  //                               modifyAudio.hasPermission
-  //                           )
-  //                         );
-  //                       }
-  //                     })
-  //                     .catch((err) => {
-  //                       console.error(
-  //                         "Checking permission " +
-  //                           this.androidPermissions.PERMISSION
-  //                             .MODIFY_AUDIO_SETTINGS +
-  //                           " failed"
-  //                       );
-  //                       reject(err);
-  //                     });
-  //                 })
-  //                 .catch((err) => {
-  //                   console.error(
-  //                     "Checking permission " +
-  //                       this.androidPermissions.PERMISSION.RECORD_AUDIO +
-  //                       " failed"
-  //                   );
-  //                   reject(err);
-  //                 });
-  //             })
-  //             .catch((err) => {
-  //               console.error(
-  //                 "Checking permission " +
-  //                   this.androidPermissions.PERMISSION.CAMERA +
-  //                   " failed"
-  //               );
-  //               reject(err);
-  //             });
-  //         })
-  //         .catch((err) => console.error("Error requesting permissions: ", err));
-  //     });
-  //   });
-  // }
-
   toggleFullScreen() {
     this.isFullScreen = !this.isFullScreen;
     setTimeout(() => {
@@ -556,7 +455,6 @@ export class VideoRoomPage implements OnInit, OnDestroy {
             window.cordova.plugins &&
             (window.cordova.plugins as any).EnumerateDevicesPlugin
           ) {
-            console.log("Running this code because we are on Android native");
             (
               window.cordova.plugins as any
             ).EnumerateDevicesPlugin.getEnumerateDevices().then(
@@ -674,20 +572,15 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   }
 
   toggleCamera() {
-    // this.session.disconnect();
-    console.log("Switch camera from", this.currentVideoDevice);
     if (this.currentVideoDevice === this.firstCam) {
       this.currentVideoDevice = this.lastCam;
     } else {
       this.currentVideoDevice = this.firstCam;
     }
-    console.log("Switch camera to", this.currentVideoDevice);
 
     this.roomService
       .updateWebcam({ restart: true, newDeviceId: this.currentVideoDevice })
-      .then(() => {
-        console.log("Webcam updated ");
-      })
+      .then(() => {})
       .catch((error) => {
         console.error("Error updating devices", error);
       });

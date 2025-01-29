@@ -1,0 +1,35 @@
+<div class="header-wrapper">
+    <div
+            style="vertical-align: middle; cursor: pointer;    min-width: 200px;"
+            (click)="toggleLogout()"
+    >
+        <div [ngClass]="{ 'doc-btn': logoutToggle }" id="user">
+            <ion-icon name="person-outline"></ion-icon>
+            {{ currentUser.firstName + " " + currentUser.lastName }}
+            <div class="items" *ngIf="logoutToggle">
+                <div (click)="goToProfile()">
+                    <ion-icon name="person-outline"></ion-icon>
+                    {{ 'header.profile' | translate }}
+                </div>
+                <div class="logout" (click)="logOut(true)">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    {{ 'header.logOut' | translate }}
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="new-consultation">
+        <div *ngIf="configService?.config?.nurseExternalLink" (click)="toDoctor()" class="new-consultation-button">
+            {{'header.accessAsDoctor' | translate}}
+            <img src="assets/icons/in-new-tab.svg" alt="">
+        </div>
+        <div class="request-new" (click)="requestConsultation()">
+            {{ 'dashboard.request_new_consultation' | translate }}
+        </div>
+    </div>
+
+</div>
+

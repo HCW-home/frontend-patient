@@ -1,50 +1,24 @@
 // http://ionicframework.com/docs/theming/
-@import "~@ionic/angular/css/core.css";
-@import "~@ionic/angular/css/normalize.css";
-@import "~@ionic/angular/css/structure.css";
-@import "~@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
 
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
-@import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
-@import "src/theme/variables.scss";
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+@import "theme/variables.scss";
+@import "assets/fonts/fonts.scss";
 
-@font-face {
-  font-family: "Cooper Hewitt";
-  src: url("./assets/fonts/CooperHewitt-Bold.eot");
-  src: url("./assets/fonts/CooperHewitt-Bold.eot") format("embedded-opentype"),
-    url("./assets/fonts/CooperHewitt-Bold.svg") format("svg"),
-    url("./assets/fonts/CooperHewitt-Bold.woff") format("woff"),
-    url("./assets/fonts/CooperHewitt-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: bold;
-}
-
-@font-face {
-  font-family: "Cooper Hewitt";
-  src: url("./assets/fonts/CooperHewitt-Book.eot");
-  src: url("./assets/fonts/CooperHewitt-Book.eot") format("embedded-opentype"),
-    url("./assets/fonts/CooperHewitt-Book.svg") format("svg"),
-    url("./assets/fonts/CooperHewitt-Book.woff") format("woff"),
-    url("./assets/fonts/CooperHewitt-Book.ttf") format("truetype");
-  font-weight: lighter;
-  font-style: lighter;
-}
-
-@font-face {
-  font-family: "Source Sans Pro";
-  src: url("./assets/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf")
-    format("truetype");
-}
 
 :root {
   --ion-background-color: transparent;
 }
 
 * {
-  font-family: "Cooper Hewitt";
+  font-family: 'Roboto', "Helvetica Neue", sans-serif;
 }
 
 .picker-wrapper {
@@ -56,9 +30,8 @@ ion-content {
 }
 
 ion-toolbar {
-  // height:56px;
-  border-bottom: 2px solid #2871bd;
-  background-color: #ffffff;
+  //border-bottom: 2px solid #2871bd;
+  //background-color: #ffffff;
 }
 
 ion-card {
@@ -71,9 +44,10 @@ ion-card {
   font-weight: bold;
   padding-top: 4px;
 }
+
 app-login,
+app-icrc,
 app-test-call {
-  background-image: url($background-image-path);
 
   background-size: 100%;
   background-position: center;
@@ -83,6 +57,7 @@ app-test-call {
   left: 0;
   background-color: var(--blue-bg-color);
 }
+
 #test-video-container {
   video {
     -o-object-fit: cover;
@@ -104,10 +79,10 @@ app-test-call {
   border-radius: 60px;
   text-align: center;
   width: auto;
-  background: #b5e2ff;
-  color: var(--blue-bg-color);
+  background: var(--ion-color-primary);
+  color: #f0f0f0;
   font-size: 1.1em;
-  padding: 10px 20px 7px;
+  padding: 10px 20px 10px;
 
   img {
     opacity: 0.8;
@@ -115,25 +90,31 @@ app-test-call {
     display: none;
   }
 }
+
 .btn.submitted {
   background: #04b74db0;
+
   img {
     display: inline;
   }
 }
+
 .btn.green {
   background: #00b54a;
   color: #fff;
+
   &:disabled {
     background-color: #00b54a99;
   }
 }
+
 .btn.red {
   background: #d25555;
   color: #fff;
 }
+
 .btn.big {
-  padding: 20px 30px 17px;
+  padding: 20px 30px;
 }
 
 .text-white {
@@ -144,13 +125,28 @@ app-test-call {
   text-align: center;
 }
 
+.text-end {
+  text-align: end;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.d-flex {
+  display: flex;
+}
+
 .cordova-camera-capture {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url($background-image-path);
 
   button {
     margin: auto;
@@ -178,6 +174,7 @@ html[data-theme="accessibility"] {
   .cordova-camera-capture {
     background-image: unset !important;
   }
+
   app-login {
     background-image: unset !important;
   }
@@ -190,18 +187,18 @@ html[data-theme="accessibility"] {
 
 img.logo {
   width: 100%;
-  max-width: 334px;
+  max-width: 180px;
 }
+
+
 html[data-theme="accessibility"] {
   * {
     font-family: "Source Sans Pro" !important;
     font-size: 1.02em;
   }
 
-  .btn {
-    padding: 10px 20px 10px;
-  }
 }
+
 ::ng-deep {
   html[data-theme="accessibility"] {
     * {
@@ -211,3 +208,118 @@ html[data-theme="accessibility"] {
   }
 }
 
+
+.alert-wrapper.sc-ion-alert-md {
+  background: white !important;
+  --background: white !important;
+}
+
+ion-popover [popover]:not(:popover-open):not(dialog[open]) {
+  display: contents;
+  --backdrop-opacity: 1;
+
+}
+
+.sc-ion-select-popover-md-h ion-list.sc-ion-select-popover-md {
+  background: white;
+}
+
+ion-select {
+  width: 100%;
+
+  label {
+    color: black;
+    font-size: inherit;
+  }
+}
+
+.error-modal {
+  --height: 250px;
+}
+
+.red-toast .toast-wrapper {
+  background-color: red;
+  color: white;
+}
+
+.green-toast .toast-wrapper {
+  background-color: green;
+  color: white;
+}
+
+.close-button {
+  color: white;
+}
+
+
+.custom-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: auto;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.custom-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-4 {
+  margin-top: 4rem;
+}
+
+markdown {
+
+  ol {
+    margin-left: 0;
+    list-style: none;
+    counter-reset: item;
+
+    li:before {
+      margin-right: 10px;
+      counter-increment: item;
+      content: counters(item, ".") ". ";
+    }
+  }
+
+  ul {
+    list-style-position: inside
+  }
+
+  li > p {
+    display: inline;
+  }
+
+
+  a {
+    color: var(--ion-color-primary);
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+
+  //@media (max-width: 598px) {
+  //  width: 300px;
+  //}
+  //@media (max-width: 350px) {
+  //  height: unset;
+  //}
+}

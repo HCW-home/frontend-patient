@@ -1,0 +1,208 @@
+<app-video-room
+        *ngIf="ongoingCall && shouldJoinCall && ringingConsultation"
+        [sessionId]="ringingConsultation"
+        (hangup)="hangup()"
+        [accepted]="true"
+        [message]="ongoingCall"
+        [token]="ongoingCall.token"
+        [user]="callingDoctor"
+></app-video-room>
+<app-video-room
+        *ngIf="callRunning && ringingConsultation"
+        [sessionId]="ringingConsultation"
+        [message]="ongoingCall"
+        [token]="ongoingCall.token"
+        (hangup)="hangup()"
+        [user]="callingDoctor"
+></app-video-room>
+<ion-content>
+    <app-header></app-header>
+    <div class="content">
+        <div class="dashboard-wrapper">
+            <div class="position-relative">
+                <h2 class="page-title">{{ 'dashboard.consultations' | translate }}
+                    <ion-badge class="badge">{{ activeCount }}</ion-badge>
+                </h2>
+            </div>
+
+
+            <app-loader *ngIf="loading; else loadedConsultations"></app-loader>
+            <ng-template #loadedConsultations>
+                <div class="board">
+                    <table *ngIf="consultations.length; else emptyBlock">
+                        <tbody>
+                        <ng-container *ngFor="let consultation of consultations">
+                            <tr class="border" (click)="onSelectConsultation(consultation)">
+                                <td class="no-stack in-row">
+                                    <div class="avatar-container">
+                                        {{ consultation.consultation.firstName | titlecase | slice: 0: 1 }}{{ consultation.consultation.lastName| titlecase | slice: 0: 1 }}
+                                    </div>
+                                </td>
+                                <td class="no-stack in-row">
+                                    <div class="name-container">
+                                        <span class='name'>{{ consultation.consultation.firstName }} {{ consultation.consultation.lastName }}</span>
+                                        <span class='message'
+                                              *ngIf="consultation?.lastMsg?.text">{{ consultation?.lastMsg?.text }}</span>
+                                        <span class='attach' *ngIf="consultation?.lastMsg?.type === 'attachment'">
+                                        <ion-img src="assets/icons/attach-icon.svg"></ion-img>
+                                            {{ consultation?.lastMsg?.fileName }}
+                                    </span>
+                                        <span class='message'
+                                              *ngIf="!consultation?.lastMsg">{{ noMessageText }}</span>
+                                    </div>
+                                </td>
+                                <td class="stacked-cell">
+                                    <div class="date-container">
+                                    <span class='date'
+                                          *ngIf="consultation?.lastMsg?.createdAt">{{ consultation?.lastMsg?.createdAt  | date: 'dd/MM/YYYY HH:mm' }}</span>
+                                        <ion-badge class="rounded-badge">{{ consultation.unreadCount }}</ion-badge>
+                                    </div>
+                                </td>
+                                <td class="stacked-cell">
+                                    <div class="table-items">
+                                        <div class="flex-item ion-align-items-end">
+                                            <span class="title">{{ 'dashboard.handled_by' | translate }}</span>
+                                            <span class="title">{{ 'dashboard.requested_at' | translate }}</span>
+                                            <span class="title">{{ 'dashboard.area' | translate }}</span>
+                                        </div>
+
+                                        <div class="flex-item ion-align-items-start">
+                                        <span class="value"
+                                              *ngIf="consultation?.doctor; else requesting">{{ consultation?.doctor?.firstName }} {{ consultation?.doctor?.lastName }}</span>
+                                            <ng-template #requesting>
+                                                <span class="value">{{ 'dashboard.requesting' | translate }}</span>
+                                            </ng-template>
+                                            <span class="value">{{ consultation?.consultation?.createdAt  | date: 'dd/MM/YYYY HH:mm' }}</span>
+                                            <span class="value">{{ consultation?.queue?.name }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="stacked-cell">
+                                    <div class="table-items">
+                                        <div class="flex-item ion-align-items-end">
+                                            <span class="title">{{ 'dashboard.country' | translate }}</span>
+                                            <span class="title">{{ 'dashboard.sex' | translate }}</span>
+                                        </div>
+
+                                        <div class="flex-item ion-align-items-start">
+                                            <span class="value">{{ consultation.consultation?.metadata?.Country || '-' }}</span>
+                                            <span class="value">{{ 'dashboard.' + consultation.consultation.gender | translate }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="stacked-cell">
+                                    <div class="buttons-wrapper">
+                                        <ion-button class="resume-button"
+                                                    (click)="resume($event,consultation)">{{ 'dashboard.resume' | translate }}
+                                        </ion-button>
+                                        <span class="cancel-button" (click)="showCancelModal($event,consultation)"
+                                              *ngIf="!consultation?.doctor">{{ 'dashboard.cancel_consultation' | translate }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        </tbody>
+                    </table>
+                    <ng-template #emptyBlock>
+                        <div class="empty-text">{{ 'dashboard.no_consultation' | translate }}</div>
+                    </ng-template>
+                </div>
+            </ng-template>
+
+            <div class="position-relative mt-4">
+                <h2 class="page-title mt-5">{{ 'dashboard.history' | translate }}
+                    <ion-badge class="badge">{{ closedCount }}</ion-badge>
+                </h2>
+            </div>
+
+            <app-loader *ngIf="loading; else loaded"></app-loader>
+            <ng-template #loaded>
+                <div class="board">
+                    <table *ngIf="closedConsultations?.length; else emptyHistoryBlock">
+                        <tbody>
+                        <ng-container *ngFor="let consultation of closedConsultations">
+                            <tr class="border" (click)="onSelectClosedConsultation(consultation)">
+
+                                <td class="no-stack in-row">
+                                    <div class="avatar-container">
+                                        {{ consultation.consultation.firstName | titlecase | slice: 0: 1 }}{{ consultation.consultation.lastName| titlecase | slice: 0: 1 }}
+                                    </div>
+                                </td>
+                                <td class="no-stack in-row">
+                                    <div class="name-container">
+                                        <span class='name'>{{ consultation.consultation.firstName }} {{ consultation.consultation.lastName }}</span>
+                                        <span class='message'
+                                              *ngIf="consultation?.lastMsg?.text">{{ consultation?.lastMsg?.text }}</span>
+                                        <span class='attach' *ngIf="consultation?.lastMsg?.type === 'attachment'">
+                                        <ion-img src="assets/icons/attach-icon.svg"></ion-img>
+                                            {{ consultation?.lastMsg?.fileName }}
+                                    </span>
+                                        <span class='message'
+                                              *ngIf="!consultation?.lastMsg">{{ noMessageText }}</span>
+                                    </div>
+                                </td>
+                                <td class="stacked-cell">
+                                    <div class="table-items">
+                                        <div class="flex-item ion-align-items-end">
+                                            <span class="title">{{ 'dashboard.handled_by' | translate }}</span>
+                                            <span class="title">{{ 'dashboard.requested_at' | translate }}</span>
+                                            <span class="title">{{ 'dashboard.area' | translate }}</span>
+                                        </div>
+
+                                        <div class="flex-item ion-align-items-start">
+                                             <span class="value"
+                                                   *ngIf="consultation?.doctor; else canceled">{{ consultation?.doctor?.firstName }} {{ consultation?.doctor?.lastName }}</span>
+                                            <ng-template #canceled>
+                                                <span class="value">{{ 'dashboard.canceled' | translate }}</span>
+                                            </ng-template>
+                                            <span class="value">{{ consultation.consultation?.createdAt  | date: 'dd/MM/YYYY HH:mm' }}</span>
+                                            <span class="value">{{ consultation.queue?.name }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="stacked-cell">
+                                    <div class="table-items">
+                                        <div class="flex-item ion-align-items-end">
+                                            <span class="title">{{ 'dashboard.closed_at' | translate }}</span>
+                                            <span class="title">{{ 'dashboard.sex' | translate }}</span>
+                                        </div>
+
+                                        <div class="flex-item ion-align-items-start">
+                                            <span class="value">{{ consultation.consultation?.closedAt  | date: 'dd/MM/YYYY HH:mm' }}</span>
+                                            <span class="value">{{ 'dashboard.' +  consultation.consultation?.gender | translate}}</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                <ion-button class="export-button"
+                                        (click)="exportPDF($event, consultation)">
+                                    <ion-icon name="download-outline" slot="start"></ion-icon>
+                                    {{ 'dashboard.export' | translate }}
+                                </ion-button>
+                                </td>
+
+                            </tr>
+                        </ng-container>
+                        </tbody>
+                    </table>
+                    <ng-template #emptyHistoryBlock>
+                        <div class="empty-text">
+                            {{ 'dashboard.no_consultation_history' | translate }}
+                        </div>
+                    </ng-template>
+                </div>
+            </ng-template>
+
+        </div>
+        <ng-container *ngIf="markdownExists && markdownUrl">
+            <app-footer [markdownUrl]="markdownUrl"></app-footer>
+        </ng-container>
+    </div>
+    <app-overlay
+            (close)="onCloseConsultation($event)"
+            (updateFeedback)="onUpdateFeedback()"
+            *ngIf="currentConsultation"
+            [consultation]="currentConsultation"></app-overlay>
+
+
+</ion-content>

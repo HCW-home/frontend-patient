@@ -1,22 +1,47 @@
-<ion-content class="ion-padding">
-  <div class="wrap">
-    <div class="container">
-      <div class="title">
-        
+<ion-content>
+    <div class='center'>
+        <div class="custom-card">
+            <div class="container">
+                <div class="title">
+                    {{ 'cgu.selectCountry' | translate }}
+                    <div id="hhpCountrySelect">
+                        <div class="sl-container" *ngIf="!countryError">
+                            <ion-icon name="globe"></ion-icon>
+                            <select class="lang" #langSelect (change)="changeCountry(langSelect.value)">
+                                <option *ngFor="let country of countries"
+                                        [value]="country"
+                                >{{ country }}
+                                </option>
+                            </select>
+                        </div>
+                        <app-select-language [hideIcon]="true"
+                                             (selectedLanguageChange)="onLanguageChange($event)"></app-select-language>
+
+                    </div>
+                </div>
+                <div class="back">
+                    <button class="btn big"
+                            type="button"
+                            (click)="goBack()"
+                    >
+                        {{ 'cgu.backToHome' | translate }}
+                    </button>
+                </div>
+
+                <h2>{{ 'cgu.termsAndConditions' | translate }}</h2>
+
+                <markdown [src]="error ? 'assets/terms.md' : 'assets/terms/' + selectedTermName">
+                    Terms and conditions have not yet been configured.
+                </markdown>
+
+                <div class="back">
+                    <button class="btn big"
+                            type="button"
+                            (click)="goBack()">
+                        {{ 'cgu.backToHome' | translate }}
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="back">
-          <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
-        </div>
-
-        <h2>{{ 'cgu.termsAndConditions' | translate }}</h2>
-
-        <markdown src="assets/terms.md">
-          Terms and conditions have not yet been configured.
-        </markdown>
-
-      <div class="back">
-        <a [routerLink]="['/login']" class="back-link" mat-button>{{ 'cgu.backToHome' | translate }}</a>
-      </div>
     </div>
-  </div>
 </ion-content>

@@ -1,34 +1,21 @@
-import { Observable, Subscription } from "rxjs";
 import { GlobalVariableService } from "./global-variable.service";
-import { Component, OnInit, NgZone, Directive } from "@angular/core";
+import { Component } from "@angular/core";
 
-import { Platform, NavController } from "@ionic/angular";
-
-// import { SplashScreen } from "@awesome-cordova-plugins/splash-screen/ngx";
+import { Platform, ToastController, ToastButton } from "@ionic/angular";
 import { SplashScreen } from '@capacitor/splash-screen';
-
 import { CallService } from "./call.service";
-
 import { SocketEventsService } from "./socket-events.service";
 import { ConsultationService } from "./consultation.service";
-
 import { AuthService } from "./auth/auth.service";
-// import { NativeAudio } from "@awesome-cordova-plugins/native-audio/ngx";
 import { NativeAudio } from '@capacitor-community/native-audio'
-
-
 import { NavigationEnd, Router } from "@angular/router";
+import { App } from '@capacitor/app';
+import { filter } from "rxjs/operators";
+import { TranslateService } from "@ngx-translate/core";
+import { LanguageService } from "./shared/services/language.service";
 
 declare var cordova;
 declare let window: any;
-import { File } from "@awesome-cordova-plugins/file/ngx";
-import { App, URLOpenListenerEvent } from '@capacitor/app';
-import { LoginPage } from "./login/login.page";
-import { TestComponent } from "./test/test.component";
-import { filter } from "rxjs/operators";
-import { environment } from "../environments/environment";
-import { Browser } from '@capacitor/browser';
-
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
@@ -39,43 +26,41 @@ export class AppComponent {
   currentUser;
   redirected = false;
   consultation;
-  callsSub: Subscription;
   inviteToken: string;
+  lastConnectionStatus = "";
+  private toast: HTMLIonToastElement;
 
   testRoute = false;
   constructor(
     private platform: Platform,
-    // private splashScreen: SplashScreen,
     private callService: CallService,
     private authService: AuthService,
     private socketEventsService: SocketEventsService,
     private consultationService: ConsultationService,
-    private zone: NgZone,
-    // private nativeAudio: NativeAudio,
-    private file: File,
+    private toastController: ToastController,
     private router: Router,
+    public translate: TranslateService,
+    private languageService: LanguageService,
     public globalVariableService: GlobalVariableService
   ) {
-    
     const parsedUrl = new URL(window.location.href);
-    console.log("PARSED URL", parsedUrl);
     this.inviteToken = parsedUrl.searchParams.get("invite");
     if (!this.inviteToken && window.location.href.match(/invite=([^&]*)/)) {
       // parse invite from url using regex
       this.inviteToken = window.location.href.match(/invite=([^&]*)/)[1];
     }
-    this.testRoute = window.location.href.includes("test-call");
+    if (!localStorage.getItem('hhp-lang')) {
+      const lang = this.languageService.getCurrentLanguage();
+      localStorage.setItem('hhp-lang',lang);
+    }
+    this.testRoute = window.location.href.includes("test-call") || window.location.href.includes("acknowledge-invite") || window.location.href.includes("requester") || window.location.href.includes("cgu");
 
     router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event) => {
-        console.log("Router event", event);
-      });
+      .subscribe((event) => {});
   }
 
-
   ngOnInit() {
-
     this.authService
       .init()
       .then((user) => {
@@ -106,19 +91,21 @@ export class AppComponent {
           queryParams: { invite: this.inviteToken },
         });
       } else {
-        this.router.navigate(["/login"]);
+        if (this.currentUser && (this.currentUser.role === 'nurse' || this.currentUser.role === 'admin')) {
+          this.router.navigate([`/dashboard`]);
+        } else {
+          const currentConsultation = localStorage.getItem('currentConsultation')
+          if (currentConsultation) {
+              this.router.navigate(['consultation', currentConsultation])
+          } else {
+            this.router.navigate(["/login"]);
+        }
+        }
       }
     }
     this.redirected = true;
   }
-  redirectToTestPage() {
-    this.router.navigate(["/test-call"]);
-    this.redirected = true;
-  }
-  redirectToAwaitConsultation() {
-    this.router.navigate(["/await-consultation"]);
-    this.redirected = true;
-  }
+
   isNativeApp() {
     return !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'));
   }
@@ -129,7 +116,6 @@ export class AppComponent {
       const token = url.searchParams.get('invite')
 
       if (/attachment/.test(data.url)) {
-        console.log("This is going to open link")
         return;
       }
 
@@ -154,9 +140,8 @@ export class AppComponent {
 
     if (this.inviteToken) {
       if (localStorage.getItem("inviteToken") !== this.inviteToken) {
-        console.log("New invite token .");
         localStorage.clear();
-        await this.authService.logout();
+        await this.authService.logOutNurse();
         localStorage.setItem("inviteToken", this.inviteToken);
         // document.location.reload()
       }
@@ -173,7 +158,6 @@ export class AppComponent {
         this.platform.is("cordova") &&
         this.isNativeApp()
       ) {
-        console.log("Initializing iosrtc");
         try {
           cordova.plugins.iosrtc.registerGlobals();
         } catch (error) {
@@ -181,7 +165,6 @@ export class AppComponent {
         }
       }
 
-      console.log("router ", this.router, this.router.url);
       if (!this.testRoute) {
         this.redirectToLogin();
       }
@@ -193,8 +176,8 @@ export class AppComponent {
         }
 
         NativeAudio.preload({
-          assetId:'ringSound', 
-          assetPath: notificationFile, 
+          assetId:'ringSound',
+          assetPath: notificationFile,
           // volume: 1,
           audioChannelNum: 1,
           isUrl: false
@@ -204,10 +187,44 @@ export class AppComponent {
             console.log("audio loaded ", r);
           },
           (err) => {
-            console.log("error loading sample here", err);            
+            console.log("error loading sample here", err);
           }
           );
     });
+  }
+
+  async presentToast(message: string, className: string, refreshButton: boolean) {
+    if (this.toast) {
+      await this.toast.dismiss();
+    }
+    const refreshButtonText = this.translate.instant('common.refresh');
+    let button: ToastButton = {
+      side: 'end',
+      icon: 'close',
+      role: 'cancel',
+      cssClass: 'close-button',
+    }
+    if (refreshButton) {
+      button = {
+        side: 'end',
+        text: refreshButtonText,
+        role: 'info',
+        handler: () => {
+          window.location.reload();
+        },
+      }
+    }
+
+    this.toast = await this.toastController.create({
+      message,
+      position: 'bottom',
+      cssClass: className,
+      buttons: [
+        button
+      ]
+    });
+    this.toast.present();
+
   }
 
   initServices(r?) {
@@ -216,12 +233,28 @@ export class AppComponent {
     this.consultationService.init(r);
 
     this.callService.getCall().subscribe((e) => {
-      console.log("get call ", e);
-
       this.consultation = e;
       this.consultation.id = e._id;
       this.callRunning = true;
     });
+
+    this.socketEventsService.connectionSub().subscribe((status) => {
+      if (
+          status === "connect_failed" &&
+          this.lastConnectionStatus !== "connect_failed"
+      ) {
+        this.lastConnectionStatus = "connect_failed";
+        setTimeout(() => {
+          this.presentToast(this.translate.instant("common.connectionFailed"), 'red-toast', true);
+        }, 100);
+      } else if (status === "connect") {
+        if (this.toast && this.lastConnectionStatus === "connect_failed") {
+          this.presentToast(this.translate.instant('common.reconnected'), 'green-toast', false)
+        }
+        this.lastConnectionStatus = "connect";
+      }
+    });
+
     // incoming call
   }
 

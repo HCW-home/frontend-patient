@@ -5,11 +5,11 @@
 
 $font-path: "../assets/fonts";
 
-$background-image-path: "/icons/background.jpg";
-$background-image-2x-path: "/background@2x.jpg";
 :root {
   /** primary **/
-  --ion-color-primary: #266eb7;
+  --blue-bg-color: #fafafa;
+  --ion-color-primary: #0072bb;
+  //--ion-color-primary: #266EB7;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -41,7 +41,7 @@ $background-image-2x-path: "/background@2x.jpg";
   --ion-color-success-tint: #28e070;
 
   /** warning **/
-  --ion-color-warning: ##ffcd00;
+  --ion-color-warning: #ffcd00;
   --ion-color-warning-rgb: 255, 206, 0;
   --ion-color-warning-contrast: #ffffff;
   --ion-color-warning-contrast-rgb: 255, 255, 255;
@@ -81,19 +81,4 @@ $background-image-2x-path: "/background@2x.jpg";
   // --fc:#CCCCCC;
   --ion-color-light-tint: #f5f6f9;
 
-  --blue-bg-color: #0072bb;
-}
-@mixin backgroundMixin($hasBackgroundImage) {
-  @if $background-image-path {
-    //do something
-    background-image: url($background-image-path);
-  } @else {
-    background-image: unset !important;
-  }
-  @if $background-image-2x-path {
-    //do something
-    background-image: url($background-image-2x-path);
-  } @else {
-    background-image: unset !important;
-  }
 }

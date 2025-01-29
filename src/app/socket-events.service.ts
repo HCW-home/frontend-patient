@@ -1,18 +1,16 @@
-import { Injectable } from '@angular/core'
-import { Observable, Subject } from 'rxjs'
-import { environment } from '../environments/environment'
-// import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx'
+import {Injectable, Injector} from "@angular/core";
+import {AuthService} from "./auth/auth.service";
+import { Subject } from 'rxjs'
 import { LocalNotifications } from '@capacitor/local-notifications'
-
-
 import { GlobalVariableService } from './global-variable.service'
 
-// declare var io: any
 declare var socket: any;
 import io from 'socket.io-client';
 import sailsIOClient from 'sails.io.js'
 const sailsIo = sailsIOClient(io);
 sailsIo.sails.autoConnect = false;
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -28,17 +26,20 @@ export class SocketEventsService {
   public newConsultationSubj: Subject<any> = new Subject()
   public endCallSubj: Subject<any> = new Subject()
 
+  private connection: Subject<String> = new Subject()
 
   constructor(
-    // private localNotifications: LocalNotifications,
-    private globalVariableService: GlobalVariableService,
+      private injector: Injector,
+      private globalVariableService: GlobalVariableService,
   ) { }
 
   async init(currentUser, cb) {
-    console.log('init socket ', currentUser)
-
     // Don't need to reset the socket if the user is still the same...
     if (this.socket && currentUser && this.user) {
+    if (currentUser.token === this.user.token) {
+      this.reconnect(() => {});
+      return
+    }
       if (currentUser.id === this.user.id) {
         return
       }
@@ -68,14 +69,12 @@ export class SocketEventsService {
       this.disconnect()
       return
     }
-    this.user = currentUser
+    this.user = currentUser;
     sailsIo.sails.query = `token=${currentUser.token}`
     sailsIo.sails.headers = {
       id: currentUser.id,
       'x-access-token': currentUser.token,
     }
-    console.log('WEBSOCKET CONNECT', sailsIo.sails.headers)
-
     this.socket = sailsIo.sails.connect(this.globalVariableService.getHostValue(), {
       reconnection: true,
       reconnectionDelay: 1000,
@@ -90,9 +89,53 @@ export class SocketEventsService {
       })
     })
 
-    // this.localNotifications.on('click').subscribe((e) => {
-    //   console.log('notification event,  ', e)
-    // })
+    this.socket.on('error', (err) => {
+      this.connection.next('connect_failed')
+      console.info('Error connecting to server', err)
+    })
+
+    this.socket.on('disconnect', () => {
+      console.info('Disconnect from server')
+    })
+
+    this.socket.on('reconnect', (number) => {
+      this.connection.next('connect')
+      console.info('Reconnected to server', number)
+    })
+
+    this.socket.on('reconnect_attempt', () => {
+      this.connection.next('connect_failed')
+      console.info('Reconnect Attempt')
+    })
+
+    this.socket.on('reconnecting', (number) => {
+      console.info('Reconnecting to server', number)
+      this.injector.get(AuthService).verifyRefreshToken().subscribe({
+        next: (res) => {}, error: (err) => {
+          if (err.status === 401) {
+            this.injector.get(AuthService).logOutNurse();
+          }
+        }
+      })
+      if (number > 9) {
+        this.injector.get(AuthService).logOutNurse();
+      }
+    })
+
+    this.socket.on('reconnect_error', (err) => {
+      this.connection.next('connect_failed')
+      console.info('Reconnect Error', err)
+    })
+
+    this.socket.on('reconnect_failed', () => {
+      this.connection.next('connect_failed')
+      console.info('Reconnect failed')
+    })
+
+    this.socket.on('connect_error', () => {
+      this.connection.next('connect_failed')
+      console.info('connect_error')
+    })
   }
 
   reconnect(cb) {
@@ -100,11 +143,12 @@ export class SocketEventsService {
       return cb()
     }
     this.disconnect()
+    const currentUser = this.injector.get(AuthService).currentUserValue;
 
-    sailsIo.sails.query = `token=${this.user.token}`
+    sailsIo.sails.query = `token=${currentUser.token}`
     sailsIo.sails.headers = {
-      id: this.user.id,
-      'x-access-token': this.user.token,
+      id: currentUser.id,
+      'x-access-token': currentUser.token,
     }
 
     this.socket = sailsIo.sails.connect(this.globalVariableService.getHostValue(), {
@@ -122,24 +166,16 @@ export class SocketEventsService {
     })
   }
 
-  listenToEvents() {
-    // this.socket.on('newMessage', (e) => {
-    //   if (e.data.type !== 'videoCall' && e.data.type !== 'audioCall') {
-    //     console.log('The message', e.data)
-    //     this.localNotifications.schedule({
-    //       id: 1,
-    //       title: e.data.text ? e.data.text : 'New message',
-    //       sound:  'file://sound.mp3',
-    //       text: '',
-    //       foreground: true
-    //     })
-    //   }
+  updateConnectionStatus(status) {
+    this.connection.next(status)
+  }
+  connectionSub(): Subject<any> {
+    return this.connection
+  }
 
-    //   this.messageSubj.next(e)
-    // })
+  listenToEvents() {
     this.socket.on('newMessage', (e) => {
       if (e.data.type !== 'videoCall' && e.data.type !== 'audioCall') {
-        console.log('The message', e.data)
         LocalNotifications.schedule({
           notifications:[{
             title: e.data.text ? e.data.text : 'New message',
@@ -214,5 +250,9 @@ export class SocketEventsService {
       return
     }
     return this.socket.disconnect()
+  }
+
+  isSocketConnected(): boolean {
+    return this.socket && this.socket.isConnected();
   }
 }

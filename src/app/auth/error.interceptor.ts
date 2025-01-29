@@ -1,34 +1,29 @@
-import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { AuthService } from './auth.service';
+import {Injectable} from "@angular/core";
+import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from "@angular/common/http";
+import {Observable, throwError} from "rxjs";
+import {catchError} from "rxjs/operators";
+import {AuthService} from "./auth.service";
+import {SocketEventsService} from "../socket-events.service";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private _socketEventsService: SocketEventsService
+    ) {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(request).pipe(catchError(err => {
-      console.log('error with request ...............................', err);
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        return next.handle(request).pipe(catchError(err => {
 
-      // if (err.url && err.url.indexOf('login-cert') >= 0) {
+            if (err.statusText === "Unknown Error") {
+                this._socketEventsService.updateConnectionStatus("connect_failed");
+            }
 
-      // return throwError(err);
+            const refreshTokenEndpoint = "/refresh-token";
 
-      // }
-      // if (err.status === 401) {
+            if (err.status === 401 && request.url.includes(refreshTokenEndpoint)) {
+                this.authService.logOutNurse();
+            }
 
-      //   // auto logout if 401 response returned from api
-      //   this.authService.logout();
-      //   this.router.navigate(['/login']);
-      //   //   alert("La session sur cet appareil n'est plus valide, l'application va redémarrer.")
-      // }
-
-      // const error = err.error.message || err.statusText;
-      console.log('error ', err);
-      return throwError(err);
-    }));
-  }
+            return throwError(err);
+        }));
+    }
 }

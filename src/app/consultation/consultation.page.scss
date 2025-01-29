@@ -1,38 +1,67 @@
-@import "src/theme/variables.scss";
+@import "theme/variables.scss";
+
+ion-content {
+  background-color: var(--blue-bg-color);
+  scrollbar-track-color: #f1f1f1;
+  --keyboard-offset: bottom;
+  --padding-bottom: 0;
+}
+
+ion-toolbar {
+  --background: #FFFFFF;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 50px;
+}
 
 .jumbotron {
+  padding: 8px;
   color: #ffffff;
-  height: 240px;
-  @include backgroundMixin($background-image-path);
-  background-color: var(--ion-color-primary) !important;
-  background-position: center;
-  border-radius: 0px;
+  border-radius: 0;
   text-align: center;
+  background-position: center;
+  background-color: var(--ion-color-primary) !important;
 }
-::ng-deep {
-  html[data-theme="accessibility"] {
-    .jumbotron {
-      background-image: unset !important;
-    }
-  }
-}
-.jumbotron.await {
-  height: 283px;
+
+.closedWrapper {
+  background-color: var(--ion-color-primary) !important;
 }
 
 ion-card-title {
-  color: #fff;
+  color: #FFFFFF;
 }
+
 .title {
   text-align: center;
   margin-top: 1rem;
 }
+
 ion-card-content {
   padding-top: 0;
 }
+
 .subtitle {
   text-align: center;
   font-size: 1em;
+}
+
+.backToDashboard {
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+  margin-top: 0.5rem;
+  text-decoration: underline;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-decoration-color: #FFFFFF;
 }
 
 .subtitle.doctor {
@@ -43,24 +72,10 @@ ion-card-content {
   }
 }
 
-.video-btn {
-  display: block;
-  margin: 30px 15% 12px 15%;
-  --background: #ffffff;
-  color: var(--ion-color-primary);
-  font-size: 0.8em;
-  font-weight: bold;
-  --border-radius: 36px;
-}
 
 .bubble {
   border-radius: 10px;
   word-break: break-word;
-  // min-width:270px;
-  // display: flex;
-  // flex: 1 1 300px;
-  // max-width: 80%;
-  // min-width: 0;
 }
 
 .incoming > ion-row > ion-col > .bubble a{
@@ -75,6 +90,7 @@ ion-card-content {
 span.msg-time {
   margin-top: 6px;
   font-size: 0.43em;
+  padding-left: 5px;
   color: rgb(58, 58, 58);
 }
 
@@ -83,20 +99,9 @@ row.msg-time {
   flex-direction: row-reverse;
 }
 
-.outgoing,
-.incoming {
-  // min-width:270px;
-  // max-width: 50%;
-}
-
 .outgoing > ion-row > ion-col > .bubble {
   color: rgb(58, 58, 58);
-  background-color: #ffffff;
-
-  // margin-left: calc(calc(2 / var(--ion-grid-columns, 12)) * 100%);
-  // flex: 0 0 calc(calc(10 / var(--ion-grid-columns, 12)) * 100%);
-  // width: calc(calc(10 / var(--ion-grid-columns, 12)) * 100%);
-  // max-width: calc(calc(10 / var(--ion-grid-columns, 12)) * 100%);
+  background-color: #FFFFFF;
 }
 
 .outgoing ion-row.msg-time {
@@ -107,125 +112,57 @@ row.msg-time {
   text-align: right;
 }
 
-div.input {
-  // position: fixed;
-  bottom: 0px;
-  width: 100%;
-  // height: 60px;
+.input-container {
   display: flex;
-  background-color: #ffffff;
-}
-
-div.input > ion-grid > ion-row > ion-col.ico {
-  height: 60px;
-  padding: 0px;
-  display: flex;
+  padding: 10px;
   align-items: center;
-  text-align: center;
-  vertical-align: middle;
-}
-.ico-left,
-.ico-right {
-  justify-content: center;
-  height: 100%;
-  ion-button {
-    width: 100%;
-    height: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #ccc;
+
+  ion-textarea {
+    --padding-start: 6px;
+    --padding-end: 6px;
   }
-}
-div.input > ion-grid > ion-row > ion-col.ico-left {
-  border-right: 1px solid #e4e4e4;
+
 }
 
-div.input > ion-grid > ion-row > ion-col.ico-left > ion-button {
-  --background: #ffffff;
-  color: black;
-  border: none;
-  -border-style: none;
-  --border-radius: none;
-  --border-width: 0;
-  --box-shadow: none;
-  margin: 0px;
-  padding-top: 0px;
-  max-width: 100%;
+.attachment-wrapper {
+  border-right: 1px solid #e0eafd;
+  padding-right: 10px;
+  padding-left: 10px;
+  cursor: pointer;
 }
 
-div.input > ion-grid > ion-row > ion-col.ico-right > ion-button {
-  color: #ffffff;
-  --background: black;
-  border: none;
-  -border-style: none;
-  --border-radius: 40px;
+.attachment-wrapper ion-icon {
   height: 40px;
   width: 40px;
-  --border-width: 0;
-  --box-shadow: none;
-  margin: 0px;
-  padding-top: 0px;
-  font-size: 10px;
-  // transition: all .2s ease-out;
-
-  margin: auto;
 }
 
-.mic-recording {
-  color: #ffffff;
-  --background: var(--ion-color-primary) !important;
-  border: none;
-  -border-style: none;
-  --border-radius: 60px !important;
-  height: 58px !important;
-  width: 58px !important;
-  --border-width: 0;
-  --box-shadow: none;
-  margin: 0px;
-  padding-top: 0px;
-  font-size: 10px;
-  margin: auto;
-  transition: all 0.2s ease-in;
-  height: 120px !important;
-  width: 120px !important;
-  right: -7px;
-  position: absolute;
+.send-button-wrapper {
+  padding-right: 10px;
 }
 
-div.input > ion-grid > ion-row > ion-col {
-  // height: 60px;
-  padding: 0px;
-  padding-top: 8px;
-}
-
-div.input > ion-grid > ion-row > ion-col > ion-textarea {
-  padding: 0;
-}
-
-div.input > ion-grid > ion-row > ion-col > ion-icon {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 24px;
+.send-button {
+  --border-radius: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .cancel-btn {
   margin-top: 15px;
+  margin-bottom: 15px;
   --border-radius: 30px;
   --background: white;
   color: var(--ion-color-primary);
-  // margin-left: 30%;
   display: inline-block;
-  
 }
 
-@media screen and (max-width: 640px) {
-  .jumbotron,
-  .jumbotron.await {
-    height: 300px;
-  }
-}
 .join-call-btn-container {
   display: flex;
   font-size: 0.6em;
   justify-content: center;
 }
+
 .keep-open {
   color: white;
   text-align: center;
@@ -234,10 +171,12 @@ div.input > ion-grid > ion-row > ion-col > ion-icon {
   margin: 0;
   font-weight: bold;
 }
+
 #chatHeader {
   text-align: center;
   font-size: 0.9em;
 }
+
 ion-icon[name="attach"] {
   min-width: 32px;
 }
@@ -262,7 +201,10 @@ ion-icon[name="attach"] {
 
 .outgoing {
   .chat-text-container {
-    flex-direction: row-reverse !important;
+    flex-direction: row-reverse;
+  }
+  .msg-time {
+    text-align: end;
   }
 }
 
@@ -280,6 +222,16 @@ ion-icon[name="attach"] {
     #chatHeader {
       text-align: left;
       font-size: 1em;
+
+    }
+
+    .outgoing {
+      .chat-text-container {
+        flex-direction: row !important;
+      }
+      .msg-time {
+        text-align: start !important;
+      }
     }
     .msg-time {
       font-size: 0.8em !important;
@@ -292,6 +244,14 @@ ion-icon[name="attach"] {
     }
     .keep-open {
       padding-left: 20px;
+    }
+  }
+}
+
+::ng-deep {
+  html[data-theme="accessibility"] {
+    .jumbotron {
+      background-image: unset !important;
     }
   }
 }

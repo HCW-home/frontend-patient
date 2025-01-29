@@ -1,0 +1,102 @@
+ion-content {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--blue-bg-color);
+
+  .auth-wrapper {
+    height: calc(100% - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .authenticate {
+    color: rgba(0, 0, 0, 1);
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .label-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .label {
+    color: black;
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.01px;
+    text-decoration: underline;
+    text-decoration-color: black;
+    cursor: pointer;
+  }
+
+  .login-btn {
+    color: #FFFFFF;
+    text-decoration: none;
+  }
+
+  p {
+    font-weight: 500;
+  }
+
+  .container {
+    padding: 24px;
+  }
+
+  .center {
+    @media (max-width: 598px) {
+      height: unset
+    }
+  }
+
+  .custom-card {
+    width: 80%;
+    display: flex;
+    height: 80%;
+    @media (max-width: 598px) {
+      width: 100%;
+      flex-direction: column;
+    }
+
+  }
+
+  .left-side {
+    width: 50%;
+    background: var(--ion-color-primary);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    @media (max-width: 598px) {
+      width: 100%;
+    }
+  }
+
+  .right-side {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    @media (max-width: 598px) {
+      width: 100%;
+    }
+  }
+
+  markdown ::ng-deep {
+
+    a {
+      color: #FFFFFF;
+    }
+  }
+
+
+}

@@ -1,16 +1,11 @@
-import { AuthService } from "./../auth/auth.service";
-import { Component, OnInit, Directive  } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { AuthService } from "../auth/auth.service";
+import { Component, OnInit  } from "@angular/core";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import { ConsultationService } from "../consultation.service";
 import { ConfigService } from "../config.service";
 import { Platform } from "@ionic/angular";
-import { environment } from "../../environments/environment";
 import { App } from '@capacitor/app';
-
-
-declare let cordova: any;
-
 
 @Component({
   selector: "app-closing-screen",
@@ -18,37 +13,43 @@ declare let cordova: any;
   styleUrls: ["./closing-screen.page.scss"],
 })
 export class ClosingScreenPage implements OnInit {
-  // The ID of the consultation that just has been closed
   private consultationId;
-
-  // Whether or not the feedback has been submitted (i.e. the request is ongoing)
   public feedbackSubmitted: boolean = false;
-
-  // Whether or not the feedback form has been saved
+  public loading: boolean = true;
   public feedbackSaved: boolean = false;
-
-  // The current rating selected by the user () or null if none selected
+  public feedbackEmpty: boolean = false;
   public userRating: string = null;
-
-  // The feedback comment written by the user
   public userComment: string = "";
-
-  // The list of rating values
   public ratings: string[] = ["good", "ok", "bad"];
 
   currentUser;
   constructor(
-    private activeRoute: ActivatedRoute,
-    private consultationService: ConsultationService,
+    private router: Router,
+    public platform: Platform,
     private authService: AuthService,
+    private activeRoute: ActivatedRoute,
     public configService: ConfigService,
-    public platform: Platform
+    private consultationService: ConsultationService,
   ) {}
 
   ngOnInit() {
     this.currentUser = this.authService.currentUserValue;
-    // Get the consultation ID from the route
     this.consultationId = this.activeRoute.snapshot.params.id;
+    this.getConsultation();
+  }
+
+  getConsultation() {
+    this.consultationService
+        .getConsultation(this.consultationId).subscribe({
+      next: (res) => {
+        this.feedbackSaved = !!res.queue?.disableFeedback;
+        this.feedbackEmpty = !!res.queue?.disableFeedback;
+        this.loading = false;
+      }, error: () =>{
+
+      }
+    })
+
   }
 
   /**
@@ -64,17 +65,8 @@ export class ClosingScreenPage implements OnInit {
   }
 
   closeApp() {
-    console.log('hello');
-    
     localStorage.clear();
     App.exitApp();
-  }
-
-  /**
-   * Check if the user is running on mobile (either web or native app).
-   */
-  isMobileUser() {
-    return this.platform.is("ios") || this.platform.is("android");
   }
 
   /**
@@ -90,7 +82,6 @@ export class ClosingScreenPage implements OnInit {
    */
   onFormSubmit() {
 
-
     if (this.feedbackSubmitted || !this.userRating == null) {
       return;
     }
@@ -103,7 +94,12 @@ export class ClosingScreenPage implements OnInit {
       )
       .subscribe(
         (res) => {
-          this.feedbackSaved = true;
+          if (this.currentUser.role === 'nurse' || this.currentUser.role === 'admin') {
+            this.router.navigate([`/dashboard`]);
+          } else {
+            this.feedbackEmpty = !this.userRating && !this.userComment;
+            this.feedbackSaved = true;
+          }
         },
         (err) => {
           this.feedbackSubmitted = false;

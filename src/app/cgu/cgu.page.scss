@@ -1,18 +1,5 @@
-@import "src/theme/variables.scss";
+@import "theme/variables.scss";
 
-.wrap {
-  width: 100%;
-  min-height: 100%;
-  @include backgroundMixin($background-image-path);
-  background-color: var(--ion-color-primary) !important;
-  background-size: 100%;
-  background-position: center;
-  background-attachment: fixed;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 20px;
-}
 ::ng-deep {
   html[data-theme="accessibility"] {
     .wrap {
@@ -20,37 +7,26 @@
     }
   }
 }
+
 .container {
   display: block;
   margin: 30px auto;
   width: 70%;
-  color: #ffffff;
 }
 
-li {
-  margin-top: 21.5339;
-  margin-bottom: 21.5339;
+.custom-card {
+  width: 80%;
+  height: 80%;
+  overflow: auto;
+  @media (max-width: 598px) {
+    height: 100%;
+    width: 100%;
+  }
 }
 
-markdown ::ng-deep { 
-  ol {
-    counter-reset: item;
-    list-style: none;
-  }
-  li:before { 
-    content: counters(item, ".") ". ";
-    counter-increment: item;
-    margin-left: -40px;
-    margin-right: 10px;
-  }
-
-  li > p {
-    display: inline;
-  }
-  
-  li {
-    padding-top: 19px;
-    padding-bottom: 10px;
+markdown ::ng-deep {
+  a {
+    color: var(--ion-color-primary);
   }
 }
 
@@ -63,37 +39,6 @@ markdown ::ng-deep {
 .back {
   text-align: center;
   display: block;
-  margin-top: 10px;
-}
-
-.back-link {
-  background: #fff;
-  color: #006eb5;
-  text-decoration: none;
-  border-radius: 60px;
-  padding: 5px 15px 5px 15px;
-  margin-top: 30px;
-}
-
-a {
-  color: #fff;
-}
-h3 {
-  margin: 40px 0 20px;
-}
-table {
-  border-collapse: collapse;
-  margin-bottom: 40px;
-
-  tr {
-    border-bottom: 1px solid #2a99e6;
-  }
-  td {
-    padding: 10px;
-  }
-  .label {
-    font-weight: 700;
-  }
 }
 
 @media screen and (max-width: 800px) {
@@ -108,4 +53,29 @@ table {
       padding: 4px;
     }
   }
+}
+
+#hhpCountrySelect {
+  margin-top: 10px;
+  cursor: pointer;
+  left: calc(50% - 21px);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: baseline;
+
+  .sl-container {
+    display: flex;
+    align-items: center;
+    height: 42px;
+    position: relative;
+  }
+
+  .lang {
+    background-color: #FFFFFF;
+    outline: none;
+    border: 0;
+  }
+
 }

@@ -39,7 +39,6 @@ export class RequestConsultationComponent implements OnInit {
         birthDate: this.birthDate,
         IMADTeam: this.IMADTeam
       }).subscribe(res => {
-        console.log('res ', res);
         this.modalController.dismiss();
         this.router.navigate(['/consultation/' + res.id]);
 
