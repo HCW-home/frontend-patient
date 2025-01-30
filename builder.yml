@@ -3,6 +3,7 @@ flows:
 - deb
 - publish-github
 - sonar
+- ionic
 options:
  distrib: "ubuntu"
  codename: "focal"
