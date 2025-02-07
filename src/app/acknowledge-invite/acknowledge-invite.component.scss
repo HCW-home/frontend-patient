@@ -4,7 +4,7 @@
 }
 
 .custom-card {
-  width: 80%;
+  width: 400px;
   @media (max-width: 598px) {
     width: 100%;
   }
@@ -17,15 +17,32 @@
       font-size: 24px;
       font-weight: 500;
       margin-bottom: 8px;
-      align-items: center;
+      align-items: flex-start;
       flex-direction: column;
 
-      ion-icon {
+      .success-icon {
         width: 50px;
-        color: #06d362;
         height: 50px;
+        color: #06d362;
+        margin-right: 12px;
+      }
+
+      .failure-icon {
+        width: 50px;
+        height: 50px;
+        color: #d25555;
+        margin-right: 12px;
+      }
+
+      .description {
+        font-size: 14px;
+
       }
     }
+
+  .btn {
+    margin: 0 !important;
+  }
 
 }
 

@@ -234,7 +234,9 @@
     "acknowledgeInvite": {
         "testButton": "Test Call",
         "successMessage": "Success!",
-        "subTitle": "Thank you for acknowledging this invite! You can now test your browser compatibility.\n"
+        "subTitle": "Thank you for acknowledging this invite! You can now test your browser compatibility.",
+        "failureMessage": "Invalid",
+        "errorDescription": "This acknowledgement link is no longer valid or has already been used."
     },
     "metadata": {
         "Age": "Age",

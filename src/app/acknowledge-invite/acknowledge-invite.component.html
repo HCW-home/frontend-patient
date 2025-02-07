@@ -7,18 +7,41 @@
                         @if (success) {
                             <div class="messages-wrapper">
                                     <div class="messages">
-                                        <ion-icon name="checkmark-circle-outline"></ion-icon>
-                                        <h1>{{ 'acknowledgeInvite.successMessage' | translate}}</h1>
-                                        <p>{{ 'acknowledgeInvite.subTitle' | translate}}</p>
+                                        <div class="d-flex ion-align-items-center">
+                                            <h1>{{ 'acknowledgeInvite.successMessage' | translate}}</h1>
+                                        </div>
+                                        <div class="d-flex ion-align-items-center">
+                                            <ion-icon class="success-icon" name="checkmark-circle-outline"></ion-icon>
+                                            <p class="description">{{ 'acknowledgeInvite.subTitle' | translate}}</p>
+                                        </div>
                                     </div>
-                                </div>
-
                                 <button
                                         class="btn green proceed-btn big"
                                         type="button"
                                         (click)="testCall()">
                                     {{ 'acknowledgeInvite.testButton' | translate }}
                                 </button>
+                                </div>
+                        }
+                        @if (error) {
+                            <div class="messages-wrapper">
+                                <div class="messages">
+                                    <div class="d-flex ion-align-items-center">
+                                        <h1 class="m-0">{{ 'acknowledgeInvite.failureMessage' | translate}}</h1>
+
+                                    </div>
+                                    <div class="d-flex ion-align-items-center">
+                                        <ion-icon class="failure-icon" name="close-circle"></ion-icon>
+                                        <p class="description">{{ 'acknowledgeInvite.errorDescription' | translate}}</p>
+                                    </div>
+                                </div>
+                                <button
+                                        class="btn green proceed-btn big"
+                                        type="button"
+                                        (click)="testCall()">
+                                    {{ 'acknowledgeInvite.testButton' | translate }}
+                                </button>
+                            </div>
                         }
                     </div>
                 </div>
