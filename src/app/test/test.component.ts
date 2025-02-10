@@ -282,8 +282,6 @@ export class TestComponent implements OnInit, OnDestroy {
         this.loading = false;
         this.submitted = false;
 
-        this.router.navigate([`/test-call`]);
-
         this.handleToken(inviteToken, true);
     }
 
