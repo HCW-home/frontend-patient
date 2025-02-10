@@ -114,15 +114,17 @@ export class AppComponent {
     App.addListener('appUrlOpen', data => {
       const url = new URL(data.url);
       const token = url.searchParams.get('invite')
+      const backendUrl = url.searchParams.get('backendUrl')
 
       if (/attachment/.test(data.url)) {
         return;
       }
 
-      if (localStorage.getItem("inviteToken") !== token) {
+      if (localStorage.getItem("inviteToken") !== token || !backendUrl) {
         this.authService.logout();
       }
 
+      localStorage.setItem("backendUrl", backendUrl);
       localStorage.setItem("inviteToken", token);
       this.authService.setInviteToken(token);
       this.router.navigate(["/login"], {
