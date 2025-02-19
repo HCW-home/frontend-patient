@@ -46,10 +46,10 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-    <string>We need access to your camera.</string>
+    <string>Camera access is required.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>We need access to your photo library.</string>
+    <string>Photo library access is required.</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>We need access to your photo library.</string>
+    <string>Photo library access is required.</string>
 </dict>
 </plist>
