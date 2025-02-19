@@ -203,8 +203,7 @@ export class AppComponent {
     let button: ToastButton = {
       side: 'end',
       icon: 'close',
-      role: 'cancel',
-      cssClass: 'close-button',
+      role: 'info',
     }
     if (refreshButton) {
       button = {
