@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'acknowledge-invite', loadChildren: () => import('./acknowledge-invite/acknowledge-invite.module').then(m => m.AcknowledgeInviteModule) },
   { path: 'consultation/:id', loadChildren: () => import('./consultation/consultation.module').then(m => m.ConsultationPageModule), canActivate: [DiagnosticGuard, AuthGuard] },
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule), canActivate: [DiagnosticGuard] },
+  { path: 'inv', loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule), canActivate: [DiagnosticGuard] },
   { path: 'closing-screen/:id', loadChildren: () => import('./closing-screen/closing-screen.module').then(m => m.ClosingScreenPageModule) },
   { path: 'cgu', loadChildren: () => import('./cgu/cgu.module').then(m => m.CguPageModule) },
   { path: 'requester', loadChildren: () => import('./request/request.module').then(m => m.RequestPageModule) },

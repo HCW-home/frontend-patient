@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.21) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.23) UNRELEASED; urgency=medium
 
   [ Olivier Bitsch ]
   * Update changelog for 0.5.17 release
@@ -11,7 +11,20 @@ hcw-athome-patient (0.5.21) UNRELEASED; urgency=medium
   * hide caller name improvements
   * add subtitle in acknowledge page
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 27 Jan 2025 11:24:05 +0000
+  [ Olivier Bitsch ]
+  * Translated using Weblate (French)
+  * Translated using Weblate (German)
+
+  [ Gor Grigoryan ]
+  * update am language
+
+  [ Weblate ]
+  * Update translation files
+
+  [ Gor Grigoryan ]
+  * update acknowledge invite page to show error case
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Fri, 07 Feb 2025 09:54:15 +0000
 
 hcw-athome-patient (0.5.17) focal; urgency=medium
 

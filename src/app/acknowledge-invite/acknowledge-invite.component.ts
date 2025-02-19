@@ -9,6 +9,7 @@ import {InviteService} from "../invite.service";
 })
 export class AcknowledgeInviteComponent implements OnInit {
     success = false;
+    error = false;
 
     constructor(
         private router: Router,
@@ -43,16 +44,14 @@ export class AcknowledgeInviteComponent implements OnInit {
                             next: () => {
                             },
                             error: () => {
-                                this.success = false;
-                                this.router.navigate(['/login']);
+                                this.error = true;
                             }
                         });
                     } else {
-                        this.success = false;
-                        this.router.navigate(['/login']);
+                        this.error = true;
                     }
                 }, error: (err) => {
-                    this.router.navigate(['/login']);
+                    this.error = true;
                 }
             })
 
