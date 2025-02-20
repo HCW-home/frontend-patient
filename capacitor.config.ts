@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.hug_at_home',
+  appId: 'com.iabsis.hcwathome',
   appName: 'hug_at_home',
   webDir: 'www',
   bundledWebRuntime: false,
