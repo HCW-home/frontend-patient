@@ -7,6 +7,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // When running from Xcode in debug mode, enable webView inspection 5 seconds after startup
+        #if DEBUG
+          if #available(macOS 13.3, iOS 16.4, tvOS 16.4, *) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                      if let vc = self.window?.rootViewController as? CAPBridgeViewController {
+                          vc.bridge?.webView?.isInspectable = true;
+                      }
+                }
+          }
+        #endif
         // Override point for customization after application launch.
         return true
     }

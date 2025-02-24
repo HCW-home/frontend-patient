@@ -1,5 +1,5 @@
 import { GlobalVariableService } from "./global-variable.service";
-import { Component } from "@angular/core";
+import {Component, NgZone} from "@angular/core";
 
 import { Platform, ToastController, ToastButton } from "@ionic/angular";
 import { SplashScreen } from '@capacitor/splash-screen';
@@ -41,7 +41,8 @@ export class AppComponent {
     private router: Router,
     public translate: TranslateService,
     private languageService: LanguageService,
-    public globalVariableService: GlobalVariableService
+    public globalVariableService: GlobalVariableService,
+    private zone: NgZone
   ) {
     const parsedUrl = new URL(window.location.href);
     this.inviteToken = parsedUrl.searchParams.get("invite");
@@ -111,22 +112,26 @@ export class AppComponent {
   }
   async initializeApp() {
 
-    App.addListener('appUrlOpen', data => {
-      const url = new URL(data.url);
-      const token = url.searchParams.get('invite')
+    App.addListener("appUrlOpen", data => {
+      this.zone.run(() => {
+        const url = new URL(data.url);
+        const token = url.searchParams.get("invite");
+        const host = url.searchParams.get("host");
 
-      if (/attachment/.test(data.url)) {
-        return;
-      }
+        if (/attachment/.test(data.url)) {
+          return;
+        }
 
-      if (localStorage.getItem("inviteToken") !== token) {
-        this.authService.logout();
-      }
+        if (localStorage.getItem("inviteToken") !== token || !host) {
+          this.authService.logout();
+        }
 
-      localStorage.setItem("inviteToken", token);
-      this.authService.setInviteToken(token);
-      this.router.navigate(["/login"], {
-        queryParams: { invite: token },
+        localStorage.setItem("host", host);
+        localStorage.setItem("inviteToken", token);
+        this.authService.setInviteToken(token);
+        this.router.navigate(["/login"], {
+          queryParams: {invite: token},
+        });
       });
     });
 
@@ -201,8 +206,7 @@ export class AppComponent {
     let button: ToastButton = {
       side: 'end',
       icon: 'close',
-      role: 'cancel',
-      cssClass: 'close-button',
+      role: 'info',
     }
     if (refreshButton) {
       button = {

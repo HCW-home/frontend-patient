@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">HCW@Home</string>
-    <string name="title_activity_main">HCW@Home</string>
-    <string name="package_name">com.hug_at_home</string>
-    <string name="custom_url_scheme">com.hug_at_home</string>
+    <string name="app_name">hug_at_home</string>
+    <string name="title_activity_main">hug_at_home</string>
+    <string name="package_name">com.iabsis.hcwathome</string>
+    <string name="custom_url_scheme">com.iabsis.hcwathome</string>
 </resources>

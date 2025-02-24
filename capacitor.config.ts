@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.hug_at_home',
+  appId: 'com.iabsis.hcwathome',
   appName: 'hug_at_home',
   webDir: 'www',
   bundledWebRuntime: false,
@@ -13,7 +13,16 @@ const config: CapacitorConfig = {
       "smallIcon": "ic_stat_icon_config_sample",
       "iconColor": "#488AFF",
       "sound": "beep.wav"
-    }
+    },
+    SplashScreen: {
+      launchShowDuration: 2000,
+      backgroundColor: "#ffffffff",
+      showSpinner: false,
+      androidSpinnerStyle: "small",
+      iosSpinnerStyle: "small",
+      splashFullScreen: true,
+      splashImmersive: true,
+    },
   },
   cordova: {
     preferences: {

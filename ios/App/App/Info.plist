@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>HCW@Home</string>
+        <string>hug_at_home</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -45,5 +45,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>Camera access is required.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Photo library access is required.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Photo library access is required.</string>
 </dict>
 </plist>
