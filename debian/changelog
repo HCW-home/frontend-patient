@@ -1,3 +1,13 @@
+hcw-athome-patient (0.5.26) UNRELEASED; urgency=medium
+
+  [ Aram ]
+  * android version upgrade
+
+  [ Gor Grigoryan ]
+  * ui fix in test call page
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Fri, 28 Feb 2025 15:32:26 +0000
+
 hcw-athome-patient (0.5.25) focal; urgency=medium
 
   [ Olivier Bitsch ]
