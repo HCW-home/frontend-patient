@@ -469,12 +469,11 @@ export class LoginPage implements OnInit {
     clearInterval(this.allowConsultationTimer);
   }
 
-  getCurrentUrl() {
-    const inviteToken = this.inviteToken ? this.inviteToken : this.inviteKey;
-    const safeInviteToken = inviteToken ? encodeURIComponent(inviteToken) : '';
-    const url = `${window.location.protocol}//${window.location.host}${safeInviteToken ? '?invite=' + safeInviteToken : ''}`;
-
-    return this.sanitizer.bypassSecurityTrustUrl(url);
+  getCurrentUrl(): string {
+    const rawToken = this.inviteToken || this.inviteKey;
+    const validToken = this.validateInviteToken(rawToken);
+    const safeInviteToken = validToken ? encodeURIComponent(validToken) : '';
+    return `${window.location.protocol}//${window.location.host}${safeInviteToken ? '?invite=' + safeInviteToken : ''}`;
   }
 
   clearError() {
@@ -523,7 +522,8 @@ export class LoginPage implements OnInit {
   }
 
     generateIcsBlob(date) {
-    const url = this.getCurrentUrl();
+      const sanitizeICSField = (str: string) => str.replace(/[\r\n]+/g, '');
+      const url = sanitizeICSField(this.getCurrentUrl());
 
     const event = `BEGIN:VCALENDAR
       VERSION:2.0
