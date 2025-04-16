@@ -20,9 +20,7 @@ const routes: Routes = [
         IonicModule,
         FormsModule,
         CommonModule,
-        TranslateModule.forChild({
-            defaultLanguage: 'en'
-        }),
+        TranslateModule,
         VideoRoomPageModule,
         RouterModule.forChild(routes),
     ],

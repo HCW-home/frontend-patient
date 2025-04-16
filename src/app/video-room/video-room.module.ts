@@ -19,9 +19,6 @@ import { TranslateModule } from "@ngx-translate/core";
         FormsModule,
         IonicModule,
         AngularDraggableModule,
-        TranslateModule.forChild({
-            defaultLanguage: 'en'
-        }),
         SharedModule,
         AngularDraggableModule,
     ],

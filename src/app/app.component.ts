@@ -12,7 +12,6 @@ import { NavigationEnd, Router } from "@angular/router";
 import { App } from '@capacitor/app';
 import { filter } from "rxjs/operators";
 import { TranslateService } from "@ngx-translate/core";
-import { LanguageService } from "./shared/services/language.service";
 
 declare var cordova;
 declare let window: any;
@@ -40,7 +39,6 @@ export class AppComponent {
     private toastController: ToastController,
     private router: Router,
     public translate: TranslateService,
-    private languageService: LanguageService,
     public globalVariableService: GlobalVariableService,
     private zone: NgZone
   ) {

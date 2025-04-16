@@ -13,9 +13,7 @@ import {TranslateModule} from "@ngx-translate/core";
         FormsModule,
         CommonModule,
         BrowserModule,
-        TranslateModule.forChild({
-            defaultLanguage: 'en'
-        }),
+        TranslateModule,
         ReactiveFormsModule,
     ],
     declarations: [

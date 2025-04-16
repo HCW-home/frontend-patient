@@ -8,8 +8,8 @@ export const DEFAULT_LANGUAGES = [
   'en', 'fr', 'es', 'ar', 'de', 'ta', 'ti', 'fa', 'ru', 'it', 'uk', 'hy'
 ];
 
-export function translateLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function translateLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
 }
 
 @NgModule({
@@ -22,7 +22,6 @@ export function translateLoaderFactory(http: HttpClient) {
         useFactory: translateLoaderFactory,
         deps: [HttpClient],
       },
-      isolate: false
     }),
   ],
   exports: [TranslateModule]

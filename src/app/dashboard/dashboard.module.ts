@@ -27,9 +27,7 @@ const routes: Routes = [
         FormsModule,
         SharedModule,
         CommonModule,
-        TranslateModule.forChild({
-            defaultLanguage: 'en'
-        }),
+        TranslateModule,
         VideoRoomPageModule,
         RouterModule.forChild(routes),
     ],

@@ -18,9 +18,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    TranslateModule.forChild({
-      defaultLanguage: 'en'
-    }),
+TranslateModule,
     RouterModule.forChild(routes),
   ],
   declarations: [FailurePage]

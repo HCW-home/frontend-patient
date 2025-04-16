@@ -23,9 +23,7 @@ const routes: Routes = [
     SharedModule,
     CommonModule,
     CommonModule,
-    TranslateModule.forChild({
-      defaultLanguage: 'en'
-    }),
+TranslateModule,
     RouterModule.forChild(routes),
   ],
   declarations: [TestComponent]

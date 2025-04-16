@@ -27,9 +27,7 @@ import {TranslateModule} from "@ngx-translate/core";
     imports: [
         CommonModule,
         IonicModule,
-        TranslateModule.forChild({
-            defaultLanguage: 'en'
-        }),
+        TranslateModule,
         MarkdownModule.forRoot()
     ],
     exports: [

@@ -9,7 +9,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule} from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { AngularDraggableModule } from 'angular2-draggable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
@@ -33,11 +33,17 @@ import { ConfigService } from './services/config.service';
 import { HugAngularLibModule } from 'hcw-stream-lib';
 import {CountrySelectPageModule} from "./register/country-select/country-select.module";
 
-import { I18nModule } from './i18n/i18n.module';
+import {DEFAULT_LANGUAGES} from "./i18n/i18n.module";
 
 import localeFr from '@angular/common/locales/fr';
 import localeDe from '@angular/common/locales/de';
 import localeEn from '@angular/common/locales/en';
+import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 registerLocaleData(localeFr);
 registerLocaleData(localeDe);
@@ -46,6 +52,14 @@ registerLocaleData(localeEn);
 
 @NgModule({
     imports: [
+        TranslateModule.forRoot({
+            defaultLanguage: 'en',
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
         BrowserModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
@@ -65,7 +79,6 @@ registerLocaleData(localeEn);
         VideoRoomPageModule,
         AngularDraggableModule,
         FormsModule,
-        I18nModule,
         HugAngularLibModule,
         SharedModule,
         CountrySelectPageModule,
@@ -84,6 +97,29 @@ registerLocaleData(localeEn);
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
         {provide: LOCALE_ID, useValue: "fr-FR"},
         ConfigService,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (configService: ConfigService, translateService: TranslateService) => () => configService.getConfig().toPromise().then(appConfig => {
+                const dynamicLanguages = appConfig?.patientLanguages?.length
+                    ? appConfig.patientLanguages
+                    : DEFAULT_LANGUAGES;
+
+                translateService.addLangs(dynamicLanguages);
+
+                const savedLang = localStorage.getItem('hhp-lang');
+                const browserLang = translateService.getBrowserLang();
+                const defaultLang = savedLang && dynamicLanguages.includes(savedLang)
+                    ? savedLang
+                    : dynamicLanguages.includes(browserLang)
+                        ? browserLang
+                        : dynamicLanguages[0];
+
+                translateService.setDefaultLang(defaultLang);
+                translateService.use(defaultLang);
+            }),
+            deps: [ConfigService, TranslateService],
+            multi: true
+        },
         {
             provide: APP_INITIALIZER,
             useFactory: (cs: ConfigService) => () => cs.getConfig(),

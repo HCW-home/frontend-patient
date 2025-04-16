@@ -21,9 +21,7 @@ const routes: Routes = [
         IonicModule,
         SharedModule,
         CommonModule,
-        TranslateModule.forChild({
-            defaultLanguage: 'en'
-        }),
+        TranslateModule,
         MarkdownModule.forRoot(),
         RouterModule.forChild(routes),
     ],
