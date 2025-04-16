@@ -1,12 +1,12 @@
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {Component, ViewChild, OnInit, NgZone, AfterViewInit, HostListener} from "@angular/core";
 import {AlertController, IonContent, Platform} from "@ionic/angular";
-import {ConsultationService} from "../consultation.service";
+import {ConsultationService} from "../services/consultation.service";
 import {Router, ActivatedRoute} from "@angular/router";
-import {MessageService} from "../message.service";
+import {MessageService} from "../services/message.service";
 import {AuthService} from "../auth/auth.service";
-import {SocketEventsService} from "../socket-events.service";
-import {CallService} from "../call.service";
+import {SocketEventsService} from "../services/socket-events.service";
+import {CallService} from "../services/call.service";
 import {ModalController} from "@ionic/angular";
 import {CloseConsultationComponent} from "../shared/components/close-consultation/close-consultation.component";
 import {ChooseAttachmentComponent} from "../shared/components/choose-attachment/choose-attachment.component";
@@ -14,13 +14,13 @@ import {Subscription} from "rxjs";
 import {first} from "rxjs/operators";
 import {File, FileEntry} from "@awesome-cordova-plugins/file/ngx";
 import {Media, MediaObject} from "@awesome-cordova-plugins/media/ngx";
-import {GlobalVariableService} from "../global-variable.service";
+import {GlobalVariableService} from "../services/global-variable.service";
 import {TranslateService} from "@ngx-translate/core";
 import {IonModal} from "@ionic/angular";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ErrorModalComponent} from "../shared/components/error-modal/error-modal.component";
 import {LanguageService} from "../shared/services/language.service";
-import {ConfigService} from "../config.service";
+import {ConfigService} from "../services/config.service";
 
 @Component({
     selector: "app-consultation",
@@ -227,8 +227,6 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
     }
 
     getConsultation() {
-        const lang = this.languageService.getCurrentLanguage();
-        this.translate.use(lang);
         this.consultationSubscription = this.conServ
             .getConsultation(this.consultationId)
             .subscribe(async (consultation) => {

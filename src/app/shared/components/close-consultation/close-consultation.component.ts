@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {ConsultationService} from "../../../consultation.service";
+import {ConsultationService} from "../../../services/consultation.service";
 import {Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
 import {TranslateService} from "@ngx-translate/core";

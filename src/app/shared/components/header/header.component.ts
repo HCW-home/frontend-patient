@@ -1,7 +1,7 @@
 import {Component, NgZone, OnInit} from "@angular/core";
 import { AuthService } from '../../../auth/auth.service';
 import {Router} from "@angular/router";
-import {ConfigService} from "../../../config.service";
+import {ConfigService} from "../../../services/config.service";
 
 @Component({
   selector: 'app-header',

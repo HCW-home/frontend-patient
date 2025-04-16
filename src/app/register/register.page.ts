@@ -1,5 +1,5 @@
-import { Component, OnInit  } from '@angular/core';
-import { ConfigService } from '../config.service';
+import {Component, OnInit} from '@angular/core';
+import {ConfigService} from '../services/config.service';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
@@ -28,13 +28,14 @@ export class RegisterPage implements OnInit {
   });
   errorMessage: string;
   constructor(
-      private fb: FormBuilder,
       private router: Router,
-      private modalController: ModalController,
+      private fb: FormBuilder,
       private nurseService: NurseService,
-      public validationService: ValidationService,
+      public configService: ConfigService,
       private translate: TranslateService,
-      public configService: ConfigService) {
+      private modalController: ModalController,
+      public validationService: ValidationService,
+  ) {
     this.form.valueChanges.subscribe(() => {
       this.errorMessage = '';
     })

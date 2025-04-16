@@ -9,7 +9,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule} from "@angular/common/http";
 import { AngularDraggableModule } from 'angular2-draggable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
@@ -29,7 +29,7 @@ import { registerLocaleData } from '@angular/common';
 import { RequestConsultationComponent } from './shared/components/request-consultation/request-consultation.component';
 import { CloseConsultationComponent } from './shared/components/close-consultation/close-consultation.component';
 import { ChooseAttachmentComponent } from './shared/components/choose-attachment/choose-attachment.component';
-import { ConfigService } from './config.service';
+import { ConfigService } from './services/config.service';
 import { HugAngularLibModule } from 'hcw-stream-lib';
 import {CountrySelectPageModule} from "./register/country-select/country-select.module";
 
@@ -42,8 +42,6 @@ import localeEn from '@angular/common/locales/en';
 registerLocaleData(localeFr);
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
-
-
 
 
 @NgModule({
@@ -67,8 +65,6 @@ registerLocaleData(localeEn);
         VideoRoomPageModule,
         AngularDraggableModule,
         FormsModule,
-        // VideoRoomPageModule, //cordova plugin add cordova-plugin-background-mode
-        // translate
         I18nModule,
         HugAngularLibModule,
         SharedModule,

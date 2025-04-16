@@ -5,16 +5,18 @@ import { IonicModule } from '@ionic/angular';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {CountrySelectPage} from './country-select.page';
-import {I18nModule} from "../../i18n/i18n.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
         IonicModule,
-        I18nModule,
+        FormsModule,
+        CommonModule,
+        BrowserModule,
+        TranslateModule.forChild({
+            defaultLanguage: 'en'
+        }),
         ReactiveFormsModule,
-        BrowserModule
     ],
     declarations: [
         CountrySelectPage

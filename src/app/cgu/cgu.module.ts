@@ -5,9 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { MarkdownModule } from "ngx-markdown";
 
 import { IonicModule } from '@ionic/angular';
-import { I18nModule } from '../i18n/i18n.module';
 import { CguPage } from './cgu.page';
 import {SharedModule} from "../shared/shared.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -22,7 +22,9 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         RouterModule.forChild(routes),
-        I18nModule,
+        TranslateModule.forChild({
+            defaultLanguage: 'en'
+        }),
         MarkdownModule.forRoot(),
         SharedModule
     ],

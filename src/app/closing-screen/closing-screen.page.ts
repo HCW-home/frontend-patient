@@ -2,10 +2,11 @@ import { AuthService } from "../auth/auth.service";
 import { Component, OnInit  } from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 
-import { ConsultationService } from "../consultation.service";
-import { ConfigService } from "../config.service";
+import { ConsultationService } from "../services/consultation.service";
+import { ConfigService } from "../services/config.service";
 import { Platform } from "@ionic/angular";
 import { App } from '@capacitor/app';
+import {StorageService} from "../services/storage.service";
 
 @Component({
   selector: "app-closing-screen",
@@ -27,8 +28,9 @@ export class ClosingScreenPage implements OnInit {
     private router: Router,
     public platform: Platform,
     private authService: AuthService,
-    private activeRoute: ActivatedRoute,
     public configService: ConfigService,
+    private activeRoute: ActivatedRoute,
+    private storageService: StorageService,
     private consultationService: ConsultationService,
   ) {}
 
@@ -65,7 +67,7 @@ export class ClosingScreenPage implements OnInit {
   }
 
   closeApp() {
-    localStorage.clear();
+    this.storageService.clear();
     App.exitApp();
   }
 

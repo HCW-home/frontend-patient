@@ -1,5 +1,5 @@
 import { Component, OnInit, Directive  } from '@angular/core';
-import { ConsultationService } from '../../../consultation.service';
+import { ConsultationService } from '../../../services/consultation.service';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 

@@ -1,11 +1,11 @@
-import { GlobalVariableService } from "./global-variable.service";
+import { GlobalVariableService } from "./services/global-variable.service";
 import {Component, NgZone} from "@angular/core";
 
 import { Platform, ToastController, ToastButton } from "@ionic/angular";
 import { SplashScreen } from '@capacitor/splash-screen';
-import { CallService } from "./call.service";
-import { SocketEventsService } from "./socket-events.service";
-import { ConsultationService } from "./consultation.service";
+import { CallService } from "./services/call.service";
+import { SocketEventsService } from "./services/socket-events.service";
+import { ConsultationService } from "./services/consultation.service";
 import { AuthService } from "./auth/auth.service";
 import { NativeAudio } from '@capacitor-community/native-audio'
 import { NavigationEnd, Router } from "@angular/router";
@@ -49,10 +49,6 @@ export class AppComponent {
     if (!this.inviteToken && window.location.href.match(/invite=([^&]*)/)) {
       // parse invite from url using regex
       this.inviteToken = window.location.href.match(/invite=([^&]*)/)[1];
-    }
-    if (!localStorage.getItem('hhp-lang')) {
-      const lang = this.languageService.getCurrentLanguage();
-      localStorage.setItem('hhp-lang',lang);
     }
     this.testRoute = window.location.href.includes("test-call") || window.location.href.includes("acknowledge-invite") || window.location.href.includes("requester") || window.location.href.includes("cgu");
 
@@ -145,7 +141,6 @@ export class AppComponent {
 
     if (this.inviteToken) {
       if (localStorage.getItem("inviteToken") !== this.inviteToken) {
-        localStorage.clear();
         await this.authService.logOutNurse();
         localStorage.setItem("inviteToken", this.inviteToken);
         // document.location.reload()

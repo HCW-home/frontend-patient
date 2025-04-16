@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, Directive  } from '@angular/core';
-import { ConfigService } from '../../config.service';
+import { ConfigService } from '../../services/config.service';
 import {
   UntypedFormControl, FormGroupDirective, NgForm, Validators, ValidatorFn,
   UntypedFormBuilder, FormGroup, AbstractControl

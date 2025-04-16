@@ -4,12 +4,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SocketEventsService } from '../socket-events.service';
-import { ConsultationService } from '../consultation.service';
+import { SocketEventsService } from '../services/socket-events.service';
+import { ConsultationService } from '../services/consultation.service';
 import { Router } from '@angular/router';
-import { User } from '../user';
-import { GlobalVariableService } from '../global-variable.service';
-import {ConfigService} from "../config.service";
+import { User } from '../models/user';
+import { GlobalVariableService } from '../services/global-variable.service';
+import {ConfigService} from "../services/config.service";
+import {StorageService} from "../services/storage.service";
 
 declare let window: any;
 
@@ -21,13 +22,14 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   constructor(
-    private http: HttpClient,
-    private _socketEventsService: SocketEventsService,
-    private consultationService: ConsultationService,
     private router: Router,
-    private globalVariableService: GlobalVariableService,
+    private http: HttpClient,
     private platform: Platform,
     public configService: ConfigService,
+    private storageService: StorageService,
+    private consultationService: ConsultationService,
+    private _socketEventsService: SocketEventsService,
+    private globalVariableService: GlobalVariableService,
 
   ) {}
 
@@ -94,8 +96,8 @@ export class AuthService {
   }
 
   logOutNurse(hard = false) {
-    localStorage.clear();
     sessionStorage.clear();
+    this.storageService.clear();
     this.currentUserSubject.next(null);
     this._socketEventsService.disconnect();
 

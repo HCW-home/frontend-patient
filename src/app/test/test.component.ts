@@ -1,6 +1,6 @@
 import {RoomService, Stream} from "hcw-stream-lib";
-import {SocketEventsService} from "../socket-events.service";
-import {ConsultationService} from "../consultation.service";
+import {SocketEventsService} from "../services/socket-events.service";
+import {ConsultationService} from "../services/consultation.service";
 import {AndroidPermissions} from "@awesome-cordova-plugins/android-permissions/ngx";
 import {Platform} from "@ionic/angular";
 import {Router} from "@angular/router";
@@ -9,9 +9,8 @@ import {Component, OnInit, HostListener, OnDestroy, NgZone} from "@angular/core"
 import {Subscription} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../auth/auth.service";
-import {ConfigService} from "../config.service";
-import {InviteService} from "../invite.service";
-import {LanguageService} from "../shared/services/language.service";
+import {ConfigService} from "../services/config.service";
+import {InviteService} from "../services/invite.service";
 import {MediaService} from "../shared/services/media.service";
 
 @Component({
@@ -83,7 +82,6 @@ export class TestComponent implements OnInit, OnDestroy {
         private inviteService: InviteService,
         private conServ: ConsultationService,
         private openviduSev: OpenViduService,
-        private languageService: LanguageService,
         private socketService: SocketEventsService,
         private androidPermissions: AndroidPermissions,
     ) {
@@ -299,7 +297,6 @@ export class TestComponent implements OnInit, OnDestroy {
             this.inviteService.getInviteFromToken(this.inviteToken).subscribe(
                 (invite) => {
                     this.invite = invite;
-
                     this.handleInvite(invite, accept);
                 },
                 (err) => this.handleTokenError(err)
@@ -311,9 +308,6 @@ export class TestComponent implements OnInit, OnDestroy {
         this.invite = invite;
         this.isExpert = !!invite.isExpert;
         this.expertToken = invite.expertToken;
-
-        const lang = this.languageService.getCurrentLanguage();
-        this.translate.use(lang);
 
         if (this.currentUser) {
             if (this.currentUser.inviteToken === this.invite.id) {

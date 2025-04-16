@@ -6,9 +6,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router';
+import { TranslateModule } from "@ngx-translate/core";
 
-// translate
-import { I18nModule } from '../i18n/i18n.module';
 
 const routes: Routes = [
   {
@@ -19,13 +18,15 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     IonicModule,
+    FormsModule,
+    SharedModule,
     CommonModule,
+    CommonModule,
+    TranslateModule.forChild({
+      defaultLanguage: 'en'
+    }),
     RouterModule.forChild(routes),
-    I18nModule,
-    SharedModule
   ],
   declarations: [TestComponent]
 })

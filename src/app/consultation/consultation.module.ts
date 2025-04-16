@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
 import { IonicModule } from '@ionic/angular';
-// translate
-import { I18nModule } from '../i18n/i18n.module';
 
 import { ConsultationPage } from './consultation.page';
+import {TranslateModule} from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -19,12 +17,14 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
         IonicModule,
-        RouterModule.forChild(routes),
-        I18nModule,
+        FormsModule,
+        CommonModule,
+        TranslateModule.forChild({
+            defaultLanguage: 'en'
+        }),
         VideoRoomPageModule,
+        RouterModule.forChild(routes),
     ],
     declarations: [ConsultationPage]
 })

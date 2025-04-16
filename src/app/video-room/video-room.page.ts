@@ -23,7 +23,7 @@ import {
   transition,
   animate,
 } from "@angular/animations";
-import {ConfigService} from "../config.service";
+import { ConfigService } from "../services/config.service";
 
 declare let window: any;
 

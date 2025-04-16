@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import {CloseConsultationComponent} from "../close-consultation/close-consultation.component";
 import {ModalController} from "@ionic/angular";
-import {ConfigService} from "../../../config.service";
+import {ConfigService} from "../../../services/config.service";
 
 @Component({
   selector: 'app-overlay',

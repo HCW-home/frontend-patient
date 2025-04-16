@@ -1,6 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {InviteService} from "../invite.service";
+import {InviteService} from "../services/invite.service";
+import {ConfigService} from "../services/config.service";
+import {LanguageService} from "../shared/services/language.service";
 
 @Component({
     selector: "app-acknowledge-invite",
@@ -14,7 +16,9 @@ export class AcknowledgeInviteComponent implements OnInit {
     constructor(
         private router: Router,
         private inviteService: InviteService,
+        private configService: ConfigService,
         private activatedRoute: ActivatedRoute,
+        private languageService: LanguageService,
     ) {
         const inviteToken = this.activatedRoute.snapshot.paramMap.get(
             'inviteToken',
@@ -35,6 +39,9 @@ export class AcknowledgeInviteComponent implements OnInit {
         if (token) {
             this.inviteService.getAcknowledgementStatus(token).subscribe({
                 next: (res) => {
+                    if (this.configService?.config?.forcePatientLanguage && res?.patientLanguage) {
+                        this.languageService.switchLanguage(res.patientLanguage);
+                    }
                     if (res.requiresAcknowledgment) {
                         const body = {
                             inviteToken: token

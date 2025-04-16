@@ -1,5 +1,5 @@
-import {Injectable, Injector} from "@angular/core";
-import {AuthService} from "./auth/auth.service";
+import { Injectable, Injector } from "@angular/core";
+import { AuthService } from "../auth/auth.service";
 import { Subject } from 'rxjs'
 import { LocalNotifications } from '@capacitor/local-notifications'
 import { GlobalVariableService } from './global-variable.service'

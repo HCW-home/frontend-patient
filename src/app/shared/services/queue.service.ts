@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {GlobalVariableService} from "../../global-variable.service";
+import {GlobalVariableService} from "../../services/global-variable.service";
 
 export class Queue {
   id?: string;

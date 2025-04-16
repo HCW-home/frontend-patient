@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {Platform} from "@ionic/angular";
-import {ConsultationService} from "../../../consultation.service";
+import {ConsultationService} from "../../../services/consultation.service";
 import {AuthService} from "../../../auth/auth.service";
-import {ConfigService} from "../../../config.service";
+import {ConfigService} from "../../../services/config.service";
 
 @Component({
     selector: "app-feedback",

@@ -2,23 +2,15 @@ import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {ConfigService} from "../config.service";
+import { ConfigService } from '../services/config.service';
 
-export let supportedLanguages = [
-  'en',
-  'fr',
-  'es',
-  'ar',
-  'de',
-  'ar',
-  'ta',
-  'ti',
-  'fa',
-  'ru',
-  'it',
-  'uk',
-  'hy'
+export const DEFAULT_LANGUAGES = [
+  'en', 'fr', 'es', 'ar', 'de', 'ta', 'ti', 'fa', 'ru', 'it', 'uk', 'hy'
 ];
+
+export function translateLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   imports: [
@@ -28,50 +20,46 @@ export let supportedLanguages = [
       loader: {
         provide: TranslateLoader,
         useFactory: translateLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
+      isolate: false
     }),
   ],
   exports: [TranslateModule]
 })
-
 export class I18nModule {
-
-  constructor(translate: TranslateService, config: ConfigService) {
-    config.getConfig().subscribe({
-      next: (appConfig) => {
-        if (appConfig) {
-          const dynamicLanguages = appConfig?.patientLanguages?.length
-              ? appConfig.patientLanguages
-              : supportedLanguages;
-
-          supportedLanguages = dynamicLanguages;
-
-          translate.addLangs(dynamicLanguages);
-
-          const userLang =
-              window.localStorage.getItem('hhp-lang') || translate.getBrowserLang();
-          const defaultLang = dynamicLanguages.includes(userLang)
-              ? userLang
-              : dynamicLanguages[0];
-
-          translate.use(defaultLang);
-        }
-
-      },
-      error: () => {
-        translate.addLangs(supportedLanguages);
-
-        translate.use(supportedLanguages[0]);
-      },
-    });
-
-    translate.setDefaultLang(supportedLanguages[0]);
+  constructor(
+      private translate: TranslateService,
+      private configService: ConfigService
+  ) {
+    this.initTranslation();
   }
 
-}
+  private initTranslation(): void {
+    this.configService.getConfig().subscribe({
+      next: (appConfig) => {
+        const dynamicLanguages = appConfig?.patientLanguages?.length
+            ? appConfig.patientLanguages
+            : DEFAULT_LANGUAGES;
 
-export function translateLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient);
-}
+        this.translate.addLangs(dynamicLanguages);
 
+        const savedLang = localStorage.getItem('hhp-lang');
+        const browserLang = this.translate.getBrowserLang();
+        const defaultLang = savedLang && dynamicLanguages.includes(savedLang)
+            ? savedLang
+            : dynamicLanguages.includes(browserLang)
+                ? browserLang
+                : dynamicLanguages[0];
+
+        this.translate.setDefaultLang(defaultLang);
+        this.translate.use(defaultLang);
+      },
+      error: () => {
+        this.translate.addLangs(DEFAULT_LANGUAGES);
+        this.translate.setDefaultLang(DEFAULT_LANGUAGES[0]);
+        this.translate.use(DEFAULT_LANGUAGES[0]);
+      }
+    });
+  }
+}

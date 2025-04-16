@@ -3,7 +3,7 @@ import { GlobalVariableService } from './global-variable.service';
 import { Injectable } from '@angular/core';
 import { Observable, of, BehaviorSubject, throwError, Subscription } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import {
   tap, map, filter, retryWhen,
   concatMap,

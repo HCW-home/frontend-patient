@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {TranslateService} from "@ngx-translate/core";
-import {supportedLanguages} from "../../i18n/i18n.module";
+import {DEFAULT_LANGUAGES} from "../../i18n/i18n.module";
 
 @Injectable({
     providedIn: "root"
@@ -13,9 +13,20 @@ export class LanguageService {
 
     getCurrentLanguage() {
         const userLang = window.localStorage.getItem('hhp-lang') || this.translate.getBrowserLang()
-        return supportedLanguages.includes(userLang)
+        return DEFAULT_LANGUAGES.includes(userLang)
             ? userLang
-            : supportedLanguages[0];
+            : DEFAULT_LANGUAGES[0];
+    }
+
+    switchLanguage(lang: string) {
+        this.translate.use(lang).subscribe(() => {
+            localStorage.setItem('hhp-lang', lang);
+            const rtlLanguages = ['ar', 'fa', 'he', 'ur'];
+            const dir = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
+
+            document.documentElement.setAttribute('dir', dir);
+            document.documentElement.setAttribute('lang', lang);
+        });
     }
 
 

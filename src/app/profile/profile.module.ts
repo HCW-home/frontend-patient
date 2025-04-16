@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { I18nModule } from '../i18n/i18n.module';
 import { ProfilePage } from './profile.page';
-import {SharedModule} from "../shared/shared.module";
+import { SharedModule } from "../shared/shared.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -20,7 +20,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    I18nModule,
+    TranslateModule.forChild({
+      defaultLanguage: 'en'
+    }),
     ReactiveFormsModule,
     SharedModule
   ],

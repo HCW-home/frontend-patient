@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationStrategy } from "@angular/common";
-import { ConfigService } from '../config.service';
+import { ConfigService } from '../services/config.service';
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({

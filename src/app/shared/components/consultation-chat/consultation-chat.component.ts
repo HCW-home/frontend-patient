@@ -11,13 +11,13 @@ import {CloseConsultationComponent} from "../close-consultation/close-consultati
 import {IonContent, IonModal, ModalController, Platform} from "@ionic/angular";
 import {Media, MediaObject} from "@awesome-cordova-plugins/media/ngx";
 import {Subscription} from "rxjs";
-import {CallService} from "../../../call.service";
-import {ConsultationService} from "../../../consultation.service";
-import {MessageService} from "../../../message.service";
+import {CallService} from "../../../services/call.service";
+import {ConsultationService} from "../../../services/consultation.service";
+import {MessageService} from "../../../services/message.service";
 import {AuthService} from "../../../auth/auth.service";
-import {SocketEventsService} from "../../../socket-events.service";
+import {SocketEventsService} from "../../../services/socket-events.service";
 import {File, FileEntry} from "@awesome-cordova-plugins/file/ngx";
-import {GlobalVariableService} from "../../../global-variable.service";
+import {GlobalVariableService} from "../../../services/global-variable.service";
 import {TranslateService} from "@ngx-translate/core";
 import {ChooseAttachmentComponent} from "../choose-attachment/choose-attachment.component";
 import {first} from "rxjs/operators";
@@ -230,8 +230,6 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit {
   }
 
   getConsultation() {
-      const lang = this.languageService.getCurrentLanguage();
-    this.translate.use(lang);
     this.consultationSubscription = this.conServ
         .getConsultation(this.consultationId)
         .subscribe(async (consultation) => {

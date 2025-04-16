@@ -6,7 +6,7 @@ import { SharedModule } from "../shared/shared.module";
 import { AcknowledgeInviteComponent } from './acknowledge-invite.component';
 
 import { Routes, RouterModule } from '@angular/router';
-import { I18nModule } from '../i18n/i18n.module';
+import {TranslateModule} from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -17,13 +17,15 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
     IonicModule,
+    FormsModule,
     CommonModule,
+    CommonModule,
+    SharedModule,
+    TranslateModule.forChild({
+      defaultLanguage: 'en'
+    }),
     RouterModule.forChild(routes),
-    I18nModule,
-    SharedModule
   ],
   declarations: [AcknowledgeInviteComponent]
 })

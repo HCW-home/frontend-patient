@@ -4,18 +4,18 @@ import {ConsultationService} from "../shared/services/consultation.service";
 import {CloseConsultationComponent} from "../shared/components/close-consultation/close-consultation.component";
 import {MenuController, ModalController, Platform} from "@ionic/angular";
 import {Subscription} from "rxjs";
-import {SocketEventsService} from "../socket-events.service";
+import {SocketEventsService} from "../services/socket-events.service";
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../auth/auth.service";
 import {NurseService} from "../shared/services/nurse.service";
-import {MessageService} from "../message.service";
-import {ConfigService} from "../config.service";
+import {MessageService} from "../services/message.service";
+import {ConfigService} from "../services/config.service";
 import {DatePipe} from "@angular/common";
 import {DurationPipe} from "../shared/pipes/duration.pipe";
 import { jsPDF } from 'jspdf';
 import {first} from "rxjs/operators";
-import {GlobalVariableService} from "../global-variable.service";
+import {GlobalVariableService} from "../services/global-variable.service";
 
 @Component({
     selector: "app-dashboard",

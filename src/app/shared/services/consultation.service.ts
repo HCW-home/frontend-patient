@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {GlobalVariableService} from "../../global-variable.service";
+import {GlobalVariableService} from "../../services/global-variable.service";
 
 @Injectable({
   providedIn: 'root'

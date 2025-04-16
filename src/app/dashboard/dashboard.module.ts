@@ -4,18 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-// translate
-import { I18nModule } from '../i18n/i18n.module';
 
 import { DashboardPage } from './dashboard.page';
-import {HeaderComponent} from "../shared/components/header/header.component";
-import {OverlayComponent} from "../shared/components/overlay/overlay.component";
-import {ConsultationPageModule} from "../consultation/consultation.module";
-import {ConsultationChatComponent} from "../shared/components/consultation-chat/consultation-chat.component";
-import {VideoRoomPageModule} from "../video-room/video-room.module";
-import {FeedbackComponent} from "../shared/components/feedback/feedback.component";
-import {LoaderComponent} from "../shared/components/loader/loader.component";
-import {SharedModule} from "../shared/shared.module";
+import { OverlayComponent } from "../shared/components/overlay/overlay.component";
+import { ConsultationChatComponent } from "../shared/components/consultation-chat/consultation-chat.component";
+import { VideoRoomPageModule } from "../video-room/video-room.module";
+import { FeedbackComponent } from "../shared/components/feedback/feedback.component";
+import { LoaderComponent } from "../shared/components/loader/loader.component";
+import { SharedModule } from "../shared/shared.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -26,13 +23,15 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
         IonicModule,
-        RouterModule.forChild(routes),
-        I18nModule,
+        FormsModule,
+        SharedModule,
+        CommonModule,
+        TranslateModule.forChild({
+            defaultLanguage: 'en'
+        }),
         VideoRoomPageModule,
-        SharedModule
+        RouterModule.forChild(routes),
     ],
     declarations: [DashboardPage, OverlayComponent, ConsultationChatComponent,FeedbackComponent, LoaderComponent],
     exports: [DashboardPage, OverlayComponent,ConsultationChatComponent, FeedbackComponent, LoaderComponent]

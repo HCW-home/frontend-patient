@@ -3,7 +3,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse
 import { Observable, throwError, BehaviorSubject } from "rxjs";
 import {catchError, switchMap, filter, take, finalize} from "rxjs/operators";
 import { AuthService } from "./auth.service";
-import {SocketEventsService} from "../socket-events.service";
+import {SocketEventsService} from "../services/socket-events.service";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

@@ -1,6 +1,6 @@
-import {TranslatorService} from "./../translator.service";
+import {TranslatorService} from "../services/translator.service";
 import {environment} from "./../../environments/environment";
-import {InviteService} from "./../invite.service";
+import {InviteService} from "../services/invite.service";
 import {Subscription} from "rxjs";
 
 import {Component, NgZone, OnInit} from "@angular/core";
@@ -9,15 +9,15 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {DatePipe} from "@angular/common";
 
 import {TranslateService} from "@ngx-translate/core";
-import {RoomService} from "hcw-stream-lib";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../auth/auth.service";
-import {ConsultationService} from "../consultation.service";
-import {ConfigService} from "../config.service";
-import {SocketEventsService} from "../socket-events.service";
+import {ConsultationService} from "../services/consultation.service";
+import {ConfigService} from "../services/config.service";
+import {SocketEventsService} from "../services/socket-events.service";
 import {App} from "@capacitor/app";
-import {LanguageService} from "../shared/services/language.service";
 import {NurseService} from "../shared/services/nurse.service";
+import {StorageService} from "../services/storage.service";
+import {LanguageService} from "../shared/services/language.service";
 
 declare let window: any;
 
@@ -78,7 +78,6 @@ export class LoginPage implements OnInit {
     public platform: Platform,
     private datePipe: DatePipe,
     private route: ActivatedRoute,
-    public roomService: RoomService,
     private sanitizer: DomSanitizer,
     private authService: AuthService,
     private nurseService: NurseService,
@@ -87,6 +86,7 @@ export class LoginPage implements OnInit {
     private inviteService: InviteService,
     private conServ: ConsultationService,
     private languageService: LanguageService,
+    public storageService: StorageService,
     private translatorServ: TranslatorService,
     private socketService: SocketEventsService,
   ) {
@@ -205,6 +205,9 @@ export class LoginPage implements OnInit {
         (invite) => {
           this.invite = invite;
 
+          if (this.configService?.config?.forcePatientLanguage && this.invite?.patientLanguage) {
+            this.languageService.switchLanguage(this.invite.patientLanguage);
+          }
           this.handleInvite(invite, accept);
         },
         (err) => this.handleTokenError(err)
@@ -216,9 +219,6 @@ export class LoginPage implements OnInit {
     this.invite = invite;
     this.isExpert = !!invite.isExpert;
     this.expertToken = invite.expertToken;
-
-    const lang = this.languageService.getCurrentLanguage();
-    this.translate.use(lang);
 
     if (this.currentUser) {
 
@@ -310,7 +310,6 @@ export class LoginPage implements OnInit {
     }, 100);
 
     this.authService.logout();
-    // localStorage.clear()
   }
 
   onSubmit() {
@@ -478,7 +477,7 @@ export class LoginPage implements OnInit {
 
   clearError() {
     this.noInviteError = false;
-    localStorage.clear();
+    this.storageService.clear();
     this.inviteToken = null
     this.inviteKey = null
   }
@@ -495,7 +494,7 @@ export class LoginPage implements OnInit {
   }
 
   closeApp() {
-    localStorage.clear();
+    this.storageService.clear();
     App.exitApp();
   }
 

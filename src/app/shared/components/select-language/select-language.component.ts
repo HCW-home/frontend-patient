@@ -1,30 +1,43 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
-import {LanguageService} from "../../services/language.service";
-import {supportedLanguages} from "../../../i18n/i18n.module";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { LanguageService } from '../../services/language.service';
+import { DEFAULT_LANGUAGES } from '../../../i18n/i18n.module';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-select-language",
-  templateUrl: "select-language.component.html",
-  styleUrls: ["./select-language.component.scss"],
+  selector: 'app-select-language',
+  templateUrl: './select-language.component.html',
+  styleUrls: ['./select-language.component.scss']
 })
-export class SelectLanguageComponent {
-  @Input('hideIcon') hideIcon = false;
-  @Output() selectedLanguageChange = new EventEmitter();
-  selectedLanguage: string;
+export class SelectLanguageComponent implements OnInit, OnDestroy {
+  @Input() hideIcon = false;
+  @Output() selectedLanguageChange = new EventEmitter<string>();
 
-  constructor(public translate: TranslateService,
-              private languageService: LanguageService
-  ) {
+  selectedLanguage: string;
+  supportedLanguages = DEFAULT_LANGUAGES;
+
+  private langSub: Subscription;
+
+  constructor(
+      private translate: TranslateService,
+      private languageService: LanguageService
+  ) {}
+
+  ngOnInit(): void {
     this.selectedLanguage = this.languageService.getCurrentLanguage();
+
+    this.langSub = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.selectedLanguage = event.lang;
+    });
   }
 
-  changeLang(lang: string) {
-    this.selectedLanguage  = lang;
-    localStorage.setItem("hhp-lang", lang);
-    this.translate.use(lang);
+  changeLang(lang: string): void {
+    if (lang === this.selectedLanguage) return;
+    this.languageService.switchLanguage(lang);
     this.selectedLanguageChange.emit(lang);
   }
 
-  protected readonly supportedLanguages = supportedLanguages;
+  ngOnDestroy(): void {
+    this.langSub?.unsubscribe();
+  }
 }

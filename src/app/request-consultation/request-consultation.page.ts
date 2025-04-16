@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {ConfigService} from "../config.service";
+import {ConfigService} from "../services/config.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
@@ -7,7 +7,7 @@ import {CountrySelectPage} from "../register/country-select/country-select.page"
 import {Queue, QueueService} from "../shared/services/queue.service";
 import {ConsultationService} from "../shared/services/consultation.service";
 import {ValidationService} from "../shared/services/validation.service";
-import {MessageService} from "../message.service";
+import {MessageService} from "../services/message.service";
 import {forkJoin, of} from "rxjs";
 import {catchError, finalize, switchMap} from "rxjs/operators";
 import {TranslateService} from "@ngx-translate/core";

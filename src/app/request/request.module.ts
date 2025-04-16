@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { I18nModule } from '../i18n/i18n.module';
 import { RequestPage } from './request.page';
-import {SharedModule} from "../shared/shared.module";
-import {MarkdownModule} from "ngx-markdown";
+import { SharedModule } from "../shared/shared.module";
+import { MarkdownModule } from "ngx-markdown";
+import { TranslateModule } from "@ngx-translate/core";
 
 const routes: Routes = [
   {
@@ -17,13 +17,15 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        CommonModule,
         FormsModule,
         IonicModule,
-        RouterModule.forChild(routes),
-        I18nModule,
         SharedModule,
-        MarkdownModule.forRoot()
+        CommonModule,
+        TranslateModule.forChild({
+            defaultLanguage: 'en'
+        }),
+        MarkdownModule.forRoot(),
+        RouterModule.forChild(routes),
     ],
   declarations: [RequestPage]
 })
