@@ -1,12 +1,19 @@
-hcw-athome-patient (0.5.26) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.27) UNRELEASED; urgency=medium
 
   [ Aram ]
   * android version upgrade
 
   [ Gor Grigoryan ]
   * ui fix in test call page
+  * fix security issues
+  * update dependencies
+  * refs #8250, Force patient language in frontend
+  * update dependencies
+  * imporove translate loader
+  * upgrade ionic/cli and remove deprecated protractor
+  * update prod env host
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Fri, 28 Feb 2025 15:32:26 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Fri, 25 Apr 2025 11:19:22 +0000
 
 hcw-athome-patient (0.5.25) focal; urgency=medium
 
