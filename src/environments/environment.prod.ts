@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   api: '/api/v1',
-  host: 'https://patient_hcw-athome.dev.oniabsis.com',
+  host: document.location.protocol + '//' + document.location.host,
   DN: '',
   showNativeAppSuggestionAndroid: false,
   showNativeAppSuggestionIOS: false,
