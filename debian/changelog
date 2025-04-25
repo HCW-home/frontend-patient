@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.27) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.28) focal; urgency=medium
 
   [ Aram ]
   * android version upgrade
@@ -12,8 +12,9 @@ hcw-athome-patient (0.5.27) UNRELEASED; urgency=medium
   * imporove translate loader
   * upgrade ionic/cli and remove deprecated protractor
   * update prod env host
+  * translate module fix
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Fri, 25 Apr 2025 11:19:22 +0000
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Fri, 25 Apr 2025 14:20:50 +0200
 
 hcw-athome-patient (0.5.25) focal; urgency=medium
 
