@@ -119,7 +119,10 @@
         "videoCall": "Video call",
         "accept": "Accept",
         "refuse": "Reject",
-        "callInProgress": "Call in progress"
+        "callInProgress": "Call in progress",
+        "permissionNeeded": "Permission Needed",
+        "needAccess": "We need access to your microphone or camera to continue the call.",
+        "ok": "OK"
     },
     "chooseAttachement": {
         "send": "SEND",

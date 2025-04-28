@@ -11,7 +11,7 @@ import { Subscription } from "rxjs";
 
 import { Component, OnInit, OnDestroy, HostListener, EventEmitter, Output, Input, NgZone } from "@angular/core";
 
-import { Platform } from "@ionic/angular";
+import { AlertController, Platform } from "@ionic/angular";
 import { NativeAudio } from '@capacitor-community/native-audio'
 
 
@@ -24,6 +24,7 @@ import {
   animate,
 } from "@angular/animations";
 import { ConfigService } from "../services/config.service";
+import { TranslateService } from "@ngx-translate/core";
 
 declare let window: any;
 
@@ -175,10 +176,12 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   constructor(
       public platform: Platform,
       private logger: LogService,
-      private roomService: RoomService,
       private authService: AuthService,
-      private openViduSrv: OpenViduService,
+      private roomService: RoomService,
       public configService: ConfigService,
+      private openViduSrv: OpenViduService,
+      private alertController: AlertController,
+      private translateService: TranslateService,
       private remotePeersService: RemotePeersService,
   ) {
     window.platform = platform;
@@ -300,7 +303,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
       })
       .catch((err) => {
         console.error("Error accessing camera", err);
-        alert("Couldn't access camera or microphone");
+        this.showPermissionAlertAndExit();
       });
   }
 
@@ -341,9 +344,23 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   rejectCall() {
     if (!this.rejected) {
       this.rejected = true;
-      if (this.accepted) {
-        this.roomService.close();
+
+      if (this.roomService) {
+        if (typeof this.roomService.close === 'function') {
+          try {
+            if (this.accepted) {
+              if (this.roomService && this.roomService.close) {
+                this.roomService.close();
+              } else {
+                console.log('RoomService or its close method is not available');
+              }
+            }
+          } catch (error) {
+            console.error('Error during roomService.close() call:', error);
+          }
+        }
       }
+
       if (this.myCamStream) {
         this.myCamStream.mediaStream.getTracks().forEach(function (track) {
           track.stop();
@@ -353,10 +370,10 @@ export class VideoRoomPage implements OnInit, OnDestroy {
 
       this.hangup.emit(true);
     }
-    
+
     this.openViduSrv
       .rejectCall(this.sessionId || this.consultation?._id || this.consultation?.id, this.message.id)
-      .then((r) => {})
+      .then(() => {})
       .catch((err) => {
         console.log("error ", err);
       });
@@ -424,9 +441,35 @@ export class VideoRoomPage implements OnInit, OnDestroy {
         aspectRatio: this.videoAspectRatio,
         frameRate,
       },
-    }; 
-    return navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+    };
+    const isAudioOnly = this.message?.type === 'audioCall';
+
+    const constraints = {
+      audio: true,
+      video: !isAudioOnly,
+    };
+
+    return navigator.mediaDevices.getUserMedia(constraints);
   }
+
+  async showPermissionAlertAndExit() {
+    const alert = await this.alertController.create({
+      header: this.translateService.instant('videoRoom.permissionNeeded'),
+      message: this.translateService.instant('videoRoom.needAccess'),
+      buttons: [
+        {
+          text: this.translateService.instant('videoRoom.ok'),
+          handler: () => {
+            this.rejectCall();
+          }
+        }
+      ],
+      backdropDismiss: false,
+    });
+
+    await alert.present();
+  }
+
 
   toggleFullScreen() {
     this.isFullScreen = !this.isFullScreen;
