@@ -338,121 +338,212 @@ export class DashboardPage implements OnDestroy {
             .subscribe(async res => {
                 res = res.reverse()
                 const messages = await Promise.all(
-                    res.map(m => this.adjustMsg(m, data._id || data.id))
+                    res.map(m => this.adjustMsg(m, data._id || data.id)),
                 );
                 const doc = new jsPDF();
+                const getLabelWidth = (text: string) => doc.getTextWidth(text) + 2;
                 const pageWidth =
                     doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+                const pageHeight =
+                    doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
                 const imageUrl = this.configService.config?.logo;
+                let yPosition = 10;
+
+                const addPageIfNeeded = (lines = 1) => {
+                    if (yPosition + lines * 5 > pageHeight - 10) {
+                        doc.addPage();
+                        yPosition = 10;
+                    }
+                };
 
                 if (imageUrl) {
-                    doc.addImage(
-                        imageUrl,
-                        'JPEG',
-                        pageWidth / 2 - 25,
-                        10,
-                        50,
-                        20,
-                        'Logo',
-                        'FAST'
-                    );
+                    await new Promise<void>((resolve, reject) => {
+                        const image = new Image();
+                        image.crossOrigin = 'Anonymous';
+
+                        const isSvg = imageUrl.toLowerCase().endsWith('.svg') || imageUrl.startsWith('data:image/svg+xml');
+
+                        if (isSvg) {
+                            const canvas = document.createElement('canvas');
+                            const ctx = canvas.getContext('2d');
+
+                            image.onload = () => {
+                                try {
+                                    canvas.width = image.width || 200;
+                                    canvas.height = image.height || 200;
+
+                                    ctx.drawImage(image, 0, 0);
+
+                                    const base64 = canvas.toDataURL('image/png');
+
+                                    const imgWidth = 50;
+                                    const imgHeight = (canvas.height / canvas.width) * imgWidth;
+
+                                    doc.addImage(
+                                        base64,
+                                        'PNG',
+                                        pageWidth / 2 - imgWidth / 2,
+                                        yPosition,
+                                        imgWidth,
+                                        imgHeight,
+                                        'Logo',
+                                        'FAST',
+                                    );
+                                    yPosition += imgHeight + 10;
+                                    resolve();
+                                } catch (err) {
+                                    console.error('SVG processing failed:', err);
+                                    resolve();
+                                }
+                            };
+
+                            image.onerror = () => {
+                                console.error('Failed to load SVG:', imageUrl);
+                                resolve();
+                            };
+
+                            image.src = imageUrl;
+                        } else {
+                            image.onload = () => {
+                                try {
+                                    const canvas = document.createElement('canvas');
+                                    canvas.width = image.width;
+                                    canvas.height = image.height;
+                                    const ctx = canvas.getContext('2d');
+                                    ctx.drawImage(image, 0, 0);
+                                    const base64 = canvas.toDataURL('image/jpeg');
+
+                                    const imgWidth = 50;
+                                    const imgHeight = (image.height / image.width) * imgWidth;
+
+                                    doc.addImage(
+                                        base64,
+                                        'JPEG',
+                                        pageWidth / 2 - imgWidth / 2,
+                                        yPosition,
+                                        imgWidth,
+                                        imgHeight,
+                                        'Logo',
+                                        'FAST',
+                                    );
+                                    yPosition += imgHeight + 10;
+                                    resolve();
+                                } catch (err) {
+                                    console.error('Image processing failed:', err);
+                                    resolve();
+                                }
+                            };
+
+                            image.onerror = () => {
+                                console.error('Failed to load image:', imageUrl);
+                                resolve();
+                            };
+
+                            image.src = imageUrl;
+                        }
+                    });
                 }
 
-                const getLabelWidth = text => doc.getTextWidth(text) + 2;
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.setFontSize(22);
-                doc.text('Consultation report', 15, 40);
+                doc.text('Consultation report', 15, yPosition);
+                yPosition += 15;
+
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
-                doc.text('Patient information', 15, 50);
-
-                if (nurse?.firstName) {
-                    doc.text('Requester information', 108, 50);
-                }
-                if (data.experts?.length) {
-                    doc.text('Expert information', 108, 75);
-                }
+                yPosition += 10;
+                doc.text('Patient information', 15, yPosition);
+                yPosition += 10;
 
                 doc.setFontSize(10);
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
-                doc.text('Firstname:', 15, 55);
-                doc.text('Lastname:', 15, 60);
-                doc.text('Gender:', 15, 65);
+                doc.text('Firstname:', 15, yPosition);
+                doc.text('Lastname:', 15, yPosition + 5);
+                doc.text('Gender:', 15, yPosition + 10);
                 doc.setFont('Helvetica', 'normal', 400);
-                doc.text(`${data.firstName}`, 34, 55);
-                doc.text(`${data.lastName}`, 34, 60);
-                doc.text(`${data.gender}`, 30, 65);
+                doc.text(`${data.firstName}`, 34, yPosition);
+                doc.text(`${data.lastName}`, 34, yPosition + 5);
+                doc.text(`${data.gender}`, 30, yPosition + 10);
+                yPosition += 15;
 
                 if (nurse?.firstName) {
                     doc.setFont('Helvetica', 'normal', 700);
-                    doc.text(`Firstname:`, 108, 55);
-                    doc.text(`Lastname:`, 108, 60);
+                    yPosition += 10;
+                    doc.text('Requester information', 108, yPosition);
+                    yPosition += 5;
+                    doc.text(`Firstname:`, 108, yPosition);
+                    doc.text(`Lastname:`, 108, yPosition + 5);
                     doc.setFont('Helvetica', 'normal', 400);
-                    doc.text(`${nurse.firstName}`, 127, 55);
-                    doc.text(`${nurse.lastName}`, 127, 60);
+                    doc.text(`${nurse.firstName}`, 127, yPosition);
+                    doc.text(`${nurse.lastName}`, 127, yPosition + 5);
+                    yPosition += 15;
                 }
 
                 if (data.experts?.length) {
-                    let currentExpertPosition = 80;
+                    doc.setFont('Helvetica', 'normal', 700);
+                    yPosition += 10;
+                    doc.text('Expert information', 108, yPosition);
+                    yPosition += 5;
                     data.experts.forEach(expert => {
-                        doc.setFont('Helvetica', 'normal', 700);
-                        doc.text(`Firstname:`, 108, currentExpertPosition);
-                        doc.text(`Lastname:`, 108, currentExpertPosition + 5);
+                        doc.text(`Firstname:`, 108, yPosition);
+                        doc.text(`Lastname:`, 108, yPosition + 5);
                         doc.setFont('Helvetica', 'normal', 400);
-                        doc.text(`${expert.firstName}`, 127, currentExpertPosition);
-                        doc.text(`${expert.lastName}`, 127, currentExpertPosition + 5);
-                        currentExpertPosition += 10;
+                        doc.text(`${expert.firstName}`, 127, yPosition);
+                        doc.text(`${expert.lastName}`, 127, yPosition + 5);
+                        yPosition += 10;
                     });
                 }
 
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
-                doc.text('Consultation information', 15, 75);
+                yPosition += 10;
+                doc.text('Consultation information', 15, yPosition);
+                yPosition += 10;
                 doc.setFontSize(10);
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
-                doc.text(`Start date/time:`, 15, 80);
-                doc.text(`End date/time:`, 15, 85);
-                doc.text(`Duration:`, 15, 90);
+                doc.text(`Start date/time:`, 15, yPosition);
+                doc.text(`End date/time:`, 15, yPosition + 5);
+                doc.text(`Duration:`, 15, yPosition + 10);
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.text(
-                    `${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm')}`,
+                    `${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`,
                     15 + getLabelWidth(`Start date/time:`),
-                    80
+                    yPosition,
                 );
                 doc.text(
-                    `${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm')}`,
+                    `${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`,
                     15 + getLabelWidth(`End date/time:`),
-                    85
+                    yPosition + 5,
                 );
                 doc.text(
-                    `${this.durationPipe.transform(data.createdAt - data.closedAt)}`,
+                    `${this.durationPipe.transform(data.closedAt - data.createdAt, 'en')}`,
                     15 + getLabelWidth(`Duration:`),
-                    90
+                    yPosition + 10,
                 );
+                yPosition += 15;
 
-                let chatYPosition = 125;
                 if (data.metadata && Object.keys(data.metadata).length) {
                     Object.keys(data.metadata).forEach((key, index) => {
+                        addPageIfNeeded();
                         doc.setFont('Helvetica', 'normal', 700);
-                        doc.text(`${key}:`, 15, chatYPosition + index * 5);
+                        doc.text(`${key}:`, 15, yPosition);
                         const metadataX = 15 + getLabelWidth(`${key}:`);
                         doc.setFont('Helvetica', 'normal', 400);
-                        doc.text(
-                            `${data.metadata[key]}`,
-                            metadataX,
-                            chatYPosition + index * 5
-                        );
+                        doc.text(`${data.metadata[key]}`, metadataX, yPosition);
+                        yPosition += 5;
                     });
                 }
 
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
-                doc.text('Chat history', 15, chatYPosition + 30);
-                chatYPosition += 40;
+                yPosition += 10;
+                doc.text('Chat history', 15, yPosition);
+                yPosition += 10;
 
                 for (const message of messages) {
+                    addPageIfNeeded(4);
                     doc.setFontSize(10);
                     doc.setTextColor('#000');
                     doc.setFont('Helvetica', 'normal', 700);
@@ -467,64 +558,98 @@ export class DashboardPage implements OnDestroy {
                             : message.fromUserDetail.lastName || '';
                     const date = this.datePipe.transform(
                         message.createdAt,
-                        'dd LLL HH:mm'
+                        'dd LLL HH:mm',
+                        undefined,
+                        'en',
                     );
-                    doc.text(
-                        `${firstName} ${lastName} (${message.fromUserDetail?.role}) - ${date}:`,
-                        15,
-                        chatYPosition
-                    );
+
+                    const titleLine = `${firstName} ${lastName} (${message.fromUserDetail?.role}) - ${date}:`;
+                    doc.setFont('Helvetica', 'normal', 700);
+                    const wrappedTitle = doc.splitTextToSize(titleLine, pageWidth - 30);
+                    doc.text(wrappedTitle, 15, yPosition);
+                    yPosition += wrappedTitle.length * 5;
 
                     doc.setFont('Helvetica', 'normal', 400);
                     doc.setTextColor('#464F60');
-                    chatYPosition += 5;
 
-                    if (message.text) {
-                        doc.text(message.text, 15, chatYPosition);
-                        chatYPosition += 5;
+                    if (message.type === 'videoCall' || message.type === 'audioCall') {
+                        const callTypeText = message.type === 'audioCall' ? 'Audio call' : 'Video call';
+                        let callStatus = '';
+                        if (message.closedAt) {
+                            callStatus = message.acceptedAt
+                                ? `${callTypeText}  accepted`
+                                : `${callTypeText}  missed`;
+                        } else {
+                            callStatus = `${callTypeText}  call`;
+                        }
+
+                        addPageIfNeeded(3);
+                        doc.text(callStatus, 15, yPosition);
+                        yPosition += 5;
+                        doc.text(
+                            `${this.datePipe.transform(message.createdAt, 'dd LLL HH:mm', undefined, 'en')}`,
+                            15,
+                            yPosition,
+                        );
+                        yPosition += 5;
+
+                        if (message.acceptedAt && message.closedAt) {
+                            const closedDate = this.datePipe.transform(
+                                message.closedAt,
+                                'dd LLL HH:mm',
+                                undefined,
+                                'en',
+                            );
+                            const finishedText = `${callTypeText}  finished`;
+                            doc.text(finishedText, 15, yPosition);
+                            yPosition += 5;
+                            doc.text(`${closedDate}`, 15, yPosition);
+                            yPosition += 5;
+                        }
+                    } else if (message.text) {
+                        const splitText = doc.splitTextToSize(message.text, pageWidth - 30);
+                        for (const line of splitText) {
+                            addPageIfNeeded();
+                            doc.text(line, 15, yPosition);
+                            yPosition += 4;
+                        }
                     }
 
-                    let image = null;
                     if (message.isImage && message.attachmentsURL) {
                         await new Promise<void>(resolve => {
-                            image = new Image();
+                            const image = new Image();
                             image.src = message.attachmentsURL;
                             image.onload = () => {
                                 const imgWidth = 50;
                                 const imgHeight = (image.height / image.width) * imgWidth;
-                                if (
-                                    chatYPosition + imgHeight >
-                                    doc.internal.pageSize.height - 10
-                                ) {
+                                if (yPosition + imgHeight > pageHeight - 10) {
                                     doc.addPage();
-                                    chatYPosition = 10;
+                                    yPosition = 10;
                                 }
                                 doc.addImage(
                                     message.attachmentsURL,
                                     'JPEG',
                                     15,
-                                    chatYPosition,
+                                    yPosition,
                                     imgWidth,
                                     imgHeight,
                                     `${Math.random()}`,
-                                    'FAST'
+                                    'FAST',
                                 );
-                                chatYPosition += imgHeight + 5;
+                                yPosition += imgHeight + 5;
                                 resolve();
                             };
-                            image.onerror = () => {
-                                resolve();
-                            };
+                            image.onerror = () => resolve();
                         });
                     }
 
                     if (message.isFile && message.fileName) {
+                        addPageIfNeeded();
                         doc.setFont('Helvetica', 'normal', 400);
                         doc.setTextColor('#464F60');
-                        doc.text(`[File]: ${message.fileName}`, 15, chatYPosition);
-                        chatYPosition += 5;
+                        doc.text(`[Attached file]: ${message.fileName}`, 15, yPosition);
+                        yPosition += 5;
                     }
-
                 }
 
                 doc.save('consultation-report.pdf');
