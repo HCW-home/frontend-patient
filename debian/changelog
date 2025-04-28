@@ -1,3 +1,10 @@
+hcw-athome-patient (0.5.29) UNRELEASED; urgency=medium
+
+  * show native alert when no permission on accepting call
+  * imporove consultation report download
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 28 Apr 2025 08:02:03 +0000
+
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
   [ Aram ]
