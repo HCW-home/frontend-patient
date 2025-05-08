@@ -53,40 +53,44 @@ ion-content {
   justify-content: center;
 
   .uploader-wrapper {
-
-    height: 108px;
+    gap: 16px;
     width: 100%;
-    border-radius: 8px;
-    padding-top: 16px;
     display: flex;
-    flex-direction: column;
+    padding: 16px;
+    border-radius: 8px;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
-    background: #FFFFFF;
     border: 1px dashed #BCC2CE;
-
-   ion-img {
-     width: 50px;
-   }
 
     .upload-text {
       color: black;
-      line-height: 20px;
       font-size: 1rem;
+      line-height: 20px;
     }
 
     .upload-success-wrapper {
       display: flex;
-      gap: 5px;
-      ion-img {
-        width: 12px;
+      gap: 0.5rem;
+      background: #f0f4f8;
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+
+      .remove-icon {
+        cursor: pointer;
       }
 
+       ion-icon {
+         flex-shrink: 0;
+       }
+
       .upload-success-text {
-        color: rgb(56,160, 108);
-        line-height: 20px;
         font-size: 1rem;
         font-weight: 500;
+        margin-left: 4px;
+        line-height: 20px;
+        color: rgb(56, 160, 108);
       }
     }
 

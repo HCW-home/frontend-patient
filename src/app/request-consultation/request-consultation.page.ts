@@ -21,7 +21,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class RequestConsultationPage implements OnInit {
     queues: Queue[] = [];
     genders = [{name: "Male", id: "male"}, {name: "Female", id: "female"}];
-    file;
+    files: File[] = [];
     loading = false;
 
     form: FormGroup = this.fb.group({
@@ -49,6 +49,7 @@ export class RequestConsultationPage implements OnInit {
     }
 
     ngOnInit() {
+        this.files = [];
         this.getQueues();
         this.addDynamicFields();
     }
@@ -122,8 +123,10 @@ export class RequestConsultationPage implements OnInit {
                 if (value.message) {
                     actions.push(this.messageService.sendMessage(res.id, value.message));
                 }
-                if (this.file) {
-                    actions.push(this.consultationService.postFile(this.file, res.id));
+                if (this.files.length) {
+                    this.files.forEach(file => {
+                        actions.push(this.consultationService.postFile(file, res.id));
+                    })
                 }
 
                 if (actions.length === 0) {
@@ -157,17 +160,19 @@ export class RequestConsultationPage implements OnInit {
         this.router.navigate([`/dashboard`]);
     }
 
-    removeFile(event: Event) {
-        event.stopPropagation();
-        this.file = null;
+    removeFile(index: number): void {
+        this.files.splice(index, 1);
     }
 
     onFileListener(event: any): void {
-        this.file = event.target.files[0];
+        const selectedFiles: FileList = event.target.files;
+        for (let i = 0; i < selectedFiles.length; i++) {
+            this.files.push(selectedFiles[i]);
+        }
     }
 
-    onFileDropped(files: FileList): void {
-        this.onFileListener({ target: { files } });
+    onFileDropped(fileList: FileList): void {
+        this.onFileListener({ target: { files: fileList } });
     }
 
     getErrorMessage(formField: string) {
