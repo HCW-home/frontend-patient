@@ -75,7 +75,8 @@
         "theRemoteServerIsNotReachable": "The remote server cannot be reached, please check your connectivity",
         "pleaseEnterYourInvitationKey": "Please enter your invitation key",
         "firstName": "First Name",
-        "lastName": "Last Name"
+        "lastName": "Last Name",
+        "expertLoginTitle": "Please provide your personal information before you can join the teleconsultation."
     },
     "translatorForm": {
         "youAboutToJoinInviteWithPatientAndDOctor": " {{branding}} is a teleconsultation system. You are about to accept an online appointment with a patient and caregiver.",

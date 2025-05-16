@@ -117,21 +117,8 @@
                                 (submit)="onSubmit()"
                                 class="login-form"
                         >
-                            <ion-item lines="full" *ngIf="!isProduction()">
-                                <ion-label position="floating" text-wrap>
-                                    {{ 'login.invitationKey' | translate }}
-                                </ion-label>
-                                <ion-input
-                                        [(ngModel)]="inviteKey"
-                                        name="inviteKey"
-                                        type="string"
-                                        placeholder="ae9f049f76e6addbcc8d0858cc229fdf4af1c862"
-                                        pattern="[a-f0-9]{40}"
-                                ></ion-input>
-                            </ion-item>
-
                             <p *ngIf="isExpert" class="text-center">
-                                {{ 'Please provide your personal information before you can join the teleconsultation.\n' | translate }}
+                                {{ 'login.expertLoginTitle' | translate }}
                             </p>
 
 
