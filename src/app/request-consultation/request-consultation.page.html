@@ -5,9 +5,8 @@
         <div class="custom-card">
             <div class="container">
 
-
-                <ion-text><h1
-                        class="authenticate"> {{ 'request_consultation.consultation_request_form' | translate }}</h1>
+                <ion-text>
+                    <h1 class="authenticate"> {{ 'request_consultation.consultation_request_form' | translate }}</h1>
                 </ion-text>
 
                 <div class="request-text">
@@ -17,8 +16,9 @@
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
                     <ion-list>
-                        <ion-item class="mb-3">
+                        <ion-item class="mb-3" lines="none">
                             <ion-select interface="popover"
+                                        fill="solid"
                                         placeholder="{{ 'request_consultation.select_expert_area' | translate }}"
                                         formControlName="queue">
                                 <ion-select-option [value]="option.id"
@@ -31,11 +31,11 @@
                         </ion-item>
                     </ion-list>
 
-
-                    <ion-item class="mb-3">
-                        <ion-label position="floating">{{ 'request_consultation.patient_firstname' | translate }}
-                        </ion-label>
+                    <ion-item class="mb-3" lines="none">
                         <ion-input
+                                fill="solid"
+                                labelPlacement="floating"
+                                label="{{ 'request_consultation.patient_firstname' | translate }}"
                                 (ionBlur)="validationService.clearSpace(form, 'firstName')"
                                 (ionFocus)="validationService.resetInputValidation(form, 'firstName')"
                                 (ionChange)="validationService.ltrim(form, 'firstName')"
@@ -47,10 +47,11 @@
                         </ion-note>
                     </ion-item>
 
-                    <ion-item class="mb-3">
-                        <ion-label position="floating">{{ 'request_consultation.patient_lastname' | translate }}
-                        </ion-label>
+                    <ion-item class="mb-3" lines="none">
                         <ion-input
+                                fill="solid"
+                                labelPlacement="floating"
+                                label="{{ 'request_consultation.patient_lastname' | translate }}"
                                 (ionBlur)="validationService.clearSpace(form, 'lastName')"
                                 (ionFocus)="validationService.resetInputValidation(form, 'lastName')"
                                 (ionChange)="validationService.ltrim(form, 'lastName')"
@@ -63,8 +64,9 @@
                     </ion-item>
 
                     <ion-list>
-                        <ion-item class="mb-3">
+                        <ion-item class="mb-3" lines="none">
                             <ion-select interface="popover"
+                                        fill="solid"
                                         placeholder="{{ 'request_consultation.select_gender' | translate }}"
                                         formControlName="sex">
                                 <ion-select-option [value]="option.id"
@@ -79,17 +81,22 @@
                     </ion-list>
 
 
-                    <ion-item fill="solid" class="mb-3">
-                        <ion-label position="floating">{{ 'request_consultation.age' | translate }}</ion-label>
-                        <ion-input placeholder="{{ 'request_consultation.enter_age' | translate }}" type="number"
+                    <ion-item class="mb-3" lines="none">
+                        <ion-input labelPlacement="floating"
+                                   fill="solid"
+                                   label="{{ 'request_consultation.age' | translate }}"
+                                   placeholder="{{ 'request_consultation.enter_age' | translate }}" type="number"
                                    formControlName="age"
                         ></ion-input>
                     </ion-item>
 
-                    <ion-item (click)="openCountrySelect()" fill="solid" class="mb-3">
-                        <ion-label position="floating">{{ 'request_consultation.country' | translate }}</ion-label>
-                        <ion-input readonly="true" placeholder="{{ 'request_consultation.select_country' | translate }}"
-                                   formControlName="country"
+                    <ion-item (click)="openCountrySelect()" class="mb-3" lines="none">
+                        <ion-input
+                                fill="solid"
+                                label="{{ 'request_consultation.country' | translate }}"
+                                labelPlacement="floating"
+                                readonly="true" placeholder="{{ 'request_consultation.select_country' | translate }}"
+                                formControlName="country"
                         ></ion-input>
                     </ion-item>
 
@@ -101,6 +108,7 @@
                                         position="floating">{{ ('metadata.' + field | translate) !== ('metadata.' + field) ? ('metadata.' + field | translate) : field }}
                                 </ion-label>
                                 <ion-input
+                                        fill="solid"
                                         placeholder="{{ ('metadata.' + field | translate) !== ('metadata.' + field) ? ('metadata.' + field | translate) : field }}"
                                         [formControlName]="field"
                                 ></ion-input>
@@ -108,7 +116,7 @@
                         }
                     }
 
-                    <ion-item class="mt-3 mb-3">
+                    <ion-item class="mt-3 mb-3" lines="none">
                         <ion-textarea [label]="'request_consultation.message_optional' | translate"
                                       labelPlacement="floating" fill="solid"
                                       formControlName="message"
@@ -116,50 +124,49 @@
                     </ion-item>
 
 
-                    <div class="attachment-wrapper"
-                         fileDrop
-                         (click)="fileInput.value = null;fileInput.click()"
-                         (fileDropped)="onFileDropped($event)">
+                    <ion-item lines="none">
+                        <div class="attachment-wrapper"
+                             fileDrop
+                             (click)="fileInput.value = null;fileInput.click()"
+                             (fileDropped)="onFileDropped($event)">
 
-                        <input type="file" #fileInput class="d-none" style="display: none"
-                               multiple (change)="onFileListener($event)">
+                            <input type="file" #fileInput class="d-none" style="display: none"
+                                   multiple (change)="onFileListener($event)">
 
-                        <div class="uploader-wrapper">
-                            <ion-img src="assets/icons/upload.svg"></ion-img>
-                            <span class="upload-text" *ngIf="files.length === 0">
+                            <div class="uploader-wrapper">
+                                <ion-img src="assets/icons/upload.svg"></ion-img>
+                                <span class="upload-text" *ngIf="files.length === 0">
                               {{ 'request_consultation.upload_document' | translate }}
                             </span>
 
-                            @for (file of files; track file.name; let i = $index) {
-                                <div class="upload-success-wrapper ion-align-items-center ion-justify-content-between">
+                                @for (file of files; track file.name; let i = $index) {
+                                    <div class="upload-success-wrapper ion-align-items-center ion-justify-content-between">
 
-                                    <div class="d-flex ion-align-items-center">
-                                        <ion-icon name="checkmark-circle-outline" color="success"
-                                                  size="small"></ion-icon>
-                                        <p class="upload-success-text">{{ file.name }}</p>
+                                        <div class="d-flex ion-align-items-center">
+                                            <ion-icon name="checkmark-circle-outline" color="success"
+                                                      size="small"></ion-icon>
+                                            <p class="upload-success-text">{{ file.name }}</p>
+                                        </div>
+
+                                        <ion-icon name="close-circle" color="medium" size="small" class="remove-icon"
+                                                  (click)="removeFile(i); $event.stopPropagation()"></ion-icon>
                                     </div>
+                                }
 
-                                    <ion-icon name="close-circle" color="medium" size="small" class="remove-icon"
-                                              (click)="removeFile(i); $event.stopPropagation()"></ion-icon>
-                                </div>
-                            }
-
+                            </div>
                         </div>
-                    </div>
+                    </ion-item>
 
                     <button class="btn green mt-2 big" type="submit" [disabled]="!form.valid">
                         {{ 'request_consultation.request_consultation' | translate }}
                     </button>
 
                     <div class="label-wrapper" (click)="backToDashboard()">
-                 <span class="label">
-                    {{ 'common.back_to_dashboard' | translate }}
-                </span>
+                     <span class="label">
+                        {{ 'common.back_to_dashboard' | translate }}
+                    </span>
                     </div>
-
                 </form>
-
-
             </div>
         </div>
     </div>
