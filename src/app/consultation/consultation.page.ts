@@ -330,10 +330,10 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
         this.consultationService.readMessages(this.consultationId);
     }
 
-    sendMsg(event) {
-        if (event.charCode === 13) {
+    onKeyDown(event: KeyboardEvent) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault();
             this.send();
-            return false;
         }
     }
 

@@ -208,6 +208,11 @@ ion-icon[name="attach"] {
   }
 }
 
+.message-text {
+  overflow-wrap: normal;
+  white-space: pre-wrap;
+}
+
 ::ng-deep {
   html[data-theme="accessibility"] {
     .title {
@@ -255,3 +260,4 @@ ion-icon[name="attach"] {
     }
   }
 }
+
