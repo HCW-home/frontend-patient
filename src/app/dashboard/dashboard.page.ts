@@ -336,16 +336,15 @@ export class DashboardPage implements OnDestroy {
         this.messageService
             .getAllConsultationMessages(data._id || data.id)
             .subscribe(async res => {
-                res = res.reverse()
+                res = res.reverse();
                 const messages = await Promise.all(
                     res.map(m => this.adjustMsg(m, data._id || data.id)),
                 );
+
                 const doc = new jsPDF();
                 const getLabelWidth = (text: string) => doc.getTextWidth(text) + 2;
-                const pageWidth =
-                    doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
-                const pageHeight =
-                    doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+                const pageWidth = doc.internal.pageSize.getWidth();
+                const pageHeight = doc.internal.pageSize.getHeight();
                 const imageUrl = this.configService.config?.logo;
                 let yPosition = 10;
 
@@ -357,182 +356,129 @@ export class DashboardPage implements OnDestroy {
                 };
 
                 if (imageUrl) {
-                    await new Promise<void>((resolve, reject) => {
+                    await new Promise<void>((resolve) => {
                         const image = new Image();
                         image.crossOrigin = 'Anonymous';
 
                         const isSvg = imageUrl.toLowerCase().endsWith('.svg') || imageUrl.startsWith('data:image/svg+xml');
 
-                        if (isSvg) {
-                            const canvas = document.createElement('canvas');
-                            const ctx = canvas.getContext('2d');
+                        image.onload = () => {
+                            try {
+                                const canvas = document.createElement('canvas');
+                                const ctx = canvas.getContext('2d');
+                                canvas.width = image.width || 200;
+                                canvas.height = image.height || 200;
+                                ctx.drawImage(image, 0, 0);
 
-                            image.onload = () => {
-                                try {
-                                    canvas.width = image.width || 200;
-                                    canvas.height = image.height || 200;
+                                const base64 = canvas.toDataURL(isSvg ? 'image/png' : 'image/jpeg');
+                                const imgWidth = 50;
+                                const imgHeight = (canvas.height / canvas.width) * imgWidth;
 
-                                    ctx.drawImage(image, 0, 0);
-
-                                    const base64 = canvas.toDataURL('image/png');
-
-                                    const imgWidth = 50;
-                                    const imgHeight = (canvas.height / canvas.width) * imgWidth;
-
-                                    doc.addImage(
-                                        base64,
-                                        'PNG',
-                                        pageWidth / 2 - imgWidth / 2,
-                                        yPosition,
-                                        imgWidth,
-                                        imgHeight,
-                                        'Logo',
-                                        'FAST',
-                                    );
-                                    yPosition += imgHeight + 10;
-                                    resolve();
-                                } catch (err) {
-                                    console.error('SVG processing failed:', err);
-                                    resolve();
-                                }
-                            };
-
-                            image.onerror = () => {
-                                console.error('Failed to load SVG:', imageUrl);
+                                doc.addImage(base64, isSvg ? 'PNG' : 'JPEG', pageWidth / 2 - imgWidth / 2, yPosition, imgWidth, imgHeight);
+                                yPosition += imgHeight + 10;
                                 resolve();
-                            };
-
-                            image.src = imageUrl;
-                        } else {
-                            image.onload = () => {
-                                try {
-                                    const canvas = document.createElement('canvas');
-                                    canvas.width = image.width;
-                                    canvas.height = image.height;
-                                    const ctx = canvas.getContext('2d');
-                                    ctx.drawImage(image, 0, 0);
-                                    const base64 = canvas.toDataURL('image/jpeg');
-
-                                    const imgWidth = 50;
-                                    const imgHeight = (image.height / image.width) * imgWidth;
-
-                                    doc.addImage(
-                                        base64,
-                                        'JPEG',
-                                        pageWidth / 2 - imgWidth / 2,
-                                        yPosition,
-                                        imgWidth,
-                                        imgHeight,
-                                        'Logo',
-                                        'FAST',
-                                    );
-                                    yPosition += imgHeight + 10;
-                                    resolve();
-                                } catch (err) {
-                                    console.error('Image processing failed:', err);
-                                    resolve();
-                                }
-                            };
-
-                            image.onerror = () => {
-                                console.error('Failed to load image:', imageUrl);
+                            } catch (err) {
+                                console.error('Image processing failed:', err);
                                 resolve();
-                            };
+                            }
+                        };
 
-                            image.src = imageUrl;
-                        }
+                        image.onerror = () => {
+                            console.error('Failed to load image:', imageUrl);
+                            resolve();
+                        };
+
+                        image.src = imageUrl;
                     });
                 }
+
+                const leftX = 15;
+                const labelGap = 20;
+                const lineHeight = 5;
 
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.setFontSize(22);
-                doc.text('Consultation report', 15, yPosition);
+                doc.text('Consultation report', leftX, yPosition);
                 yPosition += 15;
 
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
-                yPosition += 10;
-                doc.text('Patient information', 15, yPosition);
+                doc.text('Patient information', leftX, yPosition);
                 yPosition += 10;
 
                 doc.setFontSize(10);
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
-                doc.text('Firstname:', 15, yPosition);
-                doc.text('Lastname:', 15, yPosition + 5);
-                doc.text('Gender:', 15, yPosition + 10);
+                doc.text('Firstname:', leftX, yPosition);
+                doc.text('Lastname:', leftX, yPosition + lineHeight);
+                doc.text('Gender:', leftX, yPosition + lineHeight * 2);
                 doc.setFont('Helvetica', 'normal', 400);
-                doc.text(`${data.firstName}`, 34, yPosition);
-                doc.text(`${data.lastName}`, 34, yPosition + 5);
-                doc.text(`${data.gender}`, 30, yPosition + 10);
-                yPosition += 15;
+                doc.text(`${data.firstName}`, leftX + labelGap, yPosition);
+                doc.text(`${data.lastName}`, leftX + labelGap, yPosition + lineHeight);
+                doc.text(`${data.gender}`, leftX + labelGap, yPosition + lineHeight * 2);
+                yPosition += lineHeight * 3 + 10;
 
                 if (nurse?.firstName) {
-                    doc.setFont('Helvetica', 'normal', 700);
+                    doc.setFontSize(14);
+                    doc.setTextColor('#464F60');
+                    doc.text('Requester information', leftX, yPosition);
                     yPosition += 10;
-                    doc.text('Requester information', 108, yPosition);
-                    yPosition += 5;
-                    doc.text(`Firstname:`, 108, yPosition);
-                    doc.text(`Lastname:`, 108, yPosition + 5);
+
+                    doc.setFontSize(10);
+                    doc.setTextColor('#000');
+                    doc.setFont('Helvetica', 'normal', 700);
+                    doc.text('Firstname:', leftX, yPosition);
+                    doc.text('Lastname:', leftX, yPosition + lineHeight);
                     doc.setFont('Helvetica', 'normal', 400);
-                    doc.text(`${nurse.firstName}`, 127, yPosition);
-                    doc.text(`${nurse.lastName}`, 127, yPosition + 5);
-                    yPosition += 15;
+                    doc.text(`${nurse.firstName}`, leftX + labelGap, yPosition);
+                    doc.text(`${nurse.lastName}`, leftX + labelGap, yPosition + lineHeight);
+                    yPosition += lineHeight * 2 + 10;
                 }
 
                 if (data.experts?.length) {
-                    doc.setFont('Helvetica', 'normal', 700);
+                    doc.setFontSize(14);
+                    doc.setTextColor('#464F60');
+                    doc.text('Expert information', leftX, yPosition);
                     yPosition += 10;
-                    doc.text('Expert information', 108, yPosition);
-                    yPosition += 5;
+
                     data.experts.forEach(expert => {
-                        doc.text(`Firstname:`, 108, yPosition);
-                        doc.text(`Lastname:`, 108, yPosition + 5);
+                        doc.setFontSize(10);
+                        doc.setTextColor('#000');
+                        doc.setFont('Helvetica', 'normal', 700);
+                        doc.text('Firstname:', leftX, yPosition);
+                        doc.text('Lastname:', leftX, yPosition + lineHeight);
                         doc.setFont('Helvetica', 'normal', 400);
-                        doc.text(`${expert.firstName}`, 127, yPosition);
-                        doc.text(`${expert.lastName}`, 127, yPosition + 5);
-                        yPosition += 10;
+                        doc.text(`${expert.firstName}`, leftX + labelGap, yPosition);
+                        doc.text(`${expert.lastName}`, leftX + labelGap, yPosition + lineHeight);
+                        yPosition += lineHeight * 2 + 5;
                     });
                 }
 
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
+                doc.text('Consultation information', leftX, yPosition);
                 yPosition += 10;
-                doc.text('Consultation information', 15, yPosition);
-                yPosition += 10;
+
                 doc.setFontSize(10);
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
-                doc.text(`Start date/time:`, 15, yPosition);
-                doc.text(`End date/time:`, 15, yPosition + 5);
-                doc.text(`Duration:`, 15, yPosition + 10);
+                doc.text('Start date/time:', leftX, yPosition);
+                doc.text('End date/time:', leftX, yPosition + lineHeight);
+                doc.text('Duration:', leftX, yPosition + lineHeight * 2);
                 doc.setFont('Helvetica', 'normal', 400);
-                doc.text(
-                    `${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`,
-                    15 + getLabelWidth(`Start date/time:`),
-                    yPosition,
-                );
-                doc.text(
-                    `${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`,
-                    15 + getLabelWidth(`End date/time:`),
-                    yPosition + 5,
-                );
-                doc.text(
-                    `${this.durationPipe.transform(data.closedAt - data.createdAt, 'en')}`,
-                    15 + getLabelWidth(`Duration:`),
-                    yPosition + 10,
-                );
-                yPosition += 15;
+                doc.text(`${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth('Start date/time:'), yPosition);
+                doc.text(`${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth('End date/time:'), yPosition + lineHeight);
+                doc.text(`${this.durationPipe.transform(data.closedAt - data.createdAt, 'en')}`, leftX + getLabelWidth('Duration:'), yPosition + lineHeight * 2);
+                yPosition += lineHeight * 3 + 5;
 
                 if (data.metadata && Object.keys(data.metadata).length) {
-                    Object.keys(data.metadata).forEach((key, index) => {
+                    Object.keys(data.metadata).forEach(key => {
                         addPageIfNeeded();
                         doc.setFont('Helvetica', 'normal', 700);
-                        doc.text(`${key}:`, 15, yPosition);
-                        const metadataX = 15 + getLabelWidth(`${key}:`);
+                        doc.text(`${key}:`, leftX, yPosition);
                         doc.setFont('Helvetica', 'normal', 400);
-                        doc.text(`${data.metadata[key]}`, metadataX, yPosition);
-                        yPosition += 5;
+                        doc.text(`${data.metadata[key]}`, leftX + getLabelWidth(`${key}:`), yPosition);
+                        yPosition += lineHeight;
                     });
                 }
 
@@ -548,23 +494,11 @@ export class DashboardPage implements OnDestroy {
                     doc.setTextColor('#000');
                     doc.setFont('Helvetica', 'normal', 700);
 
-                    const firstName =
-                        message.fromUserDetail.role === 'patient'
-                            ? data?.firstName
-                            : message.fromUserDetail.firstName || '';
-                    const lastName =
-                        message.fromUserDetail.role === 'patient'
-                            ? data?.lastName
-                            : message.fromUserDetail.lastName || '';
-                    const date = this.datePipe.transform(
-                        message.createdAt,
-                        'dd LLL HH:mm',
-                        undefined,
-                        'en',
-                    );
+                    const firstName = message.fromUserDetail.role === 'patient' ? data?.firstName : message.fromUserDetail.firstName || '';
+                    const lastName = message.fromUserDetail.role === 'patient' ? data?.lastName : message.fromUserDetail.lastName || '';
+                    const date = this.datePipe.transform(message.createdAt, 'dd LLL HH:mm', undefined, 'en');
 
                     const titleLine = `${firstName} ${lastName} (${message.fromUserDetail?.role}) - ${date}:`;
-                    doc.setFont('Helvetica', 'normal', 700);
                     const wrappedTitle = doc.splitTextToSize(titleLine, pageWidth - 30);
                     doc.text(wrappedTitle, 15, yPosition);
                     yPosition += wrappedTitle.length * 5;
@@ -574,34 +508,19 @@ export class DashboardPage implements OnDestroy {
 
                     if (message.type === 'videoCall' || message.type === 'audioCall') {
                         const callTypeText = message.type === 'audioCall' ? 'Audio call' : 'Video call';
-                        let callStatus = '';
-                        if (message.closedAt) {
-                            callStatus = message.acceptedAt
-                                ? `${callTypeText}  accepted`
-                                : `${callTypeText}  missed`;
-                        } else {
-                            callStatus = `${callTypeText}  call`;
-                        }
+                        const callStatus = message.closedAt
+                            ? message.acceptedAt ? `${callTypeText} accepted` : `${callTypeText} missed`
+                            : `${callTypeText} call`;
 
                         addPageIfNeeded(3);
                         doc.text(callStatus, 15, yPosition);
                         yPosition += 5;
-                        doc.text(
-                            `${this.datePipe.transform(message.createdAt, 'dd LLL HH:mm', undefined, 'en')}`,
-                            15,
-                            yPosition,
-                        );
+                        doc.text(`${this.datePipe.transform(message.createdAt, 'dd LLL HH:mm', undefined, 'en')}`, 15, yPosition);
                         yPosition += 5;
 
                         if (message.acceptedAt && message.closedAt) {
-                            const closedDate = this.datePipe.transform(
-                                message.closedAt,
-                                'dd LLL HH:mm',
-                                undefined,
-                                'en',
-                            );
-                            const finishedText = `${callTypeText}  finished`;
-                            doc.text(finishedText, 15, yPosition);
+                            const closedDate = this.datePipe.transform(message.closedAt, 'dd LLL HH:mm', undefined, 'en');
+                            doc.text(`${callTypeText} finished`, 15, yPosition);
                             yPosition += 5;
                             doc.text(`${closedDate}`, 15, yPosition);
                             yPosition += 5;
@@ -626,16 +545,7 @@ export class DashboardPage implements OnDestroy {
                                     doc.addPage();
                                     yPosition = 10;
                                 }
-                                doc.addImage(
-                                    message.attachmentsURL,
-                                    'JPEG',
-                                    15,
-                                    yPosition,
-                                    imgWidth,
-                                    imgHeight,
-                                    `${Math.random()}`,
-                                    'FAST',
-                                );
+                                doc.addImage(message.attachmentsURL, 'JPEG', 15, yPosition, imgWidth, imgHeight);
                                 yPosition += imgHeight + 5;
                                 resolve();
                             };
