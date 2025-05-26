@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.31) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.32) UNRELEASED; urgency=medium
 
   * show native alert when no permission on accepting call
   * improve consultation report download
@@ -7,8 +7,9 @@ hcw-athome-patient (0.5.31) UNRELEASED; urgency=medium
   * improve form layout for requester form
   * fix ui issue in request consultation page
   * refs #8318, Chat new line with SHIFT key
+  * improve pdf view when requester information exists
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 26 May 2025 08:06:39 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 26 May 2025 13:15:39 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
