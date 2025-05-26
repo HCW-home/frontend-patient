@@ -398,20 +398,20 @@ export class DashboardPage implements OnDestroy {
 
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.setFontSize(22);
-                doc.text('Consultation report', leftX, yPosition);
+                doc.text(this.translate.instant('pdf.consultationReport'), leftX, yPosition);
                 yPosition += 15;
 
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
-                doc.text('Patient information', leftX, yPosition);
+                doc.text(this.translate.instant('pdf.patientInformation'), leftX, yPosition);
                 yPosition += 10;
 
                 doc.setFontSize(10);
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
-                doc.text('Firstname:', leftX, yPosition);
-                doc.text('Lastname:', leftX, yPosition + lineHeight);
-                doc.text('Gender:', leftX, yPosition + lineHeight * 2);
+                doc.text(this.translate.instant('pdf.firstname') + ':', leftX, yPosition);
+                doc.text(this.translate.instant('pdf.lastname') + ':', leftX, yPosition + lineHeight);
+                doc.text(this.translate.instant('pdf.gender') + ':', leftX, yPosition + lineHeight * 2);
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.text(`${data.firstName}`, leftX + labelGap, yPosition);
                 doc.text(`${data.lastName}`, leftX + labelGap, yPosition + lineHeight);
@@ -421,14 +421,14 @@ export class DashboardPage implements OnDestroy {
                 if (nurse?.firstName) {
                     doc.setFontSize(14);
                     doc.setTextColor('#464F60');
-                    doc.text('Requester information', leftX, yPosition);
+                    doc.text(this.translate.instant('pdf.requesterInformation'), leftX, yPosition);
                     yPosition += 10;
 
                     doc.setFontSize(10);
                     doc.setTextColor('#000');
                     doc.setFont('Helvetica', 'normal', 700);
-                    doc.text('Firstname:', leftX, yPosition);
-                    doc.text('Lastname:', leftX, yPosition + lineHeight);
+                    doc.text(this.translate.instant('pdf.firstname') + ':', leftX, yPosition);
+                    doc.text(this.translate.instant('pdf.lastname') + ':', leftX, yPosition + lineHeight);
                     doc.setFont('Helvetica', 'normal', 400);
                     doc.text(`${nurse.firstName}`, leftX + labelGap, yPosition);
                     doc.text(`${nurse.lastName}`, leftX + labelGap, yPosition + lineHeight);
@@ -438,15 +438,15 @@ export class DashboardPage implements OnDestroy {
                 if (data.experts?.length) {
                     doc.setFontSize(14);
                     doc.setTextColor('#464F60');
-                    doc.text('Expert information', leftX, yPosition);
+                    doc.text(this.translate.instant('pdf.expertInformation'), leftX, yPosition);
                     yPosition += 10;
 
                     data.experts.forEach(expert => {
                         doc.setFontSize(10);
                         doc.setTextColor('#000');
                         doc.setFont('Helvetica', 'normal', 700);
-                        doc.text('Firstname:', leftX, yPosition);
-                        doc.text('Lastname:', leftX, yPosition + lineHeight);
+                        doc.text(this.translate.instant('pdf.firstname') + ':', leftX, yPosition);
+                        doc.text(this.translate.instant('pdf.lastname') + ':', leftX, yPosition + lineHeight);
                         doc.setFont('Helvetica', 'normal', 400);
                         doc.text(`${expert.firstName}`, leftX + labelGap, yPosition);
                         doc.text(`${expert.lastName}`, leftX + labelGap, yPosition + lineHeight);
@@ -456,19 +456,19 @@ export class DashboardPage implements OnDestroy {
 
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
-                doc.text('Consultation information', leftX, yPosition);
+                doc.text(this.translate.instant('pdf.consultationInformation'), leftX, yPosition);
                 yPosition += 10;
 
                 doc.setFontSize(10);
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
-                doc.text('Start date/time:', leftX, yPosition);
-                doc.text('End date/time:', leftX, yPosition + lineHeight);
-                doc.text('Duration:', leftX, yPosition + lineHeight * 2);
+                doc.text(this.translate.instant('pdf.startDateTime') + ':', leftX, yPosition);
+                doc.text(this.translate.instant('pdf.endDateTime') + ':', leftX, yPosition + lineHeight);
+                doc.text(this.translate.instant('pdf.duration') + ':', leftX, yPosition + lineHeight * 2);
                 doc.setFont('Helvetica', 'normal', 400);
-                doc.text(`${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth('Start date/time:'), yPosition);
-                doc.text(`${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth('End date/time:'), yPosition + lineHeight);
-                doc.text(`${this.durationPipe.transform(data.closedAt - data.createdAt, 'en')}`, leftX + getLabelWidth('Duration:'), yPosition + lineHeight * 2);
+                doc.text(`${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth(this.translate.instant('pdf.startDateTime') + ':'), yPosition);
+                doc.text(`${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth(this.translate.instant('pdf.endDateTime') + ':'), yPosition + lineHeight);
+                doc.text(`${this.durationPipe.transform(data.closedAt - data.createdAt, 'en')}`, leftX + getLabelWidth(this.translate.instant('pdf.duration') + ':'), yPosition + lineHeight * 2);
                 yPosition += lineHeight * 3 + 5;
 
                 if (data.metadata && Object.keys(data.metadata).length) {
@@ -485,7 +485,7 @@ export class DashboardPage implements OnDestroy {
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
                 yPosition += 10;
-                doc.text('Chat history', 15, yPosition);
+                doc.text(this.translate.instant('pdf.chatHistory'), leftX, yPosition);
                 yPosition += 10;
 
                 for (const message of messages) {
@@ -507,10 +507,15 @@ export class DashboardPage implements OnDestroy {
                     doc.setTextColor('#464F60');
 
                     if (message.type === 'videoCall' || message.type === 'audioCall') {
-                        const callTypeText = message.type === 'audioCall' ? 'Audio call' : 'Video call';
+                        const callTypeText = message.type === 'audioCall'
+                            ? this.translate.instant('pdf.audioCall')
+                            : this.translate.instant('pdf.videoCall');
+
                         const callStatus = message.closedAt
-                            ? message.acceptedAt ? `${callTypeText} accepted` : `${callTypeText} missed`
-                            : `${callTypeText} call`;
+                            ? message.acceptedAt
+                                ? `${callTypeText} ${this.translate.instant('pdf.accepted')}`
+                                : `${callTypeText} ${this.translate.instant('pdf.missed')}`
+                            : `${callTypeText} ${this.translate.instant('pdf.call')}`;
 
                         addPageIfNeeded(3);
                         doc.text(callStatus, 15, yPosition);
@@ -520,7 +525,7 @@ export class DashboardPage implements OnDestroy {
 
                         if (message.acceptedAt && message.closedAt) {
                             const closedDate = this.datePipe.transform(message.closedAt, 'dd LLL HH:mm', undefined, 'en');
-                            doc.text(`${callTypeText} finished`, 15, yPosition);
+                            doc.text(`${callTypeText} ${this.translate.instant('pdf.finished')}`, 15, yPosition);
                             yPosition += 5;
                             doc.text(`${closedDate}`, 15, yPosition);
                             yPosition += 5;
@@ -557,14 +562,13 @@ export class DashboardPage implements OnDestroy {
                         addPageIfNeeded();
                         doc.setFont('Helvetica', 'normal', 400);
                         doc.setTextColor('#464F60');
-                        doc.text(`[Attached file]: ${message.fileName}`, 15, yPosition);
+                        doc.text(`${this.translate.instant('pdf.attachedFile')}: ${message.fileName}`, 15, yPosition);
                         yPosition += 5;
                     }
                 }
 
-                doc.save('consultation-report.pdf');
+                doc.save(this.translate.instant('pdf.fileName') +'.pdf');
             });
     }
-
 
 }

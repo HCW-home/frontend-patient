@@ -242,6 +242,28 @@
         "failureMessage": "Invalid",
         "errorDescription": "This acknowledgement link is no longer valid or has already been used."
     },
+    "pdf": {
+        "consultationReport": "Consultation report",
+        "patientInformation": "Patient information",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "gender": "Gender",
+        "requesterInformation": "Requester information",
+        "expertInformation": "Expert information",
+        "consultationInformation": "Consultation information",
+        "startDateTime": "Start date/time",
+        "endDateTime": "End date/time",
+        "duration": "Duration",
+        "chatHistory": "Chat history",
+        "audioCall": "Audio call",
+        "videoCall": "Video call",
+        "accepted": "accepted",
+        "missed": "missed",
+        "call": "call",
+        "finished": "finished",
+        "attachedFile": "[Attached file]",
+        "fileName": "consultation-report"
+    },
     "metadata": {
         "Age": "Age",
         "Country": "Country",
