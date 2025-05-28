@@ -122,22 +122,20 @@
                             </p>
 
 
-                            <ion-item fill="solid" class="mb-1" *ngIf="isExpert">
-                                <ion-label position="floating" text-wrap>
-                                    {{ 'login.firstName'|translate }}
-                                </ion-label>
+                            <ion-item class="mb-1" *ngIf="isExpert">
                                 <ion-input
+                                        labelPlacement="floating"
+                                        label="{{'login.firstName'|translate}}"
                                         [(ngModel)]="firstName"
                                         name="firstName"
                                         type="string"
                                         placeholder="{{'login.firstName'|translate}}"
                                 ></ion-input>
                             </ion-item>
-                            <ion-item fill="solid" *ngIf="isExpert">
-                                <ion-label position="floating" text-wrap>
-                                    {{ 'login.lastName' | translate }}
-                                </ion-label>
+                            <ion-item *ngIf="isExpert">
                                 <ion-input
+                                        labelPlacement="floating"
+                                        label="{{ 'login.lastName' | translate }}"
                                         [(ngModel)]="lastName"
                                         name="lastName"
                                         type="string"
