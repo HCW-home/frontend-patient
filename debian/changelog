@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.33) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.34) UNRELEASED; urgency=medium
 
   * show native alert when no permission on accepting call
   * improve consultation report download
@@ -9,8 +9,9 @@ hcw-athome-patient (0.5.33) UNRELEASED; urgency=medium
   * refs #8318, Chat new line with SHIFT key
   * improve pdf view when requester information exists
   * add translations for pdf
+  * improve expert login firstname and lastname inputs
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 26 May 2025 15:34:00 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 28 May 2025 15:00:31 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
@@ -23,7 +24,7 @@ hcw-athome-patient (0.5.28) focal; urgency=medium
   * update dependencies
   * refs #8250, Force patient language in frontend
   * update dependencies
-  * imporove translate loader
+  * improve translate loader
   * upgrade ionic/cli and remove deprecated protractor
   * update prod env host
   * translate module fix
@@ -37,7 +38,7 @@ hcw-athome-patient (0.5.25) focal; urgency=medium
   * Try to fix exclusion
 
   [ Gor Grigoryan ]
-  * refs #7896, Have invite aknowledgement by the patient
+  * refs #7896, Have invite acknowledgement by the patient
   * refs #7986, Translation Ukrainian missing
   * add am to languages
   * hide caller name improvements
