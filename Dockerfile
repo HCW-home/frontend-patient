@@ -6,7 +6,7 @@ RUN yarn
 COPY . .
 RUN npx ionic cap build browser --prod --no-open
 
-FROM docker.io/nginxinc/nginx-unprivileged:latest
+FROM docker.io/nginxinc/nginx-unprivileged:1.28-bookworm
 COPY --from=builder /usr/src/app/www/ /usr/share/nginx/html/
 COPY nginx-docker.conf.template /etc/nginx/templates/default.conf.template
 COPY nginx.conf /etc/nginx/nginx.conf
