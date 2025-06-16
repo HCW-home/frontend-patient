@@ -32,16 +32,28 @@
 }
 
 .header {
-  min-width: 400px;
-  border-bottom: 1px solid rgb(209, 209, 209);
-  background-color: #ffffff;
   top: 0;
+  width: 100%;
   height: 70px;
   z-index: 100;
   display: flex;
+  padding: 20px;
+  min-width: 400px;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  background-color: #ffffff;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(209, 209, 209);
+
+  .general-info {
+    margin: 0;
+  }
+
+
+
+  .close-icon {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 

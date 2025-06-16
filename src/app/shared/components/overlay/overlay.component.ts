@@ -31,6 +31,10 @@ export class OverlayComponent implements OnInit {
     this.close.emit(null);
   }
 
+  closeOverlay() {
+    this.close.emit(null);
+  }
+
   async showCancelModal(event) {
     event.stopPropagation();
     const modal = await this.modalController.create({
