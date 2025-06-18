@@ -1,5 +1,6 @@
-hcw-athome-patient (0.5.34) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.35) UNRELEASED; urgency=medium
 
+  [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
   * improve consultation report download
   * refs #8283, support multiple attachments when requesting consultation
@@ -11,7 +12,14 @@ hcw-athome-patient (0.5.34) UNRELEASED; urgency=medium
   * add translations for pdf
   * improve expert login firstname and lastname inputs
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 28 May 2025 15:00:31 +0000
+  [ Olivier Bitsch ]
+  * Use static bookworm image
+
+  [ Gor Grigoryan ]
+  * add check for queue name
+  * add close button to overlay
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 18 Jun 2025 09:44:40 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
