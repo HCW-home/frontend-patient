@@ -245,6 +245,7 @@
     "pdf": {
         "consultationReport": "Consultation report",
         "patientInformation": "Patient information",
+        "doctorInformation": "Doctor information",
         "firstname": "Firstname",
         "lastname": "Lastname",
         "gender": "Gender",

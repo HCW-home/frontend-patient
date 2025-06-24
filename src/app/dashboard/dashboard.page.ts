@@ -279,7 +279,8 @@ export class DashboardPage implements OnDestroy {
 
     exportPDF(event, consultation) {
         event.stopPropagation();
-        this.generatePDF(consultation.consultation, consultation.nurse);
+        console.log(consultation, 'consultation');
+        this.generatePDF(consultation.consultation, consultation.nurse, consultation.doctor);
     }
 
     getImageUrl(imageFile: Blob) {
@@ -332,7 +333,7 @@ export class DashboardPage implements OnDestroy {
     }
 
 
-    generatePDF(data, nurse) {
+    generatePDF(data, nurse, doctor) {
         this.messageService
             .getAllConsultationMessages(data._id || data.id)
             .subscribe(async res => {
@@ -396,10 +397,46 @@ export class DashboardPage implements OnDestroy {
                 const labelGap = 20;
                 const lineHeight = 5;
 
+
+
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.setFontSize(22);
                 doc.text(this.translate.instant('pdf.consultationReport'), leftX, yPosition);
                 yPosition += 15;
+
+                if (doctor?.firstName) {
+                    doc.setFontSize(14);
+                    doc.setTextColor('#464F60');
+                    doc.text(
+                        this.translate.instant('pdf.doctorInformation'),
+                        leftX,
+                        yPosition
+                    );
+                    yPosition += 10;
+
+                    doc.setFontSize(10);
+                    doc.setTextColor('#000');
+                    doc.setFont('Helvetica', 'normal', 700);
+                    doc.text(
+                        this.translate.instant('pdf.firstname') + ':',
+                        leftX,
+                        yPosition
+                    );
+                    doc.text(
+                        this.translate.instant('pdf.lastname') + ':',
+                        leftX,
+                        yPosition + lineHeight
+                    );
+
+                    doc.setFont('Helvetica', 'normal', 400);
+                    doc.text(`${doctor.firstName}`, leftX + labelGap, yPosition);
+                    doc.text(
+                        `${doctor.lastName}`,
+                        leftX + labelGap,
+                        yPosition + lineHeight
+                    );
+                    yPosition += lineHeight * 2 + 10;
+                }
 
                 doc.setFontSize(14);
                 doc.setTextColor('#464F60');
