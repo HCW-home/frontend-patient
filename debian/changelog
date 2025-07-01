@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.35) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.36) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -18,8 +18,11 @@ hcw-athome-patient (0.5.35) UNRELEASED; urgency=medium
   [ Gor Grigoryan ]
   * add check for queue name
   * add close button to overlay
+  * build fix
+  * add doctor information in consultation report
+  * fix fallback language to be en
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 18 Jun 2025 09:44:40 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 01 Jul 2025 12:39:46 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
