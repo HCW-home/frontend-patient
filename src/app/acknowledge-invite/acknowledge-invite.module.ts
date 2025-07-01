@@ -22,7 +22,7 @@ const routes: Routes = [
     CommonModule,
     CommonModule,
     SharedModule,
-TranslateModule,
+    TranslateModule,
     RouterModule.forChild(routes),
   ],
   declarations: [AcknowledgeInviteComponent]

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
-import { LanguageService } from '../../services/language.service';
-import { DEFAULT_LANGUAGES } from '../../../i18n/i18n.module';
+import {DEFAULT_LANGUAGES, LanguageService} from "../../services/language.service";
 import { Subscription } from 'rxjs';
 
 @Component({

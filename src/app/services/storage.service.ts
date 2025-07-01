@@ -10,11 +10,10 @@ export class StorageService {
   clear(): void {
     const language = localStorage.getItem('hhp-lang');
     localStorage.clear();
-    if (language !== null) {
+    if (language) {
       localStorage.setItem('hhp-lang', language);
     } else {
       localStorage.setItem('hhp-lang', 'en');
-
     }
   }
 }
