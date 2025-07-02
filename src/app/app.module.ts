@@ -125,7 +125,7 @@ registerLocaleData(localeEn);
                   ? browserLang
                   : dynamicLanguages[0];
 
-              translateService.setDefaultLang(defaultLang);
+              translateService.setDefaultLang('en');
               translateService.use(defaultLang);
             }),
       deps: [ConfigService, TranslateService],
