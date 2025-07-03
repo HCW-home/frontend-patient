@@ -108,5 +108,36 @@
     "ti": "ትግርኛ",
     "ru": "Русский",
     "it": "italiano",
-    "uk": "Українські"
+    "uk": "Українські",
+    "pdf": {
+        "firstname": "Nombre",
+        "attachedFile": "[Archivo adjunto]",
+        "consultationReport": "Informe de consulta",
+        "patientInformation": "Información del paciente",
+        "requesterInformation": "Información del solicitante",
+        "expertInformation": "Información de expertos",
+        "consultationInformation": "Información de consulta",
+        "startDateTime": "Fecha/hora de inicio",
+        "duration": "Duración",
+        "finished": "finalizada",
+        "lastname": "Apellido",
+        "gender": "Género",
+        "doctorInformation": "Información del médico",
+        "endDateTime": "Fecha/hora de finalización",
+        "chatHistory": "Historial de chat",
+        "audioCall": "Llamada de audio",
+        "videoCall": "Videollamada",
+        "call": "llamada",
+        "accepted": "aceptada",
+        "missed": "perdida"
+    },
+    "metadata": {
+        "Age": "Edad",
+        "Custom Id": "Identificación personalizada",
+        "Country": "País",
+        "Facility": "Instalación"
+    },
+    "profile": {
+        "profile": "Perfil"
+    }
 }
