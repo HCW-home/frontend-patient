@@ -1,7 +1,8 @@
 {
     "cgu": {
         "backToHome": "Volver al inicio",
-        "termsAndConditions": "Condiciones generales de uso (CGU)"
+        "termsAndConditions": "Términos y condiciones (T&C)",
+        "selectCountry": "Estos términos se aplican al país:"
     },
     "consultation": {
         "plsKeepThisOpenPage": "Mantenga esta página abierta, la teleconsulta comenzará en unos minutos.",
@@ -25,7 +26,23 @@
         "inProgress": "En curso",
         "requestForConsultation": "SOLICITUD DE TELECONSULTA",
         "videoCallStarted": "Se ha iniciado la llamada de audio",
-        "audioCallEnded": "Fin de la llamada de audio"
+        "audioCallEnded": "Fin de la llamada de audio",
+        "joinCallTitle": "Unirse a la llamada",
+        "joinCallCancel": "Cancelar",
+        "youAreInConsultation": "Ahora está en teleconsulta",
+        "cancel_request": "Cancelar solicitud",
+        "resume": "REANUDAR",
+        "general_information": "Información general",
+        "patient_name": "Nombre del paciente",
+        "handled_by": "Manejado por",
+        "requesting": "solicitando",
+        "country": "País",
+        "sex": "Sexo",
+        "area": "Dominio de experiencia",
+        "requested_at": "Solicitado en",
+        "hospital": "Nombre del hospital/instalación:",
+        "joinCallDescription": "La llamada para esta consulta ya está abierta, ¿quieres unirte a la llamada ahora?",
+        "joinCallSubmit": "Unirse"
     },
     "login": {
         "back": "Back",
@@ -45,12 +62,24 @@
         "joinTheConsultation": "Unirse a la consulta",
         "invitationKey": "Clave de la invitación",
         "closeTheApplication": "Cerrar la aplicación",
-        "pleaseWaitWhileYourRequest": "Espere mientras se procesa su solicitud."
+        "pleaseWaitWhileYourRequest": "Espere mientras se procesa su solicitud.",
+        "termsText": "Debes aceptar los",
+        "expertLoginTitle": "Proporcione su información personal antes de poder unirse a la teleconsulta.",
+        "firstName": "Nombre",
+        "termsSecondText": "antes de poder usar {{branding}}",
+        "theInvitationIsNotOrNoLongerValide": "Este enlace de invitación ya no es válido o ya se ha utilizado. El médico o cuidador le enviará otra invitación.",
+        "lastName": "Apellido"
     },
     "videoRoom": {
         "refuse": "Rechazar",
         "accept": "Aceptar",
-        "callInProgress": "Llamada en curso"
+        "callInProgress": "Llamada en curso",
+        "audioCall": "Llamada de audio",
+        "videoCall": "Videollamada",
+        "permissionNeeded": "Se necesita permiso",
+        "needAccess": "Necesitamos acceso a su micrófono o cámara para continuar la llamada.",
+        "ok": "OK",
+        "caller": "HCW"
     },
     "closingScreen": {
         "theConsultationIsNowOver": "La teleconsulta ha terminado",
@@ -63,7 +92,15 @@
     "test": {
         "yourDeviceSeems": "Parece que su dispositivo es perfectamente compatible con el sistema de teleconsulta. Si la vista previa del vídeo no tiene la calidad suficiente o se ve entrecortada, compruebe que su equipo dispone de suficiente señal.",
         "loading": "Se está cargando...",
-        "joinTheConsultation": "Unirse a la consulta"
+        "joinTheConsultation": "Unirse a la consulta",
+        "askForPermission": "Pedir permiso",
+        "youCanStillJoin": "Aún puedes unirte a la consulta, pero la llamada de video/audio podría fallar.",
+        "micDenied": "El acceso a la cámara parece funcionar, pero el acceso al micrófono está denegado.",
+        "cameraDenied": "El acceso al micrófono parece funcionar, pero el acceso a la cámara está denegado.",
+        "connectivityIssue": "Nosotros tenemos problema de conectividad",
+        "micAndCamRequesting": " {{branding}} necesita tener acceso a tu cámara y micrófono para funcionar correctamente. Asegúrase de aceptar la solicitud de permiso.",
+        "permissionError": "Hemos detectado un problema al acceder a su cámara o micrófono. Asegúrese de que los dispositivos estén correctamente conectados.",
+        "bothDenied": "Acceso a la cámara y al micrófono esta negado."
     },
     "translatorForm": {
         "acceptRequest": "Aceptar la cita",
@@ -108,5 +145,141 @@
     "ti": "ትግርኛ",
     "ru": "Русский",
     "it": "italiano",
-    "uk": "Українські"
+    "uk": "Українські",
+    "pdf": {
+        "firstname": "Nombre",
+        "attachedFile": "[Archivo adjunto]",
+        "consultationReport": "Informe de consulta",
+        "patientInformation": "Información del paciente",
+        "requesterInformation": "Información del solicitante",
+        "expertInformation": "Información de expertos",
+        "consultationInformation": "Información de consulta",
+        "startDateTime": "Fecha/hora de inicio",
+        "duration": "Duración",
+        "finished": "finalizada",
+        "lastname": "Apellido",
+        "gender": "Género",
+        "doctorInformation": "Información del médico",
+        "endDateTime": "Fecha/hora de finalización",
+        "chatHistory": "Historial de chat",
+        "audioCall": "Llamada de audio",
+        "videoCall": "Videollamada",
+        "call": "llamada",
+        "accepted": "aceptada",
+        "missed": "perdida"
+    },
+    "metadata": {
+        "Age": "Edad",
+        "Custom Id": "Identificación personalizada",
+        "Country": "País",
+        "Facility": "Instalación"
+    },
+    "profile": {
+        "profile": "Perfil"
+    },
+    "register": {
+        "terms": "términos y condiciones",
+        "gender": "Género",
+        "phone_required": "El número de teléfono es obligatorio",
+        "email": "Correo electrónico",
+        "country": "País",
+        "account_request": "Solicitud de cuenta",
+        "firstName": "Nombre",
+        "lastname": "Apellido",
+        "phone_number": "Número de teléfono",
+        "enter_phone_number": "Ingresar el número de teléfono",
+        "by_checking_box": "Al hacer clic en la casilla de verificación, acepta los",
+        "organization_required": "La organización es obligatorio",
+        "enter_lastname": "Ingresar apellido",
+        "own_account": "¿Ya tiene una cuenta? Inicie sesión aquí",
+        "lastName_required": "El nombre es obligatorio",
+        "firstName_required": "El nombre es obligatorio",
+        "country_required": "El país es obligatorio",
+        "enter_email": "Ingrese su correo electrónico",
+        "invalid_email": "Dirección de correo electrónico no válida",
+        "enter_firstName": "Ingresar nombre",
+        "organization": "Organización",
+        "enter_organization": "Ingrese su organización",
+        "select_country": "Seleccionar país",
+        "submit_registration": "Enviar solicitud",
+        "email_required": "El correo electrónico es obligatorio"
+    },
+    "dashboard": {
+        "requesting": "solicitando",
+        "female": "Femenina",
+        "male": "Masculino",
+        "hospital": "Nombre del hospital/instalación:",
+        "resume": "Reanudar",
+        "no_consultation": "Aún no tiene una consulta. Usa el botón de abajo para abrir una nueva solicitud de consulta.",
+        "request_new_consultation": "Solicitar nueva consulta",
+        "no_consultation_history": "Aún no tiene ninguna consulta en el historial.",
+        "consultations": "Consultas",
+        "history": "Histórico",
+        "handled_by": "Manejado por:",
+        "requested_at": "Solicitado en:",
+        "closed_at": "Cerrado en:",
+        "area": "Dominio de especialización:",
+        "country": "País:",
+        "sex": "Sexo:",
+        "other": "Otro",
+        "no_message": "<Sin mensaje>",
+        "export": "Exportar",
+        "unknown": "Desconocido",
+        "canceled": "cancelada",
+        "cancel_consultation": "Cancelar consulta"
+    },
+    "request_consultation": {
+        "expert_area_required": "Se requiere un área de especialización",
+        "consultation_request_form": "Formulario de solicitud de consulta",
+        "age": "Edad",
+        "upload_document": "Subir un documento",
+        "patient_firstname": "Nombre del paciente",
+        "patient_lastname": "Apellido del paciente",
+        "enter_text": "Ingrese texto",
+        "request_form_title": "Una vez enviada, se le redirigirá automáticamente a la solicitud de consulta. Podrá cancelar hasta que un experto la gestione.",
+        "patient_firstname_required": "El nombre del paciente es obligatorio",
+        "enter_patient_firstname": "Ingrese el nombre del paciente",
+        "enter_patient_lastname": "Ingrese el apellido del paciente",
+        "gender_required": "El género es obligatorio",
+        "request_consultation": "Solicitar consulta",
+        "select_expert_area": "Seleccione el área de especialización",
+        "patient_lastname_required": "El apellido del paciente es obligatorio",
+        "enter_age": "Ingrese la edad",
+        "country": "País",
+        "select_country": "Seleccionar país",
+        "message_optional": "Mensaje (opcional)",
+        "select_gender": "Seleccione género"
+    },
+    "authenticate": {
+        "welcome_back": "¡Bienvenido de nuevo!",
+        "login_with": "Conexión institucional",
+        "no_account": "¿No tiene cuenta? Solicita una cuenta aquí",
+        "sso_text": "Inicie sesión con sus credenciales de inicio de sesión único",
+        "access_permits": "Este acceso permite solicitar consulta sobre {{branding}}."
+    },
+    "header": {
+        "accessAsDoctor": "Acceso como doctor/a",
+        "logOut": "Cerrar sesión",
+        "profile": "Perfil"
+    },
+    "acknowledgeInvite": {
+        "testButton": "Llamada de prueba",
+        "failureMessage": "Inválido",
+        "errorDescription": "Este enlace de reconocimiento ya no es válido o ya ha sido utilizado.",
+        "successMessage": "¡Éxito!",
+        "subTitle": "¡Gracias por aceptar esta invitación! Ya puede probar la compatibilidad de su navegador."
+    },
+    "country_select": {
+        "select_country": "Seleccionar país",
+        "search": "Buscar"
+    },
+    "common": {
+        "back_to_dashboard": "Volver al panel",
+        "reconnected": "Está reconectado",
+        "connectionFailed": "La conexión al servidor no funciona correctamente y ya no se pueden recibir solicitudes de consulta. Si el problema persiste, actualice la página.",
+        "refresh": "Actualizar"
+    },
+    "appComponent": {
+        "serverError": "Algo salió mal"
+    }
 }
