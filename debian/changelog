@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.37) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.38) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -23,7 +23,16 @@ hcw-athome-patient (0.5.37) UNRELEASED; urgency=medium
   * fix fallback language to be en
   * fix default language fallback to en
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 02 Jul 2025 10:06:43 +0000
+  [ Eugene Paik ]
+  * Translated using Weblate (Spanish)
+  * Translated using Weblate (Spanish)
+  * Translated using Weblate (Spanish)
+  * Added translation using Weblate (Kazakh)
+
+  [ Gor Grigoryan ]
+  * update several dependencies, use node 20
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Thu, 17 Jul 2025 07:57:26 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
