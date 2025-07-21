@@ -534,8 +534,10 @@ export class DashboardPage implements OnDestroy {
                     const firstName = message.fromUserDetail.role === 'patient' ? data?.firstName : message.fromUserDetail.firstName || '';
                     const lastName = message.fromUserDetail.role === 'patient' ? data?.lastName : message.fromUserDetail.lastName || '';
                     const date = this.datePipe.transform(message.createdAt, 'dd LLL HH:mm', undefined, 'en');
+                    const roleKey = `roles.${message.fromUserDetail.role}`;
+                    const roleLabel = this.translate.instant(roleKey) || message.fromUserDetail.role;
 
-                    const titleLine = `${firstName} ${lastName} (${message.fromUserDetail?.role}) - ${date}:`;
+                    const titleLine = `${firstName} ${lastName} (${roleLabel}) - ${date}:`;
                     const wrappedTitle = doc.splitTextToSize(titleLine, pageWidth - 30);
                     doc.text(wrappedTitle, 15, yPosition);
                     yPosition += wrappedTitle.length * 5;

@@ -265,6 +265,14 @@
         "attachedFile": "[Attached file]",
         "fileName": "consultation-report"
     },
+    "roles": {
+        "admin": "Admin",
+        "doctor": "Doctor",
+        "nurse": "Requester",
+        "patient": "Patient",
+        "requester": "Requester",
+        "scheduler": "Scheduler"
+    },
     "metadata": {
         "Age": "Age",
         "Country": "Country",
