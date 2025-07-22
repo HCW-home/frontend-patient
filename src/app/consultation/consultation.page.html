@@ -173,10 +173,12 @@
             <ng-template #oters>
                 <div class="msg-time"
                      *ngIf="(msg.fromUserDetail?.firstName || msg.fromUserDetail?.lastName) && msg.type === 'text'">
-                    @if (!configService?.config?.hideCallerName) {
+
+                    @if (configService?.config?.hideCallerName && (msg.fromUserDetail.role === 'doctor' || msg.fromUserDetail.role === 'admin')) {
+
+                    } @else {
                         {{ msg.fromUserDetail?.firstName }} {{ msg.fromUserDetail?.lastName }} -
                     }
-
                     {{
                         msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
                     }}
