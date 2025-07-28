@@ -202,5 +202,81 @@
         "no_message": "<Хабар жоқ>",
         "request_new_consultation": "Жаңа кеңес сұраңыз",
         "no_consultation": "Сізде әлі кеңес жоқ. Жаңа кеңес сұрауын ашу үшін төмендегі түймені пайдаланыңыз."
+    },
+    "request_consultation": {
+        "consultation_request_form": "Консультация сұрау нысаны",
+        "request_form_title": "Жіберілгеннен кейін сіз кеңес сұрауында автоматты түрде қайта бағытталасыз. Сарапшы сұрауды өңдегенше бас тарта аласыз.",
+        "select_expert_area": "Сараптама саласын таңдаңыз",
+        "expert_area_required": "Мамандық саласы қажет",
+        "patient_firstname": "Науқастың аты-жөні",
+        "enter_patient_firstname": "Науқастың атын енгізіңіз",
+        "patient_lastname": "Пациенттің тегі",
+        "patient_lastname_required": "Пациенттің тегі қажет",
+        "enter_patient_lastname": "Пациенттің тегін енгізіңіз",
+        "select_gender": "Жынысты таңдаңыз",
+        "gender_required": "Жынысы қажет",
+        "age": "Жасы",
+        "enter_age": "Жасты енгізіңіз",
+        "select_country": "Елді таңдаңыз",
+        "enter_text": "Мәтінді енгізіңіз",
+        "upload_document": "Құжатты жүктеп салу",
+        "request_consultation": "Консультация сұрау",
+        "country": "Ел",
+        "patient_firstname_required": "Науқастың аты-жөні қажет",
+        "message_optional": "Хабар (қосымша)"
+    },
+    "country_select": {
+        "select_country": "Елді таңдаңыз",
+        "search": "Іздеу"
+    },
+    "common": {
+        "back_to_dashboard": "Бақылау тақтасына оралу",
+        "reconnected": "Сіз қайта қосылдыңыз",
+        "refresh": "Жаңарту",
+        "connectionFailed": "Серверге қосылым дұрыс жұмыс істемейді және сіз енді кеңес сұрауларын ала алмайсыз. Мәселе шешілмесе, бетті жаңартыңыз."
+    },
+    "acknowledgeInvite": {
+        "testButton": "Сынақ қоңырауы",
+        "successMessage": "Сәттілік!",
+        "subTitle": "Осы шақыруды қабылдағаныңыз үшін рахмет! Енді сіз браузеріңіздің үйлесімділігін тексере аласыз.",
+        "failureMessage": "Жарамсыз",
+        "errorDescription": "Бұл растау сілтемесі енді жарамсыз немесе бұрыннан қолданылған."
+    },
+    "pdf": {
+        "consultationReport": "Консультация есебі",
+        "patientInformation": "Пациент туралы ақпарат",
+        "doctorInformation": "Дәрігер туралы ақпарат",
+        "firstname": "Аты",
+        "lastname": "Фамилия",
+        "gender": "Жыныс",
+        "requesterInformation": "Сұраныс туралы ақпарат",
+        "expertInformation": "Мамандық ақпарат",
+        "consultationInformation": "Консультация ақпараты",
+        "startDateTime": "Басталу күні/уақыты",
+        "endDateTime": "Аяқталу күні/уақыты",
+        "duration": "Ұзақтығы",
+        "chatHistory": "Чат тарихы",
+        "audioCall": "Аудио қоңырау",
+        "videoCall": "Бейне қоңырау",
+        "accepted": "қабылданды",
+        "missed": "жоғалту",
+        "call": "қоңырау шалу",
+        "finished": "аяқталды",
+        "attachedFile": "[Қосылған файл]",
+        "fileName": "консультация-есеп"
+    },
+    "roles": {
+        "doctor": "Дәрігер",
+        "nurse": "Өтініш беруші",
+        "requester": "Өтініш беруші",
+        "scheduler": "Жоспарлаушы",
+        "admin": "Админ",
+        "patient": "Науқас"
+    },
+    "metadata": {
+        "Age": "Жасы",
+        "Country": "Ел",
+        "Custom Id": "Жеке сәйкестендіру",
+        "Facility": "Нысан"
     }
 }
