@@ -64,7 +64,7 @@
     "@types/node": "^20.11.27",
     "angular2-draggable": "^16.0.0",
     "clovelced-plugin-audiomanagement": "1.0.2",
-    "cordova-browser": "^6.0.0",
+    "cordova-browser": "^7.0.0",
     "cordova-plugin-nativeaudio": "^3.0.9",
     "date-fns": "^4.1.0",
     "hcw-stream-lib": "^0.0.18",
@@ -72,8 +72,7 @@
     "ngx-markdown": "^17.2.1",
     "patch-package": "^6.2.2",
     "rxjs": "7.5.0",
-    "sails.io.js": "^1.2.1",
-    "socket.io-client": "^2.4.0",
+    "socket.io-client": "^4.8.1",
     "zone.js": "~0.14.10"
   },
   "devDependencies": {
@@ -85,7 +84,7 @@
     "@angular/compiler": "17.3.12",
     "@angular/compiler-cli": "^17.3.12",
     "@angular/language-service": "17.3.12",
-    "@capacitor/cli": "4.3.0",
+    "@capacitor/cli": "^4.8.2",
     "@ionic/lab": "^3.2.13",
     "@types/jasminewd2": "^2.0.10",
     "cordova.plugins.diagnostic": "7.1.0",

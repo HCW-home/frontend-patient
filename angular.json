@@ -15,7 +15,6 @@
             "allowedCommonJsDependencies": [
               "mediasoup-client",
               "socket.io-client",
-              "sails.io.js",
               "bowser",
               "hark"
             ],

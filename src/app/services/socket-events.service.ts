@@ -3,19 +3,16 @@ import { AuthService } from "../auth/auth.service";
 import { Subject } from 'rxjs'
 import { LocalNotifications } from '@capacitor/local-notifications'
 import { GlobalVariableService } from './global-variable.service'
+import { io, Socket } from 'socket.io-client';
 
 declare var socket: any;
-import io from 'socket.io-client';
-import sailsIOClient from 'sails.io.js'
-const sailsIo = sailsIOClient(io);
-sailsIo.sails.autoConnect = false;
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocketEventsService {
-  socket
+  socket: Socket
   user
   public messageSubj: Subject<any> = new Subject()
   public newCallSubj: Subject<any> = new Subject()
@@ -33,6 +30,18 @@ export class SocketEventsService {
       private globalVariableService: GlobalVariableService,
   ) { }
 
+  // Helper method to emulate sails socket.get() functionality
+  private socketGet(url: string, data: any, callback: (resData: any, jwres?: any) => void) {
+    if (!this.socket || !this.socket.connected) {
+      return callback({ error: 'Socket not connected' });
+    }
+    
+    // Emit a request and wait for response
+    this.socket.emit('get', { url, data }, (response: any) => {
+      callback(response.data || response, response);
+    });
+  }
+
   async init(currentUser, cb) {
     // Don't need to reset the socket if the user is still the same...
     if (this.socket && currentUser && this.user) {
@@ -46,7 +55,7 @@ export class SocketEventsService {
     }
 
     if (this.user && this.user.token && this.user.token === currentUser.token) {
-      if (this.socket && socket.isConnected()) {
+      if (this.socket && this.socket.connected) {
         return cb()
       }
     }
@@ -55,7 +64,7 @@ export class SocketEventsService {
       !this.user.token ||
       this.user.token !== currentUser.token
     ) {
-      if (this.socket && socket.isConnected()) {
+      if (this.socket && this.socket.connected) {
         try {
           await this.socket.disconnect()
         } catch (err) {
@@ -70,20 +79,24 @@ export class SocketEventsService {
       return
     }
     this.user = currentUser;
-    sailsIo.sails.query = `token=${currentUser.token}`
-    sailsIo.sails.headers = {
-      id: currentUser.id,
-      'x-access-token': currentUser.token,
-    }
-    this.socket = sailsIo.sails.connect(this.globalVariableService.getHostValue(), {
+    
+    // Create socket connection with authentication
+    this.socket = io(this.globalVariableService.getHostValue(), {
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
+      query: {
+        token: currentUser.token
+      },
+      extraHeaders: {
+        id: currentUser.id.toString(),
+        'x-access-token': currentUser.token,
+      }
     })
       ; (<any>window).socket = this.socket
 
     this.socket.on('connect', () => {
-      socket.get('/api/v1/subscribe-to-socket', {}, (resData, jwres) => {
+      this.socketGet('/api/v1/subscribe-to-socket', {}, (resData, jwres) => {
         this.listenToEvents()
         cb()
       })
@@ -145,21 +158,23 @@ export class SocketEventsService {
     this.disconnect()
     const currentUser = this.injector.get(AuthService).currentUserValue;
 
-    sailsIo.sails.query = `token=${currentUser.token}`
-    sailsIo.sails.headers = {
-      id: currentUser.id,
-      'x-access-token': currentUser.token,
-    }
-
-    this.socket = sailsIo.sails.connect(this.globalVariableService.getHostValue(), {
+    // Create new socket connection with authentication
+    this.socket = io(this.globalVariableService.getHostValue(), {
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
+      query: {
+        token: currentUser.token
+      },
+      extraHeaders: {
+        id: currentUser.id.toString(),
+        'x-access-token': currentUser.token,
+      }
     })
       ; (<any>window).socket = this.socket
 
     this.socket.on('connect', () => {
-      socket.get('/api/v1/subscribe-to-socket', {}, (resData, jwres) => {
+      this.socketGet('/api/v1/subscribe-to-socket', {}, (resData, jwres) => {
         this.listenToEvents()
         cb()
       })
@@ -211,7 +226,7 @@ export class SocketEventsService {
     this.socket.on('newConsultation', (e) => {
 
       // this is needed to update the online status for the consultation and send it to the consultation participants 
-      socket.get('/api/v1/subscribe-to-socket', {}, (resData, jwres) => { })
+      this.socketGet('/api/v1/subscribe-to-socket', {}, (resData, jwres) => { })
 
 
       return this.newConsultationSubj.next(e)
@@ -246,13 +261,13 @@ export class SocketEventsService {
   }
 
   disconnect() {
-    if (!this.socket || !this.socket.isConnected()) {
+    if (!this.socket || !this.socket.connected) {
       return
     }
     return this.socket.disconnect()
   }
 
   isSocketConnected(): boolean {
-    return this.socket && this.socket.isConnected();
+    return this.socket && this.socket.connected;
   }
 }
