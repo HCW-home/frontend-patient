@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.39) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.40) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -39,7 +39,19 @@ hcw-athome-patient (0.5.39) UNRELEASED; urgency=medium
   * add translation for user role in pdf
   * show expert name when hide caller name is enabled
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 23 Jul 2025 08:39:07 +0000
+  [ Eugene Paik ]
+  * Translated using Weblate (Kazakh)
+
+  [ Gor Grigoryan ]
+  * update dependencies
+  * update yarn lock
+  * update dependencies
+  * update socket.io-client remove sails.io.js
+  * update socket.io-client to latest version
+  * update hcw-stream-lib to 0.0.19
+  * add Kazakh (kk) language support
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 05 Aug 2025 08:05:11 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
