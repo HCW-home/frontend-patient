@@ -12,6 +12,7 @@ export const DEFAULT_LANGUAGES = [
   "fa",
   "ru",
   "it",
+  "kk",
   "uk",
   "hy",
 ];

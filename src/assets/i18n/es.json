@@ -134,18 +134,6 @@
         "promptLabelPhoto": "De la galería de fotos",
         "promptLabelPicture": "De la cámara"
     },
-    "fr": "Français",
-    "en": "English",
-    "es": "Español",
-    "hy": "Հայերեն",
-    "de": "Deutsch",
-    "ar": "عربي",
-    "ta": "தமிழ்",
-    "fa": "فارسی",
-    "ti": "ትግርኛ",
-    "ru": "Русский",
-    "it": "italiano",
-    "uk": "Українські",
     "pdf": {
         "firstname": "Nombre",
         "attachedFile": "[Archivo adjunto]",
@@ -281,5 +269,18 @@
     },
     "appComponent": {
         "serverError": "Algo salió mal"
-    }
+    },
+    "fr": "Français",
+    "en": "English",
+    "es": "Español",
+    "hy": "Հայերեն",
+    "de": "Deutsch",
+    "ar": "عربي",
+    "ta": "தமிழ்",
+    "fa": "فارسی",
+    "ti": "ትግርኛ",
+    "ru": "Русский",
+    "it": "italiano",
+    "uk": "Українські",
+    "kk": "Қазақ"
 }
