@@ -243,5 +243,35 @@
     "ru": "Русский",
     "it": "italiano",
     "uk": "Українські",
-    "kk": "Қазақ"
+    "kk": "Қазақ",
+    "pdf": {
+        "consultationReport": "Rapport de consultation",
+        "patientInformation": "Informations sur le patient",
+        "firstname": "Prénom",
+        "lastname": "Nom de famille",
+        "gender": "Genre",
+        "requesterInformation": "Informations sur le demandeur",
+        "expertInformation": "Informations d'experts",
+        "duration": "Durée",
+        "chatHistory": "Historique des discussions",
+        "audioCall": "Appel audio",
+        "doctorInformation": "Informations sur le médecin",
+        "consultationInformation": "Informations sur la consultation",
+        "startDateTime": "Date/heure de début",
+        "endDateTime": "Date/heure de fin",
+        "attachedFile": "[Fichier joint]",
+        "videoCall": "Appel vidéo",
+        "accepted": "accepté",
+        "missed": "manqué(e)",
+        "call": "appel",
+        "finished": "fini(e)"
+    },
+    "roles": {
+        "admin": "Admin",
+        "doctor": "Médecin",
+        "patient": "Patient(e)",
+        "nurse": "Demandeur",
+        "requester": "Demandeur",
+        "scheduler": "Planificateur/-trice"
+    }
 }
