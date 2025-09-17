@@ -26,4 +26,8 @@
     "esModuleInterop": true,
     "useDefineForClassFields": false
   },
+  "include": [
+    "src/**/*.ts",
+    "src/types/**/*.d.ts"
+  ]
 }
