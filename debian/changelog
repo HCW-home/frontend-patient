@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.40) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.41) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -50,8 +50,17 @@ hcw-athome-patient (0.5.40) UNRELEASED; urgency=medium
   * update socket.io-client to latest version
   * update hcw-stream-lib to 0.0.19
   * add Kazakh (kk) language support
+  * update dependecies, remove karma
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 05 Aug 2025 08:05:11 +0000
+  [ Eugene Paik ]
+  * Translated using Weblate (French)
+  * Translated using Weblate (Kazakh)
+
+  [ Gor Grigoryan ]
+  * update jspdf
+  * build fix
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 17 Sep 2025 14:39:26 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
