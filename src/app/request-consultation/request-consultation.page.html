@@ -19,6 +19,7 @@
                         <ion-item class="mb-3" lines="none">
                             <ion-select interface="popover"
                                         fill="solid"
+                                        mode="android"
                                         placeholder="{{ 'request_consultation.select_expert_area' | translate }}"
                                         formControlName="queue">
                                 <ion-select-option [value]="option.id"
@@ -66,6 +67,7 @@
                     <ion-list>
                         <ion-item class="mb-3" lines="none">
                             <ion-select interface="popover"
+                                        mode="android"
                                         fill="solid"
                                         placeholder="{{ 'request_consultation.select_gender' | translate }}"
                                         formControlName="sex">
