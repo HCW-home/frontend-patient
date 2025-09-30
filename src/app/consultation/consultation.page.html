@@ -1,12 +1,13 @@
 <app-video-room
-        *ngIf="callRunning"
+        *ngIf="callRunning || (ongoingCall && shouldJoinCall)"
         [sessionId]="consultation.id"
         [message]="ongoingCall"
         [token]="ongoingCall.token"
         (hangup)="hangup()"
+        [accepted]="shouldJoinCall"
         [user]="callingDoctor"
 ></app-video-room>
-<ion-header id="chatHeader">
+<ion-header id="chatHeader" *ngIf="!((shouldJoinCall || callRunning) && isFullScreen)">
     <ion-toolbar>
         <ion-title> {{ 'consultation.inProgress' | translate }}</ion-title>
     </ion-toolbar>
@@ -20,15 +21,6 @@
         id="chatContainer"
         class="chat-container"
 >
-    <app-video-room
-            *ngIf="ongoingCall && shouldJoinCall"
-            [sessionId]="consultation.id"
-            (hangup)="hangup()"
-            [accepted]="true"
-            [message]="ongoingCall"
-            [token]="ongoingCall.token"
-            [user]="callingDoctor"
-    ></app-video-room>
     <p class="keep-open"
        *ngIf="consultation.consultation.status !== 'active' && consultation.consultation.status !== 'closed'">
         {{ 'consultation.plsKeepThisOpenPage' | translate }}
@@ -252,39 +244,39 @@
         </div>
     </ion-grid>
 
-    <ion-footer>
-        @if (currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin' || currentUser.role === 'expert') {
-            <div class="input-container">
-                <div class="attachment-wrapper">
-                    <ion-icon slot="icon-only" name="attach" (click)="showAttachmentModal()"></ion-icon>
-                </div>
-                <ion-textarea
-                    #txtArea
-                    (keydown)="onKeyDown($event)"
-                    (ionFocus)="onTextareaFocus()"
-                    (click)="readMessages()"
-                    [(ngModel)]="chatText"
-                    inputmode="text"
-                    autocapitalize="none"
-                    enterkeyhint="send"
-                    [spellcheck]="false"
-                    type="text"
-                    placeholder="{{'consultation.enterYourMessage'|translate}}"
-                ></ion-textarea>
-
-                <div class="send-button-wrapper">
-                    <ion-button (click)="send()" class="send-button">
-                        <ion-icon slot="icon-only" name="send"></ion-icon>
-                    </ion-button>
-                </div>
-
-
-            </div>
-        }
-
-    </ion-footer>
-
 </ion-content>
+
+<ion-footer *ngIf="!((shouldJoinCall || callRunning) && isFullScreen)">
+    @if (currentUser.role === 'patient' || currentUser.role === 'nurse' || currentUser.role === 'admin' || currentUser.role === 'expert') {
+        <div class="input-container">
+            <div class="attachment-wrapper">
+                <ion-icon slot="icon-only" name="attach" (click)="showAttachmentModal()"></ion-icon>
+            </div>
+            <ion-textarea
+                #txtArea
+                (keydown)="onKeyDown($event)"
+                (ionFocus)="onTextareaFocus()"
+                (click)="readMessages()"
+                [(ngModel)]="chatText"
+                inputmode="text"
+                autocapitalize="none"
+                enterkeyhint="send"
+                [spellcheck]="false"
+                type="text"
+                placeholder="{{'consultation.enterYourMessage'|translate}}"
+            ></ion-textarea>
+
+            <div class="send-button-wrapper">
+                <ion-button (click)="send()" class="send-button">
+                    <ion-icon slot="icon-only" name="send"></ion-icon>
+                </ion-button>
+            </div>
+
+
+        </div>
+    }
+
+</ion-footer>
 
 
 <ion-modal [isOpen]="isImgModalOpen" (willDismiss)="closeImgModal(false)">
