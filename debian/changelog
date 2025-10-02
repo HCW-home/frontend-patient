@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.41) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.42) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -59,8 +59,11 @@ hcw-athome-patient (0.5.41) UNRELEASED; urgency=medium
   [ Gor Grigoryan ]
   * update jspdf
   * build fix
+  * fix select display issue when requesting consultation
+  * fix control buttons view when expert is joining call
+  * fix control buttons when expert is joining to ongoing session
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 17 Sep 2025 14:39:26 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 01 Oct 2025 08:11:53 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
