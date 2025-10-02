@@ -29,8 +29,8 @@ export class SocketEventsService {
 
   private socketGet(url: string, data: any, callback: (resData: any, jwres?: any) => void) {
     if (!this.socket || !this.socket.connected) {
-      console.warn('Socket not connected, attempting callback with success');
-      return callback({ success: true }, { statusCode: 200 });
+      console.warn('Socket not connected, skipping request to:', url);
+      return callback({ success: false, error: 'Socket not connected' }, { statusCode: 503 });
     }
 
     const sailsMessage = {
@@ -49,7 +49,8 @@ export class SocketEventsService {
       if (response && response.statusCode >= 200 && response.statusCode < 300) {
         callback(response.body || response, response);
       } else {
-        callback(response || { success: true }, { statusCode: 200 });
+        console.warn('Socket request failed:', response);
+        callback(response || { success: false }, response || { statusCode: 500 });
       }
     });
   }
@@ -130,6 +131,10 @@ export class SocketEventsService {
     this.socket.on('reconnect', (number) => {
       this.connection.next('connect')
       console.info('Reconnected to server', number)
+      this.socketGet('/api/v1/subscribe-to-socket', {}, (resData, jwres) => {
+        console.info('Re-subscribed to socket after reconnection', resData, jwres)
+        this.listenToEvents()
+      })
     })
 
     this.socket.on('reconnect_attempt', () => {
@@ -245,10 +250,6 @@ export class SocketEventsService {
     )
 
     this.socket.on('newConsultation', (e) => {
-
-    this.socketGet('/api/v1/subscribe-to-socket', {}, (resData, jwres) => { })
-
-
       return this.newConsultationSubj.next(e)
     })
     this.socket.on('endCall', (e) => {
