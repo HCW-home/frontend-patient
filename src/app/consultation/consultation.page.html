@@ -146,8 +146,7 @@
             <ion-row *ngIf="msg.text" class="ion-no-padding ion-no-margin">
                 <ion-col class="chat-text-container">
                     <ion-row class="bubble ion-padding">
-                        <p class="ion-no-padding ion-no-margin message-text">
-                            {{ msg.text }}
+                        <p class="ion-no-padding ion-no-margin message-text" [innerHTML]="msg.text | linkify">
                         </p>
                     </ion-row>
 

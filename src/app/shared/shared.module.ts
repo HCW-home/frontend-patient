@@ -10,12 +10,14 @@ import {ErrorModalComponent} from "./components/error-modal/error-modal.componen
 import {FooterComponent} from "./components/footer/footer.component";
 import {MarkdownModule} from "ngx-markdown";
 import {DurationPipe} from "./pipes/duration.pipe";
+import {LinkifyPipe} from "./pipes/linkify.pipe";
 import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
     declarations: [
         DurationPipe,
+        LinkifyPipe,
         FooterComponent,
         HeaderComponent,
         FileDropDirective,
@@ -32,6 +34,7 @@ import {TranslateModule} from "@ngx-translate/core";
     ],
     exports: [
         DurationPipe,
+        LinkifyPipe,
         FooterComponent,
         HeaderComponent,
         FileDropDirective,

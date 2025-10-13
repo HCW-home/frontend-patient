@@ -76,11 +76,12 @@ ion-card-content {
 .bubble {
   border-radius: 10px;
   word-break: break-word;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
-.incoming > ion-row > ion-col > .bubble a{
-  color: #e2e2e2;
-}
 
 .incoming > ion-row > ion-col > .bubble {
   background-color: var(--ion-color-primary);
@@ -211,6 +212,10 @@ ion-icon[name="attach"] {
 .message-text {
   overflow-wrap: normal;
   white-space: pre-wrap;
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
 
 ::ng-deep {
