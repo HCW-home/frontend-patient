@@ -113,6 +113,11 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit {
           }
           this.zone.run(() => {
             this.chatMessages.push(this.adjustMsg(msg.data));
+
+            if (msg.data.from !== this.currentUser.id && (msg.data.type === 'text' || msg.data.type === 'attachment')) {
+              const audio = new Audio('assets/sounds/new-message.mp3');
+              audio.play().catch(err => console.log('Audio play failed:', err));
+            }
           });
 
           this.scrollToBottom();
