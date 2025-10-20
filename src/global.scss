@@ -319,11 +319,17 @@ markdown {
   height: 100%;
   width: 100%;
   font-family: 'Roboto', sans-serif;
+}
 
-  //@media (max-width: 598px) {
-  //  width: 300px;
-  //}
-  //@media (max-width: 350px) {
-  //  height: unset;
-  //}
+.bubble-link {
+  color: #ffffff;
+  text-decoration: underline;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.outgoing {
+  .bubble-link {
+    color: rgb(58, 58, 58);
+  }
 }

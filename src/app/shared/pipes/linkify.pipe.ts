@@ -21,9 +21,9 @@ export class LinkifyPipe implements PipeTransform {
       .replace(/>/g, '&gt;')
       .replace(/\n/g, '<br>');
 
-    result = result.replace(urlPattern, '<a href="$1" style="color: #0054e9" class="bubble-link" target="_blank" rel="noopener noreferrer">$1</a>');
-    result = result.replace(wwwPattern, '$1<a href="http://$2" style="color: #0054e9" class="bubble-link" target="_blank" rel="noopener noreferrer">$2</a>');
-    result = result.replace(emailPattern, '<a href="mailto:$1" style="color: #0054e9" class="bubble-link">$1</a>');
+    result = result.replace(urlPattern, '<a href="$1" class="bubble-link" target="_blank" rel="noopener noreferrer">$1</a>');
+    result = result.replace(wwwPattern, '$1<a href="http://$2" class="bubble-link" target="_blank" rel="noopener noreferrer">$2</a>');
+    result = result.replace(emailPattern, '<a href="mailto:$1" class="bubble-link">$1</a>');
 
     return this.sanitizer.bypassSecurityTrustHtml(result);
   }
