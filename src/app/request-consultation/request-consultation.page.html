@@ -162,8 +162,11 @@
                         </div>
                     </ion-item>
 
-                    <button class="btn green mt-2 big" type="submit" [disabled]="!form.valid">
-                        {{ 'request_consultation.request_consultation' | translate }}
+                    <button class="btn green mt-2 big" type="submit" [disabled]="!form.valid || loading">
+                        <div class="d-flex ion-align-items-center">
+                            <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+                            <span>{{ 'request_consultation.request_consultation' | translate }}</span>
+                        </div>
                     </button>
 
                     <div class="label-wrapper" (click)="backToDashboard()">
