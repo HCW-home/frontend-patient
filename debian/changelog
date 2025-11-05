@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.44) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.45) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -67,8 +67,9 @@ hcw-athome-patient (0.5.44) UNRELEASED; urgency=medium
   * add mode md for request consultation page
   * add sound when receiving new message
   * linkify messages in chat
+  * fix link color in messages
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 13 Oct 2025 14:50:11 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 21 Oct 2025 08:26:32 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
