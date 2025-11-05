@@ -1,0 +1,15 @@
+<div class="whatsapp-browser-banner" *ngIf="showBanner">
+  <div class="banner-content">
+    <ion-icon name="warning-outline" class="warning-icon"></ion-icon>
+    <div class="banner-text">
+      <strong>{{ 'appComponent.whatsappBrowserWarning' | translate }}</strong>
+      <p>{{ 'appComponent.whatsappBrowserDescription' | translate }}</p>
+    </div>
+    <div class="banner-actions">
+      <ion-button size="small" fill="solid" color="primary" (click)="openInBrowser()">
+        {{ 'appComponent.openInBrowser' | translate }}
+      </ion-button>
+      <ion-icon name="close-circle" class="close-icon" (click)="closeBanner()"></ion-icon>
+    </div>
+  </div>
+</div>

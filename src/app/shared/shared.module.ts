@@ -12,6 +12,7 @@ import {MarkdownModule} from "ngx-markdown";
 import {DurationPipe} from "./pipes/duration.pipe";
 import {LinkifyPipe} from "./pipes/linkify.pipe";
 import {TranslateModule} from "@ngx-translate/core";
+import {WhatsappBrowserBannerComponent} from "./components/whatsapp-browser-banner/whatsapp-browser-banner.component";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {TranslateModule} from "@ngx-translate/core";
         PeerAudioComponent,
         ErrorModalComponent,
         SelectLanguageComponent,
+        WhatsappBrowserBannerComponent,
     ],
     imports: [
         CommonModule,
@@ -42,6 +44,7 @@ import {TranslateModule} from "@ngx-translate/core";
         PeerAudioComponent,
         ErrorModalComponent,
         SelectLanguageComponent,
+        WhatsappBrowserBannerComponent,
     ]
 
 

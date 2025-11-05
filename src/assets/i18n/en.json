@@ -135,7 +135,12 @@
         "promptLabelPicture": "From camera"
     },
     "appComponent": {
-        "serverError": "Something went wrong"
+        "serverError": "Something went wrong",
+        "whatsappBrowserWarning": "Please open in browser",
+        "whatsappBrowserDescription": "You're viewing this in WhatsApp. Some features may not work properly. Please open in your browser for the best experience.",
+        "openInBrowser": "Open in Browser",
+        "urlCopied": "URL copied to clipboard! Please paste it in your browser.",
+        "copyUrlManually": "Please copy this URL and open it in your browser"
     },
     "authenticate": {
         "login_with": "Institutional Connection",

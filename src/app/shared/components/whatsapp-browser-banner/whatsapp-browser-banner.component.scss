@@ -1,0 +1,119 @@
+.whatsapp-browser-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+  color: white;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.3s ease-out;
+
+  .banner-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .warning-icon {
+      font-size: 32px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .banner-text {
+      flex: 1;
+
+      strong {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      p {
+        font-size: 12px;
+        margin: 0;
+        opacity: 0.95;
+        line-height: 1.4;
+      }
+    }
+
+    .banner-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+
+      ion-button {
+        --background: rgba(255, 255, 255, 0.95);
+        --color: #ff5252;
+        font-weight: 600;
+        text-transform: none;
+        height: 32px;
+        font-size: 12px;
+      }
+
+      .close-icon {
+        font-size: 28px;
+        cursor: pointer;
+        color: white;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .whatsapp-browser-banner {
+    .banner-content {
+      flex-wrap: wrap;
+      gap: 8px;
+
+      .warning-icon {
+        font-size: 24px;
+      }
+
+      .banner-text {
+        flex-basis: calc(100% - 40px);
+
+        strong {
+          font-size: 13px;
+        }
+
+        p {
+          font-size: 11px;
+        }
+      }
+
+      .banner-actions {
+        flex-basis: 100%;
+        justify-content: space-between;
+        margin-left: 36px;
+
+        ion-button {
+          font-size: 11px;
+          height: 28px;
+        }
+      }
+    }
+  }
+}
