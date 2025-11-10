@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.45) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.46) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
