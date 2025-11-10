@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.46) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.47) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -70,8 +70,10 @@ hcw-athome-patient (0.5.46) UNRELEASED; urgency=medium
   * fix link color in messages
   * add loading on Request Consultation button
   * add whatsapp browser banner
+  * handle image upload error
+  * improve pdf generation
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 10 Nov 2025 07:35:32 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 10 Nov 2025 10:34:21 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
