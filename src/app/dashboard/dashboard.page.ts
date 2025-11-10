@@ -417,22 +417,24 @@ export class DashboardPage implements OnDestroy {
                     doc.setFontSize(10);
                     doc.setTextColor('#000');
                     doc.setFont('Helvetica', 'normal', 700);
+                    const doctorFirstnameLabel = this.translate.instant('pdf.firstname') + ':';
+                    const doctorLastnameLabel = this.translate.instant('pdf.lastname') + ':';
                     doc.text(
-                        this.translate.instant('pdf.firstname') + ':',
+                        doctorFirstnameLabel,
                         leftX,
                         yPosition
                     );
                     doc.text(
-                        this.translate.instant('pdf.lastname') + ':',
+                        doctorLastnameLabel,
                         leftX,
                         yPosition + lineHeight
                     );
 
                     doc.setFont('Helvetica', 'normal', 400);
-                    doc.text(`${doctor.firstName}`, leftX + labelGap, yPosition);
+                    doc.text(`${doctor.firstName}`, leftX + getLabelWidth(doctorFirstnameLabel), yPosition);
                     doc.text(
                         `${doctor.lastName}`,
-                        leftX + labelGap,
+                        leftX + getLabelWidth(doctorLastnameLabel),
                         yPosition + lineHeight
                     );
                     yPosition += lineHeight * 2 + 10;
@@ -446,13 +448,16 @@ export class DashboardPage implements OnDestroy {
                 doc.setFontSize(10);
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
-                doc.text(this.translate.instant('pdf.firstname') + ':', leftX, yPosition);
-                doc.text(this.translate.instant('pdf.lastname') + ':', leftX, yPosition + lineHeight);
-                doc.text(this.translate.instant('pdf.gender') + ':', leftX, yPosition + lineHeight * 2);
+                const patientFirstnameLabel = this.translate.instant('pdf.firstname') + ':';
+                const patientLastnameLabel = this.translate.instant('pdf.lastname') + ':';
+                const patientGenderLabel = this.translate.instant('pdf.gender') + ':';
+                doc.text(patientFirstnameLabel, leftX, yPosition);
+                doc.text(patientLastnameLabel, leftX, yPosition + lineHeight);
+                doc.text(patientGenderLabel, leftX, yPosition + lineHeight * 2);
                 doc.setFont('Helvetica', 'normal', 400);
-                doc.text(`${data.firstName}`, leftX + labelGap, yPosition);
-                doc.text(`${data.lastName}`, leftX + labelGap, yPosition + lineHeight);
-                doc.text(`${data.gender}`, leftX + labelGap, yPosition + lineHeight * 2);
+                doc.text(`${data.firstName}`, leftX + getLabelWidth(patientFirstnameLabel), yPosition);
+                doc.text(`${data.lastName}`, leftX + getLabelWidth(patientLastnameLabel), yPosition + lineHeight);
+                doc.text(`${data.gender}`, leftX + getLabelWidth(patientGenderLabel), yPosition + lineHeight * 2);
                 yPosition += lineHeight * 3 + 10;
 
                 if (nurse?.firstName) {
@@ -464,11 +469,13 @@ export class DashboardPage implements OnDestroy {
                     doc.setFontSize(10);
                     doc.setTextColor('#000');
                     doc.setFont('Helvetica', 'normal', 700);
-                    doc.text(this.translate.instant('pdf.firstname') + ':', leftX, yPosition);
-                    doc.text(this.translate.instant('pdf.lastname') + ':', leftX, yPosition + lineHeight);
+                    const nurseFirstnameLabel = this.translate.instant('pdf.firstname') + ':';
+                    const nurseLastnameLabel = this.translate.instant('pdf.lastname') + ':';
+                    doc.text(nurseFirstnameLabel, leftX, yPosition);
+                    doc.text(nurseLastnameLabel, leftX, yPosition + lineHeight);
                     doc.setFont('Helvetica', 'normal', 400);
-                    doc.text(`${nurse.firstName}`, leftX + labelGap, yPosition);
-                    doc.text(`${nurse.lastName}`, leftX + labelGap, yPosition + lineHeight);
+                    doc.text(`${nurse.firstName}`, leftX + getLabelWidth(nurseFirstnameLabel), yPosition);
+                    doc.text(`${nurse.lastName}`, leftX + getLabelWidth(nurseLastnameLabel), yPosition + lineHeight);
                     yPosition += lineHeight * 2 + 10;
                 }
 
@@ -482,11 +489,13 @@ export class DashboardPage implements OnDestroy {
                         doc.setFontSize(10);
                         doc.setTextColor('#000');
                         doc.setFont('Helvetica', 'normal', 700);
-                        doc.text(this.translate.instant('pdf.firstname') + ':', leftX, yPosition);
-                        doc.text(this.translate.instant('pdf.lastname') + ':', leftX, yPosition + lineHeight);
+                        const expertFirstnameLabel = this.translate.instant('pdf.firstname') + ':';
+                        const expertLastnameLabel = this.translate.instant('pdf.lastname') + ':';
+                        doc.text(expertFirstnameLabel, leftX, yPosition);
+                        doc.text(expertLastnameLabel, leftX, yPosition + lineHeight);
                         doc.setFont('Helvetica', 'normal', 400);
-                        doc.text(`${expert.firstName}`, leftX + labelGap, yPosition);
-                        doc.text(`${expert.lastName}`, leftX + labelGap, yPosition + lineHeight);
+                        doc.text(`${expert.firstName}`, leftX + getLabelWidth(expertFirstnameLabel), yPosition);
+                        doc.text(`${expert.lastName}`, leftX + getLabelWidth(expertLastnameLabel), yPosition + lineHeight);
                         yPosition += lineHeight * 2 + 5;
                     });
                 }
