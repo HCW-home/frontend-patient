@@ -68,8 +68,10 @@ hcw-athome-patient (0.5.45) UNRELEASED; urgency=medium
   * add sound when receiving new message
   * linkify messages in chat
   * fix link color in messages
+  * add loading on Request Consultation button
+  * add whatsapp browser banner
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 21 Oct 2025 08:26:32 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 10 Nov 2025 07:35:32 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
