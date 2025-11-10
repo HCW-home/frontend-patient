@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ConfigService} from "../services/config.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {ModalController} from "@ionic/angular";
+import {ModalController, ToastController} from "@ionic/angular";
 import {CountrySelectPage} from "../register/country-select/country-select.page";
 import {Queue, QueueService} from "../shared/services/queue.service";
 import {ConsultationService} from "../shared/services/consultation.service";
@@ -40,6 +40,7 @@ export class RequestConsultationPage implements OnInit {
         private fb: FormBuilder,
         private router: Router,
         private modalController: ModalController,
+        private toastController: ToastController,
         private consultationService: ConsultationService,
         private queueService: QueueService,
         public validationService: ValidationService,
@@ -121,39 +122,96 @@ export class RequestConsultationPage implements OnInit {
             switchMap(res => {
                 const actions = [];
                 if (value.message) {
-                    actions.push(this.messageService.sendMessage(res.id, value.message));
+                    actions.push(this.messageService.sendMessage(res.id, value.message).pipe(
+                        catchError(err => {
+                            console.log('Message send error:', err);
+                            return of({ error: true, type: 'message' });
+                        })
+                    ));
                 }
                 if (this.files.length) {
-                    this.files.forEach(file => {
-                        actions.push(this.consultationService.postFile(file, res.id));
+                    this.files.forEach((file, index) => {
+                        actions.push(this.consultationService.postFile(file, res.id).pipe(
+                            catchError(err => {
+                                console.log('File upload error:', err);
+                                return of({ error: true, type: 'file', fileName: file.name, details: err });
+                            })
+                        ));
                     })
                 }
 
                 if (actions.length === 0) {
-                    return of(res);
+                    return of({ consultation: res, errors: [] });
                 }
 
                 return forkJoin(actions).pipe(
-                    switchMap(() => of(res)),
-                    catchError(err => {
-                        console.log(err, 'err');
-                        throw err;
+                    switchMap(results => {
+                        const errors = results.filter((r: any) => r?.error);
+                        return of({ consultation: res, errors });
                     })
                 );
             }),
             catchError(err => {
-                console.log(err);
+                console.log('Consultation creation error:', err);
+                this.showErrorToast(this.translate.instant('request_consultation.consultation_creation_failed') || 'Failed to create consultation. Please try again.');
                 throw err;
             }),
             finalize(() => {
                 this.loading = false;
             })
-        ).subscribe(res => {
-            localStorage.setItem("currentConsultation", res.id);
-            this.router.navigate([`/consultation/${res.id}`]);
+        ).subscribe(result => {
+            if (result.errors && result.errors.length > 0) {
+                const fileErrors = result.errors.filter((e: any) => e.type === 'file');
+                if (fileErrors.length > 0) {
+                    let errorMessage: string;
+                    if (fileErrors.length === 1) {
+                        errorMessage = (this.translate.instant('request_consultation.file_upload_failed_single') || 'Failed to upload file:') + ` ${fileErrors[0].fileName}`;
+                    } else {
+                        const fileNames = fileErrors.map((e: any) => e.fileName).join(', ');
+                        errorMessage = (this.translate.instant('request_consultation.file_upload_failed_multiple') || `Failed to upload ${fileErrors.length} file(s):`) + ` ${fileNames}`;
+                    }
+                    this.showWarningToast(errorMessage);
+                }
+            }
+            localStorage.setItem("currentConsultation", result.consultation.id);
+            this.router.navigate([`/consultation/${result.consultation.id}`]);
         }, err => {
-            console.log(err);
+            console.log('Subscription error:', err);
         });
+    }
+
+    async showErrorToast(message: string) {
+        const toast = await this.toastController.create({
+            message,
+            duration: 10000,
+            position: 'top',
+            color: 'danger',
+            icon: 'close-circle-outline',
+            buttons: [
+                {
+                    text: 'OK',
+                    role: 'cancel'
+                }
+            ]
+        });
+        await toast.present();
+    }
+
+    async showWarningToast(message: string) {
+        const toast = await this.toastController.create({
+            message,
+            duration: 10000,
+            position: 'top',
+            color: 'warning',
+            icon: 'alert-circle-outline',
+            buttons: [
+                {
+                    text: 'OK',
+                    role: 'cancel'
+                }
+            ]
+        });
+        await toast.present();
     }
 
     backToDashboard() {

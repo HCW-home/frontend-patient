@@ -228,7 +228,10 @@
         "message_optional": "Message (Optional)",
         "enter_text": "Enter text",
         "upload_document": "Upload Document",
-        "request_consultation": "Request Consultation"
+        "request_consultation": "Request Consultation",
+        "consultation_creation_failed": "Failed to create consultation. Please try again.",
+        "file_upload_failed_single": "Failed to upload file:",
+        "file_upload_failed_multiple": "Failed to upload files:"
     },
     "country_select": {
         "select_country": "Select Country",
