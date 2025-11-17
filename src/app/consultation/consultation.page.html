@@ -38,7 +38,7 @@
         <ion-card-content class="doctor-info-card" *ngIf="consultation.doctor && !ongoingCall">
             <p class="subtitle">
 
-                @if (configService?.config?.hideCallerName) {
+                @if (configService.shouldHideCallerName(currentUser?.role)) {
                     {{ 'consultation.youAreInConsultation' | translate }}
                 } @else {
                     {{ 'consultation.youAreNowInConsultation' | translate }} {{ consultation.doctor.firstName }} {{ consultation.doctor.lastName }}
@@ -165,7 +165,7 @@
                 <div class="msg-time"
                      *ngIf="(msg.fromUserDetail?.firstName || msg.fromUserDetail?.lastName) && msg.type === 'text'">
 
-                    @if (configService?.config?.hideCallerName && (msg.fromUserDetail.role === 'doctor' || msg.fromUserDetail.role === 'admin')) {
+                    @if (configService.shouldHideCallerName(currentUser?.role) && (msg.fromUserDetail.role === 'doctor' || msg.fromUserDetail.role === 'admin')) {
 
                     } @else {
                         {{ msg.fromUserDetail?.firstName }} {{ msg.fromUserDetail?.lastName }} -

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {CloseConsultationComponent} from "../close-consultation/close-consultation.component";
 import {ModalController} from "@ionic/angular";
 import {ConfigService} from "../../../services/config.service";
+import {AuthService} from "../../../auth/auth.service";
 
 @Component({
   selector: 'app-overlay',
@@ -11,10 +12,13 @@ import {ConfigService} from "../../../services/config.service";
 })
 export class OverlayComponent implements OnInit {
 
+  currentUser: any;
+
   constructor(
       public configService: ConfigService,
       private router: Router,
       public modalController: ModalController,
+      private authService: AuthService,
     ) { }
 
   @Input() consultation: any;
@@ -23,6 +27,7 @@ export class OverlayComponent implements OnInit {
 
 
   ngOnInit() {
+    this.currentUser = this.authService.currentUserValue;
   }
 
   onClose(event) {

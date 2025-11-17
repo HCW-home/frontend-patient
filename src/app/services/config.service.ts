@@ -81,4 +81,8 @@ export class ConfigService {
         );
     }
 
+    shouldHideCallerName(userRole: string): boolean {
+        return this.config?.hideCallerName && userRole !== 'admin' && userRole !== 'nurse';
+    }
+
 }

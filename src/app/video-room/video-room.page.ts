@@ -158,6 +158,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   openviduLayoutOptions;
   subscriptions: Subscription[] = [];
   peerId;
+  currentUser: any;
   myCamStream: Stream;
 
   noWebCam;
@@ -202,7 +203,8 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     if (this.message.type === "audioCall") {
       this.camStatus = "off";
     }
-    this.peerId = this.authService.currentUserValue.id;
+    this.currentUser = this.authService.currentUserValue;
+    this.peerId = this.currentUser.id;
 
     if (this.accepted) {
       this.joinToSession();

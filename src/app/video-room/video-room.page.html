@@ -8,7 +8,7 @@
         </ion-row>
         <ion-row>
           <ion-title *ngIf="user" class="doctor-title">
-              @if (configService?.config?.hideCallerName) {
+              @if (configService.shouldHideCallerName(currentUser?.role)) {
                   {{'videoRoom.caller' | translate}}
               } @else {
                 {{user.firstName }} {{user.lastName | uppercase }}
