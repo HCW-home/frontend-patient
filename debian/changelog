@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.47) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.48) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -72,8 +72,10 @@ hcw-athome-patient (0.5.47) UNRELEASED; urgency=medium
   * add whatsapp browser banner
   * handle image upload error
   * improve pdf generation
+  * change hideCallerName config setting for requester
+  * add new route for retrieving consultations created by requester
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 10 Nov 2025 10:34:21 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 18 Nov 2025 12:28:49 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
