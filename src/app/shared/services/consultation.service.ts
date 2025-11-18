@@ -18,7 +18,7 @@ export class ConsultationService {
   }
 
   getConsultations(): Observable<any> {
-    return this.http.get<any[]>(this.globalVariableService.getApiPath() + `/consultations-overview`)
+    return this.http.get<any[]>(this.globalVariableService.getApiPath() + `/consultations-created`)
   }
 
   postFile(file: File, consultationId): Observable<any> {
