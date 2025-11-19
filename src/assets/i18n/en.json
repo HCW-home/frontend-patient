@@ -279,7 +279,8 @@
         "nurse": "Requester",
         "patient": "Patient",
         "requester": "Requester",
-        "scheduler": "Scheduler"
+        "scheduler": "Scheduler",
+        "expert": "Expert"
     },
     "metadata": {
         "Age": "Age",
