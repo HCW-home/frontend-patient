@@ -280,7 +280,8 @@
         "patient": "Patient",
         "requester": "Requester",
         "scheduler": "Scheduler",
-        "expert": "Expert"
+        "expert": "Expert",
+        "guest": "Guest"
     },
     "metadata": {
         "Age": "Age",
