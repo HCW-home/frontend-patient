@@ -56,7 +56,7 @@
                                     type="button"
                                     [disabled]="loading"
                                     (click)="proceedToConsultation()"
-                                    *ngIf="inviteToken">
+                                    *ngIf="inviteToken && showJoinButton">
                                 {{
                                     loading
                                         ? ("test.loading" | translate)

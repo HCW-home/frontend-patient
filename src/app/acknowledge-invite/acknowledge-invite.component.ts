@@ -66,7 +66,7 @@ export class AcknowledgeInviteComponent implements OnInit {
     }
 
     testCall() {
-        this.router.navigate([`/test-call`]);
+        this.router.navigate([`/test-call`], { queryParams: { source: 'acknowledge' } });
     }
 
 }

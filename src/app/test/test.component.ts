@@ -3,7 +3,7 @@ import {SocketEventsService} from "../services/socket-events.service";
 import {ConsultationService} from "../services/consultation.service";
 import {AndroidPermissions} from "@awesome-cordova-plugins/android-permissions/ngx";
 import {Platform} from "@ionic/angular";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {OpenViduService} from "../shared/services/openvidu.service";
 import {Component, OnInit, HostListener, OnDestroy, NgZone} from "@angular/core";
 import {Subscription} from "rxjs";
@@ -69,6 +69,7 @@ export class TestComponent implements OnInit, OnDestroy {
     noInviteError = false;
     noTokenProvided = false;
     translationRequestRefused = false;
+    showJoinButton = true;
 
     constructor(
         private zone: NgZone,
@@ -84,6 +85,7 @@ export class TestComponent implements OnInit, OnDestroy {
         private openviduSev: OpenViduService,
         private socketService: SocketEventsService,
         private androidPermissions: AndroidPermissions,
+        private route: ActivatedRoute,
     ) {
     }
 
@@ -96,6 +98,10 @@ export class TestComponent implements OnInit, OnDestroy {
         this.showSpinner = true;
         this.testStarted = true;
         this.inviteToken = localStorage.getItem("inviteToken");
+        const source = this.route.snapshot.queryParamMap.get('source');
+        if (source === 'acknowledge') {
+            this.showJoinButton = false;
+        }
         this.requestMedia();
     }
 
