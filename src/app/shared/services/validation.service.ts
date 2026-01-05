@@ -43,7 +43,6 @@ export class ValidationService {
   resetInputValidation(formGroup: FormGroup, fieldName: string) {
     const inputControl = this.getControls(formGroup)[fieldName];
     if (inputControl.errors && inputControl.errors["required"]) {
-      console.log('stexa');
       inputControl.markAsUntouched();
       inputControl.markAsPristine();
     }

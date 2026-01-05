@@ -125,6 +125,15 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
                 this.readMessages();
             })
         );
+        this.subscriptions.push(
+            this._socketEventsService.onConsultationAccepted().subscribe((event) => {
+                if (event.data._id === this.consultationId || event.data.consultation?.id === this.consultationId) {
+                    this.zone.run(() => {
+                        this.getConsultation();
+                    });
+                }
+            })
+        );
     }
 
     listenToCallEvents() {
