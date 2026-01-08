@@ -21,8 +21,26 @@ export class WhatsappBrowserBannerComponent implements OnInit {
   }
 
   detectWhatsAppBrowser() {
-    const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
-    this.isWhatsAppBrowser = /WhatsApp/i.test(userAgent);
+    const ua = navigator.userAgent || navigator.vendor || (window as any).opera;
+
+    const webViewPatterns = [
+      /\bwv\b/,
+      /WebView/i,
+      /WhatsApp/i,
+      /WAiOS/i,
+      /WAAndroid/i,
+      /FB_IAB|FBAN|FBAV/i,
+      /Instagram/i,
+      /Twitter/i,
+      /Line\//i,
+      /Snapchat/i,
+      /\bTelegram\b/i,
+    ];
+
+    const isIOSWebView = /iPhone|iPod|iPad/.test(ua) && !/Safari/.test(ua);
+    const isAndroidWebView = /Android/.test(ua) && (/Version\/[\d.]+/.test(ua) || /\bwv\b/.test(ua));
+
+    this.isWhatsAppBrowser = webViewPatterns.some(pattern => pattern.test(ua)) || isIOSWebView || isAndroidWebView;
     this.showBanner = this.isWhatsAppBrowser;
   }
 
