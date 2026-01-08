@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.48) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.49) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -74,8 +74,14 @@ hcw-athome-patient (0.5.48) UNRELEASED; urgency=medium
   * improve pdf generation
   * change hideCallerName config setting for requester
   * add new route for retrieving consultations created by requester
+  * add role expert in translations
+  * add guest role in translations
+  * update hcw-stream-lib to 0.0.21
+  * hide join button on test-call page when coming from acknowledge-invite
+  * add listening for onConsultationAccepted subscription
+  * update web view patterns in app-whatsapp-browser-banner
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 18 Nov 2025 12:28:49 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Thu, 08 Jan 2026 15:22:09 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
