@@ -509,13 +509,25 @@ export class DashboardPage implements OnDestroy {
                 doc.setTextColor('#000');
                 doc.setFont('Helvetica', 'normal', 700);
                 doc.text(this.translate.instant('pdf.startDateTime') + ':', leftX, yPosition);
-                doc.text(this.translate.instant('pdf.endDateTime') + ':', leftX, yPosition + lineHeight);
-                doc.text(this.translate.instant('pdf.duration') + ':', leftX, yPosition + lineHeight * 2);
                 doc.setFont('Helvetica', 'normal', 400);
                 doc.text(`${this.datePipe.transform(data.acceptedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth(this.translate.instant('pdf.startDateTime') + ':'), yPosition);
-                doc.text(`${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth(this.translate.instant('pdf.endDateTime') + ':'), yPosition + lineHeight);
-                doc.text(`${this.durationPipe.transform(data.closedAt - data.createdAt, 'en')}`, leftX + getLabelWidth(this.translate.instant('pdf.duration') + ':'), yPosition + lineHeight * 2);
-                yPosition += lineHeight * 3 + 5;
+                yPosition += lineHeight;
+
+                if (data.closedAt) {
+                    doc.setFont('Helvetica', 'normal', 700);
+                    doc.text(this.translate.instant('pdf.endDateTime') + ':', leftX, yPosition);
+                    doc.setFont('Helvetica', 'normal', 400);
+                    doc.text(`${this.datePipe.transform(data.closedAt, 'd MMM yyyy HH:mm', undefined, 'en')}`, leftX + getLabelWidth(this.translate.instant('pdf.endDateTime') + ':'), yPosition);
+                    yPosition += lineHeight;
+
+                    doc.setFont('Helvetica', 'normal', 700);
+                    doc.text(this.translate.instant('pdf.duration') + ':', leftX, yPosition);
+                    doc.setFont('Helvetica', 'normal', 400);
+                    doc.text(`${this.durationPipe.transform(data.closedAt - data.createdAt, 'en')}`, leftX + getLabelWidth(this.translate.instant('pdf.duration') + ':'), yPosition);
+                    yPosition += lineHeight;
+                }
+
+                yPosition += 5;
 
                 if (data.metadata && Object.keys(data.metadata).length) {
                     Object.keys(data.metadata).forEach(key => {

@@ -99,6 +99,13 @@
                                               *ngIf="!consultation?.doctor">{{ 'dashboard.cancel_consultation' | translate }}</span>
                                     </div>
                                 </td>
+                                <td>
+                                    <ion-button class="export-button"
+                                                (click)="exportPDF($event, consultation)">
+                                        <ion-icon name="download-outline" slot="start"></ion-icon>
+                                        {{ 'dashboard.export' | translate }}
+                                    </ion-button>
+                                </td>
                             </tr>
                         </ng-container>
                         </tbody>
