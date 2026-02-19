@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.50) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.51) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -81,8 +81,10 @@ hcw-athome-patient (0.5.50) UNRELEASED; urgency=medium
   * add listening for onConsultationAccepted subscription
   * update web view patterns in app-whatsapp-browser-banner
   * remove close from whatsapp browser banner
+  * remove unused service
+  * add download pdf for requester for opened consultations
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Thu, 08 Jan 2026 15:27:49 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 17 Feb 2026 07:33:23 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
