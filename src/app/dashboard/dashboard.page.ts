@@ -305,7 +305,7 @@ export class DashboardPage implements OnDestroy {
                 if (msg.mimeType.startsWith('image')) {
                     fetch(requestUrl, {
                         headers: {
-                            'x-access-token': user.token,
+                            'Authorization': `Bearer ${user.token}`,
                         },
                     })
                         .then(res => res.blob())

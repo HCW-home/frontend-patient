@@ -38,8 +38,7 @@ export class SocketEventsService {
       url: url,
       data: data || {},
       headers: {
-        'x-access-token': this.user?.token || '',
-        'authorization': `Bearer ${this.user?.token || ''}`,
+        'Authorization': `Bearer ${this.user?.token || ''}`,
         'id': this.user?.id?.toString() || ''
       }
     };
@@ -107,7 +106,7 @@ export class SocketEventsService {
       },
       extraHeaders: {
         id: currentUser.id.toString(),
-        'x-access-token': currentUser.token,
+        'Authorization': `Bearer ${currentUser.token}`,
       }
     })
     ; (<any>window).socket = this.socket
@@ -194,7 +193,7 @@ export class SocketEventsService {
       },
       extraHeaders: {
         id: currentUser.id.toString(),
-        'x-access-token': currentUser.token,
+        'Authorization': `Bearer ${currentUser.token}`,
       }
     })
       ; (<any>window).socket = this.socket

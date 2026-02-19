@@ -138,7 +138,7 @@ export class AuthService {
     const headers = {};
     const token = sessionStorage.getItem('nurseToken')
     if (token) {
-      headers['x-access-token'] = token;
+      headers['Authorization'] = `Bearer ${token}`;
     }
     const opts = { withCredentials: true, headers };
 
@@ -153,7 +153,7 @@ export class AuthService {
   login(token) {
     const headers = {};
     if (token) {
-      headers['x-access-token'] = token;
+      headers['Authorization'] = `Bearer ${token}`;
     }
     return this.http.get<any>(`${this.globalVariableService.getApiPath()}/current-user`, { headers })
         .pipe(map(res => {

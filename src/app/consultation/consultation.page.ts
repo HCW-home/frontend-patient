@@ -514,7 +514,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
             if (msg.mimeType.endsWith("jpeg") || msg.mimeType.endsWith("png")) {
                 fetch(requestUrl, {
                     headers: {
-                        'x-access-token': user.token,
+                        'Authorization': `Bearer ${user.token}`,
                     }
                 }).then(res=> {
                     return res.blob()

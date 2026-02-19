@@ -221,7 +221,6 @@ export class ConsultationService {
             return this.http
                 .post(endpoint, formData, {
                     headers: {
-                        "x-access-token": `${this.currentUser.token}`,
                         fileName: file.name ? file.name : `image.${type}`
                     }
                 });
@@ -236,7 +235,6 @@ export class ConsultationService {
             return this.http
                 .post(endpoint, formData, {
                     headers: {
-                        "x-access-token": `${this.currentUser.token}`,
                         fileName: file.name
                     }
                 });

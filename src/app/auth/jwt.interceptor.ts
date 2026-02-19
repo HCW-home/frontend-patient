@@ -20,7 +20,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
         const currentUser = this.authService.currentUserValue;
         if (currentUser && currentUser.token) {
-            headersConfig["x-access-token"] = currentUser.token;
+            headersConfig["Authorization"] = `Bearer ${currentUser.token}`;
             if (this.authService.currentInviteToken) {
                 headersConfig["inviteToken"] = this.authService.currentInviteToken;
             }
@@ -46,7 +46,7 @@ export class JwtInterceptor implements HttpInterceptor {
     private addAuthenticationToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
         const headersConfig = {
             'locale': localStorage.getItem('hhp-lang') || 'en',
-            "x-access-token": token
+            "Authorization": `Bearer ${token}`
         };
         return request.clone({ setHeaders: headersConfig });
     }
