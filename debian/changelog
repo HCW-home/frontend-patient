@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.51) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.52) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -83,8 +83,9 @@ hcw-athome-patient (0.5.51) UNRELEASED; urgency=medium
   * remove close from whatsapp browser banner
   * remove unused service
   * add download pdf for requester for opened consultations
+  * Replace x-access-token header with standard Authorization: Bearer
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 17 Feb 2026 07:33:23 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Thu, 19 Feb 2026 16:30:09 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
