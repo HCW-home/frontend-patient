@@ -282,5 +282,20 @@
     "ru": "Русский",
     "it": "italiano",
     "uk": "Українські",
-    "kk": "Қазақ"
+    "kk": "Қазақ",
+    "sv": {
+        "camera": "Cámara",
+        "cameraSwitch": "Cambiar cámara",
+        "microphone": "Micrófono",
+        "noCamera": "No se detectó ninguna cámara",
+        "noMicrophone": "No se detectó ningún micrófono",
+        "permissionDenied": "Permiso denegado",
+        "preview": "Vista previa",
+        "settings": "Configuración de audio/vídeo",
+        "speaker": "Altavoz",
+        "startCamera": "Iniciar cámara",
+        "stopCamera": "Detener cámara",
+        "testMicrophone": "Probar micrófono",
+        "testSpeaker": "Probar altavoz"
+    }
 }
