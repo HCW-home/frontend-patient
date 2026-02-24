@@ -123,7 +123,9 @@
         "callInProgress": "Call in progress",
         "permissionNeeded": "Permission Needed",
         "needAccess": "We need access to your microphone or camera to continue the call.",
-        "ok": "OK"
+        "ok": "OK",
+        "cameraError": "An error occurred while accessing your camera.",
+        "microphoneError": "An error occurred while accessing your microphone."
     },
     "chooseAttachement": {
         "send": "SEND",

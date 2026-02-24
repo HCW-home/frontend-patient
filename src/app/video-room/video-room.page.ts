@@ -11,7 +11,7 @@ import { Subscription } from "rxjs";
 
 import { Component, OnInit, OnDestroy, HostListener, EventEmitter, Output, Input, NgZone } from "@angular/core";
 
-import { AlertController, Platform } from "@ionic/angular";
+import { AlertController, Platform, ToastController } from "@ionic/angular";
 import { NativeAudio } from '@capacitor-community/native-audio'
 
 
@@ -182,6 +182,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
       public configService: ConfigService,
       private openViduSrv: OpenViduService,
       private alertController: AlertController,
+      private toastController: ToastController,
       private translateService: TranslateService,
       private remotePeersService: RemotePeersService,
   ) {
@@ -256,6 +257,16 @@ export class VideoRoomPage implements OnInit, OnDestroy {
               this.logger.debug("Cam producing ", stream);
 
               this.myCamStream = { ...stream };
+            })
+          );
+          this.subscriptions.push(
+            this.roomService.onCamError.subscribe((error) => {
+              this.showErrorToast(this.translateService.instant('videoRoom.cameraError'));
+            })
+          );
+          this.subscriptions.push(
+            this.roomService.onMicError.subscribe((error) => {
+              this.showErrorToast(this.translateService.instant('videoRoom.microphoneError'));
             })
           );
           this.subscriptions.push(
@@ -452,6 +463,17 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     };
 
     return navigator.mediaDevices.getUserMedia(constraints);
+  }
+
+  async showErrorToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 4000,
+      position: 'bottom',
+      color: 'danger',
+      buttons: [{ icon: 'close', role: 'cancel' }]
+    });
+    await toast.present();
   }
 
   async showPermissionAlertAndExit() {
