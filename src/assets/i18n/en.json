@@ -136,8 +136,8 @@
     },
     "appComponent": {
         "serverError": "Something went wrong",
-        "whatsappBrowserWarning": "Open in your browser",
-        "whatsappBrowserDescription": "You're viewing this in WhatsApp. Some features may not work properly. Copy the link and open it in your browser.",
+        "whatsappBrowserWarning": "Call feature is not supported",
+        "whatsappBrowserDescription": "Call feature is not supported in this WhatsApp browser. Use the three dot menu on top right and choose \"Open in Browser\" option, or copy and paste the link with the following button.",
         "openInBrowser": "Copy Link",
         "urlCopied": "Link copied! Paste it in your browser.",
         "copyUrlManually": "Please copy this URL and open it in your browser"

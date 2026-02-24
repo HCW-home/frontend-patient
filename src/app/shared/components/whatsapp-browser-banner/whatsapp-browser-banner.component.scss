@@ -90,28 +90,27 @@
 
       .warning-icon {
         font-size: 24px;
+        width: 100%;
       }
 
       .banner-text {
         flex-basis: calc(100% - 40px);
 
         strong {
-          font-size: 13px;
+          font-size: 18px;
         }
 
         p {
-          font-size: 11px;
+          font-size: 16px;
         }
       }
 
       .banner-actions {
         flex-basis: 100%;
         justify-content: space-between;
-        margin-left: 36px;
 
         ion-button {
-          font-size: 11px;
-          height: 28px;
+          font-size: 14px;
         }
       }
     }
