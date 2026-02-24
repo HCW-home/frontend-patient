@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.53) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.54) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -95,7 +95,14 @@ hcw-athome-patient (0.5.53) UNRELEASED; urgency=medium
   * Fix invite query parameter lost on redirect to login page
   * change translations
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 24 Feb 2026 14:16:08 +0000
+  [ Olivier Bitsch ]
+  * Svg for whatsapp browser issue
+
+  [ Gor Grigoryan ]
+  * update texts for whatsapp-browser-banner
+  * fix banner shown state
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 24 Feb 2026 15:16:36 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
