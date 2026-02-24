@@ -44,6 +44,10 @@ export class WhatsappBrowserBannerComponent implements OnInit {
     this.showBanner = this.isWhatsAppBrowser;
   }
 
+  closeBanner() {
+    this.showBanner = false;
+  }
+
   async openInBrowser() {
     const currentUrl = window.location.href;
     if (navigator.clipboard && navigator.clipboard.writeText) {

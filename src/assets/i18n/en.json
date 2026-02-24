@@ -140,7 +140,8 @@
         "whatsappBrowserDescription": "Call feature is not supported in this WhatsApp browser. Use the three dot menu on top right and choose \"Open in Browser\" option, or copy and paste the link with the following button.",
         "openInBrowser": "Copy Link",
         "urlCopied": "Link copied! Paste it in your browser.",
-        "copyUrlManually": "Please copy this URL and open it in your browser"
+        "copyUrlManually": "Please copy this URL and open it in your browser",
+        "dismiss": "Dismiss"
     },
     "authenticate": {
         "login_with": "Institutional Connection",

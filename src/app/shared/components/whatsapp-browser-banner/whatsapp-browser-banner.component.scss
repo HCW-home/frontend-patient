@@ -107,11 +107,21 @@
 
       .banner-actions {
         flex-basis: 100%;
-        justify-content: space-between;
 
         ion-button {
           font-size: 14px;
         }
+
+        .dismiss-btn {
+          --border-style: none;
+          --box-shadow: none;
+          --color: white;
+          background: none;
+          --border: white;
+          border: 1px solid white;
+          border-radius: 4px;
+        }
+
       }
     }
   }
