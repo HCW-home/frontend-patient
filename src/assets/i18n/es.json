@@ -154,7 +154,8 @@
         "videoCall": "Videollamada",
         "call": "llamada",
         "accepted": "aceptada",
-        "missed": "perdida"
+        "missed": "perdida",
+        "fileName": ""
     },
     "metadata": {
         "Age": "Edad",
@@ -236,7 +237,10 @@
         "country": "País",
         "select_country": "Seleccionar país",
         "message_optional": "Mensaje (opcional)",
-        "select_gender": "Seleccione género"
+        "select_gender": "Seleccione género",
+        "consultation_creation_failed": "No se pudo crear la consulta. Inténtalo de nuevo.",
+        "file_upload_failed_single": "Error al cargar el archivo:",
+        "file_upload_failed_multiple": "Error al cargar archivos:"
     },
     "authenticate": {
         "welcome_back": "¡Bienvenido de nuevo!",
@@ -268,10 +272,16 @@
         "refresh": "Actualizar"
     },
     "appComponent": {
-        "serverError": "Algo salió mal"
+        "serverError": "Algo salió mal",
+        "openInBrowser": "Copiar enlace",
+        "urlCopied": "Enlace copiado. Pégalo en tu navegador.",
+        "dismiss": "Despedir",
+        "whatsappBrowserDescription": "La función de llamadas no es compatible con este navegador de WhatsApp. Usa el menú de tres puntos en la esquina superior derecha y selecciona \"Abrir en el navegador\" o copia y pega el enlace con el siguiente botón.",
+        "whatsappBrowserWarning": "La función de llamada no es compatible",
+        "copyUrlManually": "Copie esta URL y ábrala en su navegador."
     },
     "fr": "Français",
-    "en": "English",
+    "en": "inglés",
     "es": "Español",
     "hy": "Հայերեն",
     "de": "Deutsch",
@@ -282,5 +292,15 @@
     "ru": "Русский",
     "it": "italiano",
     "uk": "Українські",
-    "kk": "Қазақ"
+    "kk": "Қазақ",
+    "roles": {
+        "admin": "Administración",
+        "doctor": "Médico",
+        "nurse": "Solicitante",
+        "patient": "Paciente",
+        "requester": "Solicitante",
+        "scheduler": "Programador",
+        "guest": "Invitado/a",
+        "expert": "Experto"
+    }
 }
