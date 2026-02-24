@@ -12,6 +12,7 @@ import { NavigationEnd, Router } from "@angular/router";
 import { App } from '@capacitor/app';
 import { filter } from "rxjs/operators";
 import { TranslateService } from "@ngx-translate/core";
+import { StorageService } from "./services/storage.service";
 
 declare var cordova;
 declare let window: any;
@@ -40,7 +41,8 @@ export class AppComponent {
     private router: Router,
     public translate: TranslateService,
     public globalVariableService: GlobalVariableService,
-    private zone: NgZone
+    private zone: NgZone,
+    private storageService: StorageService
   ) {
     const parsedUrl = new URL(window.location.href);
     this.inviteToken = parsedUrl.searchParams.get("invite");
@@ -139,9 +141,11 @@ export class AppComponent {
 
     if (this.inviteToken) {
       if (localStorage.getItem("inviteToken") !== this.inviteToken) {
-        await this.authService.logOutNurse();
+        sessionStorage.clear();
+        this.storageService.clear();
+        this.authService.currentUserSubject.next(null);
+        this.socketEventsService.disconnect();
         localStorage.setItem("inviteToken", this.inviteToken);
-        // document.location.reload()
       }
     }
 

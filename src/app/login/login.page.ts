@@ -154,8 +154,9 @@ export class LoginPage implements OnInit {
   }
 
   async init() {
+    const queryToken = this.route.snapshot.queryParams.invite;
     const storedToken = localStorage.getItem("inviteToken");
-    this.inviteToken = this.validateInviteToken(this.inviteToken || storedToken);
+    this.inviteToken = this.validateInviteToken(queryToken || this.inviteToken || storedToken);
 
     this.currentUser = this.authService.currentUserValue;
 
