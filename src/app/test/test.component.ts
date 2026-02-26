@@ -107,13 +107,20 @@ export class TestComponent implements OnInit, OnDestroy {
 
     async requestMedia(): Promise<void> {
         const audioResult = await this.mediaService.getMedia("audio");
+        if (audioResult instanceof MediaStream) {
+            audioResult.getTracks().forEach(t => t.stop());
+        }
         const videoResult = await this.mediaService.getMedia("video");
+        if (videoResult instanceof MediaStream) {
+            videoResult.getTracks().forEach(t => t.stop());
+        }
 
         try {
             const cameraStatus = await navigator.permissions.query({ name: "camera" as any });
             cameraStatus.addEventListener("change", (evt) => {
                 navigator.mediaDevices.getUserMedia({ video: true })
-                    .then((res) => {
+                    .then((stream) => {
+                        stream.getTracks().forEach(t => t.stop());
                         this.showRetryButton = true;
                     })
                     .catch((err) => {
@@ -129,7 +136,8 @@ export class TestComponent implements OnInit, OnDestroy {
             const audioStatus = await navigator.permissions.query({ name: "microphone" as any });
             audioStatus.addEventListener("change", (evt) => {
                 navigator.mediaDevices.getUserMedia({ audio: true })
-                    .then((res) => {
+                    .then((stream) => {
+                        stream.getTracks().forEach(t => t.stop());
                         this.showRetryButton = true;
                     })
                     .catch((err) => {

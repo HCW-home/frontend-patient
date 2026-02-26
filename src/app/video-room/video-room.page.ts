@@ -213,12 +213,12 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.exitSession();
-
     this.subscriptions.forEach((sub) => {
       sub.unsubscribe();
     });
-    this.rejectCall();
+    if (!this.rejected) {
+      this.rejectCall();
+    }
   }
 
   joinToSession() {
@@ -227,13 +227,25 @@ export class VideoRoomPage implements OnInit, OnDestroy {
 
     this.remoteUsers = [];
     NativeAudio.stop({assetId: 'ringSound'}).then();
-    this.askForPerm()
-      .then(() => {
+
+    this.roomService.init({ peerId: this.peerId });
+
+    this.roomService.join({
+      roomId: this.sessionId,
+      joinVideo: this.message.type !== "audioCall",
+      joinAudio: true,
+      token: this.token,
+    });
+
+    this.subscriptions.push(
+      this.roomService.onCamProducing.subscribe((stream) => {
+        this.logger.debug("Cam producing ", stream);
+        this.myCamStream = { ...stream };
+
         this.getDevices().then((devices) => {
           this.videoDevices = devices.filter(
             (device) => device.kind === "videoinput"
           );
-
           if (this.videoDevices.length) {
             this.firstCam = this.videoDevices[0].deviceId;
             this.lastCam =
@@ -242,82 +254,65 @@ export class VideoRoomPage implements OnInit, OnDestroy {
           } else {
             this.currentVideoDevice = null;
           }
-
-          this.roomService.init({ peerId: this.peerId });
-
-          this.roomService.join({
-            roomId: this.sessionId,
-            joinVideo: this.message.type !== "audioCall",
-            joinAudio: true,
-            token: this.token,
-          });
-
-          this.subscriptions.push(
-            this.roomService.onCamProducing.subscribe((stream) => {
-              this.logger.debug("Cam producing ", stream);
-
-              this.myCamStream = { ...stream };
-            })
-          );
-          this.subscriptions.push(
-            this.roomService.onCamError.subscribe((error) => {
-              this.showErrorToast(this.translateService.instant('videoRoom.cameraError'));
-            })
-          );
-          this.subscriptions.push(
-            this.roomService.onMicError.subscribe((error) => {
-              this.showErrorToast(this.translateService.instant('videoRoom.microphoneError'));
-            })
-          );
-          this.subscriptions.push(
-            this.remotePeersService.remotePeers.subscribe((peers) => {
-              this.remoteUsers = [];
-              this.logger.debug("got remote peers ", peers);
-              peers.forEach((p) => {
-                this.remoteUsers.push({ ...p });
-              });
-              setTimeout(() => {
-                this.updateLayout();
-              }, 100);
-            })
-          );
-          this.openviduLayout = new OpenViduLayout();
-          this.openviduLayoutOptions = {
-            maxRatio: 3 / 2, // The narrowest ratio that will be used (default 2x3)
-            minRatio: 9 / 16, // The widest ratio that will be used (default 16x9)
-            fixedRatio:
-              false /* If this is true then the aspect ratio of the video is maintained
-        and minRatio and maxRatio are ignored (default false)*/,
-            bigClass: "OV_big", // The class to add to elements that should be sized bigger
-            bigPercentage: 0.9, // The maximum percentage of space the big ones should take up
-            bigFixedRatio: false, // fixedRatio for the big ones
-            bigMaxRatio: 3 / 2, // The narrowest ratio to use for the big elements (default 2x3)
-            bigMinRatio: 9 / 16, // The widest ratio to use for the big elements (default 16x9)
-            bigFirst: false, // Whether to place the big one in the top left (true) or bottom right
-            animate: true, // Whether you want to animate the transitions
-          };
-
-          this.openViduSrv
-            .acceptCall(this.sessionId, this.message.id)
-            .then((res) => {
-              this.logger.debug("call accepted");
-            })
-            .catch(this.logger.error);
-
-          this.openviduLayout.initLayoutContainer(
-            document.getElementById("layout"),
-            this.openviduLayoutOptions
-          );
-          window.openviduLayout = this.openviduLayout;
-          setTimeout(() => {
-            this.updateLayout();
-          }, 200);
         });
       })
-      .catch((err) => {
-        console.error("Error accessing camera", err);
+    );
+    this.subscriptions.push(
+      this.roomService.onCamError.subscribe((error) => {
+        this.showErrorToast(this.translateService.instant('videoRoom.cameraError'));
+      })
+    );
+    this.subscriptions.push(
+      this.roomService.onMicError.subscribe((error) => {
+        this.showErrorToast(this.translateService.instant('videoRoom.microphoneError'));
         this.showPermissionAlertAndExit();
+      })
+    );
+    this.subscriptions.push(
+      this.remotePeersService.remotePeers.subscribe((peers) => {
+        this.remoteUsers = [];
+        this.logger.debug("got remote peers ", peers);
+        peers.forEach((p) => {
+          this.remoteUsers.push({ ...p });
+        });
+        setTimeout(() => {
+          this.updateLayout();
+        }, 100);
+      })
+    );
+    this.openviduLayout = new OpenViduLayout();
+    this.openviduLayoutOptions = {
+      maxRatio: 3 / 2,
+      minRatio: 9 / 16,
+      fixedRatio: false,
+      bigClass: "OV_big",
+      bigPercentage: 0.9,
+      bigFixedRatio: false,
+      bigMaxRatio: 3 / 2,
+      bigMinRatio: 9 / 16,
+      bigFirst: false,
+      animate: true,
+    };
+
+    this.openViduSrv
+      .acceptCall(this.sessionId, this.message.id)
+      .then((res) => {
+        this.logger.debug("call accepted");
+      })
+      .catch((err) => {
+        this.logger.error("Error accepting call", err);
+        const message = err.error?.message || err.message || err.statusText || 'Unknown error';
+        this.showErrorToast(message);
       });
+
+    this.openviduLayout.initLayoutContainer(
+      document.getElementById("layout"),
+      this.openviduLayoutOptions
+    );
+    window.openviduLayout = this.openviduLayout;
+    setTimeout(() => {
+      this.updateLayout();
+    }, 200);
   }
 
   exitSession(rejoin?) {
@@ -358,21 +353,7 @@ export class VideoRoomPage implements OnInit, OnDestroy {
     if (!this.rejected) {
       this.rejected = true;
 
-      if (this.roomService) {
-        if (typeof this.roomService.close === 'function') {
-          try {
-            if (this.accepted) {
-              if (this.roomService && this.roomService.close) {
-                this.roomService.close();
-              } else {
-                console.log('RoomService or its close method is not available');
-              }
-            }
-          } catch (error) {
-            console.error('Error during roomService.close() call:', error);
-          }
-        }
-      }
+      this.roomService?.close();
 
       if (this.myCamStream) {
         this.myCamStream.mediaStream.getTracks().forEach(function (track) {
@@ -381,15 +362,15 @@ export class VideoRoomPage implements OnInit, OnDestroy {
       }
       this.remoteUsers = [];
 
+      this.openViduSrv
+        .rejectCall(this.sessionId || this.consultation?._id || this.consultation?.id, this.message?.id)
+        .then(() => {})
+        .catch((err) => {
+          console.log("error ", err);
+        });
+
       this.hangup.emit(true);
     }
-
-    this.openViduSrv
-      .rejectCall(this.sessionId || this.consultation?._id || this.consultation?.id, this.message.id)
-      .then(() => {})
-      .catch((err) => {
-        console.log("error ", err);
-      });
   }
 
   toggleButtons() {}
@@ -415,55 +396,6 @@ export class VideoRoomPage implements OnInit, OnDestroy {
   }
 
 
-  askForPerm() {
-    this.logger.debug("Ask for video permissions ");
-
-    // if (this.platform.is("cordova") && this.platform.is("android")) {
-    //   return this.checkAndroidPermissions();
-    // }
-    const {
-      sampleRate = 96000,
-      channelCount = 1,
-      volume = 1.0,
-      sampleSize = 16,
-      opusStereo = false,
-      opusDtx = true,
-      opusFec = true,
-      opusPtime = 20,
-      opusMaxPlaybackRate = 96000,
-    } = {};
-    const autoGainControl = false;
-    const echoCancellation = true;
-    const noiseSuppression = true;
-
-    const frameRate = 15;
-
-    const mediaPerms = {
-      audio: {
-        sampleRate,
-        channelCount,
-        // @ts-ignore
-        volume,
-        autoGainControl,
-        echoCancellation,
-        noiseSuppression,
-        sampleSize,
-      },
-      video: {
-        width: { ideal: 640 },
-        aspectRatio: this.videoAspectRatio,
-        frameRate,
-      },
-    };
-    const isAudioOnly = this.message?.type === 'audioCall';
-
-    const constraints = {
-      audio: true,
-      video: !isAudioOnly,
-    };
-
-    return navigator.mediaDevices.getUserMedia(constraints);
-  }
 
   async showErrorToast(message: string) {
     const toast = await this.toastController.create({

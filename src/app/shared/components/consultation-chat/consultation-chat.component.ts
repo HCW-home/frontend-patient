@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   AfterViewInit,
   ViewChild,
   NgZone,
@@ -30,7 +31,7 @@ import {LanguageService} from "../../services/language.service";
   templateUrl: './consultation-chat.component.html',
   styleUrls: ['./consultation-chat.component.scss']
 })
-export class ConsultationChatComponent   implements OnInit, AfterViewInit {
+export class ConsultationChatComponent   implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(IonContent) contentArea: IonContent;
   @ViewChild("txtArea") textArea;
   @ViewChild(IonModal) modal: IonModal;
@@ -164,10 +165,8 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit {
     );
     this.subscriptions.push(
         this._socketEventsService.onEndCall().subscribe((e) => {
-          console.log("End Calll ", e);
-
+          NativeAudio.stop({assetId: "ringSound"}).catch(() => {});
           this.zone.run(() => {
-            console.log("get call 2", e);
             this.callRunning = false;
             this.ongoingCall = null;
             this.shouldJoinCall = false;
@@ -232,6 +231,13 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit {
           }
         })
     );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub) => sub?.unsubscribe());
+    if (this.consultationSubscription) {
+      this.consultationSubscription.unsubscribe();
+    }
   }
 
   getConsultation() {

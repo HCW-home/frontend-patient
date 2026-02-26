@@ -1,6 +1,6 @@
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {Component, ViewChild, OnInit, NgZone, AfterViewInit, HostListener} from "@angular/core";
-import {AlertController, IonContent, Platform} from "@ionic/angular";
+import {AlertController, IonContent, Platform, ToastController} from "@ionic/angular";
 import {ConsultationService} from "../services/consultation.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {MessageService} from "../services/message.service";
@@ -47,6 +47,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
     shouldJoinCall = false;
     ongoingCall = null;
     callRunning = false;
+    joiningCall = false;
 
     // New for display image in modal
     isImgModalOpen = false;
@@ -78,6 +79,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
         private translate: TranslateService,
         private languageService: LanguageService,
         private _sanitizer: DomSanitizer,
+        private toastController: ToastController,
     ) {
     }
 
@@ -172,6 +174,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
         );
         this.subscriptions.push(
             this._socketEventsService.onEndCall().subscribe((e) => {
+                NativeAudio.stop({assetId: "ringSound"}).catch(() => {});
                 this.zone.run(() => {
                     this.callRunning = false;
                     this.ongoingCall = null;
@@ -609,14 +612,28 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
     }
 
     joinCall() {
+        if (this.joiningCall) {
+            return;
+        }
+        this.joiningCall = true;
         this.subscriptions.push(
             this.callService.getCurrentCall(this.consultationId).subscribe(
                 (call) => {
+                    this.joiningCall = false;
                     this.shouldJoinCall = true;
                     this.ongoingCall = call;
                 },
-                (err) => {
-                    console.log("error getting current call ", err);
+                async (err) => {
+                    this.joiningCall = false;
+                    const message = err.error?.message || err.message || err.statusText || 'Unknown error';
+                    const toast = await this.toastController.create({
+                        message,
+                        duration: 4000,
+                        position: 'bottom',
+                        color: 'danger',
+                        buttons: [{ icon: 'close', role: 'cancel' }]
+                    });
+                    await toast.present();
                 }
             )
         );

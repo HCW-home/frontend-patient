@@ -236,6 +236,7 @@
                     *ngIf="ongoingCall && !shouldJoinCall && !callRunning"
                     class="controller"
                     color="success"
+                    [disabled]="joiningCall"
                     (click)="joinCall()"
             >
                 {{ 'consultation.joinCall'|translate }}
