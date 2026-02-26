@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.55) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.56) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -107,7 +107,10 @@ hcw-athome-patient (0.5.55) UNRELEASED; urgency=medium
   [ Olivier Bitsch ]
   * Translated using Weblate (Spanish)
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Tue, 24 Feb 2026 17:40:12 +0000
+  [ Gor Grigoryan ]
+  * improve video room
+
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Thu, 26 Feb 2026 09:31:32 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
