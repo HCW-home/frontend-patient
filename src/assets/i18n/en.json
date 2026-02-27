@@ -185,7 +185,10 @@
         "accessAsDoctor": "Access as Doctor"
     },
     "profile": {
-        "profile": "Profile"
+        "profile": "Profile",
+        "save": "Save",
+        "saving": "Saving...",
+        "profileUpdated": "Profile updated successfully"
     },
     "dashboard": {
         "consultations": "Consultations",

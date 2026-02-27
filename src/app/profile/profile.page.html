@@ -57,6 +57,17 @@
                             </ion-note>
                         </ion-item>
 
+                        <ion-list>
+                            <ion-item fill="solid" class="mb-3">
+                                <ion-select interface="popover" placeholder="{{ 'register.gender' | translate }}"
+                                            formControlName="sex">
+                                    <ion-select-option [value]="option.id"
+                                                       *ngFor="let option of genders">{{ option.name }}
+                                    </ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-list>
+
                         <ion-item fill="solid" class="mb-3">
                             <ion-label position="floating">{{ 'register.phone_number' | translate }}</ion-label>
                             <ion-input
@@ -97,18 +108,15 @@
                             </ion-note>
                         </ion-item>
 
-                        <ion-list>
-                            <ion-item fill="solid" class="mb-3">
-                                <ion-select interface="popover" placeholder="{{ 'register.gender' | translate }}"
-                                            formControlName="sex">
-                                    <ion-select-option [value]="option.id"
-                                                       *ngFor="let option of genders">{{ option.name }}
-                                    </ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                        </ion-list>
-
                     </div>
+
+                    <ion-button
+                        type="submit"
+                        expand="block"
+                        [disabled]="form.invalid || saving"
+                        class="save-btn">
+                        {{ saving ? ('profile.saving' | translate) : ('profile.save' | translate) }}
+                    </ion-button>
 
                 </form>
 

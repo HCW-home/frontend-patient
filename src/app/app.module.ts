@@ -36,6 +36,16 @@ import { CountrySelectPageModule } from "./register/country-select/country-selec
 import localeFr from "@angular/common/locales/fr";
 import localeDe from "@angular/common/locales/de";
 import localeEn from "@angular/common/locales/en";
+import localeEs from "@angular/common/locales/es";
+import localeAr from "@angular/common/locales/ar";
+import localeRu from "@angular/common/locales/ru";
+import localeUk from "@angular/common/locales/uk";
+import localeHy from "@angular/common/locales/hy";
+import localeKk from "@angular/common/locales/kk";
+import localeIt from "@angular/common/locales/it";
+import localeFa from "@angular/common/locales/fa";
+import localeTa from "@angular/common/locales/ta";
+import localeTi from "@angular/common/locales/ti";
 import {
   TranslateLoader,
   TranslateModule,
@@ -48,9 +58,23 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+export function LocaleIdFactory(translateService: TranslateService) {
+  return translateService.currentLang || 'en';
+}
+
 registerLocaleData(localeFr);
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
+registerLocaleData(localeEs);
+registerLocaleData(localeAr);
+registerLocaleData(localeRu);
+registerLocaleData(localeUk);
+registerLocaleData(localeHy);
+registerLocaleData(localeKk);
+registerLocaleData(localeIt);
+registerLocaleData(localeFa);
+registerLocaleData(localeTa);
+registerLocaleData(localeTi);
 
 @NgModule({
   imports: [
@@ -99,7 +123,11 @@ registerLocaleData(localeEn);
     Network,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: LOCALE_ID, useValue: "fr-FR" },
+    {
+      provide: LOCALE_ID,
+      deps: [TranslateService],
+      useFactory: LocaleIdFactory,
+    },
     ConfigService,
     {
       provide: APP_INITIALIZER,

@@ -157,7 +157,7 @@
             <div class="msg-time" *ngIf="msg.fromUserDetail?.role === 'patient' && msg.type === 'text'; else oters ">
                 {{ consultation.consultation?.firstName }} {{ consultation.consultation?.lastName }} -
                 {{
-                    msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
+                    msg.createdAt | date: "d MMMM HH:mm"
                 }}
             </div>
 
@@ -171,7 +171,7 @@
                         {{ msg.fromUserDetail?.firstName }} {{ msg.fromUserDetail?.lastName }} -
                     }
                     {{
-                        msg.createdAt | date: "d MMMM HH:mm":"fr-fr"
+                        msg.createdAt | date: "d MMMM HH:mm"
                     }}
                 </div>
             </ng-template>
@@ -186,7 +186,7 @@
                 <span
                         class="msg-time"
                         style="display: block; width: 100%; margin-top: 0 !important">
-          {{ msg.createdAt | date:'medium' }}
+          {{ msg.createdAt | date: 'd MMMM HH:mm' }}
         </span>
 
                 <ng-container *ngIf="msg.acceptedAt && msg.closedAt">
@@ -196,7 +196,7 @@
                     <span
                             class="msg-time"
                             style="display: block; width: 100%; margin-top: 0 !important"
-                    >{{ msg.closedAt | date:'medium' }}
+                    >{{ msg.closedAt | date: 'd MMMM HH:mm' }}
           </span>
                 </ng-container>
             </ion-row>
@@ -211,7 +211,7 @@
                 <span
                         class="msg-time"
                         style="display: block; width: 100%; margin-top: 0 !important"
-                >{{ msg.createdAt | date:'medium' }}
+                >{{ msg.createdAt | date: 'd MMMM HH:mm' }}
         </span>
 
                 <ng-container *ngIf="msg.acceptedAt && msg.closedAt">
@@ -221,7 +221,7 @@
                     <span
                             class="msg-time"
                             style="display: block; width: 100%; margin-top: 0 !important"
-                    >{{ msg.closedAt | date:'medium' }}
+                    >{{ msg.closedAt | date: 'd MMMM HH:mm' }}
           </span>
                 </ng-container>
             </ion-row>
