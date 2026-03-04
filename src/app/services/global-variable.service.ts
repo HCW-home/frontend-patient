@@ -54,9 +54,9 @@ export class GlobalVariableService {
   }
 
   public getApiPath() {
-    //prevent double slash -> https://app.hug-at-home.ch//api/v1 ->  https://app.hug-at-home.ch/api/v1
     let apiUrl = (this.hostBehaviorSubject.getValue() + environment.api).replace(/([^:]\/)\/+/g, "$1")
     apiUrl = apiUrl.replace(/(\:)\:/, "$1")
+    alert('A0: getApiPath = ' + apiUrl);
     return apiUrl ;
   }
 }

@@ -106,6 +106,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    alert('A14: LoginPage ngOnInit | config=' + !!this.configService.config);
     if (!this.configService.config) {
       this.subscriptions.push(
         this.configService.getConfig().subscribe()
@@ -165,15 +166,20 @@ export class LoginPage implements OnInit {
     this.inviteToken = this.validateInviteToken(queryToken || this.inviteToken || storedToken);
 
     this.currentUser = this.authService.currentUserValue;
+    alert('A15: init() | queryToken=' + !!queryToken + ' storedToken=' + !!storedToken + ' inviteToken=' + !!this.inviteToken + ' user=' + !!this.currentUser);
 
     if (this.inviteToken && this.inviteToken.length) {
+      alert('A16: init() -> calling handleToken');
       this.handleToken(this.inviteToken);
     } else if (this.platform.is("mobile")) {
+      alert('A17: init() -> no token (mobile)');
       this.noInviteError = true;
       this.noTokenProvided = true;
       if (this.authService.currentUserValue) {
         await this.authService.logout();
       }
+    } else {
+      alert('A18: init() -> no token (desktop)');
     }
 
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || "";
@@ -198,6 +204,7 @@ export class LoginPage implements OnInit {
   }
 
   handleToken(inviteToken, accept = false) {
+    alert('A19: handleToken called | token=' + !!inviteToken + ' accept=' + accept);
     this.zone.run(() => {
       this.noTokenProvided = false;
     });
@@ -206,10 +213,10 @@ export class LoginPage implements OnInit {
     this.inviteToken = token;
     this.inviteKey = token;
 
-    // get invite
     this.subscriptions.push(
       this.inviteService.getInviteFromToken(this.inviteToken).subscribe(
         (invite) => {
+          alert('A20: getInviteFromToken SUCCESS | status=' + invite?.status + ' type=' + invite?.type);
           this.invite = invite;
 
           if (this.configService?.config?.forcePatientLanguage && this.invite?.patientLanguage) {
@@ -217,12 +224,16 @@ export class LoginPage implements OnInit {
           }
           this.handleInvite(invite, accept);
         },
-        (err) => this.handleTokenError(err)
+        (err) => {
+          alert('A21: getInviteFromToken ERROR: ' + (err?.status || '') + ' ' + (err?.message || err));
+          this.handleTokenError(err);
+        }
       )
     );
   }
 
   async handleInvite(invite, accept?) {
+    alert('A22: handleInvite | user=' + !!this.currentUser + ' status=' + invite?.status + ' accept=' + accept);
     this.invite = invite;
     this.isExpert = !!invite.isExpert;
     this.expertToken = invite.expertToken;

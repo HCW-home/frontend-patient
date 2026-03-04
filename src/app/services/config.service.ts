@@ -24,8 +24,10 @@ export class ConfigService {
 
 
     getConfig() {
+        alert('A23: ConfigService.getConfig() called | apiPath=' + this.globalVariableService.getApiPath());
         return this.http.get<any>(this.globalVariableService.getApiPath() +  '/config').pipe(
             tap(config => {
+                alert('A24: ConfigService.getConfig() SUCCESS | branding=' + config?.branding);
                 this.config = config;
                 this.configSub.next(config);
 
@@ -48,6 +50,7 @@ export class ConfigService {
                 this.globalVariableService.serverError = false;
             }),
             catchError(error => {
+                alert('A25: ConfigService.getConfig() ERROR: ' + (error?.status || '') + ' ' + (error?.message || error));
                 return of(null);
             })
         );
