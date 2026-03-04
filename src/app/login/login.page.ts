@@ -106,6 +106,11 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.configService.config) {
+      this.subscriptions.push(
+        this.configService.getConfig().subscribe()
+      );
+    }
     this.checkMarkdown();
     const showNativeAppSuggestion =
       (this.platform.is("ios") && environment.showNativeAppSuggestionIOS) ||

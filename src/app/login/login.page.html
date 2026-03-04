@@ -1,5 +1,13 @@
 <ion-content>
     <div class='center'>
+        <div *ngIf="!configService.config" class="custom-card">
+            <div class="right-side">
+                <div class="container config-loading">
+                    <ion-spinner name="crescent"></ion-spinner>
+                    <p class="config-loading-text">Config not loaded</p>
+                </div>
+            </div>
+        </div>
         <div *ngIf="configService.config" class="custom-card">
             <div class="left-side">
                 <div class="container">
@@ -31,7 +39,7 @@
                 <div *ngIf="!showTranslatorConfirmation" class="container">
                     <div class="title">
                         <img class="logo"
-                             *ngIf="configService.config.logo"
+                             *ngIf="configService.config?.logo"
                              [src]="configService.config.logo"
                              [alt]="configService.config.branding"
                              onerror="this.style.opacity='0'"
