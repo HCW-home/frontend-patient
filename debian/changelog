@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.60) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.61) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -113,8 +113,9 @@ hcw-athome-patient (0.5.60) UNRELEASED; urgency=medium
   * use safe-storage service for setting localstorage items
   * check config loaded in login screen
   * add alerts for debuging whatsapp browser
+  * remove alerts
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 04 Mar 2026 16:10:57 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 04 Mar 2026 16:35:10 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
