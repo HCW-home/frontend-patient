@@ -1,4 +1,8 @@
 {
+    "diagnostic": {
+        "title": "Browser not supported",
+        "description": "Your browser does not support video calls. Please copy the link below and open it in Chrome, Firefox, or Safari."
+    },
     "cgu": {
         "termsAndConditions": "Terms & Conditions (T&C)",
         "backToHome": "Return to Home",

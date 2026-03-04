@@ -13,6 +13,19 @@ if (environment.production) {
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+  .catch(err => {
+    if (/Loading chunk|ChunkLoadError/.test(err?.message || '')) {
+      try {
+        const reloaded = sessionStorage.getItem('chunk-reload');
+        if (!reloaded) {
+          sessionStorage.setItem('chunk-reload', '1');
+          window.location.reload();
+          return;
+        }
+        sessionStorage.removeItem('chunk-reload');
+      } catch {}
+    }
+    console.log(err);
+  });
 
 defineCustomElements(window);

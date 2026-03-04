@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ModalController} from "@ionic/angular";
 import {TranslateService} from "@ngx-translate/core";
 import {AuthService} from "../../../auth/auth.service";
+import { safeRemoveItem } from "../../../services/safe-storage";
 
 
 @Component({
@@ -34,12 +35,12 @@ export class CloseConsultationComponent implements OnInit {
         this.consultationService
             .deleteConsultation(this.consultationId)
             .subscribe((res) => {
-                localStorage.removeItem("currentConsultation");
+                safeRemoveItem("currentConsultation");
                 if (currentUser.role === "nurse" || currentUser.role === 'admin') {
                     this.router.navigate(["/dashboard"]);
 
                 } else {
-                    localStorage.removeItem("currentUser");
+                    safeRemoveItem("currentUser");
                     this.router.navigate(["/login"]);
                 }
                 this.modalController.dismiss(true);

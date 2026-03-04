@@ -1,0 +1,12 @@
+<ion-content class="diagnostic-content">
+  <div class="diagnostic-container">
+    <div class="diagnostic-icon">
+      <ion-icon name="warning-outline"></ion-icon>
+    </div>
+    <h2>{{ 'diagnostic.title' | translate }}</h2>
+    <p>{{ 'diagnostic.description' | translate }}</p>
+    <ion-button expand="block" (click)="copyLink()">
+      {{ 'appComponent.openInBrowser' | translate }}
+    </ion-button>
+  </div>
+</ion-content>

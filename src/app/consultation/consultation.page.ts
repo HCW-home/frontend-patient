@@ -21,6 +21,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {ErrorModalComponent} from "../shared/components/error-modal/error-modal.component";
 import {LanguageService} from "../shared/services/language.service";
 import {ConfigService} from "../services/config.service";
+import { safeRemoveItem } from "../services/safe-storage";
 
 @Component({
     selector: "app-consultation",
@@ -252,7 +253,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
                         this.consultationSubscription.unsubscribe();
                         this.consultationSubscription = null;
                     }
-                    localStorage.removeItem("currentConsultation");
+                    safeRemoveItem("currentConsultation");
                     this._socketEventsService.disconnect();
                     return this.authService.logOutNurse();
                     // return this.router.navigate(['login']);
@@ -306,8 +307,8 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
             this.consultationSubscription.unsubscribe();
             this.consultationSubscription = null;
         }
-        localStorage.removeItem("currentConsultation");
-        localStorage.removeItem("inviteToken");
+        safeRemoveItem("currentConsultation");
+        safeRemoveItem("inviteToken");
         this._socketEventsService.disconnect();
         if (
             this.currentUser.role === "guest" ||
@@ -680,7 +681,7 @@ export class ConsultationPage implements OnInit,  AfterViewInit {
     }
 
     backToDashboard() {
-        localStorage.removeItem("currentConsultation");
+        safeRemoveItem("currentConsultation");
         this.router.navigate([`/dashboard`]);
     }
 

@@ -2,6 +2,7 @@ import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Platform } from '@ionic/angular';
+import { safeGetItem, safeSetItem, safeRemoveItem } from './safe-storage';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,11 +28,11 @@ export class GlobalVariableService {
   }
 
   public resetHost(){
-    localStorage.removeItem("host");
+    safeRemoveItem("host");
   }
   public getHost() {
 
-    let host = localStorage.getItem("host");
+    let host = safeGetItem("host");
 
     if ( this.platform.is('ios') || this.platform.is('android')) {
 
@@ -39,7 +40,7 @@ export class GlobalVariableService {
           host = environment.host;
         }
 
-        localStorage.setItem('host', host);
+        safeSetItem('host', host);
     
       } else {
         host = environment.host

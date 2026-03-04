@@ -25,6 +25,7 @@ import {first} from "rxjs/operators";
 import {NativeAudio} from "@capacitor-community/native-audio";
 import {DomSanitizer} from "@angular/platform-browser";
 import {LanguageService} from "../../services/language.service";
+import { safeRemoveItem } from "../../../services/safe-storage";
 
 @Component({
   selector: 'app-consultation-chat',
@@ -250,7 +251,7 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit, OnDes
               this.consultationSubscription.unsubscribe();
               this.consultationSubscription = null;
             }
-            localStorage.removeItem("currentConsultation");
+            safeRemoveItem("currentConsultation");
             this._socketEventsService.disconnect();
             return this.authService.logOutNurse();
             // return this.router.navigate(['login']);
@@ -292,8 +293,8 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit, OnDes
       this.consultationSubscription.unsubscribe();
       this.consultationSubscription = null;
     }
-    localStorage.removeItem("currentConsultation");
-    localStorage.removeItem("inviteToken");
+    safeRemoveItem("currentConsultation");
+    safeRemoveItem("inviteToken");
     this._socketEventsService.disconnect();
     if (
         this.currentUser.role === "guest" ||

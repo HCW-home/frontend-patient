@@ -12,6 +12,7 @@ import {AuthService} from "../auth/auth.service";
 import {ConfigService} from "../services/config.service";
 import {InviteService} from "../services/invite.service";
 import {MediaService} from "../shared/services/media.service";
+import { safeGetItem, safeSetItem } from "../services/safe-storage";
 
 @Component({
     selector: "app-test-call",
@@ -97,7 +98,7 @@ export class TestComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.showSpinner = true;
         this.testStarted = true;
-        this.inviteToken = localStorage.getItem("inviteToken");
+        this.inviteToken = safeGetItem("inviteToken");
         const source = this.route.snapshot.queryParamMap.get('source');
         if (source === 'acknowledge') {
             this.showJoinButton = false;
@@ -289,7 +290,7 @@ export class TestComponent implements OnInit, OnDestroy {
         this.loading = true;
 
         const inviteToken = this.inviteToken ? this.inviteToken : this.isExpert ? this.expertToken : this.inviteKey;
-        localStorage.setItem("inviteToken", inviteToken);
+        safeSetItem("inviteToken", inviteToken);
 
         this.loading = false;
         this.submitted = false;
@@ -332,7 +333,7 @@ export class TestComponent implements OnInit, OnDestroy {
                 return this.handleUser(this.currentUser);
             } else {
                 await this.authService.logout();
-                localStorage.setItem("inviteToken", this.inviteToken);
+                safeSetItem("inviteToken", this.inviteToken);
                 this.noInviteError = null;
             }
         } else if (
@@ -362,8 +363,8 @@ export class TestComponent implements OnInit, OnDestroy {
         if (invite.type === "TRANSLATOR_REQUEST") {
             return;
         }
-        const firstName = localStorage.getItem("firstName");
-        const lastName = localStorage.getItem("lastName");
+        const firstName = safeGetItem("firstName");
+        const lastName = safeGetItem("lastName");
         const data: any = this.isExpert ?
             [this.expertToken, undefined, undefined, {firstName, lastName}] :
             [this.inviteToken, this.birthDate, this.translator];
@@ -393,7 +394,7 @@ export class TestComponent implements OnInit, OnDestroy {
                 if (!consultation) {
                     return this.router.navigate(["await-consultation"]);
                 }
-                localStorage.setItem("currentConsultation", consultation.id);
+                safeSetItem("currentConsultation", consultation.id);
                 this.handleConsultation(consultation.id);
             })
             .catch((err) => {
@@ -455,7 +456,7 @@ export class TestComponent implements OnInit, OnDestroy {
             });
             this.myCamStream = null;
         }
-        localStorage.setItem("videoCallTested", "true");
+        safeSetItem("videoCallTested", "true");
     }
 
     muteStatusChanged() {

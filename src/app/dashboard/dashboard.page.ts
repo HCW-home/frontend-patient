@@ -13,6 +13,7 @@ import {MessageService} from "../services/message.service";
 import {ConfigService} from "../services/config.service";
 import {DatePipe} from "@angular/common";
 import {DurationPipe} from "../shared/pipes/duration.pipe";
+import { safeSetItem } from "../services/safe-storage";
 import { jsPDF } from 'jspdf';
 import {first} from "rxjs/operators";
 import {GlobalVariableService} from "../services/global-variable.service";
@@ -113,7 +114,7 @@ export class DashboardPage implements OnDestroy {
 
     resume(event, consultation) {
         event.stopPropagation();
-        localStorage.setItem("currentConsultation", consultation._id);
+        safeSetItem("currentConsultation", consultation._id);
         this.router.navigate([`/consultation/${consultation._id}`]);
     }
 
@@ -231,7 +232,7 @@ export class DashboardPage implements OnDestroy {
 
     onSelectConsultation(consultation) {
         if (this.platformService.is("mobileweb")) {
-            localStorage.setItem("currentConsultation", consultation._id);
+            safeSetItem("currentConsultation", consultation._id);
             this.router.navigate([`/consultation/${consultation._id}`]);
         } else {
             this.currentConsultation = consultation;
@@ -240,7 +241,7 @@ export class DashboardPage implements OnDestroy {
 
     onSelectClosedConsultation(consultation) {
         if (this.platformService.is("mobileweb")) {
-            localStorage.setItem("currentConsultation", consultation._id);
+            safeSetItem("currentConsultation", consultation._id);
             this.router.navigate([`/consultation/${consultation._id}`]);
         } else {
             this.currentConsultation = consultation;

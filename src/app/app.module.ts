@@ -53,6 +53,7 @@ import {
 } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { DEFAULT_LANGUAGES } from "./shared/services/language.service";
+import { safeGetItem } from "./services/safe-storage";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -144,7 +145,7 @@ registerLocaleData(localeTi);
 
               translateService.addLangs(dynamicLanguages);
 
-              const savedLang = localStorage.getItem("hhp-lang");
+              const savedLang = safeGetItem("hhp-lang");
               const browserLang = translateService.getBrowserLang();
               const defaultLang =
                 savedLang && dynamicLanguages.includes(savedLang)

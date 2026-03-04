@@ -4,6 +4,7 @@ import { Observable, throwError, BehaviorSubject } from "rxjs";
 import {catchError, switchMap, filter, take, finalize} from "rxjs/operators";
 import { AuthService } from "./auth.service";
 import {SocketEventsService} from "../services/socket-events.service";
+import { safeGetItem } from "../services/safe-storage";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -15,7 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const headersConfig = {
-            'locale': localStorage.getItem('hhp-lang') || 'en'
+            'locale': safeGetItem('hhp-lang') || 'en'
         };
 
         const currentUser = this.authService.currentUserValue;
@@ -45,7 +46,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
     private addAuthenticationToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
         const headersConfig = {
-            'locale': localStorage.getItem('hhp-lang') || 'en',
+            'locale': safeGetItem('hhp-lang') || 'en',
             "Authorization": `Bearer ${token}`
         };
         return request.clone({ setHeaders: headersConfig });
@@ -72,7 +73,8 @@ export class JwtInterceptor implements HttpInterceptor {
                 }),
                 catchError((refreshError: HttpErrorResponse) => {
                     this.isRefreshing = false;
-                    this.refreshTokenSubject.error(refreshError);
+                    this.refreshTokenSubject.next(null);
+                    this.refreshTokenSubject = new BehaviorSubject<any>(null);
                     if (refreshError.status === 401) {
                         this.authService.logOutNurse();
                     }

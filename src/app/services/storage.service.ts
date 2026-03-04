@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { safeGetItem, safeSetItem, safeClear } from './safe-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,12 @@ export class StorageService {
   constructor() { }
 
   clear(): void {
-    const language = localStorage.getItem('hhp-lang');
-    localStorage.clear();
+    const language = safeGetItem('hhp-lang');
+    safeClear();
     if (language) {
-      localStorage.setItem('hhp-lang', language);
+      safeSetItem('hhp-lang', language);
     } else {
-      localStorage.setItem('hhp-lang', 'en');
+      safeSetItem('hhp-lang', 'en');
     }
   }
 }

@@ -11,6 +11,7 @@ import {MessageService} from "../services/message.service";
 import {forkJoin, of} from "rxjs";
 import {catchError, finalize, switchMap} from "rxjs/operators";
 import {TranslateService} from "@ngx-translate/core";
+import { safeSetItem } from "../services/safe-storage";
 
 
 @Component({
@@ -173,7 +174,7 @@ export class RequestConsultationPage implements OnInit {
                     this.showWarningToast(errorMessage);
                 }
             }
-            localStorage.setItem("currentConsultation", result.consultation.id);
+            safeSetItem("currentConsultation", result.consultation.id);
             this.router.navigate([`/consultation/${result.consultation.id}`]);
         }, err => {
             console.log('Subscription error:', err);

@@ -13,6 +13,7 @@ import { App } from '@capacitor/app';
 import { filter } from "rxjs/operators";
 import { TranslateService } from "@ngx-translate/core";
 import { StorageService } from "./services/storage.service";
+import { safeGetItem, safeSetItem, safeSessionClear } from "./services/safe-storage";
 
 declare var cordova;
 declare let window: any;
@@ -91,7 +92,7 @@ export class AppComponent {
         if (this.currentUser && (this.currentUser.role === 'nurse' || this.currentUser.role === 'admin')) {
           this.router.navigate([`/dashboard`]);
         } else {
-          const currentConsultation = localStorage.getItem('currentConsultation')
+          const currentConsultation = safeGetItem('currentConsultation')
           if (currentConsultation) {
               this.router.navigate(['consultation', currentConsultation])
           } else {
@@ -118,12 +119,12 @@ export class AppComponent {
           return;
         }
 
-        if (localStorage.getItem("inviteToken") !== token || !host) {
+        if (safeGetItem("inviteToken") !== token || !host) {
           this.authService.logout();
         }
 
-        localStorage.setItem("host", host);
-        localStorage.setItem("inviteToken", token);
+        safeSetItem("host", host);
+        safeSetItem("inviteToken", token);
         this.authService.setInviteToken(token);
         this.router.navigate(["/login"], {
           queryParams: {invite: token},
@@ -140,12 +141,12 @@ export class AppComponent {
     }
 
     if (this.inviteToken) {
-      if (localStorage.getItem("inviteToken") !== this.inviteToken) {
-        sessionStorage.clear();
+      if (safeGetItem("inviteToken") !== this.inviteToken) {
+        safeSessionClear();
         this.storageService.clear();
         this.authService.currentUserSubject.next(null);
         this.socketEventsService.disconnect();
-        localStorage.setItem("inviteToken", this.inviteToken);
+        safeSetItem("inviteToken", this.inviteToken);
       }
     }
 

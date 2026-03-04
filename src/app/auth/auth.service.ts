@@ -11,6 +11,7 @@ import { User } from '../models/user';
 import { GlobalVariableService } from '../services/global-variable.service';
 import {ConfigService} from "../services/config.service";
 import {StorageService} from "../services/storage.service";
+import { safeGetItem, safeSetItem, safeRemoveItem, safeSessionClear, safeSessionGetItem, safeSessionSetItem } from "../services/safe-storage";
 
 declare let window: any;
 
@@ -44,12 +45,12 @@ export class AuthService {
   }
 
   public get currentInviteToken(): string {
-    const sessionToken = localStorage.getItem('inviteToken');
+    const sessionToken = safeGetItem('inviteToken');
     return sessionToken;
   }
 
   public setInviteToken(inviteToken) {
-    localStorage.setItem('inviteToken', inviteToken);
+    safeSetItem('inviteToken', inviteToken);
     this.inviteToken.next(inviteToken);
   }
 
@@ -96,7 +97,7 @@ export class AuthService {
   }
 
   logOutNurse(hard = false) {
-    sessionStorage.clear();
+    safeSessionClear();
     this.storageService.clear();
     this.currentUserSubject.next(null);
     this._socketEventsService.disconnect();
@@ -120,9 +121,9 @@ export class AuthService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('inviteToken');
-    localStorage.removeItem('currentConsultation');
-    localStorage.removeItem('birthDate');
+    safeRemoveItem('inviteToken');
+    safeRemoveItem('currentConsultation');
+    safeRemoveItem('birthDate');
 
     this.currentUserSubject.next(null);
     this._socketEventsService.disconnect()
@@ -136,7 +137,7 @@ export class AuthService {
 
   getCurrentUser():Observable<any> {
     const headers = {};
-    const token = sessionStorage.getItem('nurseToken')
+    const token = safeSessionGetItem('nurseToken')
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
@@ -158,8 +159,8 @@ export class AuthService {
     return this.http.get<any>(`${this.globalVariableService.getApiPath()}/current-user`, { headers })
         .pipe(map(res => {
           if (res.user && res.user.token) {
-            sessionStorage.setItem('currentUser', JSON.stringify(res.user));
-            sessionStorage.setItem('nurseToken', res.user.token);
+            safeSessionSetItem('currentUser', JSON.stringify(res.user));
+            safeSessionSetItem('nurseToken', res.user.token);
             this.currentUserSubject.next(res.user);
             return res.user;
           }

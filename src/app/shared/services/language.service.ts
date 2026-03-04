@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
+import { safeGetItem, safeSetItem } from "../../services/safe-storage";
 
 export const DEFAULT_LANGUAGES = [
   "en",
@@ -25,7 +26,7 @@ export class LanguageService {
 
   getCurrentLanguage() {
     const userLang =
-      window.localStorage.getItem("hhp-lang") ||
+      safeGetItem("hhp-lang") ||
       this.translate.getBrowserLang();
     return DEFAULT_LANGUAGES.includes(userLang)
       ? userLang
@@ -34,7 +35,7 @@ export class LanguageService {
 
   switchLanguage(lang: string) {
     this.translate.use(lang).subscribe(() => {
-      localStorage.setItem("hhp-lang", lang);
+      safeSetItem("hhp-lang", lang);
       const rtlLanguages = ["ar", "fa", "he", "ur"];
       const dir = rtlLanguages.includes(lang) ? "rtl" : "ltr";
 

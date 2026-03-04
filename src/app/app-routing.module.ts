@@ -5,6 +5,7 @@ import { DiagnosticGuard } from './_guards/diagnostic.guard';
 import { NurseGuard } from "./_guards/nurse.guard";
 
 const routes: Routes = [
+  { path: 'diagnostic', loadChildren: () => import('./diagnostic/diagnostic.module').then(m => m.DiagnosticModule) },
   { path: 'test-call', loadChildren: () => import('./test/test.module').then(m => m.TestModule) },
   { path: 'acknowledge-invite/:inviteToken', loadChildren: () => import('./acknowledge-invite/acknowledge-invite.module').then(m => m.AcknowledgeInviteModule) },
   { path: 'acknowledge-invite', loadChildren: () => import('./acknowledge-invite/acknowledge-invite.module').then(m => m.AcknowledgeInviteModule) },

@@ -18,6 +18,7 @@ import {App} from "@capacitor/app";
 import {NurseService} from "../shared/services/nurse.service";
 import {StorageService} from "../services/storage.service";
 import {LanguageService} from "../shared/services/language.service";
+import { safeGetItem, safeSetItem, safeRemoveItem } from "../services/safe-storage";
 
 declare let window: any;
 
@@ -97,7 +98,7 @@ export class LoginPage implements OnInit {
   }
 
   ngAfterContentInit() {
-    const inviteToken = localStorage.getItem('inviteToken') || '';
+    const inviteToken = safeGetItem('inviteToken') || '';
     if (this.inviteToken !== inviteToken || this.inviteKey !== inviteToken) {
       this.inviteToken = inviteToken;
       this.inviteKey = this.inviteToken;
@@ -155,7 +156,7 @@ export class LoginPage implements OnInit {
 
   async init() {
     const queryToken = this.route.snapshot.queryParams.invite;
-    const storedToken = localStorage.getItem("inviteToken");
+    const storedToken = safeGetItem("inviteToken");
     this.inviteToken = this.validateInviteToken(queryToken || this.inviteToken || storedToken);
 
     this.currentUser = this.authService.currentUserValue;
@@ -183,7 +184,7 @@ export class LoginPage implements OnInit {
   }
 
   handleConsultation(consultationId) {
-    const videoCallTested = localStorage.getItem("videoCallTested");
+    const videoCallTested = safeGetItem("videoCallTested");
     if (videoCallTested) {
       return this.router.navigate(["consultation", consultationId]);
     } else {
@@ -240,7 +241,7 @@ export class LoginPage implements OnInit {
                 if (!consultation) {
                   return this.router.navigate(["await-consultation"]);
                 }
-                localStorage.setItem("currentConsultation", consultation.id);
+                safeSetItem("currentConsultation", consultation.id);
                 this.handleConsultation(consultation.id);
               })
               .catch((err) => {
@@ -255,7 +256,7 @@ export class LoginPage implements OnInit {
 
       } else {
         await this.authService.logout();
-        localStorage.setItem("inviteToken", this.inviteToken);
+        safeSetItem("inviteToken", this.inviteToken);
         this.noInviteError = null;
       }
     } else if (
@@ -296,8 +297,8 @@ export class LoginPage implements OnInit {
       this.setAllowConsultationTimer(invite);
     } else {
       if (this.isExpert) {
-        localStorage.setItem('firstName',this.firstName);
-        localStorage.setItem('lastName',this.lastName);
+        safeSetItem('firstName',this.firstName);
+        safeSetItem('lastName',this.lastName);
       }
 
       this.router.navigate([`/test-call`]);
@@ -333,7 +334,7 @@ export class LoginPage implements OnInit {
     this.loading = true;
 
     const inviteToken = this.inviteToken ? this.inviteToken : this.isExpert ? this.expertToken : this.inviteKey;
-    localStorage.setItem("inviteToken", inviteToken);
+    safeSetItem("inviteToken", inviteToken);
 
     this.loading = false;
     this.submitted = false;
@@ -360,7 +361,7 @@ export class LoginPage implements OnInit {
           this.invite = null;
           this.inviteKey = null;
           this.inviteToken = null;
-          localStorage.removeItem("inviteToken");
+          safeRemoveItem("inviteToken");
         },
         (err) => {
           this.loading = false;
@@ -375,7 +376,7 @@ export class LoginPage implements OnInit {
             (this.translatorAcceptError &&
               this.translatorAcceptError.name === "ERROR_NO_INVITE")
           ) {
-            localStorage.removeItem("inviteToken");
+            safeRemoveItem("inviteToken");
             this.invite = null;
             this.inviteKey = null;
             this.inviteToken = null;
@@ -393,7 +394,7 @@ export class LoginPage implements OnInit {
         this.invite = null;
         this.inviteKey = null;
         this.inviteToken = null;
-        localStorage.removeItem("inviteToken");
+        safeRemoveItem("inviteToken");
         this.showTranslatorConfirmation = true;
         this.translationRequestRefused = true;
       })
@@ -413,7 +414,7 @@ export class LoginPage implements OnInit {
   }
 
   loginInvite(inviteToken) {
-    const videoCallTested = localStorage.getItem("videoCallTested");
+    const videoCallTested = safeGetItem("videoCallTested");
     if (videoCallTested) {
       this.authService
         .loginWithInvite(inviteToken, this.birthDate, this.translator)
@@ -433,7 +434,7 @@ export class LoginPage implements OnInit {
             .toPromise();
         })
         .then((consultation) => {
-          localStorage.setItem("currentConsultation", consultation.id);
+          safeSetItem("currentConsultation", consultation.id);
           this.router.navigate(["consultation", consultation.id]);
           // this.router.navigate(['test-call']);
         })
