@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.57) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.58) UNRELEASED; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -110,8 +110,9 @@ hcw-athome-patient (0.5.57) UNRELEASED; urgency=medium
   [ Gor Grigoryan ]
   * improve video room
   * enable update profile
+  * use safe-storage service for setting localstorage items
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Fri, 27 Feb 2026 08:29:44 +0000
+ -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Wed, 04 Mar 2026 14:13:28 +0000
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
