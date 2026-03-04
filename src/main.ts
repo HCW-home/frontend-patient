@@ -12,14 +12,8 @@ if (environment.production) {
   enableProdMode();
 }
 
-alert('A1: main.ts - before bootstrap');
-
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .then(() => {
-    alert('A2: main.ts - bootstrap SUCCESS');
-  })
   .catch(err => {
-    alert('A3: main.ts - bootstrap ERROR: ' + (err?.message || err));
     if (/Loading chunk|ChunkLoadError/.test(err?.message || '')) {
       try {
         const reloaded = sessionStorage.getItem('chunk-reload');

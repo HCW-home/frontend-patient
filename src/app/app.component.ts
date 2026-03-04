@@ -45,7 +45,6 @@ export class AppComponent {
     private zone: NgZone,
     private storageService: StorageService
   ) {
-    alert('A7: AppComponent constructor | url=' + window.location.href);
     const parsedUrl = new URL(window.location.href);
     this.inviteToken = parsedUrl.searchParams.get("invite");
     if (!this.inviteToken && window.location.href.match(/invite=([^&]*)/)) {
@@ -59,11 +58,9 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    alert('A8: AppComponent ngOnInit');
     this.authService
       .init()
       .then((user) => {
-        alert('A9: AppComponent auth.init SUCCESS | user=' + !!user);
         if (user) {
           this.currentUser = user;
           this.initServices(this.currentUser);
@@ -71,7 +68,6 @@ export class AppComponent {
         this.initializeApp();
       })
       .catch((err) => {
-        alert('A10: AppComponent auth.init ERROR: ' + (err?.message || err));
         console.log("ERROR getting user ", err);
         this.initializeApp();
       });
@@ -86,7 +82,6 @@ export class AppComponent {
   }
 
   redirectToLogin() {
-    alert('A13: redirectToLogin | token=' + !!this.inviteToken + ' redirected=' + this.redirected);
     if (!this.redirected) {
       if (this.inviteToken) {
         this.router.navigate(["/login"], {
@@ -112,8 +107,6 @@ export class AppComponent {
     return !this.platform.is('mobileweb') && ( this.platform.is('ios') || this.platform.is('android'));
   }
   async initializeApp() {
-    alert('A11: initializeApp called');
-
     App.addListener("appUrlOpen", data => {
       this.zone.run(() => {
         const url = new URL(data.url);
@@ -156,7 +149,6 @@ export class AppComponent {
     }
 
     this.platform.ready().then(() => {
-      alert('A12: platform.ready resolved');
       window.platform = this.platform;
 
       if (this.isNativeApp()) {

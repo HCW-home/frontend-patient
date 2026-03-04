@@ -134,13 +134,11 @@ registerLocaleData(localeTi);
       provide: APP_INITIALIZER,
       useFactory:
         (configService: ConfigService, translateService: TranslateService) =>
-        () => {
-          alert('A4: APP_INITIALIZER - loading config');
-          return configService
+        () =>
+          configService
             .getConfig()
             .toPromise()
             .then((appConfig) => {
-              alert('A5: APP_INITIALIZER - config loaded: ' + !!appConfig);
               const dynamicLanguages = appConfig?.patientLanguages?.length
                 ? appConfig.patientLanguages
                 : DEFAULT_LANGUAGES;
@@ -158,11 +156,7 @@ registerLocaleData(localeTi);
 
               translateService.setDefaultLang('en');
               translateService.use(defaultLang);
-            })
-            .catch((err) => {
-              alert('A6: APP_INITIALIZER - config ERROR: ' + (err?.message || err));
-            });
-        },
+            }),
       deps: [ConfigService, TranslateService],
       multi: true,
     },

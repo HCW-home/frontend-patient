@@ -56,7 +56,6 @@ export class GlobalVariableService {
   public getApiPath() {
     let apiUrl = (this.hostBehaviorSubject.getValue() + environment.api).replace(/([^:]\/)\/+/g, "$1")
     apiUrl = apiUrl.replace(/(\:)\:/, "$1")
-    alert('A0: getApiPath = ' + apiUrl);
     return apiUrl ;
   }
 }
