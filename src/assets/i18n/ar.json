@@ -214,7 +214,13 @@
         "patient_firstname_required": "مطلوب اسم المريض الأول"
     },
     "appComponent": {
-        "serverError": "لقد حدث خطأ ما"
+      "serverError": "حدث خطأ ما",
+      "whatsappBrowserWarning": "ميزة الاتصال غير مدعومة",
+      "whatsappBrowserDescription": "ميزة الاتصال غير مدعومة في متصفح واتساب هذا. استخدم قائمة النقاط الثلاث في أعلى اليمين واختر خيار \"Open in Browser\"، أو انسخ الرابط باستخدام الزر التالي.",
+      "openInBrowser": "نسخ الرابط",
+      "urlCopied": "تم نسخ الرابط! الصقه في متصفحك.",
+      "copyUrlManually": "يرجى نسخ هذا الرابط وفتحه في متصفحك",
+      "dismiss": "إغلاق"
     },
     "profile": {
         "profile": "حساب تعريفي"

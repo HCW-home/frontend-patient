@@ -98,7 +98,13 @@
         "promptLabelPicture": "Dalla fotocamera"
     },
     "appComponent": {
-        "serverError": "Qualcosa non ha funzionato"
+        "serverError": "Qualcosa non ha funzionato",
+        "whatsappBrowserWarning": "La funzione di chiamata non è supportata",
+        "whatsappBrowserDescription": "La funzione di chiamata non è supportata in questo browser WhatsApp. Usa il menu a tre punti in alto a destra e scegli l'opzione \"Apri nel browser\", oppure copia e incolla il link con il pulsante seguente.",
+        "openInBrowser": "Copia link",
+        "urlCopied": "Link copiato! Incollalo nel tuo browser.",
+        "copyUrlManually": "Copia questo URL e aprilo nel tuo browser",
+        "dismiss": "Chiudi"
     },
     "fr": "Français",
     "en": "English",

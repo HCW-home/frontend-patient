@@ -129,7 +129,13 @@
         "promptLabelPicture": "Depuis la caméra"
     },
     "appComponent": {
-        "serverError": "Quelque chose s'est mal passé"
+        "serverError": "Quelque chose s'est mal passé",
+        "whatsappBrowserWarning": "La fonction d'appel n'est pas prise en charge",
+        "whatsappBrowserDescription": "La fonction d'appel n'est pas prise en charge dans ce navigateur WhatsApp. Utilisez le menu à trois points en haut à droite et choisissez l'option \"Ouvrir dans le navigateur\", ou copiez et collez le lien avec le bouton suivant.",
+        "openInBrowser": "Copier le lien",
+        "urlCopied": "Lien copié ! Collez-le dans votre navigateur.",
+        "copyUrlManually": "Veuillez copier cette URL et l'ouvrir dans votre navigateur",
+        "dismiss": "Fermer"
     },
     "authenticate": {
         "login_with": "Connexion institutionnelle",

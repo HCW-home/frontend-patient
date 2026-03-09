@@ -97,6 +97,15 @@
         "promptLabelPhoto": "ካብ ፎቶ ጋለሪ",
         "promptLabelPicture": "ካብ ካሜራ"
     },
+    "appComponent": {
+      "serverError": "ገለ ጌጋ ተፈጺሙ",
+      "whatsappBrowserWarning": "ናይ መደወሊ ባህሪ ኣይደገፍን",
+      "whatsappBrowserDescription": "ናይ መደወሊ ባህሪ ኣብዚ ናይ WhatsApp ብራውዘር ኣይደገፍን። ኣብ ላዕሊ የማን ዘሎ ሶስተ ነጥቢ ሜኑ ተጠቒምካ \"Open in Browser\" ዝብል ኣማራጺ ምረጽ፣ ወይ ከኣ ብታሕቲ ዘሎ መጠወቒ ተጠቒምካ ነቲ መራኸቢ ቅዳሕ።",
+      "openInBrowser": "መራኸቢ ቅዳሕ",
+      "urlCopied": "መራኸቢ ተቐዲሑ! ኣብ ብራውዘርካ ለጥፍዮ።",
+      "copyUrlManually": "በጃኻ ነዚ URL ቅዳሕ እሞ ኣብ ብራውዘርካ ክፈቶ",
+      "dismiss": "ዝግባእ"
+    },
     "fr": "Français",
     "en": "English",
     "es": "Español",

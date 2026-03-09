@@ -128,7 +128,13 @@
         "promptLabelPicture": "Von der Kamera"
     },
     "appComponent": {
-        "serverError": "Etwas ist schief gelaufen"
+        "serverError": "Etwas ist schief gelaufen",
+        "whatsappBrowserWarning": "Anruffunktion wird nicht unterstützt",
+        "whatsappBrowserDescription": "Die Anruffunktion wird in diesem WhatsApp-Browser nicht unterstützt. Verwenden Sie das Dreipunktmenü oben rechts und wählen Sie \"Im Browser öffnen\" oder kopieren Sie den Link mit der folgenden Schaltfläche.",
+        "openInBrowser": "Link kopieren",
+        "urlCopied": "Link kopiert! Fügen Sie ihn in Ihren Browser ein.",
+        "copyUrlManually": "Bitte kopieren Sie diese URL und öffnen Sie sie in Ihrem Browser",
+        "dismiss": "Schließen"
     },
     "register": {
         "lastname": "Nachname",

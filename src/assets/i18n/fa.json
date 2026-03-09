@@ -97,6 +97,15 @@
         "promptLabelPhoto": "From photo gallerie",
         "promptLabelPicture": "From camera"
     },
+    "appComponent": {
+      "serverError": "مشکلی پیش آمد",
+      "whatsappBrowserWarning": "قابلیت تماس پشتیبانی نمی‌شود",
+      "whatsappBrowserDescription": "قابلیت تماس در این مرورگر واتساپ پشتیبانی نمی‌شود. از منوی سه‌نقطه در بالا سمت راست استفاده کرده و گزینه \"Open in Browser\" را انتخاب کنید، یا با استفاده از دکمه زیر لینک را کپی کنید.",
+      "openInBrowser": "کپی لینک",
+      "urlCopied": "لینک کپی شد! آن را در مرورگر خود جای‌گذاری کنید.",
+      "copyUrlManually": "لطفاً این آدرس را کپی کرده و در مرورگر خود باز کنید",
+      "dismiss": "بستن"
+    },
     "fr": "Français",
     "en": "English",
     "es": "Español",

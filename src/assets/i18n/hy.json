@@ -128,7 +128,13 @@
         "promptLabelPicture": "Խցիկից"
     },
     "appComponent": {
-        "serverError": "Ինչ-որ բան սխալ է գնացել"
+      "serverError": "Ինչ-որ բան սխալ գնաց",
+      "whatsappBrowserWarning": "Զանգի գործառույթը չի աջակցվում",
+      "whatsappBrowserDescription": "Զանգի գործառույթը չի աջակցվում այս WhatsApp բրաուզերում։ Օգտագործեք վերևի աջ կողմի երեք կետի մենյուն և ընտրեք \"Open in Browser\" տարբերակը, կամ պատճենեք հղումը ստորև գտնվող կոճակի միջոցով։",
+      "openInBrowser": "Պատճենել հղումը",
+      "urlCopied": "Հղումը պատճենված է։ Տեղադրեք այն ձեր բրաուզերում։",
+      "copyUrlManually": "Խնդրում ենք պատճենել այս URL-ը և բացել այն ձեր բրաուզերում",
+      "dismiss": "Փակել"
     },
     "authenticate": {
         "login_with": "Ինստիտուցիոնալ միացում",
