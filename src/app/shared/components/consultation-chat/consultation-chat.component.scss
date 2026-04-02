@@ -53,7 +53,8 @@ ion-card-content {
   // min-width: 0;
 }
 
-.incoming > ion-row > ion-col > .bubble a{
+.incoming > ion-row > ion-col > .bubble a,
+.incoming .chat-text-container .bubble a {
   color: #e2e2e2;
 }
 
