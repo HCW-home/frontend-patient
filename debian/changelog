@@ -1,4 +1,4 @@
-hcw-athome-patient (0.5.62) UNRELEASED; urgency=medium
+hcw-athome-patient (0.5.63) focal; urgency=medium
 
   [ Gor Grigoryan ]
   * show native alert when no permission on accepting call
@@ -14,6 +14,9 @@ hcw-athome-patient (0.5.62) UNRELEASED; urgency=medium
 
   [ Olivier Bitsch ]
   * Use static bookworm image
+  * Fix chat link color
+  * Fix chat link color
+  * Make image modal 100% + Download button
 
   [ Gor Grigoryan ]
   * add check for queue name
@@ -116,7 +119,7 @@ hcw-athome-patient (0.5.62) UNRELEASED; urgency=medium
   * remove alerts
   * add missing translation keys for appComponent
 
- -- Gor Grigoryan <gorgrigoryan1997@gmail.com>  Mon, 09 Mar 2026 10:35:37 +0000
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 16 Apr 2026 13:59:41 +0200
 
 hcw-athome-patient (0.5.28) focal; urgency=medium
 
