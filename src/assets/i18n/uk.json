@@ -23,6 +23,7 @@
         "youAreInWaiting": "Ви на очікуванні, будь ласка, зачекайте.",
         "cancel": "СКАСУВАТИ",
         "download": "Завантажити",
+        "downloadFailed": "Не вдалося завантажити. Спробуйте ще раз.",
         "yourBrowserDoesNotSupport": "Ваш браузер не підтримує аудіоелемент.",
         "videoCallStarted": "Відеодзвінок розпочато",
         "videoCallRequested": "Запитано відеодзвінок",

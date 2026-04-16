@@ -20,6 +20,7 @@
         "audioMessage": "رسالة صوتية",
         "audioCallRequested": "مكالمة صوتية مطلوبة",
         "download": "تحميل",
+        "downloadFailed": "فشل التنزيل. يرجى المحاولة مرة أخرى.",
         "enterYourMessage": "اكتب رسالتك",
         "audioCallStarted": "بدء المكالمة الصوتية",
         "phone": "الهاتف:",

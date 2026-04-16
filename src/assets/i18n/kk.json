@@ -19,6 +19,7 @@
         "requestForConsultation": "ТЕЛЕКОНСУЛЬТАЦИЯҒА СҰРАНЫС",
         "cancel": "БАС ТАРТУ",
         "download": "Жүктеп алу",
+        "downloadFailed": "Жүктеп алу сәтсіз аяқталды. Қайталап көріңіз.",
         "videoCallStarted": "Бейне қоңырау басталды",
         "videoCallRequested": "Бейне қоңырау сұралды",
         "videoCallEnded": "Бейне қоңырау аяқталды",

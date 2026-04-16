@@ -37,6 +37,7 @@
         "videoCallStarted": "Videoanruf gestartet",
         "yourBrowserDoesNotSupport": "Ihr Browser unterstützt das Audio-Element nicht.",
         "download": "Herunterladen",
+        "downloadFailed": "Download fehlgeschlagen. Bitte erneut versuchen.",
         "cancel": "ABBRECHEN",
         "youAreInWaiting": "Sie befinden sie in der Warteschleife, bitte haben Sie ein Moment Geduld.",
         "requestForConsultation": "ANTRAG AUF TELEKONSULTATION",

@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CloseConsultationComponent} from "../close-consultation/close-consultation.component";
-import {IonContent, IonModal, ModalController, Platform} from "@ionic/angular";
+import {IonContent, IonModal, ModalController, Platform, ToastController} from "@ionic/angular";
 import {Media, MediaObject} from "@awesome-cordova-plugins/media/ngx";
 import {Subscription} from "rxjs";
 import {CallService} from "../../../services/call.service";
@@ -57,6 +57,8 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit, OnDes
   imgModalSrc = null
   imgModalAlt = null
   imgModalName = null
+  imgModalRawUrl: string = null;
+  imgModalFileName: string = null;
 
 
   private subscriptions: Array<Subscription> = [];
@@ -80,6 +82,7 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit, OnDes
       private translate: TranslateService,
       private languageService: LanguageService,
       private _sanitizer: DomSanitizer,
+      private toastController: ToastController,
   ) {}
 
   ngOnInit() {
@@ -511,15 +514,62 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit, OnDes
         });
     }
 
-  openImgModal(img) {
-
-    this.imgModalSrc = img.target.currentSrc
-    this.imgModalAlt = img.target.alt
-    this.imgModalName = "Image"
+  openImgModal(event, msg?) {
+    const rawUrl = event.target.currentSrc;
+    this.imgModalRawUrl = rawUrl;
+    this.imgModalFileName = msg?.fileName || 'image';
+    this.imgModalSrc = this._sanitizer.bypassSecurityTrustResourceUrl(rawUrl);
+    this.imgModalAlt = event.target.alt;
+    this.imgModalName = "Image";
     this.isImgModalOpen = true;
   }
   closeImgModal(isOpen: boolean) {
     this.isImgModalOpen = isOpen
+  }
+
+  async downloadImage(): Promise<void> {
+    if (!this.imgModalRawUrl) {
+      return;
+    }
+    try {
+      const response = await fetch(this.imgModalRawUrl);
+      const blob = await response.blob();
+      const fileName = this.imgModalFileName || 'image';
+
+      // On mobile, prefer the Web Share API so the user can save to Photos/Gallery
+      const nav: any = navigator;
+      if (nav.canShare) {
+        try {
+          const file = new File([blob], fileName, { type: blob.type });
+          if (nav.canShare({ files: [file] })) {
+            await nav.share({ files: [file], title: fileName });
+            return;
+          }
+        } catch (shareErr) {
+          // User cancelled or share failed, fall back to anchor download
+        }
+      }
+
+      // Fallback: anchor + download attribute (desktop browsers)
+      const objectUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = objectUrl;
+      link.download = fileName;
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => window.URL.revokeObjectURL(objectUrl), 1000);
+    } catch (err) {
+      console.error('Error downloading image', err);
+      const toast = await this.toastController.create({
+        message: this.translate.instant('consultation.downloadFailed'),
+        duration: 3000,
+        position: 'bottom',
+        color: 'danger',
+      });
+      await toast.present();
+    }
   }
 
 

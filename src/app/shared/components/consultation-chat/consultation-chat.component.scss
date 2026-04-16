@@ -248,6 +248,33 @@ ion-icon[name="attach"] {
   }
 }
 
+.img-modal-content {
+  --background: #000000;
+}
+
+.img-modal-wrapper {
+  width: 100%;
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  touch-action: pinch-zoom;
+}
+
+.img-modal-image {
+  max-width: 100%;
+  max-height: calc(100vh - 160px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  touch-action: pinch-zoom;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 ::ng-deep {
   html[data-theme="accessibility"] {
     .title {

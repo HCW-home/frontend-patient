@@ -23,6 +23,7 @@
         "youAreInWaiting": "Пожалуйста, ожидайте.",
         "cancel": "ОТМЕНИТЬ",
         "download": "Скачать",
+        "downloadFailed": "Ошибка загрузки. Пожалуйста, попробуйте еще раз.",
         "yourBrowserDoesNotSupport": "Ваш браузер не поддерживает данный формат аудио.",
         "videoCallStarted": "Видеозвонок началась",
         "videoCallRequested": "Запрошен видеозвонок",

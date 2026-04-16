@@ -22,6 +22,7 @@
         "youAreInWaiting": "Sei in attesa, attendi per favore.",
         "cancel": "ANNULLA",
         "download": "Scarica",
+        "downloadFailed": "Download non riuscito. Riprova.",
         "yourBrowserDoesNotSupport": "Il tuo browser non supporta l'elemento audio.",
         "videoCallStarted": "Videochiamata avviata",
         "videoCallRequested": "Richiesta di videochiamata",

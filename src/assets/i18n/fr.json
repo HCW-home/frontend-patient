@@ -24,6 +24,7 @@
         "youAreInWaiting": "Vous êtes en attente, merci de patienter.",
         "cancel": "ANNULER",
         "download": "Télécharger",
+        "downloadFailed": "Le téléchargement a échoué. Veuillez réessayer.",
         "yourBrowserDoesNotSupport": "Votre navigateur ne supporte pas l'élément audio.",
         "videoCallStarted": "Appel vidéo commencé",
         "videoCallRequested": "Appel vidéo demandé",

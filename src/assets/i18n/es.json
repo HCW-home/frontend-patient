@@ -20,6 +20,7 @@
         "audioMessage": "Mensaje de audio",
         "audioCallRequested": "Se ha solicitado una llamada de audio",
         "download": "Descargar",
+        "downloadFailed": "La descarga falló. Por favor, inténtalo de nuevo.",
         "enterYourMessage": "Introduzca su mensaje",
         "audioCallStarted": "Se ha iniciado una llamada de audio",
         "phone": "Tel.:",

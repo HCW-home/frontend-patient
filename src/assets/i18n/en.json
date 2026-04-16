@@ -28,6 +28,7 @@
         "youAreInWaiting": "You are on hold, please wait.",
         "cancel": "CANCEL",
         "download": "Download",
+        "downloadFailed": "Download failed. Please try again.",
         "yourBrowserDoesNotSupport": "Your browser does not support the audio element.",
         "videoCallStarted": "Video call started",
         "videoCallRequested": "Video call requested",

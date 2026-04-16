@@ -22,6 +22,7 @@
         "youAreInWaiting": "شما در حالت انتظار هستید، لطفا صبر کنید",
         "cancel": "کنسل کنید",
         "download": "دانلود کنید",
+        "downloadFailed": "دانلود انجام نشد. لطفاً دوباره امتحان کنید.",
         "yourBrowserDoesNotSupport": "مرورگر شما از المان صوتی را پشتیبانی نمی کند.",
         "videoCallStarted": "تماس ویدیویی شروع شد",
         "videoCallRequested": "تماس ویدیویی درخواست شده است",

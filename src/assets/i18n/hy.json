@@ -23,6 +23,7 @@
         "youAreInWaiting": "Դուք սպասման մեջ եք, խնդրում ենք սպասել:",
         "cancel": "ՉԵՂԱՐԿԵԼ",
         "download": "Ներբեռնել",
+        "downloadFailed": "Ներբեռնումը ձախողվեց: Խնդրում ենք կրկին փորձել:",
         "yourBrowserDoesNotSupport": "Ձեր զննարկիչը չի աջակցում աուդիո տարրին:",
         "videoCallStarted": "Տեսազանգը սկսվեց",
         "videoCallRequested": "Տեսազանգի հայտը ստացվեց",
