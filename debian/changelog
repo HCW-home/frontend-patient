@@ -1,3 +1,10 @@
+hcw-athome-patient (0.5.64) focal; urgency=medium
+
+  * Fix build issue
+  * Fix open image full screen
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Thu, 16 Apr 2026 16:26:13 +0200
+
 hcw-athome-patient (0.5.63) focal; urgency=medium
 
   [ Gor Grigoryan ]
