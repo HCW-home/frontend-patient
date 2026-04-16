@@ -538,9 +538,10 @@ export class ConsultationChatComponent   implements OnInit, AfterViewInit, OnDes
 
       // On mobile, prefer the Web Share API so the user can save to Photos/Gallery
       const nav: any = navigator;
-      if (nav.canShare) {
+      const NativeFile: any = (window as any).File;
+      if (nav.canShare && NativeFile) {
         try {
-          const file = new File([blob], fileName, { type: blob.type });
+          const file = new NativeFile([blob], fileName, { type: blob.type });
           if (nav.canShare({ files: [file] })) {
             await nav.share({ files: [file], title: fileName });
             return;
