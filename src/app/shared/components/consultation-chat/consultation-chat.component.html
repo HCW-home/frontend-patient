@@ -155,7 +155,7 @@
     </ion-grid>
 </div>
 
-<ion-modal [isOpen]="isImgModalOpen" (willDismiss)="closeImgModal(false)">
+<ion-modal class="img-viewer-modal" [isOpen]="isImgModalOpen" (willDismiss)="closeImgModal(false)">
     <ng-template>
         <ion-header>
             <ion-toolbar>
@@ -170,7 +170,7 @@
                 </ion-buttons>
             </ion-toolbar>
         </ion-header>
-        <ion-content class="ion-padding img-modal-content">
+        <ion-content class="img-modal-content">
             <div class="img-modal-wrapper">
                 <img
                         *ngIf="imgModalSrc"
@@ -179,11 +179,15 @@
                         alt="imgModalAlt"
                 />
             </div>
-            <ion-button expand="block" (click)="downloadImage()">
-                <ion-icon slot="start" name="download-outline"></ion-icon>
-                {{ "consultation.download" | translate }}
-            </ion-button>
         </ion-content>
+        <ion-footer class="img-modal-footer">
+            <ion-toolbar>
+                <ion-button expand="block" (click)="downloadImage()">
+                    <ion-icon slot="start" name="download-outline"></ion-icon>
+                    {{ "consultation.download" | translate }}
+                </ion-button>
+            </ion-toolbar>
+        </ion-footer>
     </ng-template>
 </ion-modal>
 
