@@ -1,3 +1,11 @@
+hcw-athome-patient (0.5.65) focal; urgency=medium
+
+  * Rebuild with node 22
+  * Now use weblate with builder
+  * Disable share after download on mobile
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 21 Apr 2026 17:41:46 +0200
+
 hcw-athome-patient (0.5.64) focal; urgency=medium
 
   * Fix build issue
