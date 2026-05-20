@@ -16,6 +16,8 @@ export const DEFAULT_LANGUAGES = [
   "kk",
   "uk",
   "hy",
+  "ps",
+  "so",
 ];
 
 @Injectable({
@@ -36,7 +38,7 @@ export class LanguageService {
   switchLanguage(lang: string) {
     this.translate.use(lang).subscribe(() => {
       safeSetItem("hhp-lang", lang);
-      const rtlLanguages = ["ar", "fa", "he", "ur"];
+      const rtlLanguages = ["ar", "fa", "he", "ur", "ps"];
       const dir = rtlLanguages.includes(lang) ? "rtl" : "ltr";
 
       document.documentElement.setAttribute("dir", dir);
