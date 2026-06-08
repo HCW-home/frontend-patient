@@ -11,6 +11,9 @@ import { io, Socket } from 'socket.io-client';
 export class SocketEventsService {
   socket: Socket
   user
+  // Guard against binding the business listeners more than once on the same
+  // socket instance (connect/reconnect both call listenToEvents()).
+  private listenersBound = false
   public messageSubj: Subject<any> = new Subject()
   public newCallSubj: Subject<any> = new Subject()
   public rejectCallSubj: Subject<any> = new Subject()
@@ -90,7 +93,15 @@ export class SocketEventsService {
       return
     }
     this.user = currentUser;
+    this.createSocket(currentUser, cb)
+  }
 
+  // Builds a fresh socket instance and wires up every handler (connect,
+  // disconnect and the Manager-level reconnection events). Used by both init()
+  // and reconnect() so a socket created either way handles reconnection.
+  private createSocket(currentUser, cb) {
+    // New socket instance: listeners must be (re)bound on it.
+    this.listenersBound = false
     this.socket = io(this.globalVariableService.getHostValue(), {
       reconnection: true,
       reconnectionDelay: 1000,
@@ -127,7 +138,10 @@ export class SocketEventsService {
       console.info('Disconnect from server')
     })
 
-    this.socket.on('reconnect', (number) => {
+    // In socket.io v4 the reconnection events are emitted by the Manager
+    // (this.socket.io), not by the Socket itself. Listening on this.socket
+    // would never fire these handlers.
+    this.socket.io.on('reconnect', (number) => {
       this.connection.next('connect')
       console.info('Reconnected to server', number)
       this.socketGet('/api/v1/subscribe-to-socket', {}, (resData, jwres) => {
@@ -136,15 +150,24 @@ export class SocketEventsService {
       })
     })
 
-    this.socket.on('reconnect_attempt', () => {
+    // 'reconnecting' no longer exists in v4; its logic now lives on the
+    // Manager's 'reconnect_attempt' event, which carries the attempt number.
+    this.socket.io.on('reconnect_attempt', (number) => {
       this.connection.next('connect_failed')
-      console.info('Reconnect Attempt')
-    })
-
-    this.socket.on('reconnecting', (number) => {
-      console.info('Reconnecting to server', number)
+      console.info('Reconnect Attempt', number)
       this.injector.get(AuthService).verifyRefreshToken().subscribe({
-        next: (res) => {}, error: (err) => {
+        next: (res) => {
+          // Refresh the token carried in the handshake query so beforeConnect
+          // receives a valid JWT on the next reconnection attempt.
+          const fresh = this.injector.get(AuthService).currentUserValue;
+          if (fresh && this.socket?.io?.opts) {
+            (this.socket.io.opts.query as any) = {
+              ...(this.socket.io.opts.query as any),
+              token: fresh.token,
+            }
+            this.user = fresh
+          }
+        }, error: (err) => {
           if (err.status === 401) {
             this.injector.get(AuthService).logOutNurse();
           }
@@ -155,12 +178,12 @@ export class SocketEventsService {
       }
     })
 
-    this.socket.on('reconnect_error', (err) => {
+    this.socket.io.on('reconnect_error', (err) => {
       this.connection.next('connect_failed')
       console.info('Reconnect Error', err)
     })
 
-    this.socket.on('reconnect_failed', () => {
+    this.socket.io.on('reconnect_failed', () => {
       this.connection.next('connect_failed')
       console.info('Reconnect failed')
     })
@@ -177,33 +200,7 @@ export class SocketEventsService {
     }
     this.disconnect()
     const currentUser = this.injector.get(AuthService).currentUserValue;
-
-    this.socket = io(this.globalVariableService.getHostValue(), {
-      reconnection: true,
-      reconnectionDelay: 1000,
-      reconnectionDelayMax: 5000,
-      transports: ['websocket', 'polling'],
-      forceNew: true,
-      path: '/socket.io',
-      query: {
-        token: currentUser.token,
-        __sails_io_sdk_version: '1.2.1',
-        __sails_io_sdk_platform: 'browser',
-        __sails_io_sdk_language: 'javascript'
-      },
-      extraHeaders: {
-        id: currentUser.id.toString(),
-        'Authorization': `Bearer ${currentUser.token}`,
-      }
-    })
-      ; (<any>window).socket = this.socket
-
-    this.socket.on('connect', () => {
-      this.socketGet('/api/v1/subscribe-to-socket', {}, (resData, jwres) => {
-        this.listenToEvents()
-        cb()
-      })
-    })
+    this.createSocket(currentUser, cb)
   }
 
   updateConnectionStatus(status) {
@@ -214,6 +211,13 @@ export class SocketEventsService {
   }
 
   listenToEvents() {
+    // The socket instance persists across reconnections, so binding again
+    // would stack duplicate handlers (double notifications/sounds).
+    if (this.listenersBound) {
+      return
+    }
+    this.listenersBound = true
+
     this.socket.on('newMessage', (e) => {
       if (e.data.type !== 'videoCall' && e.data.type !== 'audioCall') {
         LocalNotifications.schedule({
