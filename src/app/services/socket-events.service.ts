@@ -153,8 +153,13 @@ export class SocketEventsService {
     // 'reconnecting' no longer exists in v4; its logic now lives on the
     // Manager's 'reconnect_attempt' event, which carries the attempt number.
     this.socket.io.on('reconnect_attempt', (number) => {
-      this.connection.next('connect_failed')
       console.info('Reconnect Attempt', number)
+      // Stay silent while the first attempt is in flight: a connection that
+      // recovers on the first try shows no message. Only once that attempt
+      // failed (we are now on attempt 2+) do we surface "Connexion échouée".
+      if (number > 1) {
+        this.connection.next('connect_failed')
+      }
       this.injector.get(AuthService).verifyRefreshToken().subscribe({
         next: (res) => {
           // Refresh the token carried in the handshake query so beforeConnect
@@ -178,8 +183,10 @@ export class SocketEventsService {
       }
     })
 
+    // Per-attempt failures are not surfaced here; the message is driven by the
+    // attempt counter in 'reconnect_attempt' so a single failed attempt that
+    // immediately recovers stays silent.
     this.socket.io.on('reconnect_error', (err) => {
-      this.connection.next('connect_failed')
       console.info('Reconnect Error', err)
     })
 
@@ -189,7 +196,6 @@ export class SocketEventsService {
     })
 
     this.socket.on('connect_error', () => {
-      this.connection.next('connect_failed')
       console.info('connect_error')
     })
   }
