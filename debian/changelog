@@ -1,3 +1,13 @@
+hcw-athome-patient (0.5.66) focal; urgency=medium
+
+  * Adding new translations
+  * Fix websocket reconnect
+  * Fix websocket reconnect
+  * Fix to avoid error Websocket on REST
+  * Keep token in URL in test page so opening in browser from whatsapp will still working
+
+ -- Olivier Bitsch <olivier.b@iabsis.com>  Tue, 07 Jul 2026 16:03:21 +0200
+
 hcw-athome-patient (0.5.65) focal; urgency=medium
 
   * Rebuild with node 22
