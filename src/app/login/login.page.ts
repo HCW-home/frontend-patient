@@ -192,7 +192,7 @@ export class LoginPage implements OnInit {
     if (videoCallTested) {
       return this.router.navigate(["consultation", consultationId]);
     } else {
-      return this.router.navigate(["test-call"]);
+      return this.router.navigate(["test-call"], { queryParams: { invite: this.inviteToken } });
     }
   }
 
@@ -306,7 +306,7 @@ export class LoginPage implements OnInit {
         safeSetItem('lastName',this.lastName);
       }
 
-      this.router.navigate([`/test-call`]);
+      this.router.navigate([`/test-call`], { queryParams: { invite: this.inviteToken } });
     }
   }
 
@@ -457,7 +457,7 @@ export class LoginPage implements OnInit {
         .loginWithInvite(inviteToken, this.birthDate, this.translator)
         .toPromise()
         .then((user) => {
-          this.router.navigate(["test-call"]);
+          this.router.navigate(["test-call"], { queryParams: { invite: inviteToken } });
         })
         .catch((err) => {
           console.log(err);

@@ -98,7 +98,14 @@ export class TestComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.showSpinner = true;
         this.testStarted = true;
-        this.inviteToken = safeGetItem("inviteToken");
+        // Read the token from the URL first so the flow survives a fresh page
+        // load in another browser (e.g. WhatsApp in-app WebView -> external
+        // browser), where localStorage is empty. Fall back to localStorage.
+        const urlToken = this.route.snapshot.queryParamMap.get('invite');
+        this.inviteToken = urlToken || safeGetItem("inviteToken");
+        if (urlToken) {
+            safeSetItem("inviteToken", urlToken);
+        }
         const source = this.route.snapshot.queryParamMap.get('source');
         if (source === 'acknowledge') {
             this.showJoinButton = false;

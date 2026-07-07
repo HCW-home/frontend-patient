@@ -12,6 +12,7 @@ import {LanguageService} from "../shared/services/language.service";
 export class AcknowledgeInviteComponent implements OnInit {
     success = false;
     error = false;
+    inviteToken: string | null = null;
 
     constructor(
         private router: Router,
@@ -23,6 +24,7 @@ export class AcknowledgeInviteComponent implements OnInit {
         const inviteToken = this.activatedRoute.snapshot.paramMap.get(
             'inviteToken',
         ) as string;
+        this.inviteToken = inviteToken;
 
         if (inviteToken) {
             this.getAcknowledgementStatus(inviteToken);
@@ -66,7 +68,7 @@ export class AcknowledgeInviteComponent implements OnInit {
     }
 
     testCall() {
-        this.router.navigate([`/test-call`], { queryParams: { source: 'acknowledge' } });
+        this.router.navigate([`/test-call`], { queryParams: { source: 'acknowledge', invite: this.inviteToken } });
     }
 
 }

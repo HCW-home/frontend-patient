@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { safeGetItem } from '../../../services/safe-storage';
 
 @Component({
   selector: 'app-whatsapp-browser-banner',
@@ -49,7 +50,7 @@ export class WhatsappBrowserBannerComponent implements OnInit {
   }
 
   async openInBrowser() {
-    const currentUrl = window.location.href;
+    const currentUrl = this.getShareableUrl();
     if (navigator.clipboard && navigator.clipboard.writeText) {
       try {
         await navigator.clipboard.writeText(currentUrl);
@@ -63,6 +64,25 @@ export class WhatsappBrowserBannerComponent implements OnInit {
     } else {
       await this.showUrlInstructions(currentUrl);
     }
+  }
+
+  /**
+   * The URL to hand off to the external browser. If the current URL already
+   * carries the invite token (e.g. /inv/?invite=... or /test-call?invite=...),
+   * use it as-is. Otherwise rebuild a self-sufficient /inv link from the token
+   * stored in localStorage, so the flow survives the switch to a browser with
+   * empty storage.
+   */
+  private getShareableUrl(): string {
+    const currentUrl = window.location.href;
+    if (/[?&]invite=/.test(currentUrl)) {
+      return currentUrl;
+    }
+    const token = safeGetItem('inviteToken');
+    if (token) {
+      return `${window.location.origin}/inv/?invite=${token}`;
+    }
+    return currentUrl;
   }
 
   private async showUrlInstructions(url: string) {
